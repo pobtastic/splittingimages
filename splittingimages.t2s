@@ -1,0 +1,15 @@
+; tap2sna.py file for Splitting Images. Run
+;
+;   $ tap2sna.py @splittingimages.t2s
+;
+; to create a Z80 snapshot.
+
+https://worldofspectrum.net/pub/sinclair/games/s/SplittingImages.tzx.zip
+SplittingImages.z80
+
+--tape-name "Splitting Images.tzx"
+--tape-sum 92d9d96a513804f3962af0f93859478c
+; This is the real entrypoint but we want to let the game set up a little.
+;--start 0xD1AA
+--start 0xD1D0
+--sim-load-config accelerator=speedlock

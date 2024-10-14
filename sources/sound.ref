@@ -1,0 +1,13 @@
+; Copyright 2024 Paul Maddern (paul@arcadegeek.co.uk)
+
+[Audio:Static:Static]
+
+#AUDIO(static.wav)(#INCLUDE(Static))
+
+[Audio:TileMoving:Tile Moving]
+
+#AUDIO(tile-moving.wav)(#INCLUDE(TileMoving))
+
+[Audio:Bomb:Bomb]
+
+#AUDIO(bomb.wav)(#INCLUDE(Bomb))

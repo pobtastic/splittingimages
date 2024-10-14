@@ -1,0 +1,137 @@
+; Copyright 2024 Paul Maddern (paul@arcadegeek.co.uk)
+
+[Poke:bombs:Bombs Don't Explode]
+<code>
+  <div>POKE #R$F3B1,#N$18</div>
+</code>
+
+Alters the relative jump statement:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$F3AC(#N$F3AC)</td>
+      <td class="instruction">LD #REGa,(#R$D838(#N$D838))</td>
+      <td class="comment-1" rowspan=3">Jump to #R$F428(#N$F428) if *#R$D838 is equal to #N$00.</td>
+    </tr>
+    <tr>
+      <td class="address-1">#R$F3AF(#N$F3AF)</td>
+      <td class="instruction">CP #N$00</td>
+    </tr>
+    <tr>
+      <td class="address-1">#R$F3B1(#N$F3B1)</td>
+      <td class="instruction">JR Z,#R$F428(#N$F428)</td>
+    </tr>
+  </tbody>
+</table>
+
+To not be conditional:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$F3B1(#N$F3B1)</td>
+      <td class="instruction">JR #R$F428(#N$F428)</td>
+    </tr>
+  </tbody>
+</table>
+
+[Poke:infinitelives:Infinite Lives]
+<code>
+  <div>POKE #R$D47C(#N$D47D),#N$63</div>
+  <div>POKE #R$D47C(#N$D47E),#N$02</div>
+</code>
+
+This alters the line which references #R$D827:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$D47C(#N$D47C)</td>
+      <td class="instruction">LD #REGhl,#R$D827(#N$D827)</td>
+      <td class="comment-1" rowspan=2">Decrease *#R$D827 by one.</td>
+    </tr>
+      <td class="address-1">#R$D47F(#N$D47F)</td>
+      <td class="instruction">DEC (#REGhl)</td>
+    </tr>
+    </tr>
+      <td class="address-1">#R$D480(#N$D480)</td>
+      <td class="instruction">JP Z,#R$D4D6(#N$D4D6)</td>
+      <td class="comment-1" rowspan="1">Jump to #R$D4D6(#N$D4D6) if the player is out of lives.</td>
+    </tr>
+  </tbody>
+</table>
+
+To instead reference an unalterable address in ROM:
+<table>
+  <tbody>
+    <tr>
+      <td class="instruction">LD #REGhl,#N$0263</td>
+    </tr>
+  </tbody>
+</table>
+
+[Poke:infinitelivesalt:Infinite Lives (alternative)]
+<code>
+  <div>POKE #R$D47F(#N$D47F),#N$B6</div>
+</code>
+
+This alters the line which would otherwise decrease #R$D827:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$D47C(#N$D47C)</td>
+      <td class="instruction">LD #REGhl,#R$D827(#N$D827)</td>
+      <td class="comment-1" rowspan=2">Decrease *#R$D827 by one.</td>
+    </tr>
+      <td class="address-1">#R$D47F(#N$D47F)</td>
+      <td class="instruction">DEC (#REGhl)</td>
+    </tr>
+    </tr>
+      <td class="address-1">#R$D480(#N$D480)</td>
+      <td class="instruction">JP Z,#R$D4D6(#N$D4D6)</td>
+      <td class="comment-1" rowspan="1">Jump to #R$D4D6(#N$D4D6) if the player is out of lives.</td>
+    </tr>
+  </tbody>
+</table>
+
+To instead run an OR on #REGhl:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$D47F(#N$D47F)</td>
+      <td class="instruction">OR (#REGhl)</td>
+    </tr>
+  </tbody>
+</table>
+
+[Poke:infinitetime:Infinite Time]
+<code>
+  <div>POKE #R$F3A3,#N$18</div>
+</code>
+
+Alters the relative jump statement:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$F39E(#N$F39E)</td>
+      <td class="instruction">LD #REGhl,#R$D83A(#N$D83A)</td>
+      <td class="comment-1" rowspan=3">Jump to #R$F3AC(#N$F3AC) if bit 4 of *#R$D83A is not set.</td>
+    </tr>
+    <tr>
+      <td class="address-1">#R$F3A1(#N$F3A1)</td>
+      <td class="instruction">BIT 4,(#REGhl)</td>
+    </tr>
+    <tr>
+      <td class="address-1">#R$F3A3(#N$F3A3)</td>
+      <td class="instruction">JR Z,#R$F3AC(#N$F3AC)</td>
+    </tr>
+  </tbody>
+</table>
+
+To not be conditional:
+<table>
+  <tbody>
+    <tr>
+      <td class="address-1">#R$F3A3(#N$F3A3)</td>
+      <td class="instruction">JR #R$F3AC(#N$F3AC)</td>
+    </tr>
+  </tbody>
+</table>

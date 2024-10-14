@@ -1,0 +1,96 @@
+;
+; SkoolKit ref file for Splitting Images
+;
+; To build the HTML disassembly, run these commands:
+;   tap2sna.py @splittingimages.t2s
+;   sna2skool.py -H -c sources/splittingimages.ctl SplittingImages.z80 > sources/splittingimages.skool
+;   skool2html.py -H sources/splittingimages.skool -T dark -T wide -toOa
+
+[Config]
+Expand=#INCLUDE(Expand)
+RefFiles=bases.ref;analytics.ref;changelog.ref;data.ref;pokes.ref;previewimages.ref;sound.ref
+GameDir=splittingimages
+
+[Game]
+Game=Splitting Images
+Logo=#SCR$02,$05,$00,$10,$08,$4000,$5800{$0B,$09,$F8,$70}(/images/logo)
+Copyright=&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.
+Repository=https://github.com/pobtastic/splittingimages/
+LinkInternalOperands=1
+AddressAnchor={address#IF({base}==16)(:04x)}
+
+[Titles]
+GameStatusBuffer=Game Status Buffer
+splitpersonalities-Index=Split Personalities
+
+[Index:Graphics:Graphics And Sound]
+Preview Images
+
+[OtherCode:splitpersonalities]
+
+[Paths]
+Preview Images=graphics/preview-images.html
+Sound=sound/sound.html
+splitpersonalities-Index=splitpersonalities.html
+splitpersonalities-CodePath=splitpersonalities
+
+[Page:Preview Images]
+SectionPrefix=PreviewImage
+
+[Page:Sound]
+SectionPrefix=Audio
+
+[PageHeaders]
+GameIndex=The complete<>RAM disassembly (work in progress)
+
+[Index:DataTables:Data Tables And Buffers]
+GameStatusBuffer
+
+[Index:MemoryMaps:Memory Maps]
+MemoryMap
+RoutinesMap
+DataMap
+MessagesMap
+UnusedMap
+
+[Expand]
+#DEF(#COLOUR(id)
+  #LET(ink=$id&$07)#IF({ink}>=$00)(INK:
+    #MAP({ink})(
+      UNKNOWN,
+      0:BLACK,
+      1:BLUE,
+      2:RED,
+      3:MAGENTA,
+      4:GREEN,
+      5:CYAN,
+      6:YELLOW,
+      7:WHITE)),
+  #LET(paper=$id>>$03&$07)#IF({paper}>=$00)(PAPER:
+    #MAP({paper})(
+      UNKNOWN,
+      0:BLACK,
+      1:BLUE,
+      2:RED,
+      3:MAGENTA,
+      4:GREEN,
+      5:CYAN,
+      6:YELLOW,
+      7:WHITE))
+  #LET(bright=$id&$40)#IF({bright}>$00)((BRIGHT))
+  #LET(flash=$id&$80)#IF({flash}>$00)(FLASH: ON))
+
+#DEF(#INK(id)
+  #LET(bright=$id&$40)
+  #LET(flash=$id&$80)
+  #LET(ink=$id&$07)#IF({ink}>=$00)(
+    #MAP({ink})(
+      UNKNOWN,
+      0:BLACK,
+      1:BLUE,
+      2:RED,
+      3:MAGENTA,
+      4:GREEN,
+      5:CYAN,
+      6:YELLOW,
+      7:WHITE))#IF({bright}>$00)( (BRIGHT))#IF({flash}>$00)( (FLASH: ON)))

@@ -8,7 +8,7 @@
 
 [Config]
 Expand=#INCLUDE(Expand)
-RefFiles=bases.ref;analytics.ref;changelog.ref;data.ref;pokes.ref;previewimages.ref;sound.ref
+RefFiles=bases.ref;analytics.ref;changelog.ref;data.ref;images.ref;pokes.ref;previewimages.ref;sound.ref
 GameDir=splittingimages
 
 [Game]
@@ -24,15 +24,20 @@ GameStatusBuffer=Game Status Buffer
 splitpersonalities-Index=Split Personalities
 
 [Index:Graphics:Graphics And Sound]
+Images
 Preview Images
 
 [OtherCode:splitpersonalities]
 
 [Paths]
+Images=graphics/images.html
 Preview Images=graphics/preview-images.html
 Sound=sound/sound.html
 splitpersonalities-Index=splitpersonalities.html
 splitpersonalities-CodePath=splitpersonalities
+
+[Page:Images]
+SectionPrefix=Image
 
 [Page:Preview Images]
 SectionPrefix=PreviewImage

@@ -2,7 +2,7 @@
 
 [PreviewImage:Ronald Reagan]
 <table>
-  <tr><th colspan=2>Level #N$01</th></tr>
+  <tr><th colspan=2>Level 01</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$5B00.png"/></td>
   </tr>
@@ -10,7 +10,7 @@
 
 [PreviewImage:Margaret Thatcher]
 <table>
-  <tr><th colspan=2>Level #N$02</th></tr>
+  <tr><th colspan=2>Level 02</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$6182.png"/></td>
   </tr>
@@ -18,7 +18,7 @@
 
 [PreviewImage:Neil Kinnock]
 <table>
-  <tr><th colspan=2>Level #N$03</th></tr>
+  <tr><th colspan=2>Level 03</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$6AFF.png"/></td>
   </tr>
@@ -26,7 +26,7 @@
 
 [PreviewImage:Clive Sinclair]
 <table>
-  <tr><th colspan=2>Level #N$04</th></tr>
+  <tr><th colspan=2>Level 04</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$730A.png"/></td>
   </tr>
@@ -34,7 +34,7 @@
 
 [PreviewImage:Alan Sugar]
 <table>
-  <tr><th colspan=2>Level #N$05</th></tr>
+  <tr><th colspan=2>Level 05</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$783C.png"/></td>
   </tr>
@@ -42,7 +42,7 @@
 
 [PreviewImage:Humphrey Bogart]
 <table>
-  <tr><th colspan=2>Level #N$06</th></tr>
+  <tr><th colspan=2>Level 06</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$7CFD.png"/></td>
   </tr>
@@ -50,7 +50,7 @@
 
 [PreviewImage:Charles And Diana]
 <table>
-  <tr><th colspan=2>Level #N$07</th></tr>
+  <tr><th colspan=2>Level 07</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$8106.png"/></td>
   </tr>
@@ -58,7 +58,7 @@
 
 [PreviewImage:Fergie And Andrew]
 <table>
-  <tr><th colspan=2>Level #N$08</th></tr>
+  <tr><th colspan=2>Level 08</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$89D2.png"/></td>
   </tr>
@@ -66,15 +66,17 @@
 
 [PreviewImage:Mick Jagger]
 <table>
-  <tr><th colspan=2>Level #N$09</th></tr>
+  <tr><th colspan=2>Level 09</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$9110.png"/></td>
   </tr>
 </table>
 
 [PreviewImage:Marilyn Monroe]
+<p>Note; in the game this doesn't actually ever get created, but if it did ...
+it would look like this:</p>
 <table>
-  <tr><th colspan=2>Level #N$0A</th></tr>
+  <tr><th colspan=2>Level 10</th></tr>
   <tr>
     <td><img src="../images/scr/helper-image-$9772.png"/></td>
   </tr>

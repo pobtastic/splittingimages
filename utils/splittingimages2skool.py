@@ -32,6 +32,34 @@ class SplittingImages:
     def get_address(self, address):
         return (self.snapshot[address + 0x01] * 0x100) + self.snapshot[address]
 
+    def get_image_data(self):
+        lines = []
+
+        image_data = {
+            0x01: {"addr": 0x5B00, "name": "Ronald Reagan"},
+            0x02: {"addr": 0x6182, "name": "Margaret Thatcher"},
+            0x03: {"addr": 0x6AFF, "name": "Neil Kinnock"},
+            0x04: {"addr": 0x730A, "name": "Clive Sinclair"},
+            0x05: {"addr": 0x783C, "name": "Alan Sugar"},
+            0x06: {"addr": 0x7CFD, "name": "Humphrey Bogart"},
+            0x07: {"addr": 0x8106, "name": "Charles And Diana"},
+            0x08: {"addr": 0x89D2, "name": "Fergie And Andrew"},
+            0x09: {"addr": 0x9110, "name": "Mick Jagger"},
+            0x0A: {"addr": 0x9772, "name": "Marilyn Monroe"}
+        }
+        for i in image_data.keys():
+            lines.append(f'b ${image_data[i]["addr"]:04X} Graphics Data: Level {i:02} ({image_data[i]["name"]})')
+            lines.append(f'D ${image_data[i]["addr"]:04X} Compressed graphics data for level {i}.')
+            lines.append(f'@ ${image_data[i]["addr"]:04X} label=GraphicsData_Level_{i:02}')
+            lines.append(f'N ${image_data[i]["addr"]:04X} This is decompressed using the routine at #R$E004 which writes the')
+            lines.append('. image to #R$A0E3.')
+            lines.append(f'N ${image_data[i]["addr"]:04X} #PUSHS #SIM(start=$D34E,stop=$D351,ix=${image_data[i]["addr"]:04X},sp=$FFFA)')
+            lines.append(f'. #UDGTABLE {{ #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-{i:02}) }} UDGTABLE#')
+            lines.append('. #POPS')
+            lines.append('')
+
+        return '\n'.join(lines)
+
     def get_location_data(self):
         lines = []
 
@@ -67,6 +95,7 @@ def run(subcommand):
 # Begin
 ###############################################################################
 methods = OrderedDict((
+    ('image_data', ('get_image_data', 'Image Data')),
     ('location_data', ('get_location_data', 'Location Data')),
     ('source_code', ('get_source_code_data', 'Source Code Remnants'))
 ))

@@ -14,42 +14,101 @@ D $4000 #UDGTABLE { =h Splitting Images Loading Screen. } { #SCR$02(loading) } U
   $4000,$1800,$20 Pixels.
   $5800,$0300,$20 Attributes.
 
-b $5B00 Graphics Data: Level 01
+b $5B00 Graphics Data: Level 01 (Ronald Reagan)
 D $5B00 Compressed graphics data for level 1.
 @ $5B00 label=GraphicsData_Level_01
+N $5B00 This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $5B00 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$5B00,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-01) } UDGTABLE#
+. #POPS
 
-b $6182 Graphics Data: Level 02
+b $6182 Graphics Data: Level 02 (Margaret Thatcher)
+D $6182 Compressed graphics data for level 2.
 @ $6182 label=GraphicsData_Level_02
+N $6182 This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $6182 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$6182,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-02) } UDGTABLE#
+. #POPS
 
-b $6AFF Graphics Data: Level 03
+b $6AFF Graphics Data: Level 03 (Neil Kinnock)
+D $6AFF Compressed graphics data for level 3.
 @ $6AFF label=GraphicsData_Level_03
+N $6AFF This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $6AFF #PUSHS #SIM(start=$D34E,stop=$D351,ix=$6AFF,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-03) } UDGTABLE#
+. #POPS
 
-b $730A Graphics Data: Level 04
+b $730A Graphics Data: Level 04 (Clive Sinclair)
+D $730A Compressed graphics data for level 4.
 @ $730A label=GraphicsData_Level_04
+N $730A This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $730A #PUSHS #SIM(start=$D34E,stop=$D351,ix=$730A,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-04) } UDGTABLE#
+. #POPS
 
-b $783C Graphics Data: Level 05
+b $783C Graphics Data: Level 05 (Alan Sugar)
+D $783C Compressed graphics data for level 5.
 @ $783C label=GraphicsData_Level_05
+N $783C This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $783C #PUSHS #SIM(start=$D34E,stop=$D351,ix=$783C,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-05) } UDGTABLE#
+. #POPS
 
-b $7CFD Graphics Data: Level 06
+b $7CFD Graphics Data: Level 06 (Humphrey Bogart)
+D $7CFD Compressed graphics data for level 6.
 @ $7CFD label=GraphicsData_Level_06
+N $7CFD This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $7CFD #PUSHS #SIM(start=$D34E,stop=$D351,ix=$7CFD,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-06) } UDGTABLE#
+. #POPS
 
-b $8106 Graphics Data: Level 07
+b $8106 Graphics Data: Level 07 (Charles And Diana)
+D $8106 Compressed graphics data for level 7.
 @ $8106 label=GraphicsData_Level_07
+N $8106 This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $8106 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$8106,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-07) } UDGTABLE#
+. #POPS
 
-b $89D2 Graphics Data: Level 08
+b $89D2 Graphics Data: Level 08 (Fergie And Andrew)
+D $89D2 Compressed graphics data for level 8.
 @ $89D2 label=GraphicsData_Level_08
+N $89D2 This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $89D2 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$89D2,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-08) } UDGTABLE#
+. #POPS
 
-b $9110 Graphics Data: Level 09
+b $9110 Graphics Data: Level 09 (Mick Jagger)
+D $9110 Compressed graphics data for level 9.
 @ $9110 label=GraphicsData_Level_09
+N $9110 This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $9110 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$9110,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-09) } UDGTABLE#
+. #POPS
 
-b $9772 Graphics Data: Level 10
+b $9772 Graphics Data: Level 10 (Marilyn Monroe)
+D $9772 Compressed graphics data for level 10.
 @ $9772 label=GraphicsData_Level_10
+N $9772 This is decompressed using the routine at #R$E004 which writes the
+. image to #R$A0E3.
+N $9772 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$9772,sp=$FFFA)
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-10) } UDGTABLE#
+. #POPS
 
 g $A0E3 Image Buffer
 @ $A0E3 label=Buffer_Image
 @ $AAE3 label=Buffer_Image_Attributes
 D $A0E3 Holds the image for the current level.
-B $A0E3,$0B40,$20
+B $A0E3,$0B40,$14
 
 b $AC24
 
@@ -86,7 +145,7 @@ N $D1B9 This sets interrupt mode #N$02; when the system generates an interrupt,
 . generated from the system to form a 16-bit address to jump to.
 .
 . As we've just set #N$FD to every address, this means that every generated
-. interrupt will jump to #N$FEFD, which in turn will jump to #N$FE69.
+. interrupt will jump to #N$FEFD, which in turn will jump to #R$F85D.
   $D1B9,$04 Set #N$FE as the high-order byte in #REGi.
   $D1BD,$02 Set interrupt mode #N$02.
   $D1BF,$06 Write #N$5843 (attribute buffer location) to *#R$D877.
@@ -599,6 +658,26 @@ c $D763 Handler: Bonus
   $D7C5,$01 Return.
 
 c $D7C6
+  $D7C6,$04 Jump to #R$D7CE if #REGa is equal to #N$1F.
+  $D7CA,$04 Jump to #R$D7DD if #REGa is not equal to #N$21.
+  $D7CE,$07 Write #N($0784,$04,$04) to *#R$D88E.
+  $D7D5,$07 Write #N($0AF4,$04,$04) to *#R$D890.
+  $D7DC,$01 Return.
+
+  $D7DD,$04 Jump to #R$D7F0 if #REGa is not equal to #N$25.
+  $D7E1,$07 Write #N($0788,$04,$04) to *#R$D88E.
+  $D7E8,$07 Write #N($0AF8,$04,$04) to *#R$D890.
+  $D7EF,$01 Return.
+
+  $D7F0,$04 Jump to #R$D803 if #REGa is not equal to #N$2D.
+  $D7F4,$07 Write #N($078C,$04,$04) to *#R$D88E.
+  $D7FB,$07 Write #N($0AFC,$04,$04) to *#R$D890.
+  $D802,$01 Return.
+
+  $D803,$03 Return if #REGa is not equal to #N$33.
+  $D806,$07 Write #N($0790,$04,$04) to *#R$D88E.
+  $D80D,$07 Write #N($0B00,$04,$04) to *#R$D890.
+  $D814,$01 Return.
 
 g $D815 Object Timers
 @ $D815 label=Timer_DoorTop
@@ -971,9 +1050,96 @@ g $DA1B
 
 g $DA1C
 
+g $DA1D
+W $DA1D,$02
+
 g $DA1F
 
+c $DA3C
+R $DA3C B Pixel y-coordinate
+R $DA3C C Pixel x-coordinate
+  $DA3C,$03 #HTML(Call <a rel="noopener nofollow" href="https://skoolkit.ca/disassemblies/rom/hex/asm/22AA.html">PIXEL_ADD</a>.)
+  $DA3F,$01 #REGe=#REGa.
+  $DA40,$02 #REGd=#N$08.
+  $DA42,$04 Jump to #R$DA60 if #REGa is zero.
+  $DA46,$01 #REGb=#REGe.
+  $DA47,$03 #REGa=*#REGix+#N$00.
+  $DA4A,$02 #REGc=#N$00.
+  $DA4C,$02 Shift #REGa right.
+  $DA4E,$02 Rotate #REGc right.
+  $DA50,$02 Decrease counter by one and loop back to #R$DA4C until counter is zero.
+  $DA52,$01 Write #REGa to *#REGhl.
+  $DA53,$01 Increment #REGhl by one.
+  $DA54,$01 #REGa=#REGc.
+  $DA55,$01 Write #REGa to *#REGhl.
+  $DA56,$01 Decrease #REGhl by one.
+  $DA57,$02 Increment #REGix by one.
+  $DA59,$03 Call #R$DA6D.
+  $DA5C,$01 Decrease #REGd by one.
+  $DA5D,$02 Jump to #R$DA46 if #REGd is not zero.
+  $DA5F,$01 Return.
+
+  $DA60,$01 #REGb=#REGd.
+  $DA61,$03 #REGa=*#REGix+#N$00.
+  $DA64,$01 Write #REGa to *#REGhl.
+  $DA65,$03 Call #R$DA6D.
+  $DA68,$02 Increment #REGix by one.
+  $DA6A,$02 Decrease counter by one and loop back to #R$DA61 until counter is zero.
+  $DA6C,$01 Return.
+
+  $DA6D,$01 Increment #REGh by one.
+  $DA6E,$01 #REGa=#REGh.
+  $DA6F,$02,b$01 Keep only bits 0-2.
+  $DA71,$01 Return if #REGh is not zero.
+  $DA72,$01 #REGa=#REGh.
+  $DA73,$02 #REGa-=#N$08.
+  $DA75,$01 #REGh=#REGa.
+  $DA76,$01 #REGa=#REGl.
+  $DA77,$02 #REGa+=#N$20.
+  $DA79,$01 #REGl=#REGa.
+  $DA7A,$01 Return if #REGh is higher.
+  $DA7B,$01 #REGa=#REGh.
+  $DA7C,$02 #REGa+=#N$08.
+  $DA7E,$01 #REGh=#REGa.
+  $DA7F,$02,b$01 Flip bits 3-4, 6.
+  $DA81,$01 Return if #REGh is not zero.
+  $DA82,$02 #REGh=#N$40.
+  $DA84,$01 Return.
+
 c $DA85
+  $DA85,$03 RLCA.
+  $DA88,$01 #REGd=#REGa.
+  $DA89,$02 #REGa=#N$B7.
+  $DA8B,$01 #REGa-=#REGd.
+  $DA8C,$01 #REGa-=#REGb.
+  $DA8D,$01 #REGb=#REGa.
+  $DA8E,$01 Return.
+
+c $DA8F
+  $DA8F,$03 RLCA.
+  $DA92,$02 #REGa+=#N$09.
+  $DA94,$01 #REGa-=#REGc.
+  $DA95,$01 #REGc=#REGa.
+  $DA96,$04 Write #REGbc to *#R$DA1D.
+  $DA9A,$02 #REGa=the contents of the Memory Refresh Register.
+  $DA9C,$01 #REGl=#REGa.
+  $DA9D,$02 #REGh=#N$05.
+  $DA9F,$01 #REGa=*#REGhl.
+  $DAA0,$02,b$01 Keep only bits 0-1.
+  $DAA2,$03 RLCA.
+  $DAA5,$02 #REGd=#N$00.
+  $DAA7,$01 #REGe=#REGa.
+  $DAA8,$04 #REGix=#R$F2AE.
+  $DAAC,$02 #REGix+=#REGde.
+  $DAAE,$03 Jump to #R$DA3C.
+
+c $DAB1
+  $DAB1,$04 #HTML(#REGix=<a rel="noopener nofollow" href="https://skoolkit.ca/disassemblies/rom/hex/asm/3D00.html">CHARSET</a>.)
+  $DAB5,$04 #REGbc=*#R$DA1D.
+  $DAB9,$01 Stash #REGhl on the stack.
+  $DABA,$03 Call #R$DA3C.
+  $DABD,$01 Restore #REGhl from the stack.
+  $DABE,$01 Return.
 
 c $DABF
   $DABF,$03 #REGa=*#R$E75D.
@@ -1744,14 +1910,108 @@ B $E0DF,$01
 W $E0E0,$02
 
 c $E0E2
+  $E0E2,$01 #REGl=#REGa.
+  $E0E3,$03 Write #REGhl to *#R$E16B.
+  $E0E6,$03 #REGa=*#R$E761.
+  $E0E9,$02 RRCA.
+  $E0EB,$03 Write #REGa to *#R$E16D.
+  $E0EE,$03 Call #R$E0F2.
+  $E0F1,$01 Return.
+
+  $E0F2,$03 #REGhl=*#R$E16B.
+  $E0F5,$05 Write #N$47 to *#R$E19E.
+  $E0FA,$05 Write #N$00 to *#R$E1A0.
+  $E0FF,$02 #REGb=#N$02.
+  $E101,$01 Stash #REGbc on the stack.
+  $E102,$02 #REGb=#N$02.
+  $E104,$01 Halt operation (suspend CPU until the next interrupt).
+  $E105,$01 Stash #REGbc on the stack.
+  $E106,$04 #REGb=*#R$E16D.
+  $E10A,$03 #REGa=#N$05-#REGb.
+  $E10D,$04 Jump to #R$E115 if #REGa is not equal to #N$04.
+  $E111,$01 Halt operation (suspend CPU until the next interrupt).
+  $E112,$01 Halt operation (suspend CPU until the next interrupt).
+  $E113,$05 RLCA.
+  $E118,$01 Increment #REGa by one.
+  $E119,$03 Write #REGa to *#R$E16A.
+  $E11C,$01 Stash #REGbc on the stack.
+  $E11D,$03 #REGa=*#REGix+#N$00.
+  $E120,$01 #REGa+=#REGh.
+  $E121,$01 #REGb=#REGa.
+  $E122,$03 #REGa=*#REGix+#N$01.
+  $E125,$01 #REGa+=#REGl.
+  $E126,$01 #REGc=#REGa.
+  $E127,$03 Call #R$E1D9.
+  $E12A,$03 #REGa=*#REGix+#N$02.
+  $E12D,$01 #REGa+=#REGh.
+  $E12E,$01 #REGb=#REGa.
+  $E12F,$03 #REGa=*#REGix+#N$03.
+  $E132,$01 #REGa+=#REGl.
+  $E133,$01 #REGc=#REGa.
+  $E134,$03 Call #R$E1D9.
+  $E137,$03 #REGa=*#REGix+#N$04.
+  $E13A,$01 #REGa+=#REGh.
+  $E13B,$01 #REGb=#REGa.
+  $E13C,$03 #REGa=*#REGix+#N$05.
+  $E13F,$01 #REGa+=#REGl.
+  $E140,$01 #REGc=#REGa.
+  $E141,$03 Call #R$E1D9.
+  $E144,$01 Restore #REGbc from the stack.
+  $E145,$02 Decrease counter by one and loop back to #R$E11C until counter is zero.
+  $E147,$05 Write #N$47 to *#R$E19E.
+  $E14C,$05 Write #N$08 to *#R$E1A0.
+  $E151,$03 #REGhl=*#R$E16B.
+  $E154,$01 Restore #REGbc from the stack.
+  $E155,$02 Decrease counter by one and loop back to #R$E105 until counter is zero.
+  $E157,$05 Write #N$00 to *#R$E1A0.
+  $E15C,$05 #REGix+=#N($0006,$04,$04).
+  $E161,$05 Write #N$45 to *#R$E19E.
+  $E166,$01 Restore #REGbc from the stack.
+  $E167,$02 Decrease counter by one and loop back to #R$E101 until counter is zero.
+  $E169,$01 Return.
 
 b $E16A
+  $E16B
+  $E16D
   $E16E
   $E17A
   $E186
   $E192
+  $E19E
+  $E1A0
 
 c $E1A1
+  $E1A1,$03 Call #R$DE51.
+  $E1A4,$01 Stash #REGde on the stack.
+  $E1A5,$01 #REGa=#REGd.
+  $E1A6,$03 RRCA.
+  $E1A9,$02,b$01 Keep only bits 0-1.
+  $E1AB,$02,b$01 Set bits 3-4, 6.
+  $E1AD,$01 #REGd=#REGa.
+  $E1AE,$04 #REGbc=*#R$E19E.
+  $E1B2,$01 #REGa=*#REGde.
+  $E1B3,$01 Flip the bits according to #REGc.
+  $E1B4,$01 Merge the bits from #REGb.
+  $E1B5,$01 Flip the bits according to #REGc.
+  $E1B6,$01 Write #REGa to *#REGde.
+  $E1B7,$01 Restore #REGde from the stack.
+  $E1B8,$01 #REGa=#REGh.
+  $E1B9,$02,b$01 Keep only bits 0-2.
+  $E1BB,$01 #REGb=#REGa.
+  $E1BC,$01 Increment #REGb by one.
+  $E1BD,$02 #REGa=#N$FE.
+  $E1BF,$01 RRCA.
+  $E1C0,$02 Decrease counter by one and loop back to #R$E1BF until counter is zero.
+  $E1C2,$01 #REGb=#REGa.
+  $E1C3,$04 #REGc=*#R$E1A0.
+  $E1C7,$01 #REGa=*#REGde.
+  $E1C8,$04 Jump to #R$E1CD if bit 1 of #REGc is set.
+  $E1CC,$01 Merge the bits from #REGb.
+  $E1CD,$04 Jump to #R$E1D3 if bit 3 of #REGc is set.
+  $E1D1,$01 Flip the bits according to #REGb.
+  $E1D2,$01 Invert the bits in #REGa.
+  $E1D3,$01 Write #REGa to *#REGde.
+  $E1D4,$01 Return.
 W $E1D5,$02
 W $E1D7,$02
 
@@ -3427,60 +3687,81 @@ c $ED62 Game Over Flash Offset
 
 c $ED6F Draw Game Over
 @ $ED6F label=Draw_GameOver
-  $ED6F,$04 #REGix=#R$EDF1.
-  $ED73,$03 #REGde=#N($0020,$04,$04).
-  $ED76,$03 #REGl=*#REGix+#N$00.
-  $ED79,$02 Increment #REGix by one.
-  $ED7B,$03 #REGh=*#REGix+#N$00.
+R $ED6F C Colour attribute value
+  $ED6F,$04 Set the data pointer in #REGix to the start of the data in #R$EDF1.
+  $ED73,$03 Set #REGde with #N($0020,$04,$04) (the number of character blocks
+. in one line).
+N $ED76 Set the base drawing pointer in the attribute buffer from the data.
+@ $ED76 label=Draw_GameOver_Loop
+  $ED76,$03 Load the low byte of the attribute buffer address into #REGl.
+  $ED79,$05 Load the high byte of the attribute buffer address into #REGh.
+N $ED7E Skip moving "up" if the offset is OFF.
   $ED7E,$07 Jump to #R$ED87 if *#R$EDF0 is equal to #N$00.
-  $ED85,$02 #REGhl-=#REGde (with carry).
-  $ED87,$01 Write #REGc to *#REGhl.
-  $ED88,$02 Increment #REGix by one.
-  $ED8A,$03 #REGb=*#REGix+#N$00.
-  $ED8D,$02 Increment #REGix by one.
-  $ED8F,$03 #REGa=*#REGix+#N$00.
-  $ED92,$02 Increment #REGix by one.
-  $ED94,$04 Jump to #R$EDAD if #REGa is equal to #N$01.
-  $ED98,$04 Jump to #R$EDB6 if #REGa is equal to #N$02.
-  $ED9C,$04 Jump to #R$EDBF if #REGa is equal to #N$04.
-  $EDA0,$04 Jump to #R$EDC8 if #REGa is equal to #N$08.
-  $EDA4,$03 Return if #REGa is equal to #N$00.
-  $EDA7,$04 Decrease #REGix by two.
+N $ED85 Else, move up one row.
+  $ED85,$02 Subtract #N($0020,$04,$04) from the drawing pointer.
+@ $ED87 label=WriteAttributeToScreen
+  $ED87,$01 Write the attribute value to *#REGhl.
+  $ED88,$02 Move the data pointer to the next item of data.
+@ $ED8A label=Movement_Loop
+  $ED8A,$05 Load the repeat count into #REGb.
+  $ED8F,$03 Load the direction code into #REGa.
+  $ED92,$02 Move the data pointer to the next item of data.
+  $ED94,$04 Jump to #R$EDAD if the direction code is "right".
+  $ED98,$04 Jump to #R$EDB6 if the direction code is "left".
+  $ED9C,$04 Jump to #R$EDBF if the direction code is "down".
+  $EDA0,$04 Jump to #R$EDC8 if the direction code is "up".
+  $EDA4,$03 Return if the terminator has been reached.
+N $EDA7 Else, this is a new starting point, so rewind the pointer and jump back
+. to the start of the loop.
+  $EDA7,$04 Decrease the data pointer by two.
   $EDAB,$02 Jump to #R$ED76.
-  $EDAD,$01 Increment #REGhl by one.
-  $EDAE,$01 Write #REGc to *#REGhl.
+N $EDAD Handle moving right:
+@ $EDAD label=GameOver_Move_Right
+  $EDAD,$01 Increment the drawing pointer by one (move right).
+  $EDAE,$01 Write the attribute value to *#REGhl.
   $EDAF,$03 Call #R$EDD2.
-  $EDB2,$02 Decrease counter by one and loop back to #R$EDAD until counter is zero.
+  $EDB2,$02 Decrease the repeat counter by one and loop back to #R$EDAD until
+. the repeat counter is zero.
   $EDB4,$02 Jump to #R$ED8A.
-  $EDB6,$01 Decrease #REGhl by one.
-  $EDB7,$01 Write #REGc to *#REGhl.
+N $EDB6 Handle moving left:
+@ $EDB6 label=GameOver_Move_Left
+  $EDB6,$01 Decrease the drawing pointer by one (move left).
+  $EDB7,$01 Write the attribute value to *#REGhl.
   $EDB8,$03 Call #R$EDD2.
-  $EDBB,$02 Decrease counter by one and loop back to #R$EDB6 until counter is zero.
+  $EDBB,$02 Decrease the repeat counter by one and loop back to #R$EDB6 until
+. the repeat counter is zero.
   $EDBD,$02 Jump to #R$ED8A.
-
-  $EDBF,$01 #REGhl+=#REGde.
-  $EDC0,$01 Write #REGc to *#REGhl.
+N $EDBF Handle moving down:
+@ $EDBF label=GameOver_Move_Down
+  $EDBF,$01 Add #N($0020,$04,$04) to the drawing pointer (move down).
+  $EDC0,$01 Write the attribute value to *#REGhl.
   $EDC1,$03 Call #R$EDD2.
-  $EDC4,$02 Decrease counter by one and loop back to #R$EDBF until counter is zero.
+  $EDC4,$02 Decrease the repeat counter by one and loop back to #R$EDBF until
+. the repeat counter is zero.
   $EDC6,$02 Jump to #R$ED8A.
-  $EDC8,$02 #REGhl-=#REGde (with carry).
-  $EDCA,$01 Write #REGc to *#REGhl.
+N $EDC8 Handle moving up:
+@ $EDC8 label=GameOver_Move_Up
+  $EDC8,$02 Subtract #N($0020,$04,$04) from the drawing pointer (move up).
+  $EDCA,$01 Write the attribute value to *#REGhl.
   $EDCB,$03 Call #R$EDD2.
-  $EDCE,$02 Decrease counter by one and loop back to #R$EDC8 until counter is zero.
+  $EDCE,$02 Decrease the repeat counter by one and loop back to #R$EDC8 until
+. the repeat counter is zero.
   $EDD0,$02 Jump to #R$ED8A.
 
-c $EDD2
+c $EDD2 Sound: Game Over
+@ $EDD2 label=Sound_GameOver
   $EDD2,$06 Return if *#R$EDEF is not equal to #N$00.
   $EDD8,$02 Stash #REGbc and #REGhl on the stack.
   $EDDA,$02 #REGh=#N$02.
-  $EDDC,$03 #REGbc=#N($03E8,$04,$04).
+  $EDDC,$03 Set the repeat counter in #REGbc to #N($03E8,$04,$04).
+@ $EDDF label=Sound_GameOver_Loop
   $EDDF,$01 #REGa=*#REGhl.
   $EDE0,$01 Increment #REGhl by one.
   $EDE1,$02,b$01 Keep only bits 3-4.
   $EDE3,$02,b$01 Set bits 0, 2.
   $EDE5,$02 Send to the speaker.
-  $EDE7,$01 Decrease #REGbc by one.
-  $EDE8,$04 Jump back to #R$EDDF until #REGbc is zero.
+  $EDE7,$01 Decrease the repeat counter by one.
+  $EDE8,$04 Jump back to #R$EDDF until the repeat counter is zero.
   $EDEC,$02 Restore #REGhl and #REGbc from the stack.
   $EDEE,$01 Return.
 
@@ -3489,8 +3770,60 @@ g $EDEF Game Over Variables
 B $EDEF,$01
 @ $EDF0 label=GameOver_Y_Offset
 B $EDF0,$01
+N $EDF1 Draw the "G".
 @ $EDF1 label=GameOver_Data
-W $EDF1,$02
+W $EDF1,$02 Attribute buffer starting point.
+B $EDF3,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EDF3,$02,$05
+N $EDFD Draw the "A".
+W $EDFD,$02 Attribute buffer starting point.
+B $EDFF,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EDFF,$02,$05
+N $EE09 Draw the "M".
+W $EE09,$02 Attribute buffer starting point.
+B $EE0B,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EE0B,$02,$03
+W $EE11,$02 Attribute buffer starting point.
+B $EE13,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EE13,$02,$02
+N $EE17 Draw the "E".
+W $EE17,$02 Attribute buffer starting point.
+B $EE19,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EE19,$02,$07
+N $EE27 Draw the "O".
+W $EE27,$02 Attribute buffer starting point.
+B $EE29,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EE29,$02,$04
+N $EE31 Draw the "V".
+W $EE31,$02 Attribute buffer starting point.
+B $EE33,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+W $EE35,$02 Attribute buffer starting point.
+B $EE37,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+W $EE39,$02 Attribute buffer starting point.
+B $EE3B,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+N $EE3D Draw the "E".
+W $EE3D,$02 Attribute buffer starting point.
+B $EE3F,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EE3F,$02,$07
+N $EE4D Draw the "R".
+W $EE4D,$02 Attribute buffer starting point.
+B $EE4F,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+L $EE4F,$02,$06
+W $EE5B,$02 Attribute buffer starting point.
+B $EE5D,$02 Draw: #MAP(#PEEK(#PC+$01))(?,1:right,2:left,4:down,8:up) x
+. #PLURAL(#PEEK(#PC))(1 time, #N({count}) times).
+B $EE5F,$02 Terminator.
 
 c $EE61
   $EE61,$05 Write #N$80 to *#R$D83A.
@@ -3734,12 +4067,167 @@ c $F04F
 w $F092
 
 c $F130
+  $F130,$03 Return if #REGa is equal to #N$FF.
+  $F133,$04 Jump to #R$F13A if #REGa is not equal to #N$80.
+  $F137,$02 Set bit 7 of #REGb.
+  $F139,$01 Return.
+
+  $F13A,$04 Jump to #R$F141 if #REGa is not equal to #N$40.
+  $F13E,$02 Set bit 6 of #REGb.
+  $F140,$01 Return.
+
+  $F141,$01 #REGc=#REGa.
+  $F142,$04 Return if #REGb is equal to #N$00.
+  $F146,$01 #REGa=#REGc.
+  $F147,$05 Jump to #R$F249 if #REGa is lower than #N$15 (unsigned comparison).
+  $F14C,$02 Compare #REGa with #N$40.
+  $F14E,$03 Jump to #R$F249 P.
+  $F151,$01 #REGc=#REGa.
+  $F152,$03 #REGa=*#R$E2C7.
+  $F155,$05 Jump to #R$F249 if #REGa is lower than #N$15 (unsigned comparison).
+  $F15A,$02 Compare #REGa with #N$40.
+  $F15C,$03 Jump to #R$F249 P.
+  $F15F,$02 #REGd=#N$15.
+  $F161,$03 Call #R$F286.
+  $F164,$02 #REGd=#N$3D.
+  $F166,$02 #REGe=#N$03.
+  $F168,$03 #REGa=*#R$E2C7.
+  $F16B,$03 Call #R$F286.
+  $F16E,$01 Increment #REGd by one.
+  $F16F,$01 Decrease #REGe by one.
+  $F170,$03 #REGa=*#R$E2C7.
+  $F173,$02 Jump to #R$F16B if #REGe is not zero.
+  $F175,$04 Jump to #R$F180 if #REGa is not equal to #N$1B.
+  $F179,$05 Jump to #R$F194 if #REGc is not equal to #N$1C.
+  $F17E,$02 Jump to #R$F189.
+
+  $F180,$04 Jump to #R$F194 if #REGa is not equal to #N$1C.
+  $F184,$05 Jump to #R$F194 if #REGc is not equal to #N$1B.
+  $F189,$04 #REGix=#R$D83A.
+  $F18D,$04 Set bit 3 of *#REGix+#N$00.
+  $F191,$03 Jump to #R$F231.
+
+  $F194,$07 Jump to #R$F1A2 if *#R$E2C7 is not equal to #N$1D.
+  $F19B,$05 Jump to #R$F1D6 if #REGc is not equal to #N$1E.
+  $F1A0,$02 Jump to #R$F1AB.
+
+  $F1A2,$04 Jump to #R$F1D6 if #REGa is not equal to #N$1E.
+  $F1A6,$05 Jump to #R$F1D6 if #REGc is not equal to #N$1D.
+  $F1AB,$04 #REGix=#R$D83A.
+  $F1AF,$04 Set bit 2 of *#REGix+#N$00.
+  $F1B3,$03 #REGa=*#R$D840.
+  $F1B6,$01 Set flags.
+  $F1B7,$01 #REGa+=#REGa.
+  $F1B8,$01 DAA.
+  $F1B9,$03 Write #REGa to *#R$D840.
+  $F1BC,$03 #REGa=*#R$D83F.
+  $F1BF,$01 Stash #REGaf on the stack.
+  $F1C0,$01 Set flags.
+  $F1C1,$01 #REGa+=#REGa.
+  $F1C2,$01 DAA.
+  $F1C3,$03 Write #REGa to *#R$D83F.
+  $F1C6,$01 Restore #REGaf from the stack.
+  $F1C7,$03 Jump to #R$F231 if #REGa is higher.
+  $F1CA,$01 Invert the carry flag.
+  $F1CB,$03 #REGa=*#R$D83F.
+  $F1CE,$01 Increment #REGa by one.
+  $F1CF,$01 DAA.
+  $F1D0,$03 Write #REGa to *#R$D83F.
+  $F1D3,$03 Jump to #R$F231.
+  $F1D6,$03 #REGa=*#R$E2C7.
+  $F1D9,$04 Jump to #R$F1EB if #REGa is not equal to #N$17.
+  $F1DD,$03 Jump to #R$F1EB if #REGa is not equal to #REGc.
+  $F1E0,$04 #REGix=#R$D83A.
+  $F1E4,$04 Set bit 6 of *#REGix+#N$00.
+  $F1E8,$03 Jump to #R$F231.
+
+  $F1EB,$03 #REGa=*#R$E2C7.
+  $F1EE,$01 Increment #REGa by one.
+  $F1EF,$03 Jump to #R$F1F8 if #REGa is equal to #REGc.
+  $F1F2,$02 #REGa-=#N$02.
+  $F1F4,$03 Jump to #R$F231 if #REGa is not equal to #REGc.
+  $F1F7,$01 Increment #REGa by one.
+  $F1F8,$01 Decrease #REGa by one.
+  $F1F9,$03 Call #R$D7C6.
+  $F1FC,$02 #REGd=#N$1F.
+  $F1FE,$02 #REGe=#N$0D.
+  $F200,$01 Compare #REGa with #REGd.
+  $F201,$02 Jump to #R$F20A if #REGa is zero.
+  $F203,$02 Increment #REGd by two.
+  $F205,$01 Decrease #REGe by one.
+  $F206,$02 Jump to #R$F200 if #REGe is not zero.
+  $F208,$02 Jump to #R$F231.
+
+  $F20A,$02 #REGa=#N$0E.
+  $F20C,$01 #REGa-=#REGe.
+  $F20D,$01 #REGd=#REGa.
+  $F20E,$02 #REGa=#N$05.
+  $F210,$02 #REGa+=#N$05.
+  $F212,$01 DAA.
+  $F213,$01 Decrease #REGd by one.
+  $F214,$02 Jump to #R$F210 if #REGd is not zero.
+  $F216,$01 Stash #REGaf on the stack.
+  $F217,$02 Set bit 3 of #REGb.
+  $F219,$03 Write #REGa to *#R$D86B.
+  $F21C,$04 #REGd=*#R$D840.
+  $F220,$01 Restore #REGaf from the stack.
+  $F221,$01 #REGa+=#REGd.
+  $F222,$01 DAA.
+  $F223,$03 Write #REGa to *#R$D840.
+  $F226,$02 Jump to #R$F231 if #REGd is higher.
+  $F228,$03 #REGa=*#R$D83F.
+  $F22B,$01 Invert the carry flag.
+  $F22C,$01 Increment #REGa by one.
+  $F22D,$01 DAA.
+  $F22E,$03 Write #REGa to *#R$D83F.
+  $F231,$01 Increment #REGb by one.
+  $F232,$02 Set bit 4 of #REGb.
+  $F234,$07 Jump to #R$F240 if *#R$D832 is equal to #N$00.
+  $F23B,$05 Write #N$03 to *#R$D832.
+  $F240,$02 #REGa=#N$00.
+  $F242,$04 #REGde=*#R$E5B0.
+  $F246,$01 Write #REGa to *#REGde.
+  $F247,$01 Write #REGa to *#REGhl.
+  $F248,$01 Return.
 
 c $F249
+  $F249,$09 Return if *#R$D832 is equal to either #N$00 or #N$03.
+  $F252,$02 Set bit 5 of #REGb.
+  $F254,$01 Return.
 
 c $F255
+  $F255,$05 Jump to #R$F262 if #REGb is equal to #N$00.
+  $F25A,$04 Jump to #R$F262 if #REGb is equal to #N$40.
+  $F25E,$04 Jump to #R$F266 if #REGb is not equal to #N$20.
+  $F262,$01 Restore #REGhl from the stack.
+  $F263,$03 Jump to #R$E352.
+  $F266,$02,b$01 Keep only bits 0-2.
+  $F268,$02 RLCA.
+  $F26A,$04 Jump to #R$F276 if bit 7 of #REGb is not set.
+  $F26E,$01 Increment #REGa by one.
+  $F26F,$01 Stash #REGhl on the stack.
+  $F270,$05 Set bit 0 of *#R$D839.
+  $F275,$01 Restore #REGhl from the stack.
+  $F276,$03 Write #REGa to *#R$E761.
+  $F279,$06 Write *#R$D82C to *#R$E75D.
+  $F27F,$06 Write *#R$D82D to *#R$E75E.
+  $F285,$01 Return.
 
 c $F286
+  $F286,$03 Jump to #R$F293 if #REGa is not equal to #REGd.
+  $F289,$03 Compare #REGc with #N$16.
+  $F28C,$02 Restore #REGiy from the stack.
+  $F28E,$02 Jump to #R$F2A0 if #REGc was equal to #N$16.
+  $F290,$03 Jump to #R$F249.
+  $F293,$03 Return if #REGc is not equal to #REGd.
+  $F296,$05 Compare *#R$E2C7 with #N$16.
+  $F29B,$02 Restore #REGiy from the stack.
+  $F29D,$03 Jump to #R$F249 if *#R$E2C7 was not equal to #N$16.
+  $F2A0,$05 Write #N$00 to *#R$E2C7.
+  $F2A5,$01 #REGa=#REGd.
+  $F2A6,$03 Call #R$D99E.
+  $F2A9,$02 #REGa=#N$50.
+  $F2AB,$03 Jump to #R$F216.
 
 b $F2AE
   $F2AE,$08 #UDG(#PC,attr=$46)
@@ -4367,16 +4855,12 @@ N $F874 The players cursor is showing, so update the attribute cycling
   $F994,$04 Write #N$00 to *#R$D83E.
   $F998,$03 Call #R$DAB1.
   $F99B,$06 Write #R$DA1F to *#R$D859.
-  $F9A1,$03 #REGhl=#R$D839.
-  $F9A4,$02 Test bit 1 of *#REGhl.
-  $F9A6,$03 Jump to #R$F9DD if #REGa is not zero.
+  $F9A1,$08 Jump to #R$F9DD if bit 1 of *#R$D839 is set.
   $F9A9,$03 #REGhl=#R$D850.
   $F9AC,$01 Decrease *#REGhl by one.
   $F9AD,$03 Jump to #R$FA49 if *#REGhl is not zero.
   $F9B0,$02 Write #N$01 to *#REGhl.
-  $F9B2,$03 #REGa=*#R$D839.
-  $F9B5,$02 Test bit 0 of #REGa.
-  $F9B7,$03 Jump to #R$FA49 if *#REGhl is not zero.
+  $F9B2,$08 Jump to #R$FA49 if bit 0 of *#R$D839 is set.
   $F9BA,$02 Write #N$1E to *#REGhl.
   $F9BC,$03 #REGhl=#R$D839.
   $F9BF,$02 Set bit 1 of *#REGhl.

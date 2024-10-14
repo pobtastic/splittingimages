@@ -20,7 +20,7 @@ D $5B00 Compressed graphics data for level 1.
 N $5B00 This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $5B00 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$5B00,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-01) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-01) } UDGTABLE#
 . #POPS
 
 b $6182 Graphics Data: Level 02 (Margaret Thatcher)
@@ -29,7 +29,7 @@ D $6182 Compressed graphics data for level 2.
 N $6182 This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $6182 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$6182,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-02) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-02) } UDGTABLE#
 . #POPS
 
 b $6AFF Graphics Data: Level 03 (Neil Kinnock)
@@ -38,7 +38,7 @@ D $6AFF Compressed graphics data for level 3.
 N $6AFF This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $6AFF #PUSHS #SIM(start=$D34E,stop=$D351,ix=$6AFF,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-03) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-03) } UDGTABLE#
 . #POPS
 
 b $730A Graphics Data: Level 04 (Clive Sinclair)
@@ -47,7 +47,7 @@ D $730A Compressed graphics data for level 4.
 N $730A This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $730A #PUSHS #SIM(start=$D34E,stop=$D351,ix=$730A,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-04) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-04) } UDGTABLE#
 . #POPS
 
 b $783C Graphics Data: Level 05 (Alan Sugar)
@@ -56,7 +56,7 @@ D $783C Compressed graphics data for level 5.
 N $783C This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $783C #PUSHS #SIM(start=$D34E,stop=$D351,ix=$783C,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-05) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-05) } UDGTABLE#
 . #POPS
 
 b $7CFD Graphics Data: Level 06 (Humphrey Bogart)
@@ -65,7 +65,7 @@ D $7CFD Compressed graphics data for level 6.
 N $7CFD This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $7CFD #PUSHS #SIM(start=$D34E,stop=$D351,ix=$7CFD,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-06) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-06) } UDGTABLE#
 . #POPS
 
 b $8106 Graphics Data: Level 07 (Charles And Diana)
@@ -74,7 +74,7 @@ D $8106 Compressed graphics data for level 7.
 N $8106 This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $8106 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$8106,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-07) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-07) } UDGTABLE#
 . #POPS
 
 b $89D2 Graphics Data: Level 08 (Fergie And Andrew)
@@ -83,7 +83,7 @@ D $89D2 Compressed graphics data for level 8.
 N $89D2 This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $89D2 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$89D2,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-08) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-08) } UDGTABLE#
 . #POPS
 
 b $9110 Graphics Data: Level 09 (Mick Jagger)
@@ -92,7 +92,7 @@ D $9110 Compressed graphics data for level 9.
 N $9110 This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $9110 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$9110,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-09) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-09) } UDGTABLE#
 . #POPS
 
 b $9772 Graphics Data: Level 10 (Marilyn Monroe)
@@ -101,7 +101,7 @@ D $9772 Compressed graphics data for level 10.
 N $9772 This is decompressed using the routine at #R$E004 which writes the
 . image to #R$A0E3.
 N $9772 #PUSHS #SIM(start=$D34E,stop=$D351,ix=$9772,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-10) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-10) } UDGTABLE#
 . #POPS
 
 g $A0E3 Image Buffer
@@ -110,11 +110,15 @@ g $A0E3 Image Buffer
 D $A0E3 Holds the image for the current level.
 B $A0E3,$0B40,$14
 
-b $AC24
+b $AC24 Graphics Data: Items 01
+@ $AC24 label=GraphicsData_Items_01
+N $AC24 #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)@$B624-$B763(items-01) } UDGTABLE#
+  $AC24,$0B40,$14
 
-b $B765
-  $B765,$80,$20 #UDGARRAY$04,attr=$47,flip=$02,scale=$04,step=$14($B765-$B7A1-$01-$20)(pointer-1)
-  $BEE5,$80,$20 #UDGARRAY$04,attr=$47,flip=$02,scale=$04,step=$14($BEE5-$BF85-$01-$20)(pointer-2)
+b $B765 Graphics Data: Items 02
+@ $B765 label=GraphicsData_Items_02
+N $B765 #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)@$C165-$C2A4(items-02) } UDGTABLE#
+  $B765,$0B40,$14
 
 b $C2A6 Data: Playarea Surround
 @ $C2A6 label=Data_PlayareaSurround

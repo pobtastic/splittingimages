@@ -47,102 +47,96 @@ Used by the routine at <a href="61744.html">61744</a>.
 <tr>
 <td class="address-2"><span id="62086"></span>62086</td>
 <td class="instruction">CP D</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="62086.html#62099">62099</a> if <span class="register">A</span> is not equal to <span class="register">D</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62087"></span>62087</td>
 <td class="instruction">JR NZ,<a href="62086.html#62099">62099</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="62089"></span>62089</td>
 <td class="instruction">LD A,C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Compare <span class="register">C</span> with 22.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62090"></span>62090</td>
 <td class="instruction">CP 22</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="62092"></span>62092</td>
 <td class="instruction">POP IY</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">IY</span> from the stack.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62094"></span>62094</td>
 <td class="instruction">JR Z,<a href="62086.html#62112">62112</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Jump to <a href="62086.html#62112">62112</a> if <span class="register">C</span> was equal to 22.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62096"></span>62096</td>
 <td class="instruction">JP <a href="62025.html">62025</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Jump to <a href="62025.html">62025</a>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="62099"></span>62099</td>
 <td class="instruction">LD A,C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Return if <span class="register">C</span> is not equal to <span class="register">D</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62100"></span>62100</td>
 <td class="instruction">CP D</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="62101"></span>62101</td>
 <td class="instruction">RET NZ</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="62102"></span>62102</td>
 <td class="instruction">LD A,(58055)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Compare *<a href="58055.html">58055</a> with 22.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62105"></span>62105</td>
 <td class="instruction">CP 22</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="62107"></span>62107</td>
 <td class="instruction">POP IY</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">IY</span> from the stack.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62109"></span>62109</td>
 <td class="instruction">JP NZ,<a href="62025.html">62025</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Jump to <a href="62025.html">62025</a> if *<a href="58055.html">58055</a> was not equal to 22.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="62112"></span>62112</td>
 <td class="instruction">LD A,0</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write 0 to *<a href="58055.html">58055</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62114"></span>62114</td>
 <td class="instruction">LD (58055),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="62117"></span>62117</td>
 <td class="instruction">LD A,D</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">D</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62118"></span>62118</td>
 <td class="instruction">CALL <a href="55707.html#55710">55710</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Call <a href="55707.html#55710">55710</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62121"></span>62121</td>
 <td class="instruction">LD A,80</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=80.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62123"></span>62123</td>
 <td class="instruction">JP <a href="61744.html#61974">61974</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Jump to <a href="61744.html#61974">61974</a>.</td>
 </tr>
 </table>
 <table class="asm-navigation">

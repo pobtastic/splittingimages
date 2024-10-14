@@ -47,127 +47,118 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <tr>
 <td class="address-2"><span id="f255"></span>F255</td>
 <td class="instruction">LD A,B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Jump to <a href="F255.html#f262">F262</a> if <span class="register">B</span> is equal to 00.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f256"></span>F256</td>
 <td class="instruction">CP $00</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f258"></span>F258</td>
 <td class="instruction">JR Z,<a href="F255.html#f262">$F262</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f25a"></span>F25A</td>
 <td class="instruction">CP $40</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="F255.html#f262">F262</a> if <span class="register">B</span> is equal to 40.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f25c"></span>F25C</td>
 <td class="instruction">JR Z,<a href="F255.html#f262">$F262</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f25e"></span>F25E</td>
 <td class="instruction">CP $20</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="F255.html#f266">F266</a> if <span class="register">B</span> is not equal to 20.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f260"></span>F260</td>
 <td class="instruction">JR NZ,<a href="F255.html#f266">$F266</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-2"><span id="f262"></span>F262</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f263"></span>F263</td>
 <td class="instruction">JP <a href="E352.html">$E352</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E352.html">E352</a>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="f266"></span>F266</td>
-<td class="instruction">AND $07</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">AND %00000111</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-2.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f268"></span>F268</td>
 <td class="instruction">RLCA</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">RLCA.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f269"></span>F269</td>
 <td class="instruction">RLCA</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f26a"></span>F26A</td>
 <td class="instruction">BIT 7,B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="F255.html#f276">F276</a> if bit 7 of <span class="register">B</span> is not set.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f26c"></span>F26C</td>
 <td class="instruction">JR Z,<a href="F255.html#f276">$F276</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f26e"></span>F26E</td>
 <td class="instruction">INC A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f26f"></span>F26F</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f270"></span>F270</td>
 <td class="instruction">LD HL,$D839</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Set bit 0 of *<a href="D839.html">D839</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f273"></span>F273</td>
 <td class="instruction">SET 0,(HL)</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f275"></span>F275</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="f276"></span>F276</td>
 <td class="instruction">LD ($E761),A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">E761</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f279"></span>F279</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html">D82C</a> to *<a href="E75D.html">E75D</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f27c"></span>F27C</td>
 <td class="instruction">LD ($E75D),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f27f"></span>F27F</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write *<a href="D82D.html">D82D</a> to *<a href="E75D.html#e75e">E75E</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f282"></span>F282</td>
 <td class="instruction">LD ($E75E),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="f285"></span>F285</td>
 <td class="instruction">RET</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Return.</td>
 </tr>
 </table>
 <table class="asm-navigation">

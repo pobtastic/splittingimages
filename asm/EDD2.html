@@ -33,7 +33,7 @@ Next: <a href="EDEF.html">EDEF</a>
 </td>
 </tr>
 </table>
-<div class="description">EDD2: Routine at EDD2</div>
+<div class="description">EDD2: Sound: Game Over</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
@@ -45,90 +45,109 @@ Used by the routines at <a href="ED62.html">GameOver_FlashOffset</a> and <a href
 </td>
 </tr>
 <tr>
+<td class="asm-label">Sound_GameOver</td>
 <td class="address-2"><span id="edd2"></span>EDD2</td>
 <td class="instruction">LD A,($EDEF)</td>
 <td class="comment-1" rowspan="3">Return if *<a href="EDEF.html">GameOver_X_Offset</a> is not equal to 00.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edd5"></span>EDD5</td>
 <td class="instruction">CP $00</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edd7"></span>EDD7</td>
 <td class="instruction">RET NZ</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edd8"></span>EDD8</td>
 <td class="instruction">PUSH BC</td>
 <td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">HL</span> on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edd9"></span>EDD9</td>
 <td class="instruction">PUSH HL</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edda"></span>EDDA</td>
 <td class="instruction">LD H,$02</td>
 <td class="comment-1" rowspan="1"><span class="register">H</span>=02.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="eddc"></span>EDDC</td>
 <td class="instruction">LD BC,$03E8</td>
-<td class="comment-1" rowspan="1"><span class="register">BC</span>=03E8.</td>
+<td class="comment-1" rowspan="1">Set the repeat counter in <span class="register">BC</span> to 03E8.</td>
 </tr>
 <tr>
+<td class="asm-label">Sound_GameOver_Loop</td>
 <td class="address-2"><span id="eddf"></span>EDDF</td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede0"></span>EDE0</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede1"></span>EDE1</td>
 <td class="instruction">AND %00011000</td>
 <td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede3"></span>EDE3</td>
 <td class="instruction">OR %00000101</td>
 <td class="comment-1" rowspan="1">Set bits 0, 2.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede5"></span>EDE5</td>
 <td class="instruction">OUT ($FE),A</td>
 <td class="comment-1" rowspan="1">Send to the speaker.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede7"></span>EDE7</td>
 <td class="instruction">DEC BC</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+<td class="comment-1" rowspan="1">Decrease the repeat counter by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede8"></span>EDE8</td>
 <td class="instruction">LD A,B</td>
-<td class="comment-1" rowspan="3">Jump back to <a href="EDD2.html#eddf">EDDF</a> until <span class="register">BC</span> is zero.</td>
+<td class="comment-1" rowspan="3">Jump back to <a href="EDD2.html#eddf">Sound_GameOver_Loop</a> until the repeat counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ede9"></span>EDE9</td>
 <td class="instruction">OR C</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edea"></span>EDEA</td>
-<td class="instruction">JR NZ,<a href="EDD2.html#eddf">$EDDF</a></td>
+<td class="instruction">JR NZ,<a href="EDD2.html#eddf">Sound_GameOver_Loop</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edec"></span>EDEC</td>
 <td class="instruction">POP HL</td>
 <td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="eded"></span>EDED</td>
 <td class="instruction">POP BC</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="edee"></span>EDEE</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

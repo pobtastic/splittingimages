@@ -47,192 +47,187 @@ Used by the routine at <a href="E1D9.html">E1D9</a>.
 <tr>
 <td class="address-2"><span id="e1a1"></span>E1A1</td>
 <td class="instruction">CALL <a href="DE51.html">CalculateScreenAddress</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Call <a href="DE51.html">CalculateScreenAddress</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1a4"></span>E1A4</td>
 <td class="instruction">PUSH DE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">DE</span> on the stack.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1a5"></span>E1A5</td>
 <td class="instruction">LD A,D</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">D</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1a6"></span>E1A6</td>
 <td class="instruction">RRCA</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">RRCA.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1a7"></span>E1A7</td>
 <td class="instruction">RRCA</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1a8"></span>E1A8</td>
 <td class="instruction">RRCA</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1a9"></span>E1A9</td>
-<td class="instruction">AND $03</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">AND %00000011</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-1.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1ab"></span>E1AB</td>
-<td class="instruction">OR $58</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">OR %01011000</td>
+<td class="comment-1" rowspan="1">Set bits 3-4, 6.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1ad"></span>E1AD</td>
 <td class="instruction">LD D,A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1ae"></span>E1AE</td>
 <td class="instruction">LD BC,($E19E)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=*<a href="E16A.html#e19e">E19E</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b2"></span>E1B2</td>
 <td class="instruction">LD A,(DE)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b3"></span>E1B3</td>
 <td class="instruction">XOR C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Flip the bits according to <span class="register">C</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b4"></span>E1B4</td>
 <td class="instruction">AND B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Merge the bits from <span class="register">B</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b5"></span>E1B5</td>
 <td class="instruction">XOR C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Flip the bits according to <span class="register">C</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b6"></span>E1B6</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b7"></span>E1B7</td>
 <td class="instruction">POP DE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">DE</span> from the stack.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b8"></span>E1B8</td>
 <td class="instruction">LD A,H</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">H</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1b9"></span>E1B9</td>
-<td class="instruction">AND $07</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">AND %00000111</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-2.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1bb"></span>E1BB</td>
 <td class="instruction">LD B,A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1bc"></span>E1BC</td>
 <td class="instruction">INC B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1bd"></span>E1BD</td>
 <td class="instruction">LD A,$FE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=FE.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="e1bf"></span>E1BF</td>
 <td class="instruction">RRCA</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">RRCA.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1c0"></span>E1C0</td>
 <td class="instruction">DJNZ <a href="E1A1.html#e1bf">$E1BF</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E1A1.html#e1bf">E1BF</a> until counter is zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1c2"></span>E1C2</td>
 <td class="instruction">LD B,A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1c3"></span>E1C3</td>
 <td class="instruction">LD A,($E1A0)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="E16A.html#e1a0">E1A0</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1c6"></span>E1C6</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1c7"></span>E1C7</td>
 <td class="instruction">LD A,(DE)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1c8"></span>E1C8</td>
 <td class="instruction">BIT 1,C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="E1A1.html#e1cd">E1CD</a> if bit 1 of <span class="register">C</span> is set.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1ca"></span>E1CA</td>
 <td class="instruction">JR NZ,<a href="E1A1.html#e1cd">$E1CD</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1cc"></span>E1CC</td>
 <td class="instruction">AND B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Merge the bits from <span class="register">B</span>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="e1cd"></span>E1CD</td>
 <td class="instruction">BIT 3,C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="E1A1.html#e1d3">E1D3</a> if bit 3 of <span class="register">C</span> is set.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1cf"></span>E1CF</td>
 <td class="instruction">JR NZ,<a href="E1A1.html#e1d3">$E1D3</a></td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1d1"></span>E1D1</td>
 <td class="instruction">XOR B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Flip the bits according to <span class="register">B</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1d2"></span>E1D2</td>
 <td class="instruction">CPL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Invert the bits in <span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="e1d3"></span>E1D3</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1d4"></span>E1D4</td>
 <td class="instruction">RET</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Return.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1d5"></span>E1D5</td>
 <td class="instruction">DEFW $0001</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="address-1"><span id="e1d7"></span>E1D7</td>
 <td class="instruction">DEFW $0001</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 </table>
 <table class="asm-navigation">

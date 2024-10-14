@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 55951</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55941.html">55941</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55951">Map</a></td>
+<td class="next">
+Next: <a href="55985.html">55985</a>
+</td>
+</tr>
+</table>
+<div class="description">55951: Routine at DA8F</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="63581.html">63581</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="55951"></span>55951</td>
+<td class="instruction">RLCA</td>
+<td class="comment-1" rowspan="3">RLCA.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55952"></span>55952</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55953"></span>55953</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55954"></span>55954</td>
+<td class="instruction">ADD A,9</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>+=9.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55956"></span>55956</td>
+<td class="instruction">SUB C</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>-=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55957"></span>55957</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55958"></span>55958</td>
+<td class="instruction">LD (55837),BC</td>
+<td class="comment-1" rowspan="1">Write <span class="register">BC</span> to *<a href="55837.html">55837</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55962"></span>55962</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55964"></span>55964</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1"><span class="register">L</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55965"></span>55965</td>
+<td class="instruction">LD H,5</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55967"></span>55967</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55968"></span>55968</td>
+<td class="instruction">AND %00000011</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55970"></span>55970</td>
+<td class="instruction">RLCA</td>
+<td class="comment-1" rowspan="3">RLCA.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55971"></span>55971</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55972"></span>55972</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55973"></span>55973</td>
+<td class="instruction">LD D,0</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55975"></span>55975</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55976"></span>55976</td>
+<td class="instruction">LD IX,62126</td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>=<a href="62126.html">62126</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55980"></span>55980</td>
+<td class="instruction">ADD IX,DE</td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>+=<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55982"></span>55982</td>
+<td class="instruction">JP <a href="55868.html">55868</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="55868.html">55868</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55941.html">55941</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55951">Map</a></td>
+<td class="next">
+Next: <a href="55985.html">55985</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/DA8F.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

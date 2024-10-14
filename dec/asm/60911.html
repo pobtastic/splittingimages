@@ -45,103 +45,429 @@ Next: <a href="61025.html">61025</a>
 <td class="asm-label">GameOver_X_Offset</td>
 <td class="address-1"><span id="60911"></span>60911</td>
 <td class="instruction">DEFB 0</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label">GameOver_Y_Offset</td>
 <td class="address-1"><span id="60912"></span>60912</td>
 <td class="instruction">DEFB 0</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60913"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "G".
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label">GameOver_Data</td>
 <td class="address-1"><span id="60913"></span>60913</td>
 <td class="instruction">DEFW 22725</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60915"></span>60915</td>
-<td class="instruction">DEFB 3,2,5,4,3,1,2,8</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 3,2</td>
+<td class="comment-1" rowspan="1">Draw: left x  3 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60917"></span>60917</td>
+<td class="instruction">DEFB 5,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60919"></span>60919</td>
+<td class="instruction">DEFB 3,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  3 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60921"></span>60921</td>
+<td class="instruction">DEFB 2,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  2 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60923"></span>60923</td>
-<td class="instruction">DEFB 1,2,103,89,5,8,2,1</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 1,2</td>
+<td class="comment-1" rowspan="1">Draw: left x 1 time.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60925"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "A".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60925"></span>60925</td>
+<td class="instruction">DEFW 22887</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60927"></span>60927</td>
+<td class="instruction">DEFB 5,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60929"></span>60929</td>
+<td class="instruction">DEFB 2,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  2 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60931"></span>60931</td>
-<td class="instruction">DEFB 5,4,2,8,1,2,107,89</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 5,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60933"></span>60933</td>
+<td class="instruction">DEFB 2,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60935"></span>60935</td>
+<td class="instruction">DEFB 1,2</td>
+<td class="comment-1" rowspan="1">Draw: left x 1 time.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60937"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "M".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60937"></span>60937</td>
+<td class="instruction">DEFW 22891</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60939"></span>60939</td>
-<td class="instruction">DEFB 5,8,2,1,5,4,206,88</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 5,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60941"></span>60941</td>
+<td class="instruction">DEFB 2,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60943"></span>60943</td>
+<td class="instruction">DEFB 5,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60945"></span>60945</td>
+<td class="instruction">DEFW 22734</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60947"></span>60947</td>
-<td class="instruction">DEFB 1,1,5,4,211,88,2,2</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 1,1</td>
+<td class="comment-1" rowspan="1">Draw: right x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60949"></span>60949</td>
+<td class="instruction">DEFB 5,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  5 times.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60951"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "E".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60951"></span>60951</td>
+<td class="instruction">DEFW 22739</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60953"></span>60953</td>
+<td class="instruction">DEFB 2,2</td>
+<td class="comment-1" rowspan="1">Draw: left x  2 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60955"></span>60955</td>
-<td class="instruction">DEFB 2,4,1,1,1,4,1,2</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 2,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60957"></span>60957</td>
+<td class="instruction">DEFB 1,1</td>
+<td class="comment-1" rowspan="1">Draw: right x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60959"></span>60959</td>
+<td class="instruction">DEFB 1,4</td>
+<td class="comment-1" rowspan="1">Draw: down x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60961"></span>60961</td>
+<td class="instruction">DEFB 1,2</td>
+<td class="comment-1" rowspan="1">Draw: left x 1 time.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60963"></span>60963</td>
-<td class="instruction">DEFB 2,4,2,1,197,89,3,2</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 2,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60965"></span>60965</td>
+<td class="instruction">DEFB 2,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  2 times.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60967"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "O".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60967"></span>60967</td>
+<td class="instruction">DEFW 22981</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60969"></span>60969</td>
+<td class="instruction">DEFB 3,2</td>
+<td class="comment-1" rowspan="1">Draw: left x  3 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60971"></span>60971</td>
-<td class="instruction">DEFB 5,4,3,1,4,8,199,89</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 5,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60973"></span>60973</td>
+<td class="instruction">DEFB 3,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  3 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60975"></span>60975</td>
+<td class="instruction">DEFB 4,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  4 times.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60977"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "V".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60977"></span>60977</td>
+<td class="instruction">DEFW 22983</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60979"></span>60979</td>
-<td class="instruction">DEFB 4,4,104,90,1,1,74,90</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 4,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  4 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60981"></span>60981</td>
+<td class="instruction">DEFW 23144</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60983"></span>60983</td>
+<td class="instruction">DEFB 1,1</td>
+<td class="comment-1" rowspan="1">Draw: right x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60985"></span>60985</td>
+<td class="instruction">DEFW 23114</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60987"></span>60987</td>
-<td class="instruction">DEFB 4,8,206,89,2,2,2,4</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 4,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  4 times.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="60989"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "E".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60989"></span>60989</td>
+<td class="instruction">DEFW 22990</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60991"></span>60991</td>
+<td class="instruction">DEFB 2,2</td>
+<td class="comment-1" rowspan="1">Draw: left x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60993"></span>60993</td>
+<td class="instruction">DEFB 2,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  2 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="60995"></span>60995</td>
-<td class="instruction">DEFB 1,1,1,4,1,2,2,4</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 1,1</td>
+<td class="comment-1" rowspan="1">Draw: right x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60997"></span>60997</td>
+<td class="instruction">DEFB 1,4</td>
+<td class="comment-1" rowspan="1">Draw: down x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60999"></span>60999</td>
+<td class="instruction">DEFB 1,2</td>
+<td class="comment-1" rowspan="1">Draw: left x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61001"></span>61001</td>
+<td class="instruction">DEFB 2,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  2 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="61003"></span>61003</td>
-<td class="instruction">DEFB 2,1,112,90,5,8,3,1</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 2,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  2 times.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="61005"></span>
+<div class="comments">
+<div class="paragraph">
+Draw the "R".
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61005"></span>61005</td>
+<td class="instruction">DEFW 23152</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61007"></span>61007</td>
+<td class="instruction">DEFB 5,8</td>
+<td class="comment-1" rowspan="1">Draw: up x  5 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61009"></span>61009</td>
+<td class="instruction">DEFB 3,1</td>
+<td class="comment-1" rowspan="1">Draw: right x  3 times.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="61011"></span>61011</td>
-<td class="instruction">DEFB 2,4,2,2,1,1,1,4</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFB 2,4</td>
+<td class="comment-1" rowspan="1">Draw: down x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61013"></span>61013</td>
+<td class="instruction">DEFB 2,2</td>
+<td class="comment-1" rowspan="1">Draw: left x  2 times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61015"></span>61015</td>
+<td class="instruction">DEFB 1,1</td>
+<td class="comment-1" rowspan="1">Draw: right x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61017"></span>61017</td>
+<td class="instruction">DEFB 1,4</td>
+<td class="comment-1" rowspan="1">Draw: down x 1 time.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="61019"></span>61019</td>
-<td class="instruction">DEFB 83,90,1,4,0,0</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW 23123</td>
+<td class="comment-1" rowspan="1">Attribute buffer starting point.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61021"></span>61021</td>
+<td class="instruction">DEFB 1,4</td>
+<td class="comment-1" rowspan="1">Draw: down x 1 time.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61023"></span>61023</td>
+<td class="instruction">DEFB 0,0</td>
+<td class="comment-1" rowspan="1">Terminator.</td>
 </tr>
 </table>
 <table class="asm-navigation">

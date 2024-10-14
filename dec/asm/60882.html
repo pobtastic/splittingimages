@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 60882</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60783.html">60783</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60882">Map</a></td>
+<td class="next">
+Next: <a href="60911.html">60911</a>
+</td>
+</tr>
+</table>
+<div class="description">60882: Routine at EDD2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="60770.html">GameOver_FlashOffset</a> and <a href="60783.html">Draw_GameOver</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="60882"></span>60882</td>
+<td class="instruction">LD A,(60911)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="60911.html">GameOver_X_Offset</a> is not equal to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60885"></span>60885</td>
+<td class="instruction">CP 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60887"></span>60887</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60888"></span>60888</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60889"></span>60889</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60890"></span>60890</td>
+<td class="instruction">LD H,2</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60892"></span>60892</td>
+<td class="instruction">LD BC,1000</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=1000.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="60895"></span>60895</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60896"></span>60896</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60897"></span>60897</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60899"></span>60899</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60901"></span>60901</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60903"></span>60903</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60904"></span>60904</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump back to <a href="60882.html#60895">60895</a> until <span class="register">BC</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60905"></span>60905</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60906"></span>60906</td>
+<td class="instruction">JR NZ,<a href="60882.html#60895">60895</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60908"></span>60908</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60909"></span>60909</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="60910"></span>60910</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60783.html">60783</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60882">Map</a></td>
+<td class="next">
+Next: <a href="60911.html">60911</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/EDD2.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

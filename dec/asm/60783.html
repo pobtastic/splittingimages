@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 60783</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60770.html">60770</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60783">Map</a></td>
+<td class="next">
+Next: <a href="60882.html">60882</a>
+</td>
+</tr>
+</table>
+<div class="description">60783: Draw Game Over</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="60607.html">Controller_GameOver</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver</td>
+<td class="address-2"><span id="60783"></span>60783</td>
+<td class="instruction">LD IX,60913</td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>=<a href="60911.html#60913">GameOver_Data</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60787"></span>60787</td>
+<td class="instruction">LD DE,32</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=0032.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_0</td>
+<td class="address-2"><span id="60790"></span>60790</td>
+<td class="instruction">LD L,(IX+0)</td>
+<td class="comment-1" rowspan="1"><span class="register">L</span>=*<span class="register">IX</span>+0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60793"></span>60793</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">IX</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60795"></span>60795</td>
+<td class="instruction">LD H,(IX+0)</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=*<span class="register">IX</span>+0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60798"></span>60798</td>
+<td class="instruction">LD A,(60912)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="60783.html#60807">Draw_GameOver_1</a> if *<a href="60911.html#60912">GameOver_Y_Offset</a> is equal to 0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60801"></span>60801</td>
+<td class="instruction">CP 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60803"></span>60803</td>
+<td class="instruction">JR Z,<a href="60783.html#60807">Draw_GameOver_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60805"></span>60805</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>-=<span class="register">DE</span> (with carry).</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_1</td>
+<td class="address-2"><span id="60807"></span>60807</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60808"></span>60808</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">IX</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_2</td>
+<td class="address-2"><span id="60810"></span>60810</td>
+<td class="instruction">LD B,(IX+0)</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=*<span class="register">IX</span>+0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60813"></span>60813</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">IX</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60815"></span>60815</td>
+<td class="instruction">LD A,(IX+0)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">IX</span>+0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60818"></span>60818</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">IX</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60820"></span>60820</td>
+<td class="instruction">CP 1</td>
+<td class="comment-1" rowspan="2">Jump to <a href="60783.html#60845">Draw_GameOver_3</a> if <span class="register">A</span> is equal to 1.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60822"></span>60822</td>
+<td class="instruction">JR Z,<a href="60783.html#60845">Draw_GameOver_3</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60824"></span>60824</td>
+<td class="instruction">CP 2</td>
+<td class="comment-1" rowspan="2">Jump to <a href="60783.html#60854">Draw_GameOver_4</a> if <span class="register">A</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60826"></span>60826</td>
+<td class="instruction">JR Z,<a href="60783.html#60854">Draw_GameOver_4</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60828"></span>60828</td>
+<td class="instruction">CP 4</td>
+<td class="comment-1" rowspan="2">Jump to <a href="60783.html#60863">Draw_GameOver_5</a> if <span class="register">A</span> is equal to 4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60830"></span>60830</td>
+<td class="instruction">JR Z,<a href="60783.html#60863">Draw_GameOver_5</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60832"></span>60832</td>
+<td class="instruction">CP 8</td>
+<td class="comment-1" rowspan="2">Jump to <a href="60783.html#60872">Draw_GameOver_6</a> if <span class="register">A</span> is equal to 8.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60834"></span>60834</td>
+<td class="instruction">JR Z,<a href="60783.html#60872">Draw_GameOver_6</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60836"></span>60836</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is equal to 0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60838"></span>60838</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60839"></span>60839</td>
+<td class="instruction">DEC IX</td>
+<td class="comment-1" rowspan="2">Decrease <span class="register">IX</span> by two.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60841"></span>60841</td>
+<td class="instruction">DEC IX</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60843"></span>60843</td>
+<td class="instruction">JR <a href="60783.html#60790">Draw_GameOver_0</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="60783.html#60790">Draw_GameOver_0</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_3</td>
+<td class="address-2"><span id="60845"></span>60845</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60846"></span>60846</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60847"></span>60847</td>
+<td class="instruction">CALL <a href="60882.html">60882</a></td>
+<td class="comment-1" rowspan="1">Call <a href="60882.html">60882</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60850"></span>60850</td>
+<td class="instruction">DJNZ <a href="60783.html#60845">Draw_GameOver_3</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="60783.html#60845">Draw_GameOver_3</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60852"></span>60852</td>
+<td class="instruction">JR <a href="60783.html#60810">Draw_GameOver_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="60783.html#60810">Draw_GameOver_2</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_4</td>
+<td class="address-2"><span id="60854"></span>60854</td>
+<td class="instruction">DEC HL</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60855"></span>60855</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60856"></span>60856</td>
+<td class="instruction">CALL <a href="60882.html">60882</a></td>
+<td class="comment-1" rowspan="1">Call <a href="60882.html">60882</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60859"></span>60859</td>
+<td class="instruction">DJNZ <a href="60783.html#60854">Draw_GameOver_4</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="60783.html#60854">Draw_GameOver_4</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60861"></span>60861</td>
+<td class="instruction">JR <a href="60783.html#60810">Draw_GameOver_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="60783.html#60810">Draw_GameOver_2</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_5</td>
+<td class="address-2"><span id="60863"></span>60863</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60864"></span>60864</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60865"></span>60865</td>
+<td class="instruction">CALL <a href="60882.html">60882</a></td>
+<td class="comment-1" rowspan="1">Call <a href="60882.html">60882</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60868"></span>60868</td>
+<td class="instruction">DJNZ <a href="60783.html#60863">Draw_GameOver_5</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="60783.html#60863">Draw_GameOver_5</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60870"></span>60870</td>
+<td class="instruction">JR <a href="60783.html#60810">Draw_GameOver_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="60783.html#60810">Draw_GameOver_2</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_GameOver_6</td>
+<td class="address-2"><span id="60872"></span>60872</td>
+<td class="instruction">SBC HL,DE</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>-=<span class="register">DE</span> (with carry).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60874"></span>60874</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60875"></span>60875</td>
+<td class="instruction">CALL <a href="60882.html">60882</a></td>
+<td class="comment-1" rowspan="1">Call <a href="60882.html">60882</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60878"></span>60878</td>
+<td class="instruction">DJNZ <a href="60783.html#60872">Draw_GameOver_6</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="60783.html#60872">Draw_GameOver_6</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="60880"></span>60880</td>
+<td class="instruction">JR <a href="60783.html#60810">Draw_GameOver_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="60783.html#60810">Draw_GameOver_2</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="60770.html">60770</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#60783">Map</a></td>
+<td class="next">
+Next: <a href="60882.html">60882</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/ED6F.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -54,6 +54,16 @@ Next: <a href="D1D0.html">D1D0</a>
 <td class="comment-1" rowspan="1"><span class="register">SP</span>=FFFA.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d1ae"></span>
+<div class="comments">
+<div class="paragraph">
+Write FE from <a href="FE00.html">FE00</a> for 0100 bytes. All will become clear soon...
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d1ae"></span>D1AE</td>
 <td class="instruction">LD HL,$FE00</td>
@@ -66,7 +76,7 @@ Next: <a href="D1D0.html">D1D0</a>
 <td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> of 00 (as it's a <code>DJNZ</code> this is really 0100) and set <span class="register">C</span> to FD for the value to write.</td>
 </tr>
 <tr>
-<td class="asm-label">GameEntryPoint_0</td>
+<td class="asm-label">WriteInterruptJumpAddress_Loop</td>
 <td class="address-2"><span id="d1b4"></span>D1B4</td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-1" rowspan="1">Write FD to *<span class="register">HL</span>.</td>
@@ -80,8 +90,18 @@ Next: <a href="D1D0.html">D1D0</a>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d1b6"></span>D1B6</td>
-<td class="instruction">DJNZ <a href="D1AA.html#d1b4">GameEntryPoint_0</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D1AA.html#d1b4">GameEntryPoint_0</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D1AA.html#d1b4">WriteInterruptJumpAddress_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D1AA.html#d1b4">WriteInterruptJumpAddress_Loop</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d1b8"></span>
+<div class="comments">
+<div class="paragraph">
+One more for luck...
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

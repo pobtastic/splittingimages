@@ -33,7 +33,7 @@ Next: <a href="ED12.html">ED12</a>
 </td>
 </tr>
 </table>
-<div class="description">ECBF: Routine at ECBF</div>
+<div class="description">ECBF: Controller: Game Over</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
@@ -45,200 +45,383 @@ Used by the routines at <a href="D1D0.html">Game_Loop</a> and <a href="D4D6.html
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="ecbf"></span>
+<div class="comments">
+<div class="paragraph">
+First draw a yellow "GAME OVER":   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="game-over-01" src="../images/scr/game-over-01.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Controller_GameOver</td>
 <td class="address-2"><span id="ecbf"></span>ECBF</td>
 <td class="instruction">LD C,$36</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=36.</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=INK:
+YELLOW,
+PAPER:
+YELLOW
+
+.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecc1"></span>ECC1</td>
 <td class="instruction">XOR A</td>
-<td class="comment-1" rowspan="2">Write 00 to *<a href="ED62.html#edef">EDEF</a>.</td>
+<td class="comment-1" rowspan="2">Set *<a href="EDEF.html">GameOver_X_Offset</a> to 00.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecc2"></span>ECC2</td>
 <td class="instruction">LD ($EDEF),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecc5"></span>ECC5</td>
 <td class="instruction">LD A,$01</td>
-<td class="comment-1" rowspan="2">Write 01 to *<a href="ED62.html#edf0">EDF0</a>.</td>
+<td class="comment-1" rowspan="2">Set *<a href="EDEF.html#edf0">GameOver_Y_Offset</a> to 01.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecc7"></span>ECC7</td>
 <td class="instruction">LD ($EDF0),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecca"></span>ECCA</td>
-<td class="instruction">CALL <a href="ED62.html#ed6f">$ED6F</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ED62.html#ed6f">ED6F</a>.</td>
+<td class="instruction">CALL <a href="ED6F.html">Draw_GameOver</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ED6F.html">Draw_GameOver</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="eccd"></span>
+<div class="comments">
+<div class="paragraph">
+Then, a little offset to the first one, draw a cyan "GAME OVER". <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="game-over-02" src="../images/scr/game-over-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="eccd"></span>ECCD</td>
 <td class="instruction">LD C,$6D</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=6D.</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=INK:
+CYAN,
+PAPER:
+CYAN
+(BRIGHT)
+.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="eccf"></span>ECCF</td>
 <td class="instruction">XOR A</td>
-<td class="comment-1" rowspan="2">Write 00 to *<a href="ED62.html#edf0">EDF0</a>.</td>
+<td class="comment-1" rowspan="2">Set *<a href="EDEF.html#edf0">GameOver_Y_Offset</a> to 00.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecd0"></span>ECD0</td>
 <td class="instruction">LD ($EDF0),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecd3"></span>ECD3</td>
-<td class="instruction">CALL <a href="ED62.html#ed6f">$ED6F</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ED62.html#ed6f">ED6F</a>.</td>
+<td class="instruction">CALL <a href="ED6F.html">Draw_GameOver</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ED6F.html">Draw_GameOver</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="ecd6"></span>
+<div class="comments">
+<div class="paragraph">
+Now flash the "GAME OVER" cycling down and back up through the following colours: <ul class="">
+<li>49: INK:
+BLUE,
+PAPER:
+BLUE
+(BRIGHT)</li>
+<li>52: INK:
+RED,
+PAPER:
+RED
+(BRIGHT)</li>
+<li>5B: INK:
+MAGENTA,
+PAPER:
+MAGENTA
+(BRIGHT)</li>
+<li>64: INK:
+GREEN,
+PAPER:
+GREEN
+(BRIGHT)</li>
+<li>6D: INK:
+CYAN,
+PAPER:
+CYAN
+(BRIGHT)</li>
+<li>76: INK:
+YELLOW,
+PAPER:
+YELLOW
+(BRIGHT)</li>
+<li>7F: INK:
+WHITE,
+PAPER:
+WHITE
+(BRIGHT)</li>
+</ul>
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="game-over-03-animation" src="../images/udgs/game-over-03-animation.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecd6"></span>ECD6</td>
 <td class="instruction">LD B,$0A</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=0A.</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> of 0A to count the number of down/ up cycles here.</td>
 </tr>
 <tr>
+<td class="asm-label">GameOver_Flash_Loop</td>
 <td class="address-2"><span id="ecd8"></span>ECD8</td>
 <td class="instruction">LD A,$01</td>
-<td class="comment-1" rowspan="2">Write 01 to *<a href="ED62.html#edef">EDEF</a>.</td>
+<td class="comment-1" rowspan="2">Set *<a href="EDEF.html">GameOver_X_Offset</a> to 01.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecda"></span>ECDA</td>
 <td class="instruction">LD ($EDEF),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecdd"></span>ECDD</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the colour loop counter on the stack.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="ecde"></span>
+<div class="comments">
+<div class="paragraph">
+First cycle down, starting at: INK:
+WHITE,
+PAPER:
+WHITE
+(BRIGHT)
+ (7F).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecde"></span>ECDE</td>
 <td class="instruction">LD C,$7F</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=7F.</td>
+<td class="comment-1" rowspan="1">Set the starting colour value in <span class="register">C</span> to INK:
+WHITE,
+PAPER:
+WHITE
+(BRIGHT)
+.</td>
 </tr>
 <tr>
+<td class="asm-label">CycleDown_Loop</td>
 <td class="address-2"><span id="ece0"></span>ECE0</td>
-<td class="instruction">CALL <a href="ED62.html#ed6f">$ED6F</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ED62.html#ed6f">ED6F</a>.</td>
+<td class="instruction">CALL <a href="ED6F.html">Draw_GameOver</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ED6F.html">Draw_GameOver</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ece3"></span>ECE3</td>
 <td class="instruction">LD A,C</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">C</span>.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="ECBF.html#ecf0">CycleUp_Loop</a> if the current colour is: INK:
+BLUE,
+PAPER:
+BLUE
+(BRIGHT)
+ (49).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ece4"></span>ECE4</td>
 <td class="instruction">CP $49</td>
-<td class="comment-1" rowspan="2">Jump to <a href="ECBF.html#ecf0">ECF0</a> if <span class="register">A</span> is equal to 49.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ece6"></span>ECE6</td>
-<td class="instruction">JR Z,<a href="ECBF.html#ecf0">$ECF0</a></td>
+<td class="instruction">JR Z,<a href="ECBF.html#ecf0">CycleUp_Loop</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ece8"></span>ECE8</td>
 <td class="instruction">SUB $09</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>-=09.</td>
+<td class="comment-1" rowspan="2">Subtract 09 from the current colour value and store the result back in <span class="register">C</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecea"></span>ECEA</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="eceb"></span>ECEB</td>
-<td class="instruction">CALL <a href="ED62.html">$ED62</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ED62.html">ED62</a>.</td>
+<td class="instruction">CALL <a href="ED62.html">GameOver_FlashOffset</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ED62.html">GameOver_FlashOffset</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecee"></span>ECEE</td>
-<td class="instruction">JR <a href="ECBF.html#ece0">$ECE0</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="ECBF.html#ece0">ECE0</a>.</td>
+<td class="instruction">JR <a href="ECBF.html#ece0">CycleDown_Loop</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="ECBF.html#ece0">CycleDown_Loop</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="ecf0"></span>
+<div class="comments">
+<div class="paragraph">
+Next cycle back up again; on first entry, starting at INK:
+BLUE,
+PAPER:
+BLUE
+(BRIGHT)
+ (49).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">CycleUp_Loop</td>
 <td class="address-2"><span id="ecf0"></span>ECF0</td>
 <td class="instruction">LD A,C</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">C</span>.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="ECBF.html#ed00">GameOver_Cycle_Next</a> if the current colour is: INK:
+YELLOW,
+PAPER:
+YELLOW
+(BRIGHT)
+ (76).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecf1"></span>ECF1</td>
 <td class="instruction">CP $76</td>
-<td class="comment-1" rowspan="2">Jump to <a href="ECBF.html#ed00">ED00</a> if <span class="register">A</span> is equal to 76.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecf3"></span>ECF3</td>
-<td class="instruction">JR Z,<a href="ECBF.html#ed00">$ED00</a></td>
+<td class="instruction">JR Z,<a href="ECBF.html#ed00">GameOver_Cycle_Next</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecf5"></span>ECF5</td>
 <td class="instruction">ADD A,$09</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>+=09.</td>
+<td class="comment-1" rowspan="2">Add 09 to the current colour value and store the result back in <span class="register">C</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecf7"></span>ECF7</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecf8"></span>ECF8</td>
-<td class="instruction">CALL <a href="ED62.html#ed6f">$ED6F</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ED62.html#ed6f">ED6F</a>.</td>
+<td class="instruction">CALL <a href="ED6F.html">Draw_GameOver</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ED6F.html">Draw_GameOver</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecfb"></span>ECFB</td>
-<td class="instruction">CALL <a href="ED62.html">$ED62</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ED62.html">ED62</a>.</td>
+<td class="instruction">CALL <a href="ED62.html">GameOver_FlashOffset</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ED62.html">GameOver_FlashOffset</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ecfe"></span>ECFE</td>
-<td class="instruction">JR <a href="ECBF.html#ecf0">$ECF0</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="ECBF.html#ecf0">ECF0</a>.</td>
+<td class="instruction">JR <a href="ECBF.html#ecf0">CycleUp_Loop</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="ECBF.html#ecf0">CycleUp_Loop</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="ed00"></span>
+<div class="comments">
+<div class="paragraph">
+Handle the flash loop.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">GameOver_Cycle_Next</td>
 <td class="address-2"><span id="ed00"></span>ED00</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the cycle counter from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed01"></span>ED01</td>
-<td class="instruction">DJNZ <a href="ECBF.html#ecd8">$ECD8</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="ECBF.html#ecd8">ECD8</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="ECBF.html#ecd8">GameOver_Flash_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the cycle counter by one and loop back to <a href="ECBF.html#ecd8">GameOver_Flash_Loop</a> until the cycle has repeated 0A times.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed03"></span>ED03</td>
 <td class="instruction">LD B,$02</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=02.</td>
 </tr>
 <tr>
+<td class="asm-label">Controller_GameOver_0</td>
 <td class="address-2"><span id="ed05"></span>ED05</td>
 <td class="instruction">PUSH BC</td>
 <td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed06"></span>ED06</td>
 <td class="instruction">LD HL,$ED12</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="ED12.html">ED12</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed09"></span>ED09</td>
 <td class="instruction">LD B,$28</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=28.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed0b"></span>ED0B</td>
 <td class="instruction">CALL <a href="EF4A.html#ef6a">$EF6A</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EF4A.html#ef6a">EF6A</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed0e"></span>ED0E</td>
 <td class="instruction">POP BC</td>
 <td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed0f"></span>ED0F</td>
-<td class="instruction">DJNZ <a href="ECBF.html#ed05">$ED05</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="ECBF.html#ed05">ED05</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="ECBF.html#ed05">Controller_GameOver_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="ECBF.html#ed05">Controller_GameOver_0</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="ed11"></span>ED11</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

@@ -54,6 +54,16 @@ Next: <a href="53712.html">53712</a>
 <td class="comment-1" rowspan="1"><span class="register">SP</span>=65530.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="53678"></span>
+<div class="comments">
+<div class="paragraph">
+Write 254 from <a href="65024.html">65024</a> for 256 bytes. All will become clear soon...
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="53678"></span>53678</td>
 <td class="instruction">LD HL,65024</td>
@@ -66,7 +76,7 @@ Next: <a href="53712.html">53712</a>
 <td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> of 0 (as it's a <code>DJNZ</code> this is really 256) and set <span class="register">C</span> to 253 for the value to write.</td>
 </tr>
 <tr>
-<td class="asm-label">GameEntryPoint_0</td>
+<td class="asm-label">WriteInterruptJumpAddress_Loop</td>
 <td class="address-2"><span id="53684"></span>53684</td>
 <td class="instruction">LD (HL),C</td>
 <td class="comment-1" rowspan="1">Write 253 to *<span class="register">HL</span>.</td>
@@ -80,8 +90,18 @@ Next: <a href="53712.html">53712</a>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="53686"></span>53686</td>
-<td class="instruction">DJNZ <a href="53674.html#53684">GameEntryPoint_0</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="53674.html#53684">GameEntryPoint_0</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="53674.html#53684">WriteInterruptJumpAddress_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="53674.html#53684">WriteInterruptJumpAddress_Loop</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="53688"></span>
+<div class="comments">
+<div class="paragraph">
+One more for luck...
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

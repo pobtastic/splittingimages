@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at EDD2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ED6F.html">ED6F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#edd2">Map</a></td>
+<td class="next">
+Next: <a href="EDEF.html">EDEF</a>
+</td>
+</tr>
+</table>
+<div class="description">EDD2: Routine at EDD2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="ED62.html">GameOver_FlashOffset</a> and <a href="ED6F.html">Draw_GameOver</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="edd2"></span>EDD2</td>
+<td class="instruction">LD A,($EDEF)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="EDEF.html">GameOver_X_Offset</a> is not equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edd5"></span>EDD5</td>
+<td class="instruction">CP $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edd7"></span>EDD7</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edd8"></span>EDD8</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edd9"></span>EDD9</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edda"></span>EDDA</td>
+<td class="instruction">LD H,$02</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=02.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eddc"></span>EDDC</td>
+<td class="instruction">LD BC,$03E8</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=03E8.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="eddf"></span>EDDF</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede0"></span>EDE0</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede1"></span>EDE1</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede3"></span>EDE3</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede5"></span>EDE5</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede7"></span>EDE7</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede8"></span>EDE8</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump back to <a href="EDD2.html#eddf">EDDF</a> until <span class="register">BC</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ede9"></span>EDE9</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edea"></span>EDEA</td>
+<td class="instruction">JR NZ,<a href="EDD2.html#eddf">$EDDF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="edec"></span>EDEC</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eded"></span>EDED</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="edee"></span>EDEE</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ED6F.html">ED6F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#edd2">Map</a></td>
+<td class="next">
+Next: <a href="EDEF.html">EDEF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/60882.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

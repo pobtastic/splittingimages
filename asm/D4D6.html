@@ -63,7 +63,7 @@ Used by the routine at <a href="D469.html">StartGame</a>.
 <td class="comment-1" rowspan="1"><span class="register">B</span>=4B.</td>
 </tr>
 <tr>
-<td class="asm-label">GameOver_0</td>
+<td class="asm-label">Halt_Loop</td>
 <td class="address-2"><span id="d4dd"></span>D4DD</td>
 <td class="instruction">HALT</td>
 <td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
@@ -71,8 +71,8 @@ Used by the routine at <a href="D469.html">StartGame</a>.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4de"></span>D4DE</td>
-<td class="instruction">DJNZ <a href="D4D6.html#d4dd">GameOver_0</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D4D6.html#d4dd">GameOver_0</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D4D6.html#d4dd">Halt_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D4D6.html#d4dd">Halt_Loop</a> until counter is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -83,8 +83,18 @@ Used by the routine at <a href="D469.html">StartGame</a>.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4e1"></span>D4E1</td>
-<td class="instruction">CALL <a href="ECBF.html">$ECBF</a></td>
-<td class="comment-1" rowspan="1">Call <a href="ECBF.html">ECBF</a>.</td>
+<td class="instruction">CALL <a href="ECBF.html">Controller_GameOver</a></td>
+<td class="comment-1" rowspan="1">Call <a href="ECBF.html">Controller_GameOver</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d4e4"></span>
+<div class="comments">
+<div class="paragraph">
+Long pause...
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -93,7 +103,7 @@ Used by the routine at <a href="D469.html">StartGame</a>.
 <td class="comment-1" rowspan="1"><span class="register">BC</span>=0000.</td>
 </tr>
 <tr>
-<td class="asm-label">GameOver_1</td>
+<td class="asm-label">GameOver_Pause_Loop</td>
 <td class="address-2"><span id="d4e7"></span>D4E7</td>
 <td class="instruction">DEC BC</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
@@ -102,19 +112,17 @@ Used by the routine at <a href="D469.html">StartGame</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4e8"></span>D4E8</td>
 <td class="instruction">LD A,B</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">B</span>.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D4D6.html#d4e7">GameOver_Pause_Loop</a> until <span class="register">BC</span> is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4e9"></span>D4E9</td>
 <td class="instruction">OR C</td>
-<td class="comment-1" rowspan="1">Set the bits from <span class="register">C</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4ea"></span>D4EA</td>
-<td class="instruction">JR NZ,<a href="D4D6.html#d4e7">GameOver_1</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D4D6.html#d4e7">GameOver_1</a> if <span class="register">BC</span> is not zero.</td>
+<td class="instruction">JR NZ,<a href="D4D6.html#d4e7">GameOver_Pause_Loop</a></td>
 </tr>
 <tr>
 <td class="asm-label"></td>

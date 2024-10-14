@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 58852</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58850.html">58850</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58852">Map</a></td>
+<td class="next">
+Next: <a href="58943.html">58943</a>
+</td>
+</tr>
+</table>
+<div class="description">58852: Draw Cursor</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="58262.html">58262</a>, <a href="58977.html">Display_PlayerCursor</a> and <a href="63581.html">63581</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58852"></span>
+<div class="comments">
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="game-cursor" src="../../images/scr/game-cursor.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_Cursor</td>
+<td class="address-2"><span id="58852"></span>58852</td>
+<td class="instruction">LD A,(55342)</td>
+<td class="comment-1" rowspan="3"><span class="register">B</span>=*<a href="55342.html">PlayerCursor_Y_Position</a>-1.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58855"></span>58855</td>
+<td class="instruction">DEC A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58856"></span>58856</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58857"></span>58857</td>
+<td class="instruction">LD (58848),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">B</span> to *<a href="58848.html">Cursor_AttributePosition_Y</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58860"></span>58860</td>
+<td class="instruction">LD A,(55343)</td>
+<td class="comment-1" rowspan="3"><span class="register">C</span>=*<a href="55342.html#55343">PlayerCursor_X_Position</a>-1.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58863"></span>58863</td>
+<td class="instruction">DEC A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58864"></span>58864</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58865"></span>58865</td>
+<td class="instruction">LD (58849),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<a href="58848.html#58849">Cursor_AttributePosition_X</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58868"></span>58868</td>
+<td class="instruction">CALL <a href="56514.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56514.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58871"></span>58871</td>
+<td class="instruction">CALL <a href="56529.html">Calculate_AttributeAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56529.html">Calculate_AttributeAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58874"></span>58874</td>
+<td class="instruction">LD (58850),DE</td>
+<td class="comment-1" rowspan="1">Write the calculated attribute buffer address to *<a href="58850.html">Cursor_AttributePointer</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58878"></span>58878</td>
+<td class="instruction">LD B,4</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58880"></span>58880</td>
+<td class="instruction">LD HL,58832</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="58832.html">SavedAttributesBlock</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58883"></span>58883</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_Cursor_0</td>
+<td class="address-2"><span id="58884"></span>58884</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58885"></span>58885</td>
+<td class="instruction">LD BC,4</td>
+<td class="comment-1" rowspan="2">Copy 0004 bytes from *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58888"></span>58888</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58890"></span>58890</td>
+<td class="instruction">LD BC,28</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=0028.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58893"></span>58893</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58894"></span>58894</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58895"></span>58895</td>
+<td class="instruction">DJNZ <a href="58852.html#58884">Draw_Cursor_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="58852.html#58884">Draw_Cursor_0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58897"></span>
+<div class="comments">
+<div class="paragraph">
+Paint the top section of the cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58897"></span>58897</td>
+<td class="instruction">LD HL,59055</td>
+<td class="comment-1" rowspan="4">Copy 0004 bytes from <a href="59055.html">CursorAttributes</a> to *<a href="58850.html">Cursor_AttributePointer</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58900"></span>58900</td>
+<td class="instruction">LD DE,(58850)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58904"></span>58904</td>
+<td class="instruction">LD BC,4</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58907"></span>58907</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58909"></span>
+<div class="comments">
+<div class="paragraph">
+Paint the middle section of the cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58909"></span>58909</td>
+<td class="instruction">LD B,2</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=2.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_Cursor_Loop</td>
+<td class="address-2"><span id="58911"></span>58911</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58912"></span>58912</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58913"></span>58913</td>
+<td class="instruction">LD BC,28</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=0028.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58916"></span>58916</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58917"></span>58917</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58918"></span>58918</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58919"></span>58919</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58920"></span>58920</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58921"></span>58921</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="3">Increment <span class="register">DE</span> by three.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58922"></span>58922</td>
+<td class="instruction">INC DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58923"></span>58923</td>
+<td class="instruction">INC DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58924"></span>58924</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58925"></span>58925</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58926"></span>58926</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58927"></span>58927</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58928"></span>58928</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58929"></span>58929</td>
+<td class="instruction">DJNZ <a href="58852.html#58911">Draw_Cursor_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="58852.html#58911">Draw_Cursor_Loop</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58931"></span>58931</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58932"></span>58932</td>
+<td class="instruction">LD BC,28</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=0028.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58935"></span>58935</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58936"></span>58936</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58937"></span>
+<div class="comments">
+<div class="paragraph">
+Paint the bottom section of the cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58937"></span>58937</td>
+<td class="instruction">LD BC,4</td>
+<td class="comment-1" rowspan="2">Copy 0004 bytes from *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58940"></span>58940</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58942"></span>58942</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58850.html">58850</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58852">Map</a></td>
+<td class="next">
+Next: <a href="58943.html">58943</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E5E4.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

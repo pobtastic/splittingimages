@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 61519</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="61507.html">61507</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#61519">Map</a></td>
+<td class="next">
+Next: <a href="61586.html">61586</a>
+</td>
+</tr>
+</table>
+<div class="description">61519: Routine at F04F</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="61397.html">61397</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="61519"></span>61519</td>
+<td class="instruction">LD A,(60217)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="61519.html#61529">SetDefault</a> if *<a href="60217.html">60217</a> is equal to 0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61522"></span>61522</td>
+<td class="instruction">CP 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61524"></span>61524</td>
+<td class="instruction">JR Z,<a href="61519.html#61529">SetDefault</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61526"></span>61526</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61527"></span>61527</td>
+<td class="instruction">JR <a href="61519.html#61531">61531</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="61519.html#61531">61531</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">SetDefault</td>
+<td class="address-2"><span id="61529"></span>61529</td>
+<td class="instruction">LD A,5</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=5.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="61531"></span>61531</td>
+<td class="instruction">LD (61507),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="61507.html">61507</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61534"></span>61534</td>
+<td class="instruction">LD (61511),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="61507.html#61511">61511</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61537"></span>61537</td>
+<td class="instruction">LD B,2</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="61539"></span>61539</td>
+<td class="instruction">LD DE,(61509)</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=*<a href="61507.html#61509">61509</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="61543"></span>61543</td>
+<td class="instruction">DEC DE</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61544"></span>61544</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="3">Jump to <a href="61519.html#61543">61543</a> if <span class="register">DE</span> is not zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61545"></span>61545</td>
+<td class="instruction">OR E</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61546"></span>61546</td>
+<td class="instruction">JP NZ,<a href="61519.html#61543">61543</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61549"></span>61549</td>
+<td class="instruction">LD A,(61507)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="61507.html">61507</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61552"></span>61552</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip the speaker bit.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61554"></span>61554</td>
+<td class="instruction">LD (61507),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="61507.html">61507</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61557"></span>61557</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61559"></span>61559</td>
+<td class="instruction">DJNZ <a href="61519.html#61539">61539</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="61519.html#61539">61539</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61561"></span>61561</td>
+<td class="instruction">LD B,2</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="61563"></span>61563</td>
+<td class="instruction">LD DE,(61513)</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=*<a href="61507.html#61513">61513</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="61567"></span>61567</td>
+<td class="instruction">DEC DE</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61568"></span>61568</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="3">Jump to <a href="61519.html#61567">61567</a> if <span class="register">DE</span> is not zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61569"></span>61569</td>
+<td class="instruction">OR E</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61570"></span>61570</td>
+<td class="instruction">JP NZ,<a href="61519.html#61567">61567</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61573"></span>61573</td>
+<td class="instruction">LD A,(61511)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="61507.html#61511">61511</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61576"></span>61576</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip the speaker bit.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61578"></span>61578</td>
+<td class="instruction">LD (61511),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="61507.html#61511">61511</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61581"></span>61581</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61583"></span>61583</td>
+<td class="instruction">DJNZ <a href="61519.html#61563">61563</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="61519.html#61563">61563</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="61585"></span>61585</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="61507.html">61507</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#61519">Map</a></td>
+<td class="next">
+Next: <a href="61586.html">61586</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/F04F.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

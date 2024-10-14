@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 57936</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="57910.html">57910</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#57936">Map</a></td>
+<td class="next">
+Next: <a href="57953.html">57953</a>
+</td>
+</tr>
+</table>
+<div class="description">57936: Sound: Tile Moving</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="62526.html">62526</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Sound_TileMoving</td>
+<td class="address-2"><span id="57936"></span>57936</td>
+<td class="instruction">LD A,5</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=5.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57938"></span>57938</td>
+<td class="instruction">LD C,175</td>
+<td class="comment-1" rowspan="1">Set the frequency control (<span class="register">C</span>) to 175.</td>
+</tr>
+<tr>
+<td class="asm-label">Sound_TileMoving_Loop</td>
+<td class="address-2"><span id="57940"></span>57940</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="1">Set duration for this cycle to current frequency value.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57941"></span>57941</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1">Double the duration.</td>
+</tr>
+<tr>
+<td class="asm-label">Sound_TileMoving_PulseLoop</td>
+<td class="address-2"><span id="57943"></span>57943</td>
+<td class="instruction">DJNZ <a href="57936.html#57943">Sound_TileMoving_PulseLoop</a></td>
+<td class="comment-1" rowspan="1">Generate a single tone pulse.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57945"></span>57945</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bit 4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57947"></span>57947</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57949"></span>57949</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1">Decrease frequency (raises pitch, shortens next cycle).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57950"></span>57950</td>
+<td class="instruction">JR NZ,<a href="57936.html#57940">Sound_TileMoving_Loop</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="57936.html#57940">Sound_TileMoving_Loop</a> until the frequency is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57952"></span>57952</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="57910.html">57910</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#57936">Map</a></td>
+<td class="next">
+Next: <a href="57953.html">57953</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E250.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E713</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E6EC.html">E6EC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e713">Map</a></td>
+<td class="next">
+Next: <a href="E741.html">E741</a>
+</td>
+</tr>
+</table>
+<div class="description">E713: Routine at E713</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e713"></span>E713</td>
+<td class="instruction">LD HL,$E293</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E293.html">Table_Tiles</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e716"></span>E716</td>
+<td class="instruction">LD A,($D826)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="E713.html#e724">E724</a> if *<a href="D815.html#d826">D826</a> is not equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e719"></span>E719</td>
+<td class="instruction">CP $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e71b"></span>E71B</td>
+<td class="instruction">JP NZ,<a href="E713.html#e724">$E724</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="e71e"></span>E71E</td>
+<td class="instruction">LD A,$00</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="E2C7.html">E2C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e720"></span>E720</td>
+<td class="instruction">LD ($E2C7),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e723"></span>E723</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e724"></span>E724</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e725"></span>E725</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="2"><span class="register">DE</span>=<span class="register">HL</span> (using the stack).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e726"></span>E726</td>
+<td class="instruction">POP DE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e727"></span>E727</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e728"></span>E728</td>
+<td class="instruction">LD ($E2C7),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E2C7.html">E2C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e72b"></span>E72B</td>
+<td class="instruction">LD A,($D826)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D815.html#d826">D826</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e72e"></span>E72E</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e72f"></span>E72F</td>
+<td class="instruction">CP $00</td>
+<td class="comment-1" rowspan="2">Jump to <a href="E713.html#e738">E738</a> if <span class="register">A</span> is not equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e731"></span>E731</td>
+<td class="instruction">JP NZ,<a href="E713.html#e738">$E738</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="e734"></span>E734</td>
+<td class="instruction">LD C,$01</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=01.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e736"></span>E736</td>
+<td class="instruction">JR <a href="E713.html#e739">$E739</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E713.html#e739">E739</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e738"></span>E738</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e739"></span>E739</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e73b"></span>E73B</td>
+<td class="instruction">LDIR</td>
+<td class="comment-1" rowspan="1">LDIR.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e73d"></span>E73D</td>
+<td class="instruction">LD ($D826),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D815.html#d826">D826</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e740"></span>E740</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E6EC.html">E6EC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e713">Map</a></td>
+<td class="next">
+Next: <a href="E741.html">E741</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/59155.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

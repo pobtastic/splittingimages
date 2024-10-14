@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 58109</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58097.html">58097</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58109">Map</a></td>
+<td class="next">
+Next: <a href="58144.html">58144</a>
+</td>
+</tr>
+</table>
+<div class="description">58109: Routine at E2FD</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="62526.html">62526</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="58109"></span>58109</td>
+<td class="instruction">LD A,(58802)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="58802.html">Data_Control</a> is equal to 16.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58112"></span>58112</td>
+<td class="instruction">CP 16</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58114"></span>58114</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58115"></span>58115</td>
+<td class="instruction">LD A,(55346)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="55346.html">55346</a> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58118"></span>58118</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58120"></span>58120</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58121"></span>58121</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Return if *<a href="55346.html">55346</a> is equal to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58123"></span>58123</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58124"></span>58124</td>
+<td class="instruction">LD A,(55340)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58127"></span>58127</td>
+<td class="instruction">LD HL,55344</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55344.html">55344</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58130"></span>58130</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58131"></span>58131</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58132"></span>58132</td>
+<td class="instruction">LD A,(55341)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58135"></span>58135</td>
+<td class="instruction">LD HL,55345</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55345.html">55345</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58138"></span>58138</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58139"></span>58139</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58140"></span>58140</td>
+<td class="instruction">CALL <a href="58968.html">Remove_PlayerCursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="58968.html">Remove_PlayerCursor</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="58143"></span>58143</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58097.html">58097</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58109">Map</a></td>
+<td class="next">
+Next: <a href="58144.html">58144</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E2FD.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

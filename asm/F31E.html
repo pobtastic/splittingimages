@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at F31E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F2CE.html">F2CE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#f31e">Map</a></td>
+<td class="next">
+Next: <a href="F349.html">F349</a>
+</td>
+</tr>
+</table>
+<div class="description">F31E: Routine at F31E</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D469.html">StartGame</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f31e"></span>F31E</td>
+<td class="instruction">LD HL,$50E1</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=50E1 (screen buffer location).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f321"></span>F321</td>
+<td class="instruction">LD B,$14</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=14.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f323"></span>F323</td>
+<td class="instruction">LD C,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=04.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f325"></span>F325</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f326"></span>F326</td>
+<td class="instruction">SCF</td>
+<td class="comment-1" rowspan="1">Set the carry flag.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f327"></span>F327</td>
+<td class="instruction">RR (HL)</td>
+<td class="comment-1" rowspan="1">Rotate *<span class="register">HL</span> right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f329"></span>F329</td>
+<td class="instruction">JP C,<a href="F31E.html#f335">$F335</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F31E.html#f335">F335</a> if  is lower.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f32c"></span>F32C</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">H</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f32d"></span>F32D</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f32e"></span>F32E</td>
+<td class="instruction">JP NZ,<a href="F31E.html#f326">$F326</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F31E.html#f326">F326</a> if <span class="register">C</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f331"></span>F331</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f332"></span>F332</td>
+<td class="instruction">JP <a href="F31E.html#f323">$F323</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F31E.html#f323">F323</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f335"></span>F335</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f336"></span>F336</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f337"></span>F337</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f338"></span>F338</td>
+<td class="instruction">DJNZ <a href="F31E.html#f323">$F323</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="F31E.html#f323">F323</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f33a"></span>F33A</td>
+<td class="instruction">DEC HL</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f33b"></span>F33B</td>
+<td class="instruction">LD ($D85B),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D85B.html">D85B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f33e"></span>F33E</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="2">Write 01 to *<a href="D85D.html">D85D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f340"></span>F340</td>
+<td class="instruction">LD ($D85D),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f343"></span>F343</td>
+<td class="instruction">LD A,$14</td>
+<td class="comment-1" rowspan="2">Write 14 to *<a href="D85E.html">D85E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f345"></span>F345</td>
+<td class="instruction">LD ($D85E),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f348"></span>F348</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F2CE.html">F2CE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#f31e">Map</a></td>
+<td class="next">
+Next: <a href="F349.html">F349</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/62238.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

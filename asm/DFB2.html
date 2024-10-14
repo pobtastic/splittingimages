@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at DFB2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="DFA8.html">DFA8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#dfb2">Map</a></td>
+<td class="next">
+Next: <a href="E004.html">E004</a>
+</td>
+</tr>
+</table>
+<div class="description">DFB2: Routine at DFB2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E2CA.html">E2CA</a> and <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="dfb2"></span>DFB2</td>
+<td class="instruction">LD ($E2C7),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E2C7.html">E2C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfb5"></span>DFB5</td>
+<td class="instruction">CP $01</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is lower than 01 (unsigned comparison).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfb7"></span>DFB7</td>
+<td class="instruction">RET M</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfb8"></span>DFB8</td>
+<td class="instruction">CP $15</td>
+<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 15.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfba"></span>DFBA</td>
+<td class="instruction">RET P</td>
+<td class="comment-1" rowspan="1">Return P.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfbb"></span>DFBB</td>
+<td class="instruction">LD A,($D837)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D837.html">D837</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfbe"></span>DFBE</td>
+<td class="instruction">CP $00</td>
+<td class="comment-1" rowspan="2">Jump to <a href="DFB2.html#dfd4">DFD4</a> if <span class="register">A</span> is equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfc0"></span>DFC0</td>
+<td class="instruction">JR Z,<a href="DFB2.html#dfd4">$DFD4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfc2"></span>DFC2</td>
+<td class="instruction">LD HL,$DFEE</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="DFB2.html#dfef">DFEE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfc5"></span>DFC5</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfc7"></span>DFC7</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfc8"></span>DFC8</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfc9"></span>DFC9</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfca"></span>DFCA</td>
+<td class="instruction">LD HL,$5896</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=5896 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfcd"></span>DFCD</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfce"></span>DFCE</td>
+<td class="instruction">LD A,($E003)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="DFB2.html#e003">E003</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfd1"></span>DFD1</td>
+<td class="instruction">CALL <a href="DFA8.html">$DFA8</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DFA8.html">DFA8</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="dfd4"></span>DFD4</td>
+<td class="instruction">LD A,($E2C7)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E2C7.html">E2C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfd7"></span>DFD7</td>
+<td class="instruction">LD ($D837),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D837.html">D837</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfda"></span>DFDA</td>
+<td class="instruction">LD HL,$DFEE</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="DFB2.html#dfef">DFEE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfdd"></span>DFDD</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfdf"></span>DFDF</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfe0"></span>DFE0</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfe1"></span>DFE1</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfe2"></span>DFE2</td>
+<td class="instruction">LD HL,$5896</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=5896 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfe5"></span>DFE5</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfe6"></span>DFE6</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="DFB2.html#e003">E003</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfe7"></span>DFE7</td>
+<td class="instruction">LD ($E003),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfea"></span>DFEA</td>
+<td class="instruction">LD A,$78</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=INK:
+BLACK,
+PAPER:
+WHITE
+(BRIGHT)
+.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfec"></span>DFEC</td>
+<td class="instruction">JP <a href="DFA8.html">$DFA8</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DFA8.html">DFA8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dfef"></span>DFEF</td>
+<td class="instruction">DEFB $00,$02,$04,$06,$08</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="dff4"></span>DFF4</td>
+<td class="instruction">DEFB $40,$42,$44,$46,$48</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="dff9"></span>DFF9</td>
+<td class="instruction">DEFB $80,$82,$84,$86,$88</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="dffe"></span>DFFE</td>
+<td class="instruction">DEFB $C0,$C2,$C4,$C6,$C8</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="e003"></span>E003</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="DFA8.html">DFA8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#dfb2">Map</a></td>
+<td class="next">
+Next: <a href="E004.html">E004</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/57266.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

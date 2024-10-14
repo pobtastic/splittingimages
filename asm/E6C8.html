@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E6C8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E6C6.html">E6C6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e6c8">Map</a></td>
+<td class="next">
+Next: <a href="E6EC.html">E6EC</a>
+</td>
+</tr>
+</table>
+<div class="description">E6C8: Rotate Player Cursor Attributes</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F85D.html">F85D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e6c8"></span>
+<div class="comments">
+<div class="paragraph">
+This is a pretty confusing routine, it's used for rotating the attribute values of the players cursor. These are stored in a table at <a href="E6AF.html">CursorAttributes</a>.
+</div>
+<div class="paragraph">
+The reason why this is complicated is simply down to how the data is stored... Rather than hold the attribute bytes sequentially, they're held as: top row x 4 bytes, left side x 1 byte, right side x 1 byte, left side x 1 byte, right side x 1 byte and lastly, the bottom row x 4 bytes.
+</div>
+<div class="paragraph">
+This makes them a lot easier to draw, as the whole thing can then be drawn left-to-right one row at a time (see <a href="E5E4.html">Draw_Cursor</a>).
+</div>
+<div class="paragraph">
+Hopefully the rotation problem is clear already, this isn't a matter of just moving every byte along one position - in order to rotate, a look up table is used to track the positions at <a href="E6BB.html">Table_CursorAttributePositions</a>.
+</div>
+<div class="paragraph">
+This table should also hopefully make things clearer:       <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Address</th>
+<th colspan="1" rowspan="1">Before</th>
+<th colspan="1" rowspan="1">After 1 Pass</th>
+<th colspan="1" rowspan="1">After 2 Passes</th>
+<th colspan="1" rowspan="2">Position</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">Attribute Byte</th>
+<th colspan="1" rowspan="1">Attribute Byte</th>
+<th colspan="1" rowspan="1">Attribute Byte</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6AF</td>
+<td class="centre" colspan="1" rowspan="1">09</td>
+<td class="centre" colspan="1" rowspan="1">76</td>
+<td class="centre" colspan="1" rowspan="1">36</td>
+<td class="" colspan="1" rowspan="1">Top byte 1 (left)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B0</td>
+<td class="centre" colspan="1" rowspan="1">49</td>
+<td class="centre" colspan="1" rowspan="1">09</td>
+<td class="centre" colspan="1" rowspan="1">76</td>
+<td class="" colspan="1" rowspan="1">Top byte 2</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B1</td>
+<td class="centre" colspan="1" rowspan="1">12</td>
+<td class="centre" colspan="1" rowspan="1">49</td>
+<td class="centre" colspan="1" rowspan="1">09</td>
+<td class="" colspan="1" rowspan="1">Top byte 3</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B2</td>
+<td class="centre" colspan="1" rowspan="1">52</td>
+<td class="centre" colspan="1" rowspan="1">12</td>
+<td class="centre" colspan="1" rowspan="1">49</td>
+<td class="" colspan="1" rowspan="1">Top byte 4 (right)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B3</td>
+<td class="centre" colspan="1" rowspan="1">76</td>
+<td class="centre" colspan="1" rowspan="1">36</td>
+<td class="centre" colspan="1" rowspan="1">6D</td>
+<td class="" colspan="1" rowspan="1">Middle top byte 1 (left)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B4</td>
+<td class="centre" colspan="1" rowspan="1">1B</td>
+<td class="centre" colspan="1" rowspan="1">52</td>
+<td class="centre" colspan="1" rowspan="1">12</td>
+<td class="" colspan="1" rowspan="1">Middle top byte 2 (right)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B5</td>
+<td class="centre" colspan="1" rowspan="1">36</td>
+<td class="centre" colspan="1" rowspan="1">6D</td>
+<td class="centre" colspan="1" rowspan="1">2D</td>
+<td class="" colspan="1" rowspan="1">Middle bottom byte 1 (left)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B6</td>
+<td class="centre" colspan="1" rowspan="1">5B</td>
+<td class="centre" colspan="1" rowspan="1">1B</td>
+<td class="centre" colspan="1" rowspan="1">52</td>
+<td class="" colspan="1" rowspan="1">Middle bottom byte 2 (right)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B7</td>
+<td class="centre" colspan="1" rowspan="1">6D</td>
+<td class="centre" colspan="1" rowspan="1">2D</td>
+<td class="centre" colspan="1" rowspan="1">64</td>
+<td class="" colspan="1" rowspan="1">Bottom byte 1 (left)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B8</td>
+<td class="centre" colspan="1" rowspan="1">2D</td>
+<td class="centre" colspan="1" rowspan="1">64</td>
+<td class="centre" colspan="1" rowspan="1">24</td>
+<td class="" colspan="1" rowspan="1">Bottom byte 2</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6B9</td>
+<td class="centre" colspan="1" rowspan="1">64</td>
+<td class="centre" colspan="1" rowspan="1">24</td>
+<td class="centre" colspan="1" rowspan="1">5B</td>
+<td class="" colspan="1" rowspan="1">Bottom byte 3</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">E6BA</td>
+<td class="centre" colspan="1" rowspan="1">24</td>
+<td class="centre" colspan="1" rowspan="1">5B</td>
+<td class="centre" colspan="1" rowspan="1">1B</td>
+<td class="" colspan="1" rowspan="1">Bottom byte 4 (right)</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+On the top row, it's very simple to shift each byte one position to the right but when you reach the end of that row, the subsequent address isn't just next in the sequence. Instead, it's "Middle top byte 2 (right)" as shown in the table which is two positions after "Top byte 4 (right)". Likewise, the next position for the middle section is again, two positions after this one and the bottom row moves in the opposite direction entirely in order to achieve the circular motion!
+</div>
+<div class="paragraph">
+This creates a wonderful effect as shown here:  <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="moving-game-cursor-animation" src="../images/udgs/moving-game-cursor-animation.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">PlayerCursor_AttributesRotator</td>
+<td class="address-2"><span id="e6c8"></span>E6C8</td>
+<td class="instruction">LD HL,$E6AF</td>
+<td class="comment-1" rowspan="1">Set <span class="register">HL</span> to point to <a href="E6AF.html">CursorAttributes</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6cb"></span>E6CB</td>
+<td class="instruction">LD IX,$E6BB</td>
+<td class="comment-1" rowspan="1">Set <span class="register">IX</span> to point to <a href="E6BB.html">Table_CursorAttributePositions</a> which is the rotation order table.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6cf"></span>E6CF</td>
+<td class="instruction">LD DE,$0000</td>
+<td class="comment-1" rowspan="1">Initialise <span class="register">DE</span> to 0000.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6d2"></span>E6D2</td>
+<td class="instruction">LD B,$0B</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 0B attribute byte positions.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e6d4"></span>
+<div class="comments">
+<div class="paragraph">
+Grab the first attribute byte value and store it in <span class="register">C</span> for the last part...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6d4"></span>E6D4</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1">Fetch the first byte from the cursor attributes pointer and store it in <span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e6d5"></span>
+<div class="comments">
+<div class="paragraph">
+This is a loop which rotates the attributes 0B times, each time moving an attribute from the position specified in the table to the current position.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">PlayerCursor_AttributesRotator_Loop</td>
+<td class="address-2"><span id="e6d5"></span>E6D5</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash the current position in <a href="E6AF.html">CursorAttributes</a> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6d6"></span>E6D6</td>
+<td class="instruction">LD E,(IX+$00)</td>
+<td class="comment-1" rowspan="1">Fetch the current position in the rotation order and store it in <span class="register">E</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6d9"></span>E6D9</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Move to the next entry in rotation table.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6db"></span>E6DB</td>
+<td class="instruction">LD HL,$E6AF</td>
+<td class="comment-1" rowspan="2">Add <a href="E6AF.html">CursorAttributes</a> with <span class="register">DE</span> and store the result in <span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6de"></span>E6DE</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6df"></span>E6DF</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Fetch a byte from the calculated attribute byte pointer and store it in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6e0"></span>E6E0</td>
+<td class="instruction">LD ($E6C6),HL</td>
+<td class="comment-1" rowspan="1">Store the calculated attribute byte pointer at *<a href="E6C6.html">TempAttributeStore</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6e3"></span>E6E3</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore the cursor attributes pointer from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6e4"></span>E6E4</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write the byte to the cursor attributes pointer.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6e5"></span>E6E5</td>
+<td class="instruction">LD HL,($E6C6)</td>
+<td class="comment-1" rowspan="1">Restore the calculated attribute byte pointer at *<a href="E6C6.html">TempAttributeStore</a> back to <span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6e8"></span>E6E8</td>
+<td class="instruction">DJNZ <a href="E6C8.html#e6d5">PlayerCursor_AttributesRotator_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the attribute byte counter by one and loop back to <a href="E6C8.html#e6d5">PlayerCursor_AttributesRotator_Loop</a> until the attribute byte counter is zero.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e6ea"></span>
+<div class="comments">
+<div class="paragraph">
+Write the first attribute byte value we stored in <span class="register">C</span> to the second position in the attributes table.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6ea"></span>E6EA</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write the stored attribute byte in <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e6eb"></span>E6EB</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E6C6.html">E6C6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e6c8">Map</a></td>
+<td class="next">
+Next: <a href="E6EC.html">E6EC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/59080.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

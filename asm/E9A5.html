@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E9A5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E775.html">E775</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e9a5">Map</a></td>
+<td class="next">
+Next: <a href="E9BF.html">E9BF</a>
+</td>
+</tr>
+</table>
+<div class="description">E9A5: Routine at E9A5</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="D352.html">D352</a> and <a href="E775.html">E775</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e9a5"></span>E9A5</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="2"><span class="register">L</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9a7"></span>E9A7</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9a8"></span>E9A8</td>
+<td class="instruction">LD H,$01</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=01.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9aa"></span>E9AA</td>
+<td class="instruction">LD B,$64</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=64.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e9ac"></span>E9AC</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9ad"></span>E9AD</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9af"></span>E9AF</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9b1"></span>E9B1</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9b3"></span>E9B3</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9b4"></span>E9B4</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9b6"></span>E9B6</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9b7"></span>E9B7</td>
+<td class="instruction">RLCA</td>
+<td class="comment-1" rowspan="1">RLCA.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9b8"></span>E9B8</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e9b9"></span>E9B9</td>
+<td class="instruction">DEC E</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">E</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9ba"></span>E9BA</td>
+<td class="instruction">JR NZ,<a href="E9A5.html#e9b9">$E9B9</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E9A5.html#e9b9">E9B9</a> if <span class="register">E</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9bc"></span>E9BC</td>
+<td class="instruction">DJNZ <a href="E9A5.html#e9ac">$E9AC</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E9A5.html#e9ac">E9AC</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9be"></span>E9BE</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E775.html">E775</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e9a5">Map</a></td>
+<td class="next">
+Next: <a href="E9BF.html">E9BF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/59813.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

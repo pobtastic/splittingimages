@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at D99B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D97E.html">D97E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d99b">Map</a></td>
+<td class="next">
+Next: <a href="D9BE.html">D9BE</a>
+</td>
+</tr>
+</table>
+<div class="description">D99B: Routine at D99B</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d99b"></span>D99B</td>
+<td class="instruction">LD A,($E2C7)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E2C7.html">E2C7</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d99e"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F286.html">F286</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d99e"></span>D99E</td>
+<td class="instruction">CP $15</td>
+<td class="comment-1" rowspan="2">Jump to <a href="D99B.html#d9a6">D9A6</a> if <span class="register">A</span> is not equal to 15.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9a0"></span>D9A0</td>
+<td class="instruction">JR NZ,<a href="D99B.html#d9a6">$D9A6</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9a2"></span>D9A2</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D83B.html">D83B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9a3"></span>D9A3</td>
+<td class="instruction">LD ($D83B),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d9a6"></span>D9A6</td>
+<td class="instruction">CP $3D</td>
+<td class="comment-1" rowspan="2">Jump to <a href="D99B.html#d9ae">D9AE</a> if <span class="register">A</span> is not equal to 3D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9a8"></span>D9A8</td>
+<td class="instruction">JR NZ,<a href="D99B.html#d9ae">$D9AE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9aa"></span>D9AA</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D83C.html">D83C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9ab"></span>D9AB</td>
+<td class="instruction">LD ($D83C),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d9ae"></span>D9AE</td>
+<td class="instruction">CP $3E</td>
+<td class="comment-1" rowspan="2">Jump to <a href="D99B.html#d9b6">D9B6</a> if <span class="register">A</span> is not equal to 3E.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9b0"></span>D9B0</td>
+<td class="instruction">JR NZ,<a href="D99B.html#d9b6">$D9B6</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9b2"></span>D9B2</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D83D.html">D83D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9b3"></span>D9B3</td>
+<td class="instruction">LD ($D83D),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d9b6"></span>D9B6</td>
+<td class="instruction">CP $3F</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to 3F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9b8"></span>D9B8</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9b9"></span>D9B9</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D83E.html">D83E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9ba"></span>D9BA</td>
+<td class="instruction">LD ($D83E),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d9bd"></span>D9BD</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D97E.html">D97E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d99b">Map</a></td>
+<td class="next">
+Next: <a href="D9BE.html">D9BE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/55707.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

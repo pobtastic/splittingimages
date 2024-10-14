@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 59253</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="59249.html">59249</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#59253">Map</a></td>
+<td class="next">
+Next: <a href="59813.html">59813</a>
+</td>
+</tr>
+</table>
+<div class="description">59253: Routine at E775</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="54098.html">54098</a> and <a href="62366.html">62366</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59253"></span>59253</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59256"></span>59256</td>
+<td class="instruction">LD (59234),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59234">59234</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59259"></span>59259</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59260"></span>59260</td>
+<td class="instruction">LD (59235),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59263"></span>59263</td>
+<td class="instruction">LD A,(59230)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59230">59230</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59266"></span>59266</td>
+<td class="instruction">LD (59236),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59269"></span>59269</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59270"></span>59270</td>
+<td class="instruction">LD (59237),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59273"></span>59273</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59276"></span>59276</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59277"></span>59277</td>
+<td class="instruction">LD A,(59230)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59230">59230</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59280"></span>59280</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59281"></span>59281</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59284"></span>59284</td>
+<td class="instruction">LD E,127</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=127.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59286"></span>59286</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59287"></span>59287</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59288"></span>59288</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59289"></span>59289</td>
+<td class="instruction">LD (59238),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59238">59238</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59292"></span>59292</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59293"></span>59293</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59294"></span>59294</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59295"></span>59295</td>
+<td class="instruction">LD (59239),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59239">59239</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59298"></span>59298</td>
+<td class="instruction">LD BC,31</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=0031.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59301"></span>59301</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59302"></span>59302</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59303"></span>59303</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59304"></span>59304</td>
+<td class="instruction">LD (59240),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59240">59240</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59307"></span>59307</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59308"></span>59308</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59309"></span>59309</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59310"></span>59310</td>
+<td class="instruction">LD (59241),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59241">59241</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59313"></span>59313</td>
+<td class="instruction">CALL <a href="59813.html">59813</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59813.html">59813</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59316"></span>59316</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59317"></span>59317</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59318"></span>59318</td>
+<td class="instruction">LD A,(59238)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59238">59238</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59321"></span>59321</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59322"></span>59322</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59323"></span>59323</td>
+<td class="instruction">LD A,(59239)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59239">59239</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59326"></span>59326</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59327"></span>59327</td>
+<td class="instruction">LD BC,31</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=0031.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59330"></span>59330</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59331"></span>59331</td>
+<td class="instruction">LD A,(59240)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59240">59240</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59334"></span>59334</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59335"></span>59335</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59336"></span>59336</td>
+<td class="instruction">LD A,(59241)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59241">59241</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59339"></span>59339</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="59340"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="54098.html">54098</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59340"></span>59340</td>
+<td class="instruction">LD D,0</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59342"></span>59342</td>
+<td class="instruction">LD A,(59234)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59234">59234</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59345"></span>59345</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Jump to <a href="59253.html#59355">59355</a> if <span class="register">A</span> is equal to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59347"></span>59347</td>
+<td class="instruction">JR Z,<a href="59253.html#59355">59355</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59349"></span>59349</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59350"></span>59350</td>
+<td class="instruction">LD (59234),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59234">59234</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59353"></span>59353</td>
+<td class="instruction">SET 1,D</td>
+<td class="comment-1" rowspan="1">Set bit 1 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59355"></span>59355</td>
+<td class="instruction">LD A,(59235)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59358"></span>59358</td>
+<td class="instruction">CP 23</td>
+<td class="comment-1" rowspan="2">Jump to <a href="59253.html#59368">59368</a> if <span class="register">A</span> is equal to 23.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59360"></span>59360</td>
+<td class="instruction">JR Z,<a href="59253.html#59368">59368</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59362"></span>59362</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59363"></span>59363</td>
+<td class="instruction">LD (59235),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59366"></span>59366</td>
+<td class="instruction">SET 2,D</td>
+<td class="comment-1" rowspan="1">Set bit 2 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59368"></span>59368</td>
+<td class="instruction">LD A,(59237)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59371"></span>59371</td>
+<td class="instruction">CP 31</td>
+<td class="comment-1" rowspan="2">Jump to <a href="59253.html#59381">59381</a> if <span class="register">A</span> is equal to 31.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59373"></span>59373</td>
+<td class="instruction">JR Z,<a href="59253.html#59381">59381</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59375"></span>59375</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59376"></span>59376</td>
+<td class="instruction">LD (59237),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59379"></span>59379</td>
+<td class="instruction">SET 3,D</td>
+<td class="comment-1" rowspan="1">Set bit 3 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59381"></span>59381</td>
+<td class="instruction">LD A,(59236)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59384"></span>59384</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Jump to <a href="59253.html#59394">59394</a> if <span class="register">A</span> is equal to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59386"></span>59386</td>
+<td class="instruction">JR Z,<a href="59253.html#59394">59394</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59388"></span>59388</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59389"></span>59389</td>
+<td class="instruction">LD (59236),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59392"></span>59392</td>
+<td class="instruction">SET 4,D</td>
+<td class="comment-1" rowspan="1">Set bit 4 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59394"></span>59394</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59395"></span>59395</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is equal to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59397"></span>59397</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59398"></span>59398</td>
+<td class="instruction">LD B,2</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59400"></span>59400</td>
+<td class="instruction">LD E,82</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=82.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59402"></span>59402</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59403"></span>59403</td>
+<td class="instruction">BIT 1,D</td>
+<td class="comment-1" rowspan="1">Test bit 1 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59405"></span>59405</td>
+<td class="instruction">JR Z,<a href="59253.html#59481">59481</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59481">59481</a> if <span class="register">A</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59407"></span>59407</td>
+<td class="instruction">LD A,(59234)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59234">59234</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59410"></span>59410</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59411"></span>59411</td>
+<td class="instruction">LD A,(59230)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59230">59230</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59414"></span>59414</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59415"></span>59415</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59418"></span>59418</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59419"></span>59419</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59420"></span>59420</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59436">59436</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59421"></span>59421</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59423"></span>59423</td>
+<td class="instruction">JR Z,<a href="59253.html#59436">59436</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59425"></span>59425</td>
+<td class="instruction">LD A,(59238)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59238">59238</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59428"></span>59428</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59429"></span>59429</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59430"></span>59430</td>
+<td class="instruction">LD A,(59239)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59239">59239</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59433"></span>59433</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59434"></span>59434</td>
+<td class="instruction">JR <a href="59253.html#59447">59447</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59447">59447</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59436"></span>59436</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59238">59238</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59437"></span>59437</td>
+<td class="instruction">LD (59238),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59440"></span>59440</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59441"></span>59441</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59442"></span>59442</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span>to *<a href="59229.html#59239">59239</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59443"></span>59443</td>
+<td class="instruction">LD (59239),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59446"></span>59446</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59447"></span>59447</td>
+<td class="instruction">BIT 3,D</td>
+<td class="comment-1" rowspan="1">Test bit 3 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59449"></span>59449</td>
+<td class="instruction">JP Z,<a href="59253.html#59580">59580</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59580">59580</a> if <span class="register">HL</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59452"></span>59452</td>
+<td class="instruction">LD A,(59234)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59234">59234</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59455"></span>59455</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59456"></span>59456</td>
+<td class="instruction">LD A,(59237)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59459"></span>59459</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59460"></span>59460</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59463"></span>59463</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59464"></span>59464</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59465"></span>59465</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59476">59476</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59466"></span>59466</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59468"></span>59468</td>
+<td class="instruction">JR Z,<a href="59253.html#59476">59476</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59470"></span>59470</td>
+<td class="instruction">LD A,(59240)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59240">59240</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59473"></span>59473</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59474"></span>59474</td>
+<td class="instruction">JR <a href="59253.html#59481">59481</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59481">59481</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59476"></span>59476</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59240">59240</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59477"></span>59477</td>
+<td class="instruction">LD (59240),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59480"></span>59480</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59481"></span>59481</td>
+<td class="instruction">BIT 3,D</td>
+<td class="comment-1" rowspan="1">Test bit 3 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59483"></span>59483</td>
+<td class="instruction">JR Z,<a href="59253.html#59580">59580</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59580">59580</a> if <span class="register">A</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59485"></span>59485</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59488"></span>59488</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59489"></span>59489</td>
+<td class="instruction">LD A,(59237)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59492"></span>59492</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59493"></span>59493</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59496"></span>59496</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59497"></span>59497</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59498"></span>59498</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59525">59525</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59499"></span>59499</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59501"></span>59501</td>
+<td class="instruction">JR Z,<a href="59253.html#59525">59525</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59503"></span>59503</td>
+<td class="instruction">LD A,(59241)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59241">59241</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59506"></span>59506</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59507"></span>59507</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59510"></span>59510</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59511"></span>59511</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59512"></span>59512</td>
+<td class="instruction">LD A,(59237)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59515"></span>59515</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59516"></span>59516</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59519"></span>59519</td>
+<td class="instruction">LD A,(59242)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59242">59242</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59522"></span>59522</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59523"></span>59523</td>
+<td class="instruction">JR <a href="59253.html#59547">59547</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59547">59547</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59525"></span>59525</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59241">59241</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59526"></span>59526</td>
+<td class="instruction">LD (59241),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59529"></span>59529</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59530"></span>59530</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59533"></span>59533</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59534"></span>59534</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59535"></span>59535</td>
+<td class="instruction">LD A,(59237)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59538"></span>59538</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59539"></span>59539</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59542"></span>59542</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59242">59242</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59543"></span>59543</td>
+<td class="instruction">LD (59242),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59546"></span>59546</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59547"></span>59547</td>
+<td class="instruction">BIT 2,D</td>
+<td class="comment-1" rowspan="1">Test bit 2 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59549"></span>59549</td>
+<td class="instruction">JR Z,<a href="59253.html#59658">59658</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59658">59658</a> if <span class="register">B</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59551"></span>59551</td>
+<td class="instruction">LD A,(59235)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59554"></span>59554</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59555"></span>59555</td>
+<td class="instruction">LD A,(59237)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59237">59237</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59558"></span>59558</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59559"></span>59559</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59562"></span>59562</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59563"></span>59563</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59564"></span>59564</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59575">59575</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59565"></span>59565</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59567"></span>59567</td>
+<td class="instruction">JR Z,<a href="59253.html#59575">59575</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59569"></span>59569</td>
+<td class="instruction">LD A,(59243)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59243">59243</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59572"></span>59572</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59573"></span>59573</td>
+<td class="instruction">JR <a href="59253.html#59580">59580</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59580">59580</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59575"></span>59575</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59243">59243</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59576"></span>59576</td>
+<td class="instruction">LD (59243),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59579"></span>59579</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59580"></span>59580</td>
+<td class="instruction">BIT 2,D</td>
+<td class="comment-1" rowspan="1">Test bit 2 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59582"></span>59582</td>
+<td class="instruction">JR Z,<a href="59253.html#59658">59658</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59658">59658</a> if <span class="register">A</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59584"></span>59584</td>
+<td class="instruction">LD A,(59235)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59587"></span>59587</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59588"></span>59588</td>
+<td class="instruction">LD A,(59230)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59230">59230</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59591"></span>59591</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59592"></span>59592</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59595"></span>59595</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59596"></span>59596</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59597"></span>59597</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59613">59613</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59598"></span>59598</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59600"></span>59600</td>
+<td class="instruction">JR Z,<a href="59253.html#59613">59613</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59602"></span>59602</td>
+<td class="instruction">LD A,(59244)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59244">59244</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59605"></span>59605</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59606"></span>59606</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59607"></span>59607</td>
+<td class="instruction">LD A,(59245)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59245">59245</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59610"></span>59610</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59611"></span>59611</td>
+<td class="instruction">JR <a href="59253.html#59624">59624</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59624">59624</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59613"></span>59613</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59244">59244</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59614"></span>59614</td>
+<td class="instruction">LD (59244),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59617"></span>59617</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59618"></span>59618</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59619"></span>59619</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59245">59245</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59620"></span>59620</td>
+<td class="instruction">LD (59245),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59623"></span>59623</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59624"></span>59624</td>
+<td class="instruction">BIT 4,D</td>
+<td class="comment-1" rowspan="1">Test bit 4 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59626"></span>59626</td>
+<td class="instruction">JP Z,<a href="59253.html#59757">59757</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59757">59757</a> if <span class="register">HL</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59629"></span>59629</td>
+<td class="instruction">LD A,(59235)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59632"></span>59632</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59633"></span>59633</td>
+<td class="instruction">LD A,(59236)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59636"></span>59636</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59637"></span>59637</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59640"></span>59640</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59641"></span>59641</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59642"></span>59642</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59653">59653</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59643"></span>59643</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59645"></span>59645</td>
+<td class="instruction">JR Z,<a href="59253.html#59653">59653</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59647"></span>59647</td>
+<td class="instruction">LD A,(59246)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59246">59246</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59650"></span>59650</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59651"></span>59651</td>
+<td class="instruction">JR <a href="59253.html#59658">59658</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59658">59658</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59653"></span>59653</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59246">59246</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59654"></span>59654</td>
+<td class="instruction">LD (59246),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59657"></span>59657</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59658"></span>59658</td>
+<td class="instruction">BIT 4,D</td>
+<td class="comment-1" rowspan="1">Test bit 4 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59660"></span>59660</td>
+<td class="instruction">JR Z,<a href="59253.html#59757">59757</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59757">59757</a> if <span class="register">A</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59662"></span>59662</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59665"></span>59665</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59666"></span>59666</td>
+<td class="instruction">LD A,(59236)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59669"></span>59669</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59670"></span>59670</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59673"></span>59673</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59674"></span>59674</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59675"></span>59675</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59702">59702</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59676"></span>59676</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59678"></span>59678</td>
+<td class="instruction">JR Z,<a href="59253.html#59702">59702</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59680"></span>59680</td>
+<td class="instruction">LD A,(59247)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59247">59247</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59683"></span>59683</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59684"></span>59684</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59687"></span>59687</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59688"></span>59688</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59689"></span>59689</td>
+<td class="instruction">LD A,(59236)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59692"></span>59692</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59693"></span>59693</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59696"></span>59696</td>
+<td class="instruction">LD A,(59248)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59229.html#59248">59248</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59699"></span>59699</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59700"></span>59700</td>
+<td class="instruction">JR <a href="59253.html#59724">59724</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59724">59724</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59702"></span>59702</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59247">59247</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59703"></span>59703</td>
+<td class="instruction">LD (59247),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59706"></span>59706</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59707"></span>59707</td>
+<td class="instruction">LD A,(59229)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59710"></span>59710</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59711"></span>59711</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59712"></span>59712</td>
+<td class="instruction">LD A,(59236)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59715"></span>59715</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59716"></span>59716</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59719"></span>59719</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59229.html#59248">59248</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59720"></span>59720</td>
+<td class="instruction">LD (59248),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59723"></span>59723</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59724"></span>59724</td>
+<td class="instruction">BIT 1,D</td>
+<td class="comment-1" rowspan="1">Test bit 1 of <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59726"></span>59726</td>
+<td class="instruction">JR Z,<a href="59253.html#59757">59757</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59757">59757</a> if <span class="register">B</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59728"></span>59728</td>
+<td class="instruction">LD A,(59234)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59234">59234</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59731"></span>59731</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59732"></span>59732</td>
+<td class="instruction">LD A,(59236)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59236">59236</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59735"></span>59735</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59736"></span>59736</td>
+<td class="instruction">CALL <a href="59253.html#59794">59794</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59253.html#59794">59794</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59739"></span>59739</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59740"></span>59740</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59741"></span>59741</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="59253.html#59752">59752</a> if <span class="register">B</span> is equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59742"></span>59742</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59744"></span>59744</td>
+<td class="instruction">JR Z,<a href="59253.html#59752">59752</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59746"></span>59746</td>
+<td class="instruction">LD A,(59249)</td>
+<td class="comment-1" rowspan="2">Write *<a href="59249.html">59249</a> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59749"></span>59749</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59750"></span>59750</td>
+<td class="instruction">JR <a href="59253.html#59757">59757</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59757">59757</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59752"></span>59752</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="59249.html">59249</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59753"></span>59753</td>
+<td class="instruction">LD (59249),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59756"></span>59756</td>
+<td class="instruction">LD (HL),E</td>
+<td class="comment-1" rowspan="1">Write <span class="register">E</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59757"></span>59757</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59759"></span>59759</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1"><span class="register">L</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59760"></span>59760</td>
+<td class="instruction">LD H,10</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=10.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59762"></span>59762</td>
+<td class="instruction">LD A,(59235)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59235">59235</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59765"></span>59765</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59766"></span>59766</td>
+<td class="instruction">LD A,24</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=24.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59768"></span>59768</td>
+<td class="instruction">SUB B</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>-=<span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59769"></span>59769</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59770"></span>59770</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59771"></span>59771</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59773"></span>59773</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59775"></span>59775</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59777"></span>59777</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59778"></span>59778</td>
+<td class="instruction">DJNZ <a href="59253.html#59770">59770</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="59253.html#59770">59770</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59780"></span>59780</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59781"></span>59781</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59782"></span>59782</td>
+<td class="instruction">CP 2</td>
+<td class="comment-1" rowspan="2">Jump to <a href="59253.html#59787">59787</a> if <span class="register">A</span> is not equal to 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59784"></span>59784</td>
+<td class="instruction">JR NZ,<a href="59253.html#59787">59787</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="59786"></span>59786</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59787"></span>59787</td>
+<td class="instruction">DEC B</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59788"></span>59788</td>
+<td class="instruction">JP NZ,<a href="59253.html#59402">59402</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59402">59402</a> if <span class="register">B</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59791"></span>59791</td>
+<td class="instruction">JP <a href="59253.html#59340">59340</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="59253.html#59340">59340</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="59794"></span>59794</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59795"></span>59795</td>
+<td class="instruction">SRA A</td>
+<td class="comment-1" rowspan="3">Shift <span class="register">A</span> right three positions (with carry).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59797"></span>59797</td>
+<td class="instruction">SRA A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59799"></span>59799</td>
+<td class="instruction">SRA A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59801"></span>59801</td>
+<td class="instruction">ADD A,88</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>+=88.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59803"></span>59803</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59804"></span>59804</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59805"></span>59805</td>
+<td class="instruction">AND %00000111</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59807"></span>59807</td>
+<td class="instruction">RRCA</td>
+<td class="comment-1" rowspan="3">RRCA.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59808"></span>59808</td>
+<td class="instruction">RRCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59809"></span>59809</td>
+<td class="instruction">RRCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59810"></span>59810</td>
+<td class="instruction">ADD A,C</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>+=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59811"></span>59811</td>
+<td class="instruction">LD L,A</td>
+<td class="comment-1" rowspan="1"><span class="register">L</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59812"></span>59812</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="59249.html">59249</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#59253">Map</a></td>
+<td class="next">
+Next: <a href="59813.html">59813</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E775.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

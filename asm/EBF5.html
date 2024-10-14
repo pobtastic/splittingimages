@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at EBF5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EBCD.html">EBCD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ebf5">Map</a></td>
+<td class="next">
+Next: <a href="EC39.html">EC39</a>
+</td>
+</tr>
+</table>
+<div class="description">EBF5: Input Handler: Common</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="EB64.html">InputHandler_Keyboard</a>, <a href="EB98.html">InputHandler_Kempston</a>, <a href="EB9E.html">InputHandler_Cursor</a> and <a href="EBCD.html">InputHandler_Sinclair</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ebf5"></span>
+<div class="comments">
+<div class="paragraph">
+Handle game controls which are common across all input control routines.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">InputHandler_Common</td>
+<td class="address-2"><span id="ebf5"></span>EBF5</td>
+<td class="instruction">POP IX</td>
+<td class="comment-1" rowspan="2">Housekeeping; see <a href="EB56.html">Handler_PlayerInput</a>. Restore <span class="register">IX</span> and <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ebf7"></span>EBF7</td>
+<td class="instruction">POP HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ebf8"></span>EBF8</td>
+<td class="instruction">LD A,($D838)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="EBF5.html#ec35">Common_Continue</a> if bit 7 of *<a href="D838.html">Bomb</a> is set.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ebfb"></span>EBFB</td>
+<td class="instruction">BIT 7,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ebfd"></span>EBFD</td>
+<td class="instruction">JR NZ,<a href="EBF5.html#ec35">Common_Continue</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ebff"></span>
+<div class="comments">
+<div class="paragraph">
+Handler for HOLD ("H").
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ebff"></span>EBFF</td>
+<td class="instruction">LD A,$BF</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">BF</td>
+<td class="centre" colspan="1" rowspan="1">ENTER</td>
+<td class="centre" colspan="1" rowspan="1">L</td>
+<td class="centre" colspan="1" rowspan="1">K</td>
+<td class="centre" colspan="1" rowspan="1">J</td>
+<td class="centre" colspan="1" rowspan="1">H</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec01"></span>EC01</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec03"></span>EC03</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="6">Jump to <a href="EBF5.html#ec1d">Common_CheckAbort</a> if "H" (hold) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec04"></span>EC04</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec05"></span>EC05</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec06"></span>EC06</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec07"></span>EC07</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec08"></span>EC08</td>
+<td class="instruction">JR C,<a href="EBF5.html#ec1d">Common_CheckAbort</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec0a"></span>EC0A</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec0c"></span>EC0C</td>
+<td class="instruction">PUSH AF</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">AF</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec0d"></span>EC0D</td>
+<td class="instruction">DI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ec0e"></span>
+<div class="comments">
+<div class="paragraph">
+Handler for CONTINUE ("J").
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Common_CheckContinue</td>
+<td class="address-2"><span id="ec0e"></span>EC0E</td>
+<td class="instruction">LD A,$BF</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">BF</td>
+<td class="centre" colspan="1" rowspan="1">ENTER</td>
+<td class="centre" colspan="1" rowspan="1">L</td>
+<td class="centre" colspan="1" rowspan="1">K</td>
+<td class="centre" colspan="1" rowspan="1">J</td>
+<td class="centre" colspan="1" rowspan="1">H</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec10"></span>EC10</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec12"></span>EC12</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="5">Jump to <a href="EBF5.html#ec0e">Common_CheckContinue</a> if "J" (continue) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec13"></span>EC13</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec14"></span>EC14</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec15"></span>EC15</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec16"></span>EC16</td>
+<td class="instruction">JR C,<a href="EBF5.html#ec0e">Common_CheckContinue</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec18"></span>EC18</td>
+<td class="instruction">POP AF</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">AF</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec19"></span>EC19</td>
+<td class="instruction">JP PO,<a href="EBF5.html#ec1d">Common_CheckAbort</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="EBF5.html#ec1d">Common_CheckAbort</a> if  is odd.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec1c"></span>EC1C</td>
+<td class="instruction">EI</td>
+<td class="comment-1" rowspan="1">Enable interrupts.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ec1d"></span>
+<div class="comments">
+<div class="paragraph">
+Handler for ABORT ("R" and "T" together).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Common_CheckAbort</td>
+<td class="address-2"><span id="ec1d"></span>EC1D</td>
+<td class="instruction">LD A,$FB</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">FB</td>
+<td class="centre" colspan="1" rowspan="1">Q</td>
+<td class="centre" colspan="1" rowspan="1">W</td>
+<td class="centre" colspan="1" rowspan="1">E</td>
+<td class="centre" colspan="1" rowspan="1">R</td>
+<td class="centre" colspan="1" rowspan="1">T</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec1f"></span>EC1F</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec21"></span>EC21</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="5">Jump to <a href="EBF5.html#ec35">Common_Continue</a> if "R" (abort game - first key) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec22"></span>EC22</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec23"></span>EC23</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec24"></span>EC24</td>
+<td class="instruction">RRA</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec25"></span>EC25</td>
+<td class="instruction">JR C,<a href="EBF5.html#ec35">Common_Continue</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec27"></span>EC27</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="2">Jump to <a href="EBF5.html#ec35">Common_Continue</a> if "T" (abort game - second key) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec28"></span>EC28</td>
+<td class="instruction">JR C,<a href="EBF5.html#ec35">Common_Continue</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ec2a"></span>
+<div class="comments">
+<div class="paragraph">
+Initiate a game abort, do some housekeeping.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec2a"></span>EC2A</td>
+<td class="instruction">POP IY</td>
+<td class="comment-1" rowspan="4">Restore <span class="register">IY</span> from the stack FOUR times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec2c"></span>EC2C</td>
+<td class="instruction">POP IY</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec2e"></span>EC2E</td>
+<td class="instruction">POP IY</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec30"></span>EC30</td>
+<td class="instruction">POP IY</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec32"></span>EC32</td>
+<td class="instruction">JP <a href="D1D0.html">Game_Loop</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D1D0.html">Game_Loop</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ec35"></span>
+<div class="comments">
+<div class="paragraph">
+Load the control byte into the accumulator for the return to the calling routine.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Common_Continue</td>
+<td class="address-2"><span id="ec35"></span>EC35</td>
+<td class="instruction">LD A,($E5B2)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E5B2.html">Data_Control</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ec38"></span>EC38</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EBCD.html">EBCD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ebf5">Map</a></td>
+<td class="next">
+Next: <a href="EC39.html">EC39</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/60405.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Game Status Buffer</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="GameStatusBuffer">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Game Status Buffer</td>
+</tr>
+</table>
+<div class="map-intro"></div>
+<table class="map">
+<tr>
+<th>Address</th>
+<th class="map-length">Length</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="map-g"><span id="a0e3"></span><a href="../asm/A0E3.html">A0E3</a></td>
+<td class="map-length">2881</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/A0E3.html">Image Buffer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Holds the image for the current level.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d28b"></span><a href="../asm/D28B.html">D28B</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D28B.html">Pointer: Current Level Data</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d28d"></span><a href="../asm/D28D.html">D28D</a></td>
+<td class="map-length">20</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D28D.html">Table: Level Data</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d815"></span><a href="../asm/D815.html">D815</a></td>
+<td class="map-length">18</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D815.html">Object Timers</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d827"></span><a href="../asm/D827.html">D827</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D827.html">Lives</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d828"></span><a href="../asm/D828.html">D828</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D828.html">Game status buffer entry at D828</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d829"></span><a href="../asm/D829.html">D829</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D829.html">Game status buffer entry at D829</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d82a"></span><a href="../asm/D82A.html">D82A</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D82A.html">Game status buffer entry at D82A</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d82b"></span><a href="../asm/D82B.html">D82B</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D82B.html">Game status buffer entry at D82B</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d82c"></span><a href="../asm/D82C.html">D82C</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D82C.html">Game status buffer entry at D82C</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d82d"></span><a href="../asm/D82D.html">D82D</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D82D.html">Game status buffer entry at D82D</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d82e"></span><a href="../asm/D82E.html">D82E</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D82E.html">Player Cursor Position</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d830"></span><a href="../asm/D830.html">D830</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D830.html">Game status buffer entry at D830</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d831"></span><a href="../asm/D831.html">D831</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D831.html">Game status buffer entry at D831</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d832"></span><a href="../asm/D832.html">D832</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D832.html">Game status buffer entry at D832</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d833"></span><a href="../asm/D833.html">D833</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D833.html">Game status buffer entry at D833</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d834"></span><a href="../asm/D834.html">D834</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D834.html">Game status buffer entry at D834</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d835"></span><a href="../asm/D835.html">D835</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D835.html">Player Cursor Flag</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/D352.html">D352</a>, <a href="../asm/D469.html">StartGame</a>, <a href="../asm/E396.html">E396</a>, <a href="../asm/E658.html">Remove_PlayerCursor</a>, <a href="../asm/E661.html">Display_PlayerCursor</a> and <a href="../asm/F39E.html">F39E</a>. <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">00</td>
+<td class="centre" colspan="1" rowspan="1">Off</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">01</td>
+<td class="centre" colspan="1" rowspan="1">On</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d836"></span><a href="../asm/D836.html">D836</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D836.html">Game status buffer entry at D836</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d837"></span><a href="../asm/D837.html">D837</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D837.html">Game status buffer entry at D837</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d838"></span><a href="../asm/D838.html">D838</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D838.html">Bomb?</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d839"></span><a href="../asm/D839.html">D839</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D839.html">Game status buffer entry at D839</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d83a"></span><a href="../asm/D83A.html">D83A</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D83A.html">Time?</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d83b"></span><a href="../asm/D83B.html">D83B</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D83B.html">Game status buffer entry at D83B</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d83c"></span><a href="../asm/D83C.html">D83C</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D83C.html">Game status buffer entry at D83C</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d83d"></span><a href="../asm/D83D.html">D83D</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D83D.html">Game status buffer entry at D83D</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d83e"></span><a href="../asm/D83E.html">D83E</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D83E.html">Game status buffer entry at D83E</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d83f"></span><a href="../asm/D83F.html">D83F</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D83F.html">Game status buffer entry at D83F</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d840"></span><a href="../asm/D840.html">D840</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D840.html">Game status buffer entry at D840</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d841"></span><a href="../asm/D841.html">D841</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D841.html">Game status buffer entry at D841</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d842"></span><a href="../asm/D842.html">D842</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D842.html">Game status buffer entry at D842</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d843"></span><a href="../asm/D843.html">D843</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D843.html">Game status buffer entry at D843</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d844"></span><a href="../asm/D844.html">D844</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D844.html">Game status buffer entry at D844</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d845"></span><a href="../asm/D845.html">D845</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D845.html">Game status buffer entry at D845</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d846"></span><a href="../asm/D846.html">D846</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D846.html">Game status buffer entry at D846</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d847"></span><a href="../asm/D847.html">D847</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D847.html">Game status buffer entry at D847</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d848"></span><a href="../asm/D848.html">D848</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D848.html">Game status buffer entry at D848</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d849"></span><a href="../asm/D849.html">D849</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D849.html">Game status buffer entry at D849</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d84a"></span><a href="../asm/D84A.html">D84A</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D84A.html">Game status buffer entry at D84A</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d84c"></span><a href="../asm/D84C.html">D84C</a></td>
+<td class="map-length">4</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D84C.html">Game status buffer entry at D84C</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d850"></span><a href="../asm/D850.html">D850</a></td>
+<td class="map-length">3</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D850.html">Game status buffer entry at D850</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d853"></span><a href="../asm/D853.html">D853</a></td>
+<td class="map-length">8</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D853.html">Game status buffer entry at D853</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d85b"></span><a href="../asm/D85B.html">D85B</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D85B.html">Game status buffer entry at D85B</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d85d"></span><a href="../asm/D85D.html">D85D</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D85D.html">Game status buffer entry at D85D</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d85e"></span><a href="../asm/D85E.html">D85E</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D85E.html">Game status buffer entry at D85E</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d85f"></span><a href="../asm/D85F.html">D85F</a></td>
+<td class="map-length">12</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D85F.html">Game status buffer entry at D85F</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d86b"></span><a href="../asm/D86B.html">D86B</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D86B.html">Game status buffer entry at D86B</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d86d"></span><a href="../asm/D86D.html">D86D</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D86D.html">Game status buffer entry at D86D</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d86e"></span><a href="../asm/D86E.html">D86E</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D86E.html">Level</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d86f"></span><a href="../asm/D86F.html">D86F</a></td>
+<td class="map-length">3</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D86F.html">High Score</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d872"></span><a href="../asm/D872.html">D872</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D872.html">Game status buffer entry at D872</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d874"></span><a href="../asm/D874.html">D874</a></td>
+<td class="map-length">3</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D874.html">Score</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d877"></span><a href="../asm/D877.html">D877</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D877.html">Screen Position Selected Menu Item</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d879"></span><a href="../asm/D879.html">D879</a></td>
+<td class="map-length">21</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D879.html">Defaults Of Some Kind?</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/D2A1.html">Game_Initialisation</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d88e"></span><a href="../asm/D88E.html">D88E</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D88E.html">Game status buffer entry at D88E</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d890"></span><a href="../asm/D890.html">D890</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D890.html">Game status buffer entry at D890</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="d892"></span><a href="../asm/D892.html">D892</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/D892.html">Pointer Level Graphics Data</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Will point to one of: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Address</th>
+<th colspan="1" rowspan="1">Level</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/5B00.html">GraphicsData_Level_01</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 01</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/6182.html">GraphicsData_Level_02</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 02</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/6AFF.html">GraphicsData_Level_03</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 03</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/730A.html">GraphicsData_Level_04</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 04</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/783C.html">GraphicsData_Level_05</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 05</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/7CFD.html">GraphicsData_Level_06</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 06</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/8106.html">GraphicsData_Level_07</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 07</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/89D2.html">GraphicsData_Level_08</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 08</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/9110.html">GraphicsData_Level_09</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 09</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/9772.html">GraphicsData_Level_10</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 10</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da15"></span><a href="../asm/DA15.html">DA15</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA15.html">Game status buffer entry at DA15</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da16"></span><a href="../asm/DA16.html">DA16</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA16.html">Game status buffer entry at DA16</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da17"></span><a href="../asm/DA17.html">DA17</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA17.html">Game status buffer entry at DA17</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da18"></span><a href="../asm/DA18.html">DA18</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA18.html">Game status buffer entry at DA18</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da19"></span><a href="../asm/DA19.html">DA19</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA19.html">Game status buffer entry at DA19</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da1a"></span><a href="../asm/DA1A.html">DA1A</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA1A.html">Game status buffer entry at DA1A</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da1b"></span><a href="../asm/DA1B.html">DA1B</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA1B.html">Game status buffer entry at DA1B</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da1c"></span><a href="../asm/DA1C.html">DA1C</a></td>
+<td class="map-length">3</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA1C.html">Game status buffer entry at DA1C</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="da1f"></span><a href="../asm/DA1F.html">DA1F</a></td>
+<td class="map-length">102</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DA1F.html">Game status buffer entry at DA1F</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="dd6f"></span><a href="../asm/DD6F.html">DD6F</a></td>
+<td class="map-length">4</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/DD6F.html">Game status buffer entry at DD6F</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e28e"></span><a href="../asm/E28E.html">E28E</a></td>
+<td class="map-length">4</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E28E.html">Game status buffer entry at E28E</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e2c5"></span><a href="../asm/E2C5.html">E2C5</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E2C5.html">Random Number Seed</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e2c7"></span><a href="../asm/E2C7.html">E2C7</a></td>
+<td class="map-length">3</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E2C7.html">Game status buffer entry at E2C7</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e5b0"></span><a href="../asm/E5B0.html">E5B0</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E5B0.html">Game status buffer entry at E5B0</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e5b2"></span><a href="../asm/E5B2.html">E5B2</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E5B2.html">Data: Control Byte</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/E2FD.html">E2FD</a>, <a href="../asm/EB56.html">Handler_PlayerInput</a> and <a href="../asm/EBF5.html">InputHandler_Common</a>. <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">00</td>
+<td class="centre" colspan="1" rowspan="1">No input</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">01</td>
+<td class="centre" colspan="1" rowspan="1">Right</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">02</td>
+<td class="centre" colspan="1" rowspan="1">Left</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">04</td>
+<td class="centre" colspan="1" rowspan="1">Down</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">08</td>
+<td class="centre" colspan="1" rowspan="1">Up</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">10</td>
+<td class="centre" colspan="1" rowspan="1">Fire</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e5d0"></span><a href="../asm/E5D0.html">E5D0</a></td>
+<td class="map-length">16</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E5D0.html">Saved Attributes Block For Cursor</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Saves the attributes before painting the players cursor, this allows it to more easily be "undrawn".
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/E5E4.html">Draw_Cursor</a> and <a href="../asm/E63F.html">Remove_PlayerCursorAttributes</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e5e0"></span><a href="../asm/E5E0.html">E5E0</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E5E0.html">Cursor Attribute Position</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e5e2"></span><a href="../asm/E5E2.html">E5E2</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E5E2.html">Cursor Attribute Buffer Pointer</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e695"></span><a href="../asm/E695.html">E695</a></td>
+<td class="map-length">14</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E695.html">Game status buffer entry at E695</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e6a3"></span><a href="../asm/E6A3.html">E6A3</a></td>
+<td class="map-length">12</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E6A3.html">Home Attributes</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/E66A.html">E66A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e6af"></span><a href="../asm/E6AF.html">E6AF</a></td>
+<td class="map-length">12</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E6AF.html">Cursor Attributes</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/E5E4.html">Draw_Cursor</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e6bb"></span><a href="../asm/E6BB.html">E6BB</a></td>
+<td class="map-length">11</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E6BB.html">Table: Cursor Attribute Positions</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/E6C8.html">PlayerCursor_AttributesRotator</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="e6c6"></span><a href="../asm/E6C6.html">E6C6</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/E6C6.html">Temporary Cursor Attribute Byte Pointer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/E6C8.html">PlayerCursor_AttributesRotator</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="eb36"></span><a href="../asm/EB36.html">EB36</a></td>
+<td class="map-length">2</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/EB36.html">Input Control Pointer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Will point to one of: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Control Method</th>
+<th colspan="1" rowspan="1">Address</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">Keyboard</td>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/EB64.html">InputHandler_Keyboard</a></td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">Kempston</td>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/EB98.html">InputHandler_Kempston</a></td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">Cursor</td>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/EB9E.html">InputHandler_Cursor</a></td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">Sinclair</td>
+<td class="centre" colspan="1" rowspan="1"><a href="../asm/EBCD.html">InputHandler_Sinclair</a></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="eb38"></span><a href="../asm/EB38.html">EB38</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/EB38.html">Selected Menu Item</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Populated by the routine at <a href="../asm/EA4A.html">Handler_MainMenu</a> (<a href="../asm/EA4A.html#eae2">UpdateMenuSelection</a>). <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">01</td>
+<td class="centre" colspan="1" rowspan="1">Keyboard</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">02</td>
+<td class="centre" colspan="1" rowspan="1">Kempston</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">03</td>
+<td class="centre" colspan="1" rowspan="1">Cursor</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">04</td>
+<td class="centre" colspan="1" rowspan="1">Sinclair</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="eb39"></span><a href="../asm/EB39.html">EB39</a></td>
+<td class="map-length">1</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/EB39.html">Game status buffer entry at EB39</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="eb3a"></span><a href="../asm/EB3A.html">EB3A</a></td>
+<td class="map-length">28</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/EB3A.html">Game status buffer entry at EB3A</a></div>
+<div class="map-entry-desc">
+</div>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/buffers/gbuffer.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

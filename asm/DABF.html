@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at DABF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="DA85.html">DA85</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#dabf">Map</a></td>
+<td class="next">
+Next: <a href="DB2E.html">DB2E</a>
+</td>
+</tr>
+</table>
+<div class="description">DABF: Routine at DABF</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="D352.html">D352</a> and <a href="F39E.html">F39E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="dabf"></span>DABF</td>
+<td class="instruction">LD A,($E75D)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html">E75D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dac2"></span>DAC2</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dac3"></span>DAC3</td>
+<td class="instruction">LD ($E75F),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75f">E75F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dac6"></span>DAC6</td>
+<td class="instruction">LD A,($E75E)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html#e75e">E75E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dac9"></span>DAC9</td>
+<td class="instruction">DEC A</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daca"></span>DACA</td>
+<td class="instruction">LD ($E760),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e760">E760</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dacd"></span>DACD</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dacf"></span>DACF</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="dad0"></span>DAD0</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dad1"></span>DAD1</td>
+<td class="instruction">LD A,($E75F)</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e75f">E75F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dad4"></span>DAD4</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dad5"></span>DAD5</td>
+<td class="instruction">LD A,($E760)</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="E75D.html#e760">E760</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dad8"></span>DAD8</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dad9"></span>DAD9</td>
+<td class="instruction">CALL <a href="DCC2.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DCC2.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dadc"></span>DADC</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dadd"></span>DADD</td>
+<td class="instruction">LD A,$00</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dadf"></span>DADF</td>
+<td class="instruction">LD B,$08</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=08.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="dae1"></span>DAE1</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dae2"></span>DAE2</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dae3"></span>DAE3</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="dae5"></span>DAE5</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dae6"></span>DAE6</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dae7"></span>DAE7</td>
+<td class="instruction">DJNZ <a href="DABF.html#dae5">$DAE5</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#dae5">DAE5</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dae9"></span>DAE9</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daea"></span>DAEA</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daeb"></span>DAEB</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">H</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daec"></span>DAEC</td>
+<td class="instruction">DJNZ <a href="DABF.html#dae1">$DAE1</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#dae1">DAE1</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daee"></span>DAEE</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daef"></span>DAEF</td>
+<td class="instruction">CALL <a href="DCD1.html">Calculate_AttributeAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DCD1.html">Calculate_AttributeAddress</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daf2"></span>DAF2</td>
+<td class="instruction">LD A,$47</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=47.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daf4"></span>DAF4</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="daf6"></span>DAF6</td>
+<td class="instruction">LD (DE),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daf7"></span>DAF7</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daf8"></span>DAF8</td>
+<td class="instruction">DJNZ <a href="DABF.html#daf6">$DAF6</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#daf6">DAF6</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dafa"></span>DAFA</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dafb"></span>DAFB</td>
+<td class="instruction">LD HL,$E75F</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html#e75f">E75F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="dafe"></span>DAFE</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="daff"></span>DAFF</td>
+<td class="instruction">DJNZ <a href="DABF.html#dad0">$DAD0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#dad0">DAD0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db01"></span>DB01</td>
+<td class="instruction">LD A,($D833)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="D833.html">D833</a> is equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db04"></span>DB04</td>
+<td class="instruction">CP $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db06"></span>DB06</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db07"></span>DB07</td>
+<td class="instruction">LD B,$03</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=03.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="db09"></span>DB09</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db0a"></span>DB0A</td>
+<td class="instruction">LD A,$05</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=05.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db0c"></span>DB0C</td>
+<td class="instruction">LD C,$1E</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=1E.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="db0e"></span>DB0E</td>
+<td class="instruction">LD B,$28</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=28.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db10"></span>DB10</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1">Shift <span class="register">B</span> left (with carry).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="db12"></span>DB12</td>
+<td class="instruction">DJNZ <a href="DABF.html#db12">$DB12</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#db12">DB12</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db14"></span>DB14</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bit 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db16"></span>DB16</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db18"></span>DB18</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db19"></span>DB19</td>
+<td class="instruction">JR NZ,<a href="DABF.html#db0e">$DB0E</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DABF.html#db0e">DB0E</a> if <span class="register">C</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db1b"></span>DB1B</td>
+<td class="instruction">LD C,$14</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=14.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="db1d"></span>DB1D</td>
+<td class="instruction">LD B,$3C</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=3C.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db1f"></span>DB1F</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1">Shift <span class="register">B</span> left (with carry).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="db21"></span>DB21</td>
+<td class="instruction">DJNZ <a href="DABF.html#db21">$DB21</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#db21">DB21</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db23"></span>DB23</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bit 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db25"></span>DB25</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db27"></span>DB27</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db28"></span>DB28</td>
+<td class="instruction">JR NZ,<a href="DABF.html#db1d">$DB1D</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DABF.html#db1d">DB1D</a> if <span class="register">C</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db2a"></span>DB2A</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db2b"></span>DB2B</td>
+<td class="instruction">DJNZ <a href="DABF.html#db09">$DB09</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DABF.html#db09">DB09</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="db2d"></span>DB2D</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="DA85.html">DA85</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#dabf">Map</a></td>
+<td class="next">
+Next: <a href="DB2E.html">DB2E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/55999.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

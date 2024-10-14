@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at D1AA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="CBE1.html">CBE1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d1aa">Map</a></td>
+<td class="next">
+Next: <a href="D1D0.html">D1D0</a>
+</td>
+</tr>
+</table>
+<div class="description">D1AA: Game Entry Point</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">GameEntryPoint</td>
+<td class="address-2"><span id="d1aa"></span>D1AA</td>
+<td class="instruction">DI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1ab"></span>D1AB</td>
+<td class="instruction">LD SP,$FFFA</td>
+<td class="comment-1" rowspan="1"><span class="register">SP</span>=FFFA.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1ae"></span>D1AE</td>
+<td class="instruction">LD HL,$FE00</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="FE00.html">FE00</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1b1"></span>D1B1</td>
+<td class="instruction">LD BC,$00FD</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> of 00 (as it's a <code>DJNZ</code> this is really 0100) and set <span class="register">C</span> to FD for the value to write.</td>
+</tr>
+<tr>
+<td class="asm-label">GameEntryPoint_0</td>
+<td class="address-2"><span id="d1b4"></span>D1B4</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write FD to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1b5"></span>D1B5</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1b6"></span>D1B6</td>
+<td class="instruction">DJNZ <a href="D1AA.html#d1b4">GameEntryPoint_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D1AA.html#d1b4">GameEntryPoint_0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1b8"></span>D1B8</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d1b9"></span>
+<div class="comments">
+<div class="paragraph">
+This sets interrupt mode 02; when the system generates an interrupt, it'll use the high-order byte set here, together with a low-order byte generated from the system to form a 16-bit address to jump to.
+</div>
+<div class="paragraph">
+As we've just set FD to every address, this means that every generated interrupt will jump to FEFD which in turn will jump to FE69.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1b9"></span>D1B9</td>
+<td class="instruction">LD A,$FE</td>
+<td class="comment-1" rowspan="2">Set FE as the high-order byte in <span class="register">I</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1bb"></span>D1BB</td>
+<td class="instruction">LD I,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1bd"></span>D1BD</td>
+<td class="instruction">IM 2</td>
+<td class="comment-1" rowspan="1">Set interrupt mode 02.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1bf"></span>D1BF</td>
+<td class="instruction">LD HL,$5843</td>
+<td class="comment-1" rowspan="2">Write 5843 (attribute buffer location) to *<a href="D877.html">SelectedMenuItem_ScreenPosition</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1c2"></span>D1C2</td>
+<td class="instruction">LD ($D877),HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1c5"></span>D1C5</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="2">Write 01 ("keyboard") to *<a href="EB38.html">SelectedMenuItem</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1c7"></span>D1C7</td>
+<td class="instruction">LD ($EB38),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1ca"></span>D1CA</td>
+<td class="instruction">LD HL,$EB64</td>
+<td class="comment-1" rowspan="2">Write <a href="EB64.html">InputHandler_Keyboard</a> to *<a href="EB36.html">Pointer_InputControl</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d1cd"></span>D1CD</td>
+<td class="instruction">LD ($EB36),HL</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="comments">
+<div class="paragraph">
+Continue on to <a href="D1D0.html">Game_Loop</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="CBE1.html">CBE1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d1aa">Map</a></td>
+<td class="next">
+Next: <a href="D1D0.html">D1D0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/53674.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

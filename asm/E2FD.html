@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E2FD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E2F1.html">E2F1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e2fd">Map</a></td>
+<td class="next">
+Next: <a href="E320.html">E320</a>
+</td>
+</tr>
+</table>
+<div class="description">E2FD: Routine at E2FD</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e2fd"></span>E2FD</td>
+<td class="instruction">LD A,($E5B2)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="E5B2.html">Data_Control</a> is equal to 10.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e300"></span>E300</td>
+<td class="instruction">CP $10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e302"></span>E302</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e303"></span>E303</td>
+<td class="instruction">LD A,($D832)</td>
+<td class="comment-1" rowspan="3">Return if *<a href="D832.html">D832</a> is equal to 02.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e306"></span>E306</td>
+<td class="instruction">CP $02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e308"></span>E308</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e309"></span>E309</td>
+<td class="instruction">CP $00</td>
+<td class="comment-1" rowspan="2">Return if *<a href="D832.html">D832</a> is equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e30b"></span>E30B</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e30c"></span>E30C</td>
+<td class="instruction">LD A,($D82C)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e30f"></span>E30F</td>
+<td class="instruction">LD HL,$D830</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D830.html">D830</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e312"></span>E312</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e313"></span>E313</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e314"></span>E314</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e317"></span>E317</td>
+<td class="instruction">LD HL,$D831</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D831.html">D831</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e31a"></span>E31A</td>
+<td class="instruction">CP (HL)</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e31b"></span>E31B</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e31c"></span>E31C</td>
+<td class="instruction">CALL <a href="E658.html">Remove_PlayerCursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E658.html">Remove_PlayerCursor</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e31f"></span>E31F</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E2F1.html">E2F1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e2fd">Map</a></td>
+<td class="next">
+Next: <a href="E320.html">E320</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58109.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

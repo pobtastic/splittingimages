@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at EFD5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF4A.html">EF4A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#efd5">Map</a></td>
+<td class="next">
+Next: <a href="F043.html">F043</a>
+</td>
+</tr>
+</table>
+<div class="description">EFD5: Routine at EFD5</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="EF4A.html">EF4A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="efd5"></span>EFD5</td>
+<td class="instruction">LD HL,$0001</td>
+<td class="comment-1" rowspan="2">Write 0001 to *<a href="F043.html#f045">F045</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efd8"></span>EFD8</td>
+<td class="instruction">LD ($F045),HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efdb"></span>EFDB</td>
+<td class="instruction">LD HL,($F04B)</td>
+<td class="comment-1" rowspan="2">Write *<a href="F043.html#f04b">F04B</a> to *<a href="F043.html#f049">F049</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efde"></span>EFDE</td>
+<td class="instruction">LD ($F049),HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efe1"></span>EFE1</td>
+<td class="instruction">LD DE,($F04D)</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=*<a href="F043.html#f04d">F04D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efe5"></span>EFE5</td>
+<td class="instruction">LD BC,($F04B)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=*<a href="F043.html#f04b">F04B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efe9"></span>EFE9</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="efea"></span>EFEA</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">DE</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efeb"></span>EFEB</td>
+<td class="instruction">PUSH DE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efec"></span>EFEC</td>
+<td class="instruction">CALL <a href="F04F.html">$F04F</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F04F.html">F04F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efef"></span>EFEF</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">DE</span> and <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eff0"></span>EFF0</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eff1"></span>EFF1</td>
+<td class="instruction">LD HL,($F045)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="F043.html#f045">F045</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eff4"></span>EFF4</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eff5"></span>EFF5</td>
+<td class="instruction">LD ($F045),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="F043.html#f045">F045</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="eff8"></span>EFF8</td>
+<td class="instruction">LD HL,($F049)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="F043.html#f049">F049</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="effb"></span>EFFB</td>
+<td class="instruction">DEC HL</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="effc"></span>EFFC</td>
+<td class="instruction">LD ($F049),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="F043.html#f049">F049</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="efff"></span>EFFF</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f000"></span>F000</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="EFD5.html#f00c">F00C</a> if <span class="register">BC</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f001"></span>F001</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f002"></span>F002</td>
+<td class="instruction">JP Z,<a href="EFD5.html#f00c">$F00C</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="f005"></span>F005</td>
+<td class="instruction">DEC DE</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f006"></span>F006</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="3">Jump to <a href="EFD5.html#efea">EFEA</a> if <span class="register">DE</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f007"></span>F007</td>
+<td class="instruction">OR E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f008"></span>F008</td>
+<td class="instruction">JP NZ,<a href="EFD5.html#efea">$EFEA</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="f00b"></span>F00B</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f00c"></span>F00C</td>
+<td class="instruction">DEC DE</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f00d"></span>F00D</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="3">Return if <span class="register">DE</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f00e"></span>F00E</td>
+<td class="instruction">OR E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f00f"></span>F00F</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f010"></span>F010</td>
+<td class="instruction">LD BC,($F04B)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=*<a href="F043.html#f04b">F04B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f014"></span>F014</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f015"></span>F015</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">DE</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f016"></span>F016</td>
+<td class="instruction">PUSH DE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f017"></span>F017</td>
+<td class="instruction">CALL <a href="F04F.html">$F04F</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F04F.html">F04F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f01a"></span>F01A</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">DE</span> and <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f01b"></span>F01B</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f01c"></span>F01C</td>
+<td class="instruction">LD HL,($F045)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="F043.html#f045">F045</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f01f"></span>F01F</td>
+<td class="instruction">DEC HL</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f020"></span>F020</td>
+<td class="instruction">LD ($F045),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="F043.html#f045">F045</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f023"></span>F023</td>
+<td class="instruction">LD HL,($F049)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="F043.html#f049">F049</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f026"></span>F026</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f027"></span>F027</td>
+<td class="instruction">LD ($F049),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="F043.html#f049">F049</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f02a"></span>F02A</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f02b"></span>F02B</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="EFD5.html#f037">F037</a> if <span class="register">BC</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f02c"></span>F02C</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f02d"></span>F02D</td>
+<td class="instruction">JP Z,<a href="EFD5.html#f037">$F037</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="f030"></span>F030</td>
+<td class="instruction">DEC DE</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f031"></span>F031</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="3">Jump to <a href="EFD5.html#f015">F015</a> if <span class="register">DE</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f032"></span>F032</td>
+<td class="instruction">OR E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f033"></span>F033</td>
+<td class="instruction">JP NZ,<a href="EFD5.html#f015">$F015</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="f036"></span>F036</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f037"></span>F037</td>
+<td class="instruction">DEC DE</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f038"></span>F038</td>
+<td class="instruction">LD A,D</td>
+<td class="comment-1" rowspan="3">Return if <span class="register">DE</span> is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f039"></span>F039</td>
+<td class="instruction">OR E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f03a"></span>F03A</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f03b"></span>F03B</td>
+<td class="instruction">LD BC,($F04B)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=*<a href="F043.html#f04b">F04B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f03f"></span>F03F</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f040"></span>F040</td>
+<td class="instruction">JP <a href="EFD5.html#efea">$EFEA</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="EFD5.html#efea">EFEA</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF4A.html">EF4A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#efd5">Map</a></td>
+<td class="next">
+Next: <a href="F043.html">F043</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/61397.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

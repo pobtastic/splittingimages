@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 54377</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54098.html">54098</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54377">Map</a></td>
+<td class="next">
+Next: <a href="54486.html">54486</a>
+</td>
+</tr>
+</table>
+<div class="description">54377: Start Game</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="53712.html">Game_Loop</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame</td>
+<td class="address-2"><span id="54377"></span>54377</td>
+<td class="instruction">LD A,2</td>
+<td class="comment-1" rowspan="5">Write 2 to: <ul class="">
+<li>*<a href="55344.html">55344</a></li>
+<li>*<a href="55345.html">55345</a></li>
+<li>*<a href="55342.html">PlayerCursor_Y_Position</a></li>
+<li>*<a href="55342.html#55343">PlayerCursor_X_Position</a></li>
+</ul></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54379"></span>54379</td>
+<td class="instruction">LD (55344),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54382"></span>54382</td>
+<td class="instruction">LD (55345),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54385"></span>54385</td>
+<td class="instruction">LD (55342),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54388"></span>54388</td>
+<td class="instruction">LD (55343),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54391"></span>54391</td>
+<td class="instruction">LD A,9</td>
+<td class="comment-1" rowspan="2">Write 9 to *<a href="55348.html">55348</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54393"></span>54393</td>
+<td class="instruction">LD (55348),A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54396"></span>
+<div class="comments">
+<div class="paragraph">
+See <a href="../reference/pokes.html#infinitelives">Infinite Lives</a> and <a href="../reference/pokes.html#infinitelivesalt">Infinite Lives (alternative)</a>.
+</div>
+<div class="paragraph">
+Spend a life to play the game.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54396"></span>54396</td>
+<td class="instruction">LD HL,55335</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55335.html">Lives</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54399"></span>54399</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54400"></span>54400</td>
+<td class="instruction">JP Z,<a href="54486.html">GameOver</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="54486.html">GameOver</a> if the player is out of lives.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54403"></span>54403</td>
+<td class="instruction">LD HL,55354</td>
+<td class="comment-1" rowspan="2">Write 0 to *<a href="55354.html">Time</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54406"></span>54406</td>
+<td class="instruction">LD (HL),0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54408"></span>54408</td>
+<td class="instruction">CALL <a href="62238.html">62238</a></td>
+<td class="comment-1" rowspan="1">Call <a href="62238.html">62238</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54411"></span>54411</td>
+<td class="instruction">LD HL,(55410)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="55410.html">55410</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54414"></span>54414</td>
+<td class="instruction">LD (HL),45</td>
+<td class="comment-1" rowspan="1">Write 45 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54416"></span>54416</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54417"></span>54417</td>
+<td class="instruction">LD (HL),45</td>
+<td class="comment-1" rowspan="1">Write 45 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54419"></span>54419</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54420"></span>54420</td>
+<td class="instruction">LD (55410),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="55410.html">55410</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54423"></span>54423</td>
+<td class="instruction">LD DE,30</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=0030.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54426"></span>54426</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54427"></span>54427</td>
+<td class="instruction">LD (HL),45</td>
+<td class="comment-1" rowspan="1">Write 45 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54429"></span>54429</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54430"></span>54430</td>
+<td class="instruction">LD (HL),45</td>
+<td class="comment-1" rowspan="1">Write 45 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54432"></span>54432</td>
+<td class="instruction">LD HL,55354</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55354.html">Time</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54435"></span>54435</td>
+<td class="instruction">SET 0,(HL)</td>
+<td class="comment-1" rowspan="1">Set bit 0 of *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="54437"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="54098.html">54098</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_0</td>
+<td class="address-2"><span id="54437"></span>54437</td>
+<td class="instruction">LD A,(55354)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55354.html">Time</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54440"></span>54440</td>
+<td class="instruction">AND %11110001</td>
+<td class="comment-1" rowspan="1">Keep only bits 0, 4-7.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54442"></span>54442</td>
+<td class="instruction">LD (55354),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55354.html">Time</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54445"></span>54445</td>
+<td class="instruction">LD A,(55344)</td>
+<td class="comment-1" rowspan="2">Write *<a href="55344.html">55344</a> to *<a href="55340.html">55340</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54448"></span>54448</td>
+<td class="instruction">LD (55340),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54451"></span>54451</td>
+<td class="instruction">LD A,(55345)</td>
+<td class="comment-1" rowspan="2">Write *<a href="55345.html">55345</a> to *<a href="55341.html">55341</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54454"></span>54454</td>
+<td class="instruction">LD (55341),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54457"></span>54457</td>
+<td class="instruction">LD A,(55332)</td>
+<td class="comment-1" rowspan="2">Write *<a href="55317.html#55332">Timer_Crack_13</a> to *<a href="55346.html">55346</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54460"></span>54460</td>
+<td class="instruction">LD (55346),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54463"></span>54463</td>
+<td class="instruction">LD A,(55349)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="54377.html#54480">StartGame_1</a> if *<a href="55349.html">PlayerCursor_Flag</a> is not equal to 0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54466"></span>54466</td>
+<td class="instruction">CP 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54468"></span>54468</td>
+<td class="instruction">JR NZ,<a href="54377.html#54480">StartGame_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54470"></span>54470</td>
+<td class="instruction">LD A,(55348)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="54377.html#54480">StartGame_1</a> if *<a href="55348.html">55348</a> is equal to 9.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54473"></span>54473</td>
+<td class="instruction">CP 9</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54475"></span>54475</td>
+<td class="instruction">JR Z,<a href="54377.html#54480">StartGame_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54477"></span>54477</td>
+<td class="instruction">CALL <a href="58977.html">Display_PlayerCursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="58977.html">Display_PlayerCursor</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_1</td>
+<td class="address-2"><span id="54480"></span>54480</td>
+<td class="instruction">CALL <a href="55678.html">55678</a></td>
+<td class="comment-1" rowspan="1">Call <a href="55678.html">55678</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="54483"></span>54483</td>
+<td class="instruction">JP <a href="54098.html">54098</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="54098.html">54098</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="54098.html">54098</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#54377">Map</a></td>
+<td class="next">
+Next: <a href="54486.html">54486</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/D469.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E352</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E320.html">E320</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e352">Map</a></td>
+<td class="next">
+Next: <a href="E396.html">E396</a>
+</td>
+</tr>
+</table>
+<div class="description">E352: Routine at E352</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F255.html">F255</a>, <a href="F39E.html">F39E</a> and <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="e352"></span>E352</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="2">Set the low byte in <span class="register">L</span> to the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e354"></span>E354</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e355"></span>E355</td>
+<td class="instruction">LD H,$C8</td>
+<td class="comment-1" rowspan="1">Set the high byte in <span class="register">H</span> to C8.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e357"></span>E357</td>
+<td class="instruction">LD B,$32</td>
+<td class="comment-1" rowspan="1">Set a loop counter in <span class="register">B</span> to 32.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e359"></span>E359</td>
+<td class="instruction">LD D,$05</td>
+<td class="comment-1" rowspan="1">Set a delay counter in <span class="register">D</span> of 05.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="e35b"></span>E35B</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e35c"></span>E35C</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e35e"></span>E35E</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e360"></span>E360</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e362"></span>E362</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e363"></span>E363</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the loop counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e364"></span>E364</td>
+<td class="instruction">LD B,D</td>
+<td class="comment-1" rowspan="1">Set the delay loop counter.</td>
+</tr>
+<tr>
+<td class="asm-label">Delay_Loop_01</td>
+<td class="address-2"><span id="e365"></span>E365</td>
+<td class="instruction">DJNZ <a href="E352.html#e365">Delay_Loop_01</a></td>
+<td class="comment-1" rowspan="1">Decrease the delay counter by one and loop back to <a href="E352.html#e365">Delay_Loop_01</a> until the delay counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e367"></span>E367</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the loop counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e368"></span>E368</td>
+<td class="instruction">DJNZ <a href="E352.html#e35b">$E35B</a></td>
+<td class="comment-1" rowspan="1">Decrease the loop counter by one and loop back to <a href="E352.html#e35b">E35B</a> until the loop counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e36a"></span>E36A</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="2">Halt operation (suspend CPU until the next interrupt) twice.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e36b"></span>E36B</td>
+<td class="instruction">HALT</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e36c"></span>E36C</td>
+<td class="instruction">CALL <a href="EB56.html">Handler_PlayerInput</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EB56.html">Handler_PlayerInput</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e36f"></span>E36F</td>
+<td class="instruction">CP $01</td>
+<td class="comment-1" rowspan="8">Return if the player has pressed any direction key.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e371"></span>E371</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e372"></span>E372</td>
+<td class="instruction">CP $02</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e374"></span>E374</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e375"></span>E375</td>
+<td class="instruction">CP $04</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e377"></span>E377</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e378"></span>E378</td>
+<td class="instruction">CP $08</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e37a"></span>E37A</td>
+<td class="instruction">RET Z</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e37b"></span>E37B</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="2">Halt operation (suspend CPU until the next interrupt) twice.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e37c"></span>E37C</td>
+<td class="instruction">HALT</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e37d"></span>E37D</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="2">Set the low byte in <span class="register">L</span> to the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e37f"></span>E37F</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e380"></span>E380</td>
+<td class="instruction">LD H,$0A</td>
+<td class="comment-1" rowspan="1">Set the high byte in <span class="register">H</span> to 0A.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e382"></span>E382</td>
+<td class="instruction">LD B,$23</td>
+<td class="comment-1" rowspan="1">Set a loop counter in <span class="register">B</span> to 23.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e384"></span>E384</td>
+<td class="instruction">LD C,$64</td>
+<td class="comment-1" rowspan="1">Set a delay counter in <span class="register">C</span> this time of 64.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="e386"></span>E386</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e387"></span>E387</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e389"></span>E389</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e38b"></span>E38B</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e38d"></span>E38D</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e38e"></span>E38E</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the loop counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e38f"></span>E38F</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="1">Set the delay loop counter.</td>
+</tr>
+<tr>
+<td class="asm-label">Delay_Loop_02</td>
+<td class="address-2"><span id="e390"></span>E390</td>
+<td class="instruction">DJNZ <a href="E352.html#e390">Delay_Loop_02</a></td>
+<td class="comment-1" rowspan="1">Decrease the delay counter by one and loop back to <a href="E352.html#e390">Delay_Loop_02</a> until the delay counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e392"></span>E392</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the loop counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e393"></span>E393</td>
+<td class="instruction">DJNZ <a href="E352.html#e386">$E386</a></td>
+<td class="comment-1" rowspan="1">Decrease the loop counter by one and loop back to <a href="E352.html#e386">E386</a> until the loop counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e395"></span>E395</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E320.html">E320</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e352">Map</a></td>
+<td class="next">
+Next: <a href="E396.html">E396</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58194.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

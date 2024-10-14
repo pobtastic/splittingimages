@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at EB64</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EB56.html">EB56</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#eb64">Map</a></td>
+<td class="next">
+Next: <a href="EB98.html">EB98</a>
+</td>
+</tr>
+</table>
+<div class="description">EB64: Input Handler: Keyboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Points to <a href="E5B2.html">Data_Control</a></td>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Points to this routine</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">The control byte</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="eb64"></span>
+<div class="comments">
+<div class="paragraph">
+All the handlers match the outputs of the Kempston Joystick: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Bits</th>
+<th colspan="1" rowspan="1">Action</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">01</td>
+<td class="centre" colspan="1" rowspan="1">00000001</td>
+<td class="centre" colspan="1" rowspan="1">Right</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">02</td>
+<td class="centre" colspan="1" rowspan="1">00000010</td>
+<td class="centre" colspan="1" rowspan="1">Left</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">04</td>
+<td class="centre" colspan="1" rowspan="1">00000100</td>
+<td class="centre" colspan="1" rowspan="1">Down</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">08</td>
+<td class="centre" colspan="1" rowspan="1">00001000</td>
+<td class="centre" colspan="1" rowspan="1">Up</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">10</td>
+<td class="centre" colspan="1" rowspan="1">00010000</td>
+<td class="centre" colspan="1" rowspan="1">Fire</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">InputHandler_Keyboard</td>
+<td class="address-2"><span id="eb64"></span>EB64</td>
+<td class="instruction">LD A,$DF</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">DF</td>
+<td class="centre" colspan="1" rowspan="1">P</td>
+<td class="centre" colspan="1" rowspan="1">O</td>
+<td class="centre" colspan="1" rowspan="1">I</td>
+<td class="centre" colspan="1" rowspan="1">U</td>
+<td class="centre" colspan="1" rowspan="1">Y</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb66"></span>EB66</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="eb68"></span>
+<div class="comments">
+<div class="paragraph">
+If "right" has been pressed, add 01 to *<span class="register">HL</span>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb68"></span>EB68</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="2">Jump to <a href="EB64.html#eb6c">Keyboard_CheckLeft</a> if "P" (right) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb69"></span>EB69</td>
+<td class="instruction">JR C,<a href="EB64.html#eb6c">Keyboard_CheckLeft</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb6b"></span>EB6B</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="eb6c"></span>
+<div class="comments">
+<div class="paragraph">
+If "left" has been pressed, add 02 to *<span class="register">HL</span>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Keyboard_CheckLeft</td>
+<td class="address-2"><span id="eb6c"></span>EB6C</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="2">Jump to <a href="EB64.html#eb71">Keyboard_CheckUp</a> if "O" (left) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb6d"></span>EB6D</td>
+<td class="instruction">JR C,<a href="EB64.html#eb71">Keyboard_CheckUp</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb6f"></span>EB6F</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="2">Increment *<span class="register">HL</span> by two.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb70"></span>EB70</td>
+<td class="instruction">INC (HL)</td>
+</tr>
+<tr>
+<td class="asm-label">Keyboard_CheckUp</td>
+<td class="address-2"><span id="eb71"></span>EB71</td>
+<td class="instruction">LD A,$FB</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">FB</td>
+<td class="centre" colspan="1" rowspan="1">Q</td>
+<td class="centre" colspan="1" rowspan="1">W</td>
+<td class="centre" colspan="1" rowspan="1">E</td>
+<td class="centre" colspan="1" rowspan="1">R</td>
+<td class="centre" colspan="1" rowspan="1">T</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb73"></span>EB73</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb75"></span>EB75</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="2">Jump to <a href="EB64.html#eb7c">Keyboard_CheckDown</a> if "Q" (up) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb76"></span>EB76</td>
+<td class="instruction">JR C,<a href="EB64.html#eb7c">Keyboard_CheckDown</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb78"></span>EB78</td>
+<td class="instruction">LD A,$08</td>
+<td class="comment-1" rowspan="3">Add 08 to *<span class="register">HL</span> and write it back.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb7a"></span>EB7A</td>
+<td class="instruction">ADD A,(HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb7b"></span>EB7B</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="eb7c"></span>
+<div class="comments">
+<div class="paragraph">
+If "down" has been pressed, add 04 to *<span class="register">HL</span>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Keyboard_CheckDown</td>
+<td class="address-2"><span id="eb7c"></span>EB7C</td>
+<td class="instruction">LD A,$FD</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">FD</td>
+<td class="centre" colspan="1" rowspan="1">A</td>
+<td class="centre" colspan="1" rowspan="1">S</td>
+<td class="centre" colspan="1" rowspan="1">D</td>
+<td class="centre" colspan="1" rowspan="1">F</td>
+<td class="centre" colspan="1" rowspan="1">G</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb7e"></span>EB7E</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb80"></span>EB80</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="2">Jump to <a href="EB64.html#eb87">Keyboard_CheckFire</a> if "A" (down) is not being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb81"></span>EB81</td>
+<td class="instruction">JR C,<a href="EB64.html#eb87">Keyboard_CheckFire</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb83"></span>EB83</td>
+<td class="instruction">LD A,$04</td>
+<td class="comment-1" rowspan="3">Add 04 to *<span class="register">HL</span> and write it back.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb85"></span>EB85</td>
+<td class="instruction">ADD A,(HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb86"></span>EB86</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="eb87"></span>
+<div class="comments">
+<div class="paragraph">
+If "fire" has been pressed, add 10 to *<span class="register">HL</span>.
+</div>
+<div class="paragraph">
+Note; ALL these keys are fire button keys.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Keyboard_CheckFire</td>
+<td class="address-2"><span id="eb87"></span>EB87</td>
+<td class="instruction">LD A,$7E</td>
+<td class="comment-1" rowspan="2">Read from the keyboard; <table class="default">
+<tr>
+<th colspan="1" rowspan="2">Port Number</th>
+<th colspan="5" rowspan="1">Bit</th>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">0</th>
+<th colspan="1" rowspan="1">1</th>
+<th colspan="1" rowspan="1">2</th>
+<th colspan="1" rowspan="1">3</th>
+<th colspan="1" rowspan="1">4</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="2">7E</td>
+<td class="centre" colspan="1" rowspan="1">SPACE</td>
+<td class="centre" colspan="1" rowspan="1">FULL-STOP</td>
+<td class="centre" colspan="1" rowspan="1">M</td>
+<td class="centre" colspan="1" rowspan="1">N</td>
+<td class="centre" colspan="1" rowspan="1">B</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">Shift</td>
+<td class="centre" colspan="1" rowspan="1">Z</td>
+<td class="centre" colspan="1" rowspan="1">X</td>
+<td class="centre" colspan="1" rowspan="1">C</td>
+<td class="centre" colspan="1" rowspan="1">V</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb89"></span>EB89</td>
+<td class="instruction">IN A,($FE)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb8b"></span>EB8B</td>
+<td class="instruction">CPL</td>
+<td class="comment-1" rowspan="1">Invert the bits in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb8c"></span>EB8C</td>
+<td class="instruction">AND %00011111</td>
+<td class="comment-1" rowspan="1">Keep only the key bits 0-4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb8e"></span>EB8E</td>
+<td class="instruction">JP Z,<a href="EBF5.html">InputHandler_Common</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="EBF5.html">InputHandler_Common</a> if none of the fire keys are being pressed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb91"></span>EB91</td>
+<td class="instruction">LD A,$10</td>
+<td class="comment-1" rowspan="3">Add 10 to *<span class="register">HL</span> and write it back.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb93"></span>EB93</td>
+<td class="instruction">ADD A,(HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb94"></span>EB94</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="eb95"></span>EB95</td>
+<td class="instruction">JP <a href="EBF5.html">InputHandler_Common</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="EBF5.html">InputHandler_Common</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EB56.html">EB56</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#eb64">Map</a></td>
+<td class="next">
+Next: <a href="EB98.html">EB98</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/60260.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

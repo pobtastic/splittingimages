@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E63F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5E4.html">E5E4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e63f">Map</a></td>
+<td class="next">
+Next: <a href="E658.html">E658</a>
+</td>
+</tr>
+</table>
+<div class="description">E63F: Remove Player Cursor Attributes</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E396.html">E396</a>, <a href="E658.html">Remove_PlayerCursor</a> and <a href="F85D.html">F85D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e63f"></span>
+<div class="comments">
+<div class="paragraph">
+Less "remove" and more "replace"; this routine erases the players cursor attributes, but it doesn't leave a hole - it replaces the attributes with the values they were prior to it being originally drawn.
+</div>
+<div class="paragraph">
+This is the 4x4 block of attributes which were behind the cursor before it was initially painted.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Remove_PlayerCursorAttributes</td>
+<td class="address-2"><span id="e63f"></span>E63F</td>
+<td class="instruction">LD HL,$E5D0</td>
+<td class="comment-1" rowspan="1">Load <span class="register">HL</span> with <a href="E5D0.html">SavedAttributesBlock</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e642"></span>
+<div class="comments">
+<div class="paragraph">
+This is a pointer to the starting attribute buffer location of the players cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e642"></span>E642</td>
+<td class="instruction">LD DE,($E5E2)</td>
+<td class="comment-1" rowspan="1">Load <span class="register">DE</span> with *<a href="E5E2.html">Cursor_AttributePointer</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e646"></span>
+<div class="comments">
+<div class="paragraph">
+The cursor block is 04x04 (04 rows of 04 bytes).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e646"></span>E646</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 04 rows.</td>
+</tr>
+<tr>
+<td class="asm-label">Remove_PlayerCursorAttributes_Loop</td>
+<td class="address-2"><span id="e648"></span>E648</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e649"></span>E649</td>
+<td class="instruction">LD BC,$0004</td>
+<td class="comment-1" rowspan="2">Copy 0004 bytes from the stored attributes to the attribute buffer.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e64c"></span>E64C</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e64e"></span>
+<div class="comments">
+<div class="paragraph">
+One full row is 20 bytes, so this is 04 bytes less than one row. Hence this moves down one row, but back to the start of the line.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e64e"></span>E64E</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="4">Add 001C to the attribute buffer position.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e64f"></span>E64F</td>
+<td class="instruction">LD BC,$001C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e652"></span>E652</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e653"></span>E653</td>
+<td class="instruction">EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e654"></span>E654</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e655"></span>E655</td>
+<td class="instruction">DJNZ <a href="E63F.html#e648">Remove_PlayerCursorAttributes_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E63F.html#e648">Remove_PlayerCursorAttributes_Loop</a> until all the rows have been updated.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e657"></span>E657</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5E4.html">E5E4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e63f">Map</a></td>
+<td class="next">
+Next: <a href="E658.html">E658</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58943.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

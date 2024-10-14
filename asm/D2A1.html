@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at D2A1</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D28D.html">D28D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d2a1">Map</a></td>
+<td class="next">
+Next: <a href="D352.html">D352</a>
+</td>
+</tr>
+</table>
+<div class="description">D2A1: Game Initialisation</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D1D0.html">Game_Loop</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">HL</td>
+<td class="register-desc">Pointer to level data</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Game_Initialisation</td>
+<td class="address-2"><span id="d2a1"></span>D2A1</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1">The first byte is the length of the level data, store this in <span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2a2"></span>D2A2</td>
+<td class="instruction">LD A,C</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=data length.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2a3"></span>D2A3</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1">Initialise <span class="register">B</span> to 00 for the copy command.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2a5"></span>D2A5</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the level data pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2a6"></span>D2A6</td>
+<td class="instruction">LD DE,$E2A7</td>
+<td class="comment-1" rowspan="2">Copy the level data from the current level data to <a href="E2A7.html">E2A7</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2a9"></span>D2A9</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ab"></span>D2AB</td>
+<td class="instruction">LD DE,$D815</td>
+<td class="comment-1" rowspan="3">The next 0012 bytes are timers for the doors and cracks, each level has a different set. Copy these starting at <a href="D815.html">Timer_DoorTop</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ae"></span>D2AE</td>
+<td class="instruction">LD BC,$0012</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2b1"></span>D2B1</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2b3"></span>D2B3</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-1" rowspan="4">Fetch the pointer for the level graphics data and write this to *<a href="D892.html">LevelGraphicsData</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2b4"></span>D2B4</td>
+<td class="instruction">INC HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2b5"></span>D2B5</td>
+<td class="instruction">LD D,(HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2b6"></span>D2B6</td>
+<td class="instruction">LD ($D892),DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ba"></span>D2BA</td>
+<td class="instruction">LD HL,$D85F</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D85F.html">D85F</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2bd"></span>D2BD</td>
+<td class="instruction">LD B,$0C</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=0C.</td>
+</tr>
+<tr>
+<td class="asm-label">Game_Initialisation_0</td>
+<td class="address-2"><span id="d2bf"></span>D2BF</td>
+<td class="instruction">LD (HL),$01</td>
+<td class="comment-1" rowspan="1">Write 01 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2c1"></span>D2C1</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2c2"></span>D2C2</td>
+<td class="instruction">DJNZ <a href="D2A1.html#d2bf">Game_Initialisation_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D2A1.html#d2bf">Game_Initialisation_0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2c4"></span>D2C4</td>
+<td class="instruction">LD DE,$E261</td>
+<td class="comment-1" rowspan="4">Copy 0031 bytes of data from <a href="D4F1.html">D4F1</a> to <a href="E261.html">E261</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2c7"></span>D2C7</td>
+<td class="instruction">LD HL,$D4F1</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ca"></span>D2CA</td>
+<td class="instruction">LD BC,$0031</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2cd"></span>D2CD</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d2cf"></span>
+<div class="comments">
+<div class="paragraph">
+Populates <a href="E293.html">Table_Tiles</a> with:   <table class="default">
+<tr>
+<th colspan="1" rowspan="1">E293</th>
+<th colspan="1" rowspan="1">E294</th>
+<th colspan="1" rowspan="1">E295</th>
+<th colspan="1" rowspan="1">E296</th>
+<th colspan="1" rowspan="1">E297</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">01</td>
+<td class="centre" colspan="1" rowspan="1">02</td>
+<td class="centre" colspan="1" rowspan="1">03</td>
+<td class="centre" colspan="1" rowspan="1">04</td>
+<td class="centre" colspan="1" rowspan="1">05</td>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">E298</th>
+<th colspan="1" rowspan="1">E299</th>
+<th colspan="1" rowspan="1">E29A</th>
+<th colspan="1" rowspan="1">E29B</th>
+<th colspan="1" rowspan="1">E29C</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">06</td>
+<td class="centre" colspan="1" rowspan="1">07</td>
+<td class="centre" colspan="1" rowspan="1">08</td>
+<td class="centre" colspan="1" rowspan="1">09</td>
+<td class="centre" colspan="1" rowspan="1">0A</td>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">E29D</th>
+<th colspan="1" rowspan="1">E29E</th>
+<th colspan="1" rowspan="1">E29F</th>
+<th colspan="1" rowspan="1">E2A0</th>
+<th colspan="1" rowspan="1">E2A1</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0B</td>
+<td class="centre" colspan="1" rowspan="1">0C</td>
+<td class="centre" colspan="1" rowspan="1">0D</td>
+<td class="centre" colspan="1" rowspan="1">0E</td>
+<td class="centre" colspan="1" rowspan="1">0F</td>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">E2A2</th>
+<th colspan="1" rowspan="1">E2A3</th>
+<th colspan="1" rowspan="1">E2A4</th>
+<th colspan="1" rowspan="1">E2A5</th>
+<th colspan="1" rowspan="1">E2A6</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">10</td>
+<td class="centre" colspan="1" rowspan="1">11</td>
+<td class="centre" colspan="1" rowspan="1">12</td>
+<td class="centre" colspan="1" rowspan="1">13</td>
+<td class="centre" colspan="1" rowspan="1">14</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2cf"></span>D2CF</td>
+<td class="instruction">LD HL,$E293</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E293.html">Table_Tiles</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2d2"></span>D2D2</td>
+<td class="instruction">LD B,$14</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for each tile (5x4).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2d4"></span>D2D4</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="1">Tile numbering starts from 01.</td>
+</tr>
+<tr>
+<td class="asm-label">PopulateTileTable_Loop</td>
+<td class="address-2"><span id="d2d6"></span>D2D6</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1">Write the tile ID to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2d7"></span>D2D7</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the tile table pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2d8"></span>D2D8</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment the tile ID by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2d9"></span>D2D9</td>
+<td class="instruction">DJNZ <a href="D2A1.html#d2d6">PopulateTileTable_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the tile counter by one and loop back to <a href="D2A1.html#d2d6">PopulateTileTable_Loop</a> until the table has been populated.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d2db"></span>
+<div class="comments">
+<div class="paragraph">
+Copy default values to <a href="D828.html">D828</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2db"></span>D2DB</td>
+<td class="instruction">LD HL,$D879</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D879.html">Defaults</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2de"></span>D2DE</td>
+<td class="instruction">LD DE,$D828</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=<a href="D828.html">D828</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">PopulateDefaults_Loop</td>
+<td class="address-2"><span id="d2e1"></span>D2E1</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Load the byte from *<span class="register">HL</span> and store it in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2e2"></span>D2E2</td>
+<td class="instruction">CP $FF</td>
+<td class="comment-1" rowspan="2">Jump to <a href="D2A1.html#d2f0">PopulateDefaults_Done</a> if this byte is the terminator (FF).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2e4"></span>D2E4</td>
+<td class="instruction">JR Z,<a href="D2A1.html#d2f0">PopulateDefaults_Done</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2e6"></span>D2E6</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1">Load the byte into <span class="register">B</span> this is the count/ repeater value.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2e7"></span>D2E7</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the defaults pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2e8"></span>D2E8</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Load the defaults byte from *<span class="register">HL</span> and store it in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2e9"></span>D2E9</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the defaults pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label">RepeatDefault_Loop</td>
+<td class="address-2"><span id="d2ea"></span>D2EA</td>
+<td class="instruction">LD (DE),A</td>
+<td class="comment-1" rowspan="1">Write the defaults byte to the destination.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2eb"></span>D2EB</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1">Increment the destination pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ec"></span>D2EC</td>
+<td class="instruction">DJNZ <a href="D2A1.html#d2ea">RepeatDefault_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease repeater count by one and loop back to <a href="D2A1.html#d2ea">RepeatDefault_Loop</a> until the defaults byte has been written this number of times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ee"></span>D2EE</td>
+<td class="instruction">JR <a href="D2A1.html#d2e1">PopulateDefaults_Loop</a></td>
+<td class="comment-1" rowspan="1">Jump back to <a href="D2A1.html#d2e1">PopulateDefaults_Loop</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d2f0"></span>
+<div class="comments">
+<div class="paragraph">
+The computed values are done, copy the last six values over.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">PopulateDefaults_Done</td>
+<td class="address-2"><span id="d2f0"></span>D2F0</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="3">Copy the last 0006 bytes from <a href="D879.html#d888">D888</a> to <a href="D84A.html">D84A</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2f1"></span>D2F1</td>
+<td class="instruction">LD BC,$0006</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2f4"></span>D2F4</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d2f6"></span>
+<div class="comments">
+<div class="paragraph">
+Write three random numbers between 01-20 to <a href="D850.html">D850</a>, <a href="D850.html">D851</a> and <a href="D850.html">D852</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2f6"></span>D2F6</td>
+<td class="instruction">LD B,$03</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=03.</td>
+</tr>
+<tr>
+<td class="asm-label">PickThreeRandomNumbers_Loop</td>
+<td class="address-2"><span id="d2f8"></span>D2F8</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2fa"></span>D2FA</td>
+<td class="instruction">AND %00011111</td>
+<td class="comment-1" rowspan="2">Ensure this number is between 01-20.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2fc"></span>D2FC</td>
+<td class="instruction">INC A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2fd"></span>D2FD</td>
+<td class="instruction">LD (DE),A</td>
+<td class="comment-1" rowspan="1">Write this number to the destination pointer.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2fe"></span>D2FE</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1">Increment the destination pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d2ff"></span>D2FF</td>
+<td class="instruction">DJNZ <a href="D2A1.html#d2f8">PickThreeRandomNumbers_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D2A1.html#d2f8">PickThreeRandomNumbers_Loop</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d301"></span>D301</td>
+<td class="instruction">LD HL,$DA1F</td>
+<td class="comment-1" rowspan="5">Write <a href="DA1F.html">DA1F</a> to: <ul class="">
+<li>*<a href="D853.html">D853</a></li>
+<li>*<a href="D853.html#d855">D855</a></li>
+<li>*<a href="D853.html#d857">D857</a></li>
+<li>*<a href="D853.html#d859">D859</a></li>
+</ul></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d304"></span>D304</td>
+<td class="instruction">LD ($D853),HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d307"></span>D307</td>
+<td class="instruction">LD ($D855),HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d30a"></span>D30A</td>
+<td class="instruction">LD ($D857),HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d30d"></span>D30D</td>
+<td class="instruction">LD ($D859),HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d310"></span>D310</td>
+<td class="instruction">LD HL,$E292</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E292.html">E292</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d313"></span>D313</td>
+<td class="instruction">LD BC,$07D0</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=07D0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d316"></span>D316</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d318"></span>D318</td>
+<td class="instruction">ADD A,C</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>+=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d319"></span>D319</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">Game_Initialisation_1</td>
+<td class="address-2"><span id="d31a"></span>D31A</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="3">Stash <span class="register">BC</span>, <span class="register">HL</span> and <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d31b"></span>D31B</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d31c"></span>D31C</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d31d"></span>D31D</td>
+<td class="instruction">CALL <a href="E6EC.html">GenerateRandomNumber</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E6EC.html">GenerateRandomNumber</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d320"></span>D320</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=random number.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d321"></span>D321</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d322"></span>D322</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d323"></span>D323</td>
+<td class="instruction">CALL <a href="E6EC.html">GenerateRandomNumber</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E6EC.html">GenerateRandomNumber</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d326"></span>D326</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=random number.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d327"></span>D327</td>
+<td class="instruction">LD B,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d328"></span>D328</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">DE</span> to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d329"></span>D329</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d32a"></span>D32A</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="2">Write <span class="register">B</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d32b"></span>D32B</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d32c"></span>D32C</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d32d"></span>D32D</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d32e"></span>D32E</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d32f"></span>D32F</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D2A1.html#d31a">Game_Initialisation_1</a> if <span class="register">BC</span> is not zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d330"></span>D330</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d331"></span>D331</td>
+<td class="instruction">JR NZ,<a href="D2A1.html#d31a">Game_Initialisation_1</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d333"></span>
+<div class="comments">
+<div class="paragraph">
+Populate the level, bonus and score numbering in the dashboard.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d333"></span>D333</td>
+<td class="instruction">CALL <a href="EA2F.html">Print_Level</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EA2F.html">Print_Level</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d336"></span>D336</td>
+<td class="instruction">CALL <a href="EA00.html">Print_Bonus</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EA00.html">Print_Bonus</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d339"></span>D339</td>
+<td class="instruction">CALL <a href="EA14.html">Print_Score</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EA14.html">Print_Score</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d33c"></span>D33C</td>
+<td class="instruction">CALL <a href="EC39.html">Colourise_PreviewGrid</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EC39.html">Colourise_PreviewGrid</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d33f"></span>
+<div class="comments">
+<div class="paragraph">
+Small pause...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d33f"></span>D33F</td>
+<td class="instruction">LD BC,$9C40</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=9C40.</td>
+</tr>
+<tr>
+<td class="asm-label">SetUp_Pause_Loop</td>
+<td class="address-2"><span id="d342"></span>D342</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d343"></span>D343</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D2A1.html#d342">SetUp_Pause_Loop</a> until <span class="register">BC</span> is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d344"></span>D344</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d345"></span>D345</td>
+<td class="instruction">JR NZ,<a href="D2A1.html#d342">SetUp_Pause_Loop</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d347"></span>D347</td>
+<td class="instruction">CALL <a href="EC5A.html">StaticAnimation</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EC5A.html">StaticAnimation</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d34a"></span>D34A</td>
+<td class="instruction">LD IX,($D892)</td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>=*<a href="D892.html">LevelGraphicsData</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d34e"></span>D34E</td>
+<td class="instruction">CALL <a href="E004.html">GeneratePicture</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E004.html">GeneratePicture</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d351"></span>D351</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D28D.html">D28D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d2a1">Map</a></td>
+<td class="next">
+Next: <a href="D352.html">D352</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/53921.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

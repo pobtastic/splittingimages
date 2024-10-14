@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 56658</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="56540.html">56540</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#56658">Map</a></td>
+<td class="next">
+Next: <a href="56687.html">56687</a>
+</td>
+</tr>
+</table>
+<div class="description">56658: Routine at DD52</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="56190.html">56190</a>, <a href="56293.html">56293</a>, <a href="56395.html">56395</a> and <a href="56540.html">MoveTile_Up</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="56658"></span>56658</td>
+<td class="instruction">LD HL,59233</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="59229.html#59233">59233</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56661"></span>56661</td>
+<td class="instruction">LD A,20</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=20.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56663"></span>56663</td>
+<td class="instruction">SUB (HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>-=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56664"></span>56664</td>
+<td class="instruction">LD C,B</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56665"></span>56665</td>
+<td class="instruction">SLA C</td>
+<td class="comment-1" rowspan="2">Shift <span class="register">C</span> left two positions (with carry).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56667"></span>56667</td>
+<td class="instruction">SLA C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56669"></span>56669</td>
+<td class="instruction">ADD A,C</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>+=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56670"></span>56670</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56671"></span>56671</td>
+<td class="instruction">LD A,5</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=5.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="56673"></span>56673</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56674"></span>56674</td>
+<td class="instruction">SLA B</td>
+<td class="comment-1" rowspan="1">Shift <span class="register">B</span> left (with carry).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="56676"></span>56676</td>
+<td class="instruction">DJNZ <a href="56658.html#56676">56676</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="56658.html#56676">56676</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56678"></span>56678</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bits 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56680"></span>56680</td>
+<td class="instruction">OUT (254),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56682"></span>56682</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56683"></span>56683</td>
+<td class="instruction">JP NZ,<a href="56658.html#56673">56673</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56658.html#56673">56673</a> if <span class="register">C</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="56686"></span>56686</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="56540.html">56540</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#56658">Map</a></td>
+<td class="next">
+Next: <a href="56687.html">56687</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/DD52.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

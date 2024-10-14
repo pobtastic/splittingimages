@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E9BF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E9A5.html">E9A5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e9bf">Map</a></td>
+<td class="next">
+Next: <a href="E9DA.html">E9DA</a>
+</td>
+</tr>
+</table>
+<div class="description">E9BF: Routine at E9BF</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D894.html">D894</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e9bf"></span>E9BF</td>
+<td class="instruction">LD HL,$D827</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D827.html">Lives</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9c2"></span>E9C2</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9c3"></span>E9C3</td>
+<td class="instruction">LD HL,($D872)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D872.html">D872</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9c6"></span>E9C6</td>
+<td class="instruction">DEC HL</td>
+<td class="comment-1" rowspan="2">Decrease <span class="register">HL</span> by two.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9c7"></span>E9C7</td>
+<td class="instruction">DEC HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9c8"></span>E9C8</td>
+<td class="instruction">LD ($D872),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D872.html">D872</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9cb"></span>E9CB</td>
+<td class="instruction">LD (HL),$28</td>
+<td class="comment-1" rowspan="1">Write INK:
+BLACK,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9cd"></span>E9CD</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9ce"></span>E9CE</td>
+<td class="instruction">LD (HL),$28</td>
+<td class="comment-1" rowspan="1">Write 28 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9d0"></span>E9D0</td>
+<td class="instruction">LD DE,$001F</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=001F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9d3"></span>E9D3</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9d4"></span>E9D4</td>
+<td class="instruction">LD (HL),$28</td>
+<td class="comment-1" rowspan="1">Write 28 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9d6"></span>E9D6</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9d7"></span>E9D7</td>
+<td class="instruction">LD (HL),$28</td>
+<td class="comment-1" rowspan="1">Write 28 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e9d9"></span>E9D9</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E9A5.html">E9A5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e9bf">Map</a></td>
+<td class="next">
+Next: <a href="E9DA.html">E9DA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/59839.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

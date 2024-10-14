@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E5B3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5B2.html">E5B2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e5b3">Map</a></td>
+<td class="next">
+Next: <a href="E5D0.html">E5D0</a>
+</td>
+</tr>
+</table>
+<div class="description">E5B3: Routine at E5B3</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E396.html">E396</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e5b3"></span>E5B3</td>
+<td class="instruction">LD A,($D82F)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82E.html#d82f">PlayerCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5b6"></span>E5B6</td>
+<td class="instruction">RLCA</td>
+<td class="comment-1" rowspan="4">RLCA.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5b7"></span>E5B7</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5b8"></span>E5B8</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5b9"></span>E5B9</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5ba"></span>E5BA</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5bb"></span>E5BB</td>
+<td class="instruction">LD B,$64</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=64.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5bd"></span>E5BD</td>
+<td class="instruction">LD HL,$03E8</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=03E8.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e5c0"></span>E5C0</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5c1"></span>E5C1</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5c3"></span>E5C3</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5c5"></span>E5C5</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5c7"></span>E5C7</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5c8"></span>E5C8</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5c9"></span>E5C9</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e5ca"></span>E5CA</td>
+<td class="instruction">DJNZ <a href="E5B3.html#e5ca">$E5CA</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E5B3.html#e5ca">E5CA</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5cc"></span>E5CC</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5cd"></span>E5CD</td>
+<td class="instruction">DJNZ <a href="E5B3.html#e5c0">$E5C0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E5B3.html#e5c0">E5C0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e5cf"></span>E5CF</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5B2.html">E5B2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e5b3">Map</a></td>
+<td class="next">
+Next: <a href="E5D0.html">E5D0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58803.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

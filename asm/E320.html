@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E320</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E2FD.html">E2FD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e320">Map</a></td>
+<td class="next">
+Next: <a href="E352.html">E352</a>
+</td>
+</tr>
+</table>
+<div class="description">E320: Routine at E320</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F39E.html">F39E</a> and <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e320"></span>E320</td>
+<td class="instruction">LD HL,$E695</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E695.html">E695</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e323"></span>E323</td>
+<td class="instruction">LD A,($D836)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="E320.html#e32f">E32F</a> if *<a href="D836.html">D836</a> is not equal to 0E.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e326"></span>E326</td>
+<td class="instruction">CP $0E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e328"></span>E328</td>
+<td class="instruction">JR NZ,<a href="E320.html#e32f">$E32F</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="e32a"></span>E32A</td>
+<td class="instruction">LD A,$00</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D836.html">D836</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e32c"></span>E32C</td>
+<td class="instruction">LD ($D836),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e32f"></span>E32F</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e330"></span>E330</td>
+<td class="instruction">LD B,$00</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e332"></span>E332</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e333"></span>E333</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e334"></span>E334</td>
+<td class="instruction">CALL <a href="E682.html">$E682</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E682.html">E682</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e337"></span>E337</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e338"></span>E338</td>
+<td class="instruction">LD HL,$D836</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D836.html">D836</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e33b"></span>E33B</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e33c"></span>E33C</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e33d"></span>E33D</td>
+<td class="instruction">RLCA</td>
+<td class="comment-1" rowspan="2">RLCA.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e33e"></span>E33E</td>
+<td class="instruction">RLCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e33f"></span>E33F</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e340"></span>E340</td>
+<td class="instruction">LD B,$06</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=06.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e342"></span>E342</td>
+<td class="instruction">LD A,$05</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=05.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e344"></span>E344</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e346"></span>E346</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bit 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e348"></span>E348</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e349"></span>E349</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e34a"></span>E34A</td>
+<td class="instruction">DJNZ <a href="E320.html#e34a">$E34A</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E320.html#e34a">E34A</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e34c"></span>E34C</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e34d"></span>E34D</td>
+<td class="instruction">DJNZ <a href="E320.html#e344">$E344</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E320.html#e344">E344</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e34f"></span>E34F</td>
+<td class="instruction">JP <a href="F39E.html">$F39E</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F39E.html">F39E</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E2FD.html">E2FD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e320">Map</a></td>
+<td class="next">
+Next: <a href="E352.html">E352</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58144.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

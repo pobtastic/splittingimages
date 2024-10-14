@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at D97E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D894.html">D894</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d97e">Map</a></td>
+<td class="next">
+Next: <a href="D99B.html">D99B</a>
+</td>
+</tr>
+</table>
+<div class="description">D97E: Routine at D97E</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D469.html">StartGame</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d97e"></span>D97E</td>
+<td class="instruction">LD HL,$E270</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E270.html">E270</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d981"></span>D981</td>
+<td class="instruction">LD D,$01</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=01.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d983"></span>D983</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d985"></span>D985</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d986"></span>D986</td>
+<td class="instruction">LD B,$05</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=05.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d988"></span>D988</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D97E.html#d999">D999</a> if *<span class="register">HL</span> is not equal to <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d989"></span>D989</td>
+<td class="instruction">CP D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d98a"></span>D98A</td>
+<td class="instruction">JR NZ,<a href="D97E.html#d999">$D999</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="d98c"></span>D98C</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d98d"></span>D98D</td>
+<td class="instruction">INC D</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">D</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d98e"></span>D98E</td>
+<td class="instruction">DJNZ <a href="D97E.html#d988">$D988</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D97E.html#d988">D988</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d990"></span>D990</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="2">Increment <span class="register">HL</span> by two.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d991"></span>D991</td>
+<td class="instruction">INC HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d992"></span>D992</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d993"></span>D993</td>
+<td class="instruction">DJNZ <a href="D97E.html#d985">$D985</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D97E.html#d985">D985</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d995"></span>D995</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d996"></span>D996</td>
+<td class="instruction">JP <a href="D894.html">$D894</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html">D894</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="d999"></span>D999</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="d99a"></span>D99A</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D894.html">D894</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#d97e">Map</a></td>
+<td class="next">
+Next: <a href="D99B.html">D99B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/55678.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

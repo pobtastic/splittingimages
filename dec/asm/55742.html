@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 55742</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55707.html">55707</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55742">Map</a></td>
+<td class="next">
+Next: <a href="55819.html">55819</a>
+</td>
+</tr>
+</table>
+<div class="description">55742: Routine at D9BE</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="55819.html">55819</a> and <a href="62526.html">62526</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="55742"></span>55742</td>
+<td class="instruction">LD A,(58055)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="58055.html">58055</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55745"></span>55745</td>
+<td class="instruction">LD BC,(59229)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=*<a href="59229.html">59229</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55749"></span>55749</td>
+<td class="instruction">LD HL,55352</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55352.html">Bomb</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55752"></span>55752</td>
+<td class="instruction">CP 21</td>
+<td class="comment-1" rowspan="2">Jump to <a href="55742.html#55769">55769</a> if <span class="register">A</span> is not equal to 21.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55754"></span>55754</td>
+<td class="instruction">JR NZ,<a href="55742.html#55769">55769</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="55756"></span>55756</td>
+<td class="instruction">LD (55829),BC</td>
+<td class="comment-1" rowspan="1">Write <span class="register">BC</span> to *<a href="55829.html">55829</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55760"></span>55760</td>
+<td class="instruction">BIT 1,(HL)</td>
+<td class="comment-1" rowspan="2">Jump to <a href="55742.html#55769">55769</a> if bit 1 of *<span class="register">HL</span> is set.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55762"></span>55762</td>
+<td class="instruction">JR NZ,<a href="55742.html#55769">55769</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="55764"></span>55764</td>
+<td class="instruction">LD A,1</td>
+<td class="comment-1" rowspan="2">Write 1 to *<a href="55355.html">55355</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55766"></span>55766</td>
+<td class="instruction">LD (55355),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="55769"></span>55769</td>
+<td class="instruction">CP 61</td>
+<td class="comment-1" rowspan="2">Jump to <a href="55742.html#55786">55786</a> if <span class="register">A</span> is not equal to 61.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55771"></span>55771</td>
+<td class="instruction">JR NZ,<a href="55742.html#55786">55786</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="55773"></span>55773</td>
+<td class="instruction">LD (55831),BC</td>
+<td class="comment-1" rowspan="1">Write <span class="register">BC</span> to *<a href="55831.html">55831</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55777"></span>55777</td>
+<td class="instruction">BIT 2,(HL)</td>
+<td class="comment-1" rowspan="2">Jump to <a href="55742.html#55786">55786</a> if bit 2 of *<span class="register">HL</span> is set.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55779"></span>55779</td>
+<td class="instruction">JR NZ,<a href="55742.html#55786">55786</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="55781"></span>55781</td>
+<td class="instruction">LD A,1</td>
+<td class="comment-1" rowspan="2">Write 1 to *<a href="55356.html">55356</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55783"></span>55783</td>
+<td class="instruction">LD (55356),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="55786"></span>55786</td>
+<td class="instruction">CP 62</td>
+<td class="comment-1" rowspan="2">Jump to <a href="55742.html#55803">55803</a> if <span class="register">A</span> is not equal to 62.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55788"></span>55788</td>
+<td class="instruction">JR NZ,<a href="55742.html#55803">55803</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="55790"></span>55790</td>
+<td class="instruction">LD (55833),BC</td>
+<td class="comment-1" rowspan="1">Write <span class="register">BC</span> to *<a href="55833.html">55833</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55794"></span>55794</td>
+<td class="instruction">BIT 3,(HL)</td>
+<td class="comment-1" rowspan="2">Jump to <a href="55742.html#55803">55803</a> if bit 3 of *<span class="register">HL</span> is set.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55796"></span>55796</td>
+<td class="instruction">JR NZ,<a href="55742.html#55803">55803</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="55798"></span>55798</td>
+<td class="instruction">LD A,1</td>
+<td class="comment-1" rowspan="2">Write 1 to *<a href="55357.html">55357</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55800"></span>55800</td>
+<td class="instruction">LD (55357),A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="55803"></span>55803</td>
+<td class="instruction">CP 63</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to 63.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55805"></span>55805</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55806"></span>55806</td>
+<td class="instruction">LD (55835),BC</td>
+<td class="comment-1" rowspan="1">Write <span class="register">BC</span> to *<a href="55835.html">55835</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55810"></span>55810</td>
+<td class="instruction">BIT 4,(HL)</td>
+<td class="comment-1" rowspan="2">Return if bit 4 of *<span class="register">HL</span> is set.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55812"></span>55812</td>
+<td class="instruction">RET NZ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55813"></span>55813</td>
+<td class="instruction">LD A,1</td>
+<td class="comment-1" rowspan="2">Write 1 to *<a href="55358.html">55358</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55815"></span>55815</td>
+<td class="instruction">LD (55358),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="55818"></span>55818</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="55707.html">55707</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#55742">Map</a></td>
+<td class="next">
+Next: <a href="55819.html">55819</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/D9BE.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

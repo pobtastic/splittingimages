@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at EA14</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA00.html">EA00</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ea14">Map</a></td>
+<td class="next">
+Next: <a href="EA2F.html">EA2F</a>
+</td>
+</tr>
+</table>
+<div class="description">EA14: Print Score</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="D2A1.html">Game_Initialisation</a> and <a href="D894.html">D894</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Print_Score</td>
+<td class="address-2"><span id="ea14"></span>EA14</td>
+<td class="instruction">LD B,$13</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=13.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea16"></span>EA16</td>
+<td class="instruction">LD C,$18</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=18.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea18"></span>EA18</td>
+<td class="instruction">CALL <a href="DCC2.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DCC2.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea1b"></span>EA1B</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="4">Increment <span class="register">H</span> by four.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea1c"></span>EA1C</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea1d"></span>EA1D</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea1e"></span>EA1E</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea1f"></span>EA1F</td>
+<td class="instruction">LD DE,$D874</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=<a href="D874.html">Score_Digit_01</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea22"></span>EA22</td>
+<td class="instruction">LD IX,$D83A</td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>=<a href="D83A.html">Time</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea26"></span>EA26</td>
+<td class="instruction">SET 1,(IX+$00)</td>
+<td class="comment-1" rowspan="1">Set bit 1 of *<span class="register">IX</span>+00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea2a"></span>EA2A</td>
+<td class="instruction">LD B,$03</td>
+<td class="comment-1" rowspan="1">Set the number of digits to display: 03.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="ea2c"></span>EA2C</td>
+<td class="instruction">JP <a href="DB2E.html#db35">Print_Numbers_0</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DB2E.html#db35">Print_Numbers_0</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA00.html">EA00</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ea14">Map</a></td>
+<td class="next">
+Next: <a href="EA2F.html">EA2F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/59924.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

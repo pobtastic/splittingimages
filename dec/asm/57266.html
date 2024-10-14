@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 57266</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="57256.html">57256</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#57266">Map</a></td>
+<td class="next">
+Next: <a href="57348.html">57348</a>
+</td>
+</tr>
+</table>
+<div class="description">57266: Routine at DFB2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="58058.html">58058</a> and <a href="62526.html">62526</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="57266"></span>57266</td>
+<td class="instruction">LD (58055),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="58055.html">58055</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57269"></span>57269</td>
+<td class="instruction">CP 1</td>
+<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is lower than 1 (unsigned comparison).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57271"></span>57271</td>
+<td class="instruction">RET M</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57272"></span>57272</td>
+<td class="instruction">CP 21</td>
+<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 21.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57274"></span>57274</td>
+<td class="instruction">RET P</td>
+<td class="comment-1" rowspan="1">Return P.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57275"></span>57275</td>
+<td class="instruction">LD A,(55351)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55351.html">55351</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57278"></span>57278</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Jump to <a href="57266.html#57300">57300</a> if <span class="register">A</span> is equal to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57280"></span>57280</td>
+<td class="instruction">JR Z,<a href="57266.html#57300">57300</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="57282"></span>57282</td>
+<td class="instruction">LD HL,57326</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="57266.html#57327">57326</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57285"></span>57285</td>
+<td class="instruction">LD B,0</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57287"></span>57287</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57288"></span>57288</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57289"></span>57289</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57290"></span>57290</td>
+<td class="instruction">LD HL,22678</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=22678 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57293"></span>57293</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57294"></span>57294</td>
+<td class="instruction">LD A,(57347)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="57266.html#57347">57347</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57297"></span>57297</td>
+<td class="instruction">CALL <a href="57256.html">57256</a></td>
+<td class="comment-1" rowspan="1">Call <a href="57256.html">57256</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="57300"></span>57300</td>
+<td class="instruction">LD A,(58055)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="58055.html">58055</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57303"></span>57303</td>
+<td class="instruction">LD (55351),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55351.html">55351</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57306"></span>57306</td>
+<td class="instruction">LD HL,57326</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="57266.html#57327">57326</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57309"></span>57309</td>
+<td class="instruction">LD B,0</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57311"></span>57311</td>
+<td class="instruction">LD C,A</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57312"></span>57312</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57313"></span>57313</td>
+<td class="instruction">LD C,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57314"></span>57314</td>
+<td class="instruction">LD HL,22678</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=22678 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57317"></span>57317</td>
+<td class="instruction">ADD HL,BC</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57318"></span>57318</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="57266.html#57347">57347</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57319"></span>57319</td>
+<td class="instruction">LD (57347),A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57322"></span>57322</td>
+<td class="instruction">LD A,120</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=INK:
+BLACK,
+PAPER:
+WHITE
+(BRIGHT)
+.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57324"></span>57324</td>
+<td class="instruction">JP <a href="57256.html">57256</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="57256.html">57256</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="57327"></span>57327</td>
+<td class="instruction">DEFB 0,2,4,6,8</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="57332"></span>57332</td>
+<td class="instruction">DEFB 64,66,68,70,72</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="57337"></span>57337</td>
+<td class="instruction">DEFB 128,130,132,134,136</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="57342"></span>57342</td>
+<td class="instruction">DEFB 192,194,196,198,200</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="57347"></span>57347</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="57256.html">57256</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#57266">Map</a></td>
+<td class="next">
+Next: <a href="57348.html">57348</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/DFB2.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

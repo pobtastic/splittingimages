@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 56691</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="56687.html">56687</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#56691">Map</a></td>
+<td class="next">
+Next: <a href="56913.html">56913</a>
+</td>
+</tr>
+</table>
+<div class="description">56691: Print Helper Preview Image</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="53712.html">Game_Loop</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="56691"></span>
+<div class="comments">
+<div class="paragraph">
+Takes the generated image at <a href="41187.html">Buffer_Image</a>, and creates a preview image from it.
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Level 1</th>
+<th colspan="1" rowspan="1">Level 2</th>
+<th colspan="1" rowspan="1">Level 3</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$5B00" src="../../images/scr/helper-image-$5B00.png" /></td>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$6182" src="../../images/scr/helper-image-$6182.png" /></td>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$6AFF" src="../../images/scr/helper-image-$6AFF.png" /></td>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">Level 4</th>
+<th colspan="1" rowspan="1">Level 5</th>
+<th colspan="1" rowspan="1">Level 6</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$730A" src="../../images/scr/helper-image-$730A.png" /></td>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$783C" src="../../images/scr/helper-image-$783C.png" /></td>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$7CFD" src="../../images/scr/helper-image-$7CFD.png" /></td>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">Level 7</th>
+<th colspan="1" rowspan="1">Level 8</th>
+<th colspan="1" rowspan="1">Level 9</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$8106" src="../../images/scr/helper-image-$8106.png" /></td>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$89D2" src="../../images/scr/helper-image-$89D2.png" /></td>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$9110" src="../../images/scr/helper-image-$9110.png" /></td>
+</tr>
+</table> Marilyn Monroe has no preview image, but if she did, it would look like this: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Level 10</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><img alt="helper-image-$9772" src="../../images/scr/helper-image-$9772.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage</td>
+<td class="address-2"><span id="56691"></span>56691</td>
+<td class="instruction">LD B,4</td>
+<td class="comment-1" rowspan="1">Set the initial X co-ordinate in <span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56693"></span>56693</td>
+<td class="instruction">LD C,22</td>
+<td class="comment-1" rowspan="1">Set the initial Y co-ordinate in <span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_0</td>
+<td class="address-2"><span id="56695"></span>56695</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the co-ordinates on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56696"></span>56696</td>
+<td class="instruction">CALL <a href="56514.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56514.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56699"></span>56699</td>
+<td class="instruction">LD B,8</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 8.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_1</td>
+<td class="address-2"><span id="56701"></span>56701</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56702"></span>56702</td>
+<td class="instruction">LD B,10</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 10.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56704"></span>56704</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash the screen buffer address pointer on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_2</td>
+<td class="address-2"><span id="56705"></span>56705</td>
+<td class="instruction">LD (HL),0</td>
+<td class="comment-1" rowspan="1">Write 0 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56707"></span>56707</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the screen buffer address pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56708"></span>56708</td>
+<td class="instruction">DJNZ <a href="56691.html#56705">Print_HelperPreviewImage_2</a></td>
+<td class="comment-1" rowspan="1">Decrease the counter by one and loop back to <a href="56691.html#56705">Print_HelperPreviewImage_2</a> until the counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56710"></span>56710</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore the original screen buffer address from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56711"></span>56711</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1">Move down one line.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56712"></span>56712</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56713"></span>56713</td>
+<td class="instruction">DJNZ <a href="56691.html#56701">Print_HelperPreviewImage_1</a></td>
+<td class="comment-1" rowspan="1">Decrease the counter by one and loop back to <a href="56691.html#56701">Print_HelperPreviewImage_1</a> until the counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56715"></span>56715</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the original co-ordinates from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56716"></span>56716</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56717"></span>56717</td>
+<td class="instruction">LD A,12</td>
+<td class="comment-1" rowspan="3">Jump to <a href="56691.html#56695">Print_HelperPreviewImage_0</a> if <span class="register">B</span> is not equal to 12.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56719"></span>56719</td>
+<td class="instruction">CP B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56720"></span>56720</td>
+<td class="instruction">JR NZ,<a href="56691.html#56695">Print_HelperPreviewImage_0</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56722"></span>56722</td>
+<td class="instruction">LD A,176</td>
+<td class="comment-1" rowspan="2">Write 176 to *<a href="56687.html">Temp_X_Coordinate</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56724"></span>56724</td>
+<td class="instruction">LD (56687),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56727"></span>56727</td>
+<td class="instruction">LD A,32</td>
+<td class="comment-1" rowspan="2">Write 32 to *<a href="56687.html#56688">Temp_Y_Coordinate</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56729"></span>56729</td>
+<td class="instruction">LD (56688),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56732"></span>56732</td>
+<td class="instruction">LD HL,41187</td>
+<td class="comment-1" rowspan="2">Write <a href="41187.html">Buffer_Image</a> to *<a href="56687.html#56689">Temp_SourceAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56735"></span>56735</td>
+<td class="instruction">LD (56689),HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56738"></span>56738</td>
+<td class="instruction">LD B,64</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=64.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_3</td>
+<td class="address-2"><span id="56740"></span>56740</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56741"></span>56741</td>
+<td class="instruction">LD A,(56687)</td>
+<td class="comment-1" rowspan="2"><span class="register">H</span>=*<a href="56687.html">Temp_X_Coordinate</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56744"></span>56744</td>
+<td class="instruction">LD H,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56745"></span>56745</td>
+<td class="instruction">LD A,(56688)</td>
+<td class="comment-1" rowspan="2"><span class="register">L</span>=*<a href="56687.html#56688">Temp_Y_Coordinate</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56748"></span>56748</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56749"></span>56749</td>
+<td class="instruction">CALL <a href="56913.html">CalculateScreenAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56913.html">CalculateScreenAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56752"></span>56752</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="2">Load the screen buffer address into <span class="register">IX</span> (using the stack).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56753"></span>56753</td>
+<td class="instruction">POP IX</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56755"></span>56755</td>
+<td class="instruction">LD B,2</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 2.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_4</td>
+<td class="address-2"><span id="56757"></span>56757</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash the counter and the screen buffer address on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56758"></span>56758</td>
+<td class="instruction">PUSH IX</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56760"></span>56760</td>
+<td class="instruction">LD HL,(56689)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="56687.html#56689">Temp_SourceAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56763"></span>56763</td>
+<td class="instruction">LD B,10</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=10.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_5</td>
+<td class="address-2"><span id="56765"></span>56765</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56766"></span>56766</td>
+<td class="instruction">LD D,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56767"></span>56767</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56768"></span>56768</td>
+<td class="instruction">LD E,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">E</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56769"></span>56769</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56770"></span>56770</td>
+<td class="instruction">CALL <a href="56691.html#56800">Print_HelperPreviewImage_6</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56691.html#56800">Print_HelperPreviewImage_6</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56773"></span>56773</td>
+<td class="instruction">LD D,(IX+0)</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=*<span class="register">IX</span>+0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56776"></span>56776</td>
+<td class="instruction">OR D</td>
+<td class="comment-1" rowspan="1">Set the bits from <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56777"></span>56777</td>
+<td class="instruction">LD (IX+0),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<span class="register">IX</span>+0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56780"></span>56780</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">IX</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56782"></span>56782</td>
+<td class="instruction">DJNZ <a href="56691.html#56765">Print_HelperPreviewImage_5</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="56691.html#56765">Print_HelperPreviewImage_5</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56784"></span>56784</td>
+<td class="instruction">POP IX</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">IX</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56786"></span>56786</td>
+<td class="instruction">LD (56689),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="56687.html#56689">Temp_SourceAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56789"></span>56789</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56790"></span>56790</td>
+<td class="instruction">DJNZ <a href="56691.html#56757">Print_HelperPreviewImage_4</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="56691.html#56757">Print_HelperPreviewImage_4</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56792"></span>56792</td>
+<td class="instruction">LD HL,56688</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="56687.html#56688">Temp_Y_Coordinate</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56795"></span>56795</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56796"></span>56796</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56797"></span>56797</td>
+<td class="instruction">DJNZ <a href="56691.html#56740">Print_HelperPreviewImage_3</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="56691.html#56740">Print_HelperPreviewImage_3</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56799"></span>56799</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="56800"></span>
+<div class="comments">
+<div class="paragraph">
+Magic.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_6</td>
+<td class="address-2"><span id="56800"></span>56800</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56802"></span>56802</td>
+<td class="instruction">JP NC,<a href="56691.html#56807">Print_HelperPreviewImage_7</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56807">Print_HelperPreviewImage_7</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56805"></span>56805</td>
+<td class="instruction">OR %10000000</td>
+<td class="comment-1" rowspan="1">Set bit 7.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_7</td>
+<td class="address-2"><span id="56807"></span>56807</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56809"></span>56809</td>
+<td class="instruction">JP NC,<a href="56691.html#56814">Print_HelperPreviewImage_8</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56814">Print_HelperPreviewImage_8</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56812"></span>56812</td>
+<td class="instruction">OR %10000000</td>
+<td class="comment-1" rowspan="1">Set bit 7.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_8</td>
+<td class="address-2"><span id="56814"></span>56814</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56816"></span>56816</td>
+<td class="instruction">JP NC,<a href="56691.html#56821">Print_HelperPreviewImage_9</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56821">Print_HelperPreviewImage_9</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56819"></span>56819</td>
+<td class="instruction">OR %01000000</td>
+<td class="comment-1" rowspan="1">Set bit 6.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_9</td>
+<td class="address-2"><span id="56821"></span>56821</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56823"></span>56823</td>
+<td class="instruction">JP NC,<a href="56691.html#56828">Print_HelperPreviewImage_10</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56828">Print_HelperPreviewImage_10</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56826"></span>56826</td>
+<td class="instruction">OR %01000000</td>
+<td class="comment-1" rowspan="1">Set bit 6.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_10</td>
+<td class="address-2"><span id="56828"></span>56828</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56830"></span>56830</td>
+<td class="instruction">JP NC,<a href="56691.html#56835">Print_HelperPreviewImage_11</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56835">Print_HelperPreviewImage_11</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56833"></span>56833</td>
+<td class="instruction">OR %00100000</td>
+<td class="comment-1" rowspan="1">Set bit 5.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_11</td>
+<td class="address-2"><span id="56835"></span>56835</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56837"></span>56837</td>
+<td class="instruction">JP NC,<a href="56691.html#56842">Print_HelperPreviewImage_12</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56842">Print_HelperPreviewImage_12</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56840"></span>56840</td>
+<td class="instruction">OR %00100000</td>
+<td class="comment-1" rowspan="1">Set bit 5.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_12</td>
+<td class="address-2"><span id="56842"></span>56842</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56844"></span>56844</td>
+<td class="instruction">JP NC,<a href="56691.html#56849">Print_HelperPreviewImage_13</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56849">Print_HelperPreviewImage_13</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56847"></span>56847</td>
+<td class="instruction">OR %00010000</td>
+<td class="comment-1" rowspan="1">Set bit 4.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_13</td>
+<td class="address-2"><span id="56849"></span>56849</td>
+<td class="instruction">RLC D</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">D</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56851"></span>56851</td>
+<td class="instruction">JP NC,<a href="56691.html#56856">Print_HelperPreviewImage_14</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56856">Print_HelperPreviewImage_14</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56854"></span>56854</td>
+<td class="instruction">OR %00010000</td>
+<td class="comment-1" rowspan="1">Set bit 4.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_14</td>
+<td class="address-2"><span id="56856"></span>56856</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56858"></span>56858</td>
+<td class="instruction">JP NC,<a href="56691.html#56863">Print_HelperPreviewImage_15</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56863">Print_HelperPreviewImage_15</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56861"></span>56861</td>
+<td class="instruction">OR %00001000</td>
+<td class="comment-1" rowspan="1">Set bit 3.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_15</td>
+<td class="address-2"><span id="56863"></span>56863</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56865"></span>56865</td>
+<td class="instruction">JP NC,<a href="56691.html#56870">Print_HelperPreviewImage_16</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56870">Print_HelperPreviewImage_16</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56868"></span>56868</td>
+<td class="instruction">OR %00001000</td>
+<td class="comment-1" rowspan="1">Set bit 3.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_16</td>
+<td class="address-2"><span id="56870"></span>56870</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56872"></span>56872</td>
+<td class="instruction">JP NC,<a href="56691.html#56877">Print_HelperPreviewImage_17</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56877">Print_HelperPreviewImage_17</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56875"></span>56875</td>
+<td class="instruction">OR %00000100</td>
+<td class="comment-1" rowspan="1">Set bit 2.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_17</td>
+<td class="address-2"><span id="56877"></span>56877</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56879"></span>56879</td>
+<td class="instruction">JP NC,<a href="56691.html#56884">Print_HelperPreviewImage_18</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56884">Print_HelperPreviewImage_18</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56882"></span>56882</td>
+<td class="instruction">OR %00000100</td>
+<td class="comment-1" rowspan="1">Set bit 2.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_18</td>
+<td class="address-2"><span id="56884"></span>56884</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56886"></span>56886</td>
+<td class="instruction">JP NC,<a href="56691.html#56891">Print_HelperPreviewImage_19</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56891">Print_HelperPreviewImage_19</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56889"></span>56889</td>
+<td class="instruction">OR %00000010</td>
+<td class="comment-1" rowspan="1">Set bit 1.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_19</td>
+<td class="address-2"><span id="56891"></span>56891</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56893"></span>56893</td>
+<td class="instruction">JP NC,<a href="56691.html#56898">Print_HelperPreviewImage_20</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56898">Print_HelperPreviewImage_20</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56896"></span>56896</td>
+<td class="instruction">OR %00000010</td>
+<td class="comment-1" rowspan="1">Set bit 1.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_20</td>
+<td class="address-2"><span id="56898"></span>56898</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56900"></span>56900</td>
+<td class="instruction">JP NC,<a href="56691.html#56905">Print_HelperPreviewImage_21</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56905">Print_HelperPreviewImage_21</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56903"></span>56903</td>
+<td class="instruction">OR %00000001</td>
+<td class="comment-1" rowspan="1">Set bit 0.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_21</td>
+<td class="address-2"><span id="56905"></span>56905</td>
+<td class="instruction">RLC E</td>
+<td class="comment-1" rowspan="1">Rotate <span class="register">E</span> left (through the carry flag).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56907"></span>56907</td>
+<td class="instruction">JP NC,<a href="56691.html#56912">Print_HelperPreviewImage_22</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56691.html#56912">Print_HelperPreviewImage_22</a> if the carry flag isn't set (if the leftmost bit was 0).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56910"></span>56910</td>
+<td class="instruction">OR %00000001</td>
+<td class="comment-1" rowspan="1">Set bit 0.</td>
+</tr>
+<tr>
+<td class="asm-label">Print_HelperPreviewImage_22</td>
+<td class="address-2"><span id="56912"></span>56912</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="56687.html">56687</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#56691">Map</a></td>
+<td class="next">
+Next: <a href="56913.html">56913</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/DD73.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

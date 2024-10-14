@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at F349</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F31E.html">F31E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#f349">Map</a></td>
+<td class="next">
+Next: <a href="F38F.html">F38F</a>
+</td>
+</tr>
+</table>
+<div class="description">F349: Routine at F349</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D352.html">D352</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f349"></span>F349</td>
+<td class="instruction">LD B,$28</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=28.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f34b"></span>F34B</td>
+<td class="instruction">LD HL,$D83A</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D83A.html">Time</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f34e"></span>F34E</td>
+<td class="instruction">RES 5,(HL)</td>
+<td class="comment-1" rowspan="1">Reset bit 5 of *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f350"></span>F350</td>
+<td class="instruction">RES 6,(HL)</td>
+<td class="comment-1" rowspan="1">Reset bit 6 of *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f352"></span>F352</td>
+<td class="instruction">LD HL,($D85B)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D85B.html">D85B</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f355"></span>F355</td>
+<td class="instruction">LD C,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=04.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f357"></span>F357</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f358"></span>F358</td>
+<td class="instruction">SCF</td>
+<td class="comment-1" rowspan="1">Set the carry flag.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f359"></span>F359</td>
+<td class="instruction">RR (HL)</td>
+<td class="comment-1" rowspan="1">Rotate *<span class="register">HL</span> right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f35b"></span>F35B</td>
+<td class="instruction">JP C,<a href="F349.html#f37c">$F37C</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F349.html#f37c">F37C</a> if  is lower.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f35e"></span>F35E</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">H</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f35f"></span>F35F</td>
+<td class="instruction">DEC C</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f360"></span>F360</td>
+<td class="instruction">JP NZ,<a href="F349.html#f358">$F358</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F349.html#f358">F358</a> if <span class="register">C</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f363"></span>F363</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f364"></span>F364</td>
+<td class="instruction">ADD A,$1E</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>+=1E.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f366"></span>F366</td>
+<td class="instruction">LD H,A</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f367"></span>F367</td>
+<td class="instruction">LD L,$14</td>
+<td class="comment-1" rowspan="1"><span class="register">L</span>=14.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f369"></span>F369</td>
+<td class="instruction">LD A,$05</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=05.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f36b"></span>F36B</td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bits 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f36d"></span>F36D</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f36f"></span>F36F</td>
+<td class="instruction">LD D,H</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=<span class="register">H</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f370"></span>F370</td>
+<td class="instruction">DEC D</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">D</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f371"></span>F371</td>
+<td class="instruction">JP NZ,<a href="F349.html#f370">$F370</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F349.html#f370">F370</a> if <span class="register">D</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f374"></span>F374</td>
+<td class="instruction">DEC L</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">L</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f375"></span>F375</td>
+<td class="instruction">JP NZ,<a href="F349.html#f36b">$F36B</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F349.html#f36b">F36B</a> if <span class="register">L</span> is not zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f378"></span>F378</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f379"></span>F379</td>
+<td class="instruction">DJNZ <a href="F349.html#f355">$F355</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="F349.html#f355">F355</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f37b"></span>F37B</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="f37c"></span>F37C</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f37d"></span>F37D</td>
+<td class="instruction">LD A,($D85E)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D85E.html">D85E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f380"></span>F380</td>
+<td class="instruction">CP $14</td>
+<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 14.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f382"></span>F382</td>
+<td class="instruction">RET P</td>
+<td class="comment-1" rowspan="1">Return P.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f383"></span>F383</td>
+<td class="instruction">INC A</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f384"></span>F384</td>
+<td class="instruction">LD ($D85E),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D85E.html">D85E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f387"></span>F387</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f388"></span>F388</td>
+<td class="instruction">LD ($D85B),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D85B.html">D85B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f38b"></span>F38B</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="f38c"></span>F38C</td>
+<td class="instruction">JP <a href="F349.html#f358">$F358</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F349.html#f358">F358</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F31E.html">F31E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#f349">Map</a></td>
+<td class="next">
+Next: <a href="F38F.html">F38F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/62281.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Pokes</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Pokes">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Pokes</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#bombs">Bombs Don't Explode</a></li>
+<li><a href="#infinitelives">Infinite Lives</a></li>
+<li><a href="#infinitelivesalt">Infinite Lives (alternative)</a></li>
+<li><a href="#infinitetime">Infinite Time</a></li>
+</ul>
+<div><span id="bombs"></span></div>
+<div class="box box-1">
+<div class="box-title">Bombs Don't Explode</div>
+<div class="paragraph">
+<code>
+<div>POKE <a href="../asm/F39E.html#f3b1">F3B1</a>,18</div>
+</code>
+</div>
+<div class="paragraph">
+Alters the relative jump statement:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3ac">F3AC</a></td>
+<td class="instruction">LD <span class="register">A</span>,(<a href="../asm/D838.html">D838</a>)</td>
+<td class="comment-1" rowspan=3">Jump to <a href="../asm/F39E.html#f428">F428</a> if *<a href="../asm/D838.html">Bomb</a> is equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3af">F3AF</a></td>
+<td class="instruction">CP 00</td>
+</tr>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3b1">F3B1</a></td>
+<td class="instruction">JR Z,<a href="../asm/F39E.html#f428">F428</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph">
+To not be conditional:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3b1">F3B1</a></td>
+<td class="instruction">JR <a href="../asm/F39E.html#f428">F428</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div><span id="infinitelives"></span></div>
+<div class="box box-2">
+<div class="box-title">Infinite Lives</div>
+<div class="paragraph">
+<code>
+<div>POKE <a href="../asm/D469.html#d47c">D47D</a>,63</div>
+<div>POKE <a href="../asm/D469.html#d47c">D47E</a>,02</div>
+</code>
+</div>
+<div class="paragraph">
+This alters the line which references <a href="../asm/D827.html">Lives</a>:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/D469.html#d47c">D47C</a></td>
+<td class="instruction">LD <span class="register">HL</span>,<a href="../asm/D827.html">D827</a></td>
+<td class="comment-1" rowspan=2">Decrease *<a href="../asm/D827.html">Lives</a> by one.</td>
+</tr>
+<td class="address-1"><a href="../asm/D469.html#d47f">D47F</a></td>
+<td class="instruction">DEC (<span class="register">HL</span>)</td>
+</tr>
+</tr>
+<td class="address-1"><a href="../asm/D469.html#d480">D480</a></td>
+<td class="instruction">JP Z,<a href="../asm/D4D6.html">D4D6</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="../asm/D4D6.html">D4D6</a> if the player is out of lives.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph">
+To instead reference an unalterable address in ROM:
+<table>
+<tbody>
+<tr>
+<td class="instruction">LD <span class="register">HL</span>,0263</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div><span id="infinitelivesalt"></span></div>
+<div class="box box-1">
+<div class="box-title">Infinite Lives (alternative)</div>
+<div class="paragraph">
+<code>
+<div>POKE <a href="../asm/D469.html#d47f">D47F</a>,B6</div>
+</code>
+</div>
+<div class="paragraph">
+This alters the line which would otherwise decrease <a href="../asm/D827.html">Lives</a>:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/D469.html#d47c">D47C</a></td>
+<td class="instruction">LD <span class="register">HL</span>,<a href="../asm/D827.html">D827</a></td>
+<td class="comment-1" rowspan=2">Decrease *<a href="../asm/D827.html">Lives</a> by one.</td>
+</tr>
+<td class="address-1"><a href="../asm/D469.html#d47f">D47F</a></td>
+<td class="instruction">DEC (<span class="register">HL</span>)</td>
+</tr>
+</tr>
+<td class="address-1"><a href="../asm/D469.html#d480">D480</a></td>
+<td class="instruction">JP Z,<a href="../asm/D4D6.html">D4D6</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="../asm/D4D6.html">D4D6</a> if the player is out of lives.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph">
+To instead run an OR on <span class="register">HL</span>:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/D469.html#d47f">D47F</a></td>
+<td class="instruction">OR (<span class="register">HL</span>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div><span id="infinitetime"></span></div>
+<div class="box box-2">
+<div class="box-title">Infinite Time</div>
+<div class="paragraph">
+<code>
+<div>POKE <a href="../asm/F39E.html#f3a3">F3A3</a>,18</div>
+</code>
+</div>
+<div class="paragraph">
+Alters the relative jump statement:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html">F39E</a></td>
+<td class="instruction">LD <span class="register">HL</span>,<a href="../asm/D83A.html">D83A</a></td>
+<td class="comment-1" rowspan=3">Jump to <a href="../asm/F39E.html#f3ac">F3AC</a> if bit 4 of *<a href="../asm/D83A.html">Time</a> is not set.</td>
+</tr>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3a1">F3A1</a></td>
+<td class="instruction">BIT 4,(<span class="register">HL</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3a3">F3A3</a></td>
+<td class="instruction">JR Z,<a href="../asm/F39E.html#f3ac">F3AC</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph">
+To not be conditional:
+<table>
+<tbody>
+<tr>
+<td class="address-1"><a href="../asm/F39E.html#f3a3">F3A3</a></td>
+<td class="instruction">JR <a href="../asm/F39E.html#f3ac">F3AC</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/reference/pokes.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

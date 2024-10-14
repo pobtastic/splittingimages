@@ -230,6 +230,8 @@ b$4000 DEFB $FF,$F8,$00,$7F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,
  $5AE0 DEFB $01,$00,$00,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$07,$00,$00,$01 ; }
 
 ; Graphics Data: Level 01
+;
+; Compressed graphics data for level 1.
 @label=GraphicsData_Level_01
 b$5B00 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$4C,$06
  $5B08 DEFB $C9,$48,$0D,$C9,$43,$14,$C9,$40
@@ -3807,13 +3809,16 @@ b$CBE1 DEFB $00,$45,$01,$80,$00,$01,$78,$3C
 @label=GameEntryPoint
 c$D1AA DI            ; Disable interrupts.
  $D1AB LD SP,$FFFA   ; #REGsp=#N$FFFA.
+; Write #N$FE from #R$FE00 for #N$100 bytes. All will become clear soon...
  $D1AE LD HL,$FE00   ; #REGhl=#R$FE00.
  $D1B1 LD BC,$00FD   ; #HTML(Set a counter in #REGb of #N$00 (as it's a <code>DJNZ</code>
                      ; this is really #N$100) and set #REGc to #N$FD for the value to write.)
+@label=WriteInterruptJumpAddress_Loop
 *$D1B4 LD (HL),C     ; Write #N$FD to *#REGhl.
  $D1B5 INC HL        ; Increment #REGhl by one.
  $D1B6 DJNZ $D1B4    ; Decrease counter by one and loop back to #R$D1B4 until
                      ; counter is zero.
+; One more for luck...
  $D1B8 LD (HL),C     ; Write #REGc to *#REGhl.
 ; This sets interrupt mode #N$02; when the system generates an interrupt,
 ; it'll use the high-order byte set here, together with a low-order byte
@@ -4069,6 +4074,7 @@ c$D2A1 LD C,(HL)     ; The first byte is the length of the level data, store
  $D333 CALL $EA2F    ; Call #R$EA2F.
  $D336 CALL $EA00    ; Call #R$EA00.
  $D339 CALL $EA14    ; Call #R$EA14.
+; Paint the preview grid pattern.
  $D33C CALL $EC39    ; Call #R$EC39.
 ; Small pause...
  $D33F LD BC,$9C40   ; #REGbc=#N$9C40.
@@ -4077,7 +4083,9 @@ c$D2A1 LD C,(HL)     ; The first byte is the length of the level data, store
  $D343 LD A,B        ; {Jump to #R$D342 until #REGbc is zero.
  $D344 OR C          ;
  $D345 JR NZ,$D342   ; }
+; Play the "static" animation in the preview area.
  $D347 CALL $EC5A    ; Call #R$EC5A.
+; Display the current preview image.
  $D34A LD IX,($D892) ; #REGix=*#R$D892.
  $D34E CALL $E004    ; Call #R$E004.
  $D351 RET           ; Return.
@@ -4265,16 +4273,19 @@ c$D469 LD A,$02      ; {Write #N$02 to: #LIST { *#R$D830 } { *#R$D831 } {
 c$D4D6 LD HL,$D839   ; #REGhl=#R$D839.
  $D4D9 SET 7,(HL)    ; Set bit 7 of *#REGhl.
  $D4DB LD B,$4B      ; #REGb=#N$4B.
+@label=Halt_Loop
 *$D4DD HALT          ; Halt operation (suspend CPU until the next interrupt).
  $D4DE DJNZ $D4DD    ; Decrease counter by one and loop back to #R$D4DD until
                      ; counter is zero.
  $D4E0 DI            ; Disable interrupts.
  $D4E1 CALL $ECBF    ; Call #R$ECBF.
+; Long pause...
  $D4E4 LD BC,$0000   ; #REGbc=#N($0000,$04,$04).
+@label=GameOver_Pause_Loop
 *$D4E7 DEC BC        ; Decrease #REGbc by one.
- $D4E8 LD A,B        ; #REGa=#REGb.
- $D4E9 OR C          ; Set the bits from #REGc.
- $D4EA JR NZ,$D4E7   ; Jump to #R$D4E7 if #REGbc is not zero.
+ $D4E8 LD A,B        ; {Jump to #R$D4E7 until #REGbc is zero.
+ $D4E9 OR C          ;
+ $D4EA JR NZ,$D4E7   ; }
  $D4EC POP IY        ; Restore #REGiy from the stack.
  $D4EE JP $D1D0      ; Jump to #R$D1D0.
 
@@ -4803,29 +4814,24 @@ g$D877 DEFW $5843
 ;
 ; Used by the routine at #R$D2A1.
 @label=Defaults
-g$D879 DEFB $04,$04                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D87B DEFB $06,$02                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D87D DEFB $02,$01                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D87F DEFB $01,$09                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D881 DEFB $0D,$00                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D883 DEFB $04,$03                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D885 DEFB $04,$06                 ; #PLURAL(#PEEK(#PC))(Write
-                                    ; #N(#PEEK(#PC+$01)) just 1 time,Repeat
-                                    ; #N(#PEEK(#PC+$01)) x #N({count}) times).
- $D887 DEFB $FF                     ; Terminator.
- $D888 DEFB $0C,$40,$A9,$50,$20,$48
+g$D879 DEFB $04,$04  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D87B DEFB $06,$02  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D87D DEFB $02,$01  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D87F DEFB $01,$09  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D881 DEFB $0D,$00  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D883 DEFB $04,$03  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D885 DEFB $04,$06  ; #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1
+                     ; time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
+ $D887 DEFB $FF      ; Terminator.
+ $D888 DEFB $0C,$40
+ $D88A DEFW $50A9
+ $D88C DEFB $20,$48
 
 ; Game status buffer entry at D88E
 g$D88E DEFW $0000
@@ -8485,43 +8491,74 @@ b$ECAF DEFB $60      ; #COLOUR(#PEEK(#PC)).
  $ECBD DEFB $20      ; #COLOUR(#PEEK(#PC)).
  $ECBE DEFB $20      ; #COLOUR(#PEEK(#PC)).
 
-; Routine at ECBF
+; Controller: Game Over
 ;
 ; Used by the routines at #R$D1D0 and #R$D4D6.
-c$ECBF LD C,$36      ; #REGc=#N$36.
- $ECC1 XOR A         ; {Write #N$00 to *#R$EDEF.
+;
+; .
+;
+; First draw a yellow "GAME OVER":
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)
+; #UDGTABLE { #SIM(start=$ECBF,stop=$ECCD)#SCR$01(game-over-01) }
+; UDGTABLE#
+@label=Controller_GameOver
+c$ECBF LD C,$36      ; #REGc=#COLOUR$36.
+ $ECC1 XOR A         ; {Set *#R$EDEF to #N$00.
  $ECC2 LD ($EDEF),A  ; }
- $ECC5 LD A,$01      ; {Write #N$01 to *#R$EDF0.
+ $ECC5 LD A,$01      ; {Set *#R$EDF0 to #N$01.
  $ECC7 LD ($EDF0),A  ; }
  $ECCA CALL $ED6F    ; Call #R$ED6F.
- $ECCD LD C,$6D      ; #REGc=#N$6D.
- $ECCF XOR A         ; {Write #N$00 to *#R$EDF0.
+; Then, a little offset to the first one, draw a cyan "GAME OVER".
+; #UDGTABLE { #SIM(start=$ECCD,stop=$ECD6)#SCR$01(game-over-02) }
+; UDGTABLE#
+ $ECCD LD C,$6D      ; #REGc=#COLOUR$6D.
+ $ECCF XOR A         ; {Set *#R$EDF0 to #N$00.
  $ECD0 LD ($EDF0),A  ; }
  $ECD3 CALL $ED6F    ; Call #R$ED6F.
- $ECD6 LD B,$0A      ; #REGb=#N$0A.
-*$ECD8 LD A,$01      ; {Write #N$01 to *#R$EDEF.
+; Now flash the "GAME OVER" cycling down and back up through the
+; following colours: #LIST #FOR$49,$7F,$09(n,{ #Nn: #COLOURn }) LIST#
+; .
+; #SIM(start=$ECD8,stop=$ECDE) #UDGTABLE {
+;   #FOR$00,$06||x|#SIM(start=$ECE0,stop=$ECEE)
+;     #SCR$01(*game-over-03-x)#PLOT(0,0,0)(game-over-03-x)
+;   ||
+;   #FOR$07,$0D||x|#SIM(start=$ECF0,stop=$ECFE)
+;     #SCR$01(*game-over-03-x)#PLOT(0,0,0)(game-over-03-x)
+;   ||
+;   #UDGARRAY#(#ANIMATE$04,$0D(game-over-03))
+; } UDGTABLE# #POPS
+ $ECD6 LD B,$0A      ; Set a counter in #REGb of #N$0A to count the number of down/ up
+                     ; cycles here.
+@label=GameOver_Flash_Loop
+*$ECD8 LD A,$01      ; {Set *#R$EDEF to #N$01.
  $ECDA LD ($EDEF),A  ; }
- $ECDD PUSH BC       ; Stash #REGbc on the stack.
- $ECDE LD C,$7F      ; #REGc=#N$7F.
+ $ECDD PUSH BC       ; Stash the colour loop counter on the stack.
+; First cycle down, starting at: #COLOUR$7F (#N$7F).
+ $ECDE LD C,$7F      ; Set the starting colour value in #REGc to #COLOUR$7F.
+@label=CycleDown_Loop
 *$ECE0 CALL $ED6F    ; Call #R$ED6F.
- $ECE3 LD A,C        ; #REGa=#REGc.
- $ECE4 CP $49        ; {Jump to #R$ECF0 if #REGa is equal to #N$49.
+ $ECE3 LD A,C        ; {Jump to #R$ECF0 if the current colour is: #COLOUR$49
+ $ECE4 CP $49        ; (#N$49).
  $ECE6 JR Z,$ECF0    ; }
- $ECE8 SUB $09       ; #REGa-=#N$09.
- $ECEA LD C,A        ; #REGc=#REGa.
+ $ECE8 SUB $09       ; {Subtract #N$09 from the current colour value and store the result
+ $ECEA LD C,A        ; back in #REGc.}
  $ECEB CALL $ED62    ; Call #R$ED62.
  $ECEE JR $ECE0      ; Jump to #R$ECE0.
-*$ECF0 LD A,C        ; #REGa=#REGc.
- $ECF1 CP $76        ; {Jump to #R$ED00 if #REGa is equal to #N$76.
+; Next cycle back up again; on first entry, starting at #COLOUR$49 (#N$49).
+@label=CycleUp_Loop
+*$ECF0 LD A,C        ; {Jump to #R$ED00 if the current colour is: #COLOUR$76
+ $ECF1 CP $76        ; (#N$76).
  $ECF3 JR Z,$ED00    ; }
- $ECF5 ADD A,$09     ; #REGa+=#N$09.
- $ECF7 LD C,A        ; #REGc=#REGa.
+ $ECF5 ADD A,$09     ; {Add #N$09 to the current colour value and store the result back in
+ $ECF7 LD C,A        ; #REGc.}
  $ECF8 CALL $ED6F    ; Call #R$ED6F.
  $ECFB CALL $ED62    ; Call #R$ED62.
  $ECFE JR $ECF0      ; Jump to #R$ECF0.
-*$ED00 POP BC        ; Restore #REGbc from the stack.
- $ED01 DJNZ $ECD8    ; Decrease counter by one and loop back to #R$ECD8 until
-                     ; counter is zero.
+; Handle the flash loop.
+@label=GameOver_Cycle_Next
+*$ED00 POP BC        ; Restore the cycle counter from the stack.
+ $ED01 DJNZ $ECD8    ; Decrease the cycle counter by one and loop back to #R$ECD8 until
+                     ; the cycle has repeated #N$0A times.
  $ED03 LD B,$02      ; #REGb=#N$02.
 *$ED05 PUSH BC       ; Stash #REGbc on the stack.
  $ED06 LD HL,$ED12   ; #REGhl=#R$ED12.
@@ -8544,17 +8581,22 @@ b$ED12 DEFB $02,$09,$02,$15,$02,$09,$02,$15
  $ED52 DEFB $02,$00,$02,$0C,$02,$00,$02,$0C
  $ED5A DEFB $02,$00,$02,$0C,$02,$00,$02,$0C
 
-; Routine at ED62
+; Game Over Flash Offset
 ;
 ; Used by the routine at #R$ECBF.
-c$ED62 XOR A         ; {Write #N$00 to *#R$EDEF.
+@label=GameOver_FlashOffset
+c$ED62 XOR A         ; {Set *#R$EDEF to #N$00.
  $ED63 LD ($EDEF),A  ; }
  $ED66 CALL $EDD2    ; Call #R$EDD2.
- $ED69 LD A,$01      ; {Write #N$01 to *#R$EDEF.
+ $ED69 LD A,$01      ; {Set *#R$EDEF to #N$01.
  $ED6B LD ($EDEF),A  ; }
  $ED6E RET           ; Return.
-; This entry point is used by the routine at #R$ECBF.
-*$ED6F LD IX,$EDF1   ; #REGix=#R$EDF1.
+
+; Draw Game Over
+;
+; Used by the routine at #R$ECBF.
+@label=Draw_GameOver
+c$ED6F LD IX,$EDF1   ; #REGix=#R$EDF1.
  $ED73 LD DE,$0020   ; #REGde=#N($0020,$04,$04).
 *$ED76 LD L,(IX+$00) ; #REGl=*#REGix+#N$00.
  $ED79 INC IX        ; Increment #REGix by one.
@@ -8606,7 +8648,11 @@ c$ED62 XOR A         ; {Write #N$00 to *#R$EDEF.
  $EDCE DJNZ $EDC8    ; Decrease counter by one and loop back to #R$EDC8 until
                      ; counter is zero.
  $EDD0 JR $ED8A      ; Jump to #R$ED8A.
-*$EDD2 LD A,($EDEF)  ; {Return if *#R$EDEF is not equal to #N$00.
+
+; Routine at EDD2
+;
+; Used by the routines at #R$ED62 and #R$ED6F.
+c$EDD2 LD A,($EDEF)  ; {Return if *#R$EDEF is not equal to #N$00.
  $EDD5 CP $00        ;
  $EDD7 RET NZ        ; }
  $EDD8 PUSH BC       ; {Stash #REGbc and #REGhl on the stack.
@@ -8617,7 +8663,7 @@ c$ED62 XOR A         ; {Write #N$00 to *#R$EDEF.
  $EDE0 INC HL        ; Increment #REGhl by one.
  $EDE1 AND %00011000 ; Keep only bits 3-4.
  $EDE3 OR %00000101  ; Set bits 0, 2.
- $EDE5 OUT ($FE),A   ; Set border to the colour held by #REGa.
+ $EDE5 OUT ($FE),A   ; Send to the speaker.
  $EDE7 DEC BC        ; Decrease #REGbc by one.
  $EDE8 LD A,B        ; {Jump back to #R$EDDF until #REGbc is zero.
  $EDE9 OR C          ;
@@ -8625,82 +8671,28 @@ c$ED62 XOR A         ; {Write #N$00 to *#R$EDEF.
  $EDEC POP HL        ; {Restore #REGhl and #REGbc from the stack.
  $EDED POP BC        ; }
  $EDEE RET           ; Return.
- $EDEF DEFB $00      ;
- $EDF0 DEFB $00      ;
- $EDF1 DEFW $58C5    ;
- $EDF3 INC BC        ;
- $EDF4 LD (BC),A     ;
- $EDF5 DEC B         ;
- $EDF6 INC B         ;
- $EDF7 INC BC        ;
- $EDF8 LD BC,$0802   ;
- $EDFB LD BC,$6702   ;
- $EDFE LD E,C        ;
- $EDFF DEC B         ;
- $EE00 EX AF,AF'     ;
- $EE01 LD (BC),A     ;
- $EE02 LD BC,$0405   ;
- $EE05 LD (BC),A     ;
- $EE06 EX AF,AF'     ;
- $EE07 LD BC,$6B02   ;
- $EE0A LD E,C        ;
- $EE0B DEC B         ;
- $EE0C EX AF,AF'     ;
- $EE0D LD (BC),A     ;
- $EE0E LD BC,$0405   ;
- $EE11 ADC A,$58     ;
- $EE13 LD BC,$0501   ;
- $EE16 INC B         ;
- $EE17 OUT ($58),A   ;
- $EE19 LD (BC),A     ;
- $EE1A LD (BC),A     ;
- $EE1B LD (BC),A     ;
- $EE1C INC B         ;
- $EE1D LD BC,$0101   ;
- $EE20 INC B         ;
- $EE21 LD BC,$0202   ;
- $EE24 INC B         ;
- $EE25 LD (BC),A     ;
- $EE26 LD BC,$59C5   ;
- $EE29 INC BC        ;
- $EE2A LD (BC),A     ;
- $EE2B DEC B         ;
- $EE2C INC B         ;
- $EE2D INC BC        ;
- $EE2E LD BC,$0804   ;
- $EE31 RST $00       ;
- $EE32 LD E,C        ;
- $EE33 INC B         ;
- $EE34 INC B         ;
- $EE35 LD L,B        ;
- $EE36 LD E,D        ;
- $EE37 LD BC,$4A01   ;
- $EE3A LD E,D        ;
- $EE3B INC B         ;
- $EE3C EX AF,AF'     ;
- $EE3D ADC A,$59     ;
- $EE3F LD (BC),A     ;
- $EE40 LD (BC),A     ;
- $EE41 LD (BC),A     ;
- $EE42 INC B         ;
- $EE43 LD BC,$0101   ;
- $EE46 INC B         ;
- $EE47 LD BC,$0202   ;
- $EE4A INC B         ;
- $EE4B LD (BC),A     ;
- $EE4C LD BC,$5A70   ;
- $EE4F DEC B         ;
- $EE50 EX AF,AF'     ;
- $EE51 INC BC        ;
- $EE52 LD BC,$0402   ;
- $EE55 LD (BC),A     ;
- $EE56 LD (BC),A     ;
- $EE57 LD BC,$0101   ;
- $EE5A INC B         ;
- $EE5B LD D,E        ;
- $EE5C LD E,D        ;
- $EE5D LD BC,$0004   ;
- $EE60 NOP           ;
+
+; Game Over Variables
+@label=GameOver_X_Offset
+g$EDEF DEFB $00
+@label=GameOver_Y_Offset
+ $EDF0 DEFB $00
+@label=GameOver_Data
+ $EDF1 DEFW $58C5
+ $EDF3 DEFB $03,$02,$05,$04,$03,$01,$02,$08
+ $EDFB DEFB $01,$02,$67,$59,$05,$08,$02,$01
+ $EE03 DEFB $05,$04,$02,$08,$01,$02,$6B,$59
+ $EE0B DEFB $05,$08,$02,$01,$05,$04,$CE,$58
+ $EE13 DEFB $01,$01,$05,$04,$D3,$58,$02,$02
+ $EE1B DEFB $02,$04,$01,$01,$01,$04,$01,$02
+ $EE23 DEFB $02,$04,$02,$01,$C5,$59,$03,$02
+ $EE2B DEFB $05,$04,$03,$01,$04,$08,$C7,$59
+ $EE33 DEFB $04,$04,$68,$5A,$01,$01,$4A,$5A
+ $EE3B DEFB $04,$08,$CE,$59,$02,$02,$02,$04
+ $EE43 DEFB $01,$01,$01,$04,$01,$02,$02,$04
+ $EE4B DEFB $02,$01,$70,$5A,$05,$08,$03,$01
+ $EE53 DEFB $02,$04,$02,$02,$01,$01,$01,$04
+ $EE5B DEFB $53,$5A,$01,$04,$00,$00
 
 ; Routine at EE61
 ;

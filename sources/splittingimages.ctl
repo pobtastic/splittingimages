@@ -15,6 +15,7 @@ D $4000 #UDGTABLE { =h Splitting Images Loading Screen. } { #SCR$02(loading) } U
   $5800,$0300,$20 Attributes.
 
 b $5B00 Graphics Data: Level 01
+D $5B00 Compressed graphics data for level 1.
 @ $5B00 label=GraphicsData_Level_01
 
 b $6182 Graphics Data: Level 02
@@ -70,12 +71,15 @@ c $D1AA Game Entry Point
 E $D1AA Continue on to #R$D1D0.
   $D1AA,$01 Disable interrupts.
   $D1AB,$03 #REGsp=#N$FFFA.
+N $D1AE Write #N$FE from #R$FE00 for #N$100 bytes. All will become clear soon...
   $D1AE,$03 #REGhl=#R$FE00.
   $D1B1,$03 #HTML(Set a counter in #REGb of #N$00 (as it's a <code>DJNZ</code>
 . this is really #N$100) and set #REGc to #N$FD for the value to write.)
+@ $D1B4 label=WriteInterruptJumpAddress_Loop
   $D1B4,$01 Write #N$FD to *#REGhl.
   $D1B5,$01 Increment #REGhl by one.
   $D1B6,$02 Decrease counter by one and loop back to #R$D1B4 until counter is zero.
+N $D1B8 One more for luck...
   $D1B8,$01 Write #REGc to *#REGhl.
 N $D1B9 This sets interrupt mode #N$02; when the system generates an interrupt,
 . it'll use the high-order byte set here, together with a low-order byte
@@ -251,13 +255,16 @@ N $D333 Populate the level, bonus and score numbering in the dashboard.
   $D333,$03 Call #R$EA2F.
   $D336,$03 Call #R$EA00.
   $D339,$03 Call #R$EA14.
+N $D33C Paint the preview grid pattern.
   $D33C,$03 Call #R$EC39.
 N $D33F Small pause...
   $D33F,$03 #REGbc=#N$9C40.
 @ $D342 label=SetUp_Pause_Loop
   $D342,$01 Decrease #REGbc by one.
   $D343,$04 Jump to #R$D342 until #REGbc is zero.
+N $D347 Play the "static" animation in the preview area.
   $D347,$03 Call #R$EC5A.
+N $D34A Display the current preview image.
   $D34A,$04 #REGix=*#R$D892.
   $D34E,$03 Call #R$E004.
   $D351,$01 Return.
@@ -392,15 +399,16 @@ c $D4D6 Game Over
   $D4D6,$03 #REGhl=#R$D839.
   $D4D9,$02 Set bit 7 of *#REGhl.
   $D4DB,$02 #REGb=#N$4B.
+@ $D4DD label=Halt_Loop
   $D4DD,$01 Halt operation (suspend CPU until the next interrupt).
   $D4DE,$02 Decrease counter by one and loop back to #R$D4DD until counter is zero.
   $D4E0,$01 Disable interrupts.
   $D4E1,$03 Call #R$ECBF.
+N $D4E4 Long pause...
   $D4E4,$03 #REGbc=#N($0000,$04,$04).
+@ $D4E7 label=GameOver_Pause_Loop
   $D4E7,$01 Decrease #REGbc by one.
-  $D4E8,$01 #REGa=#REGb.
-  $D4E9,$01 Set the bits from #REGc.
-  $D4EA,$02 Jump to #R$D4E7 if #REGbc is not zero.
+  $D4E8,$04 Jump to #R$D4E7 until #REGbc is zero.
   $D4EC,$02 Restore #REGiy from the stack.
   $D4EE,$03 Jump to #R$D1D0.
 
@@ -753,7 +761,9 @@ D $D879 Used by the routine at #R$D2A1.
 B $D879,$02 #PLURAL(#PEEK(#PC))(Write #N(#PEEK(#PC+$01)) just 1 time,Repeat #N(#PEEK(#PC+$01)) x #N({count}) times).
 L $D879,$02,$07
 B $D887,$01 Terminator.
-B $D888,$06
+B $D888,$02
+W $D88A,$02
+B $D88C,$02
 
 g $D88E
 W $D88E,$02
@@ -3343,36 +3353,60 @@ D $ECAF Used by the routine at #R$EC39.
   $ECAF,$01 #COLOUR(#PEEK(#PC)).
 L $ECAF,$01,$10
 
-c $ECBF
-  $ECBF,$02 #REGc=#N$36.
-  $ECC1,$04 Write #N$00 to *#R$EDEF.
-  $ECC5,$05 Write #N$01 to *#R$EDF0.
+c $ECBF Controller: Game Over
+@ $ECBF label=Controller_GameOver
+N $ECBF First draw a yellow "GAME OVER":
+. #PUSHS #SIM(start=$D1F1,stop=$D1F7)
+. #UDGTABLE { #SIM(start=$ECBF,stop=$ECCD)#SCR$01(game-over-01) }
+. UDGTABLE#
+  $ECBF,$02 #REGc=#COLOUR$36.
+  $ECC1,$04 Set *#R$EDEF to #N$00.
+  $ECC5,$05 Set *#R$EDF0 to #N$01.
   $ECCA,$03 Call #R$ED6F.
-  $ECCD,$02 #REGc=#N$6D.
-  $ECCF,$04 Write #N$00 to *#R$EDF0.
+N $ECCD Then, a little offset to the first one, draw a cyan "GAME OVER".
+. #UDGTABLE { #SIM(start=$ECCD,stop=$ECD6)#SCR$01(game-over-02) }
+. UDGTABLE#
+  $ECCD,$02 #REGc=#COLOUR$6D.
+  $ECCF,$04 Set *#R$EDF0 to #N$00.
   $ECD3,$03 Call #R$ED6F.
-  $ECD6,$02 #REGb=#N$0A.
-  $ECD8,$05 Write #N$01 to *#R$EDEF.
-  $ECDD,$01 Stash #REGbc on the stack.
-  $ECDE,$02 #REGc=#N$7F.
+N $ECD6 Now flash the "GAME OVER" cycling down and back up through the
+. following colours: #LIST #FOR$49,$7F,$09(n,{ #Nn: #COLOURn }) LIST#
+N $ECD6 #SIM(start=$ECD8,stop=$ECDE) #UDGTABLE {
+.   #FOR$00,$06||x|#SIM(start=$ECE0,stop=$ECEE)
+.     #SCR$01(*game-over-03-x)#PLOT(0,0,0)(game-over-03-x)
+.   ||
+.   #FOR$07,$0D||x|#SIM(start=$ECF0,stop=$ECFE)
+.     #SCR$01(*game-over-03-x)#PLOT(0,0,0)(game-over-03-x)
+.   ||
+.   #UDGARRAY#(#ANIMATE$04,$0D(game-over-03))
+. } UDGTABLE# #POPS
+  $ECD6,$02 Set a counter in #REGb of #N$0A to count the number of down/ up
+. cycles here.
+@ $ECD8 label=GameOver_Flash_Loop
+  $ECD8,$05 Set *#R$EDEF to #N$01.
+  $ECDD,$01 Stash the colour loop counter on the stack.
+N $ECDE First cycle down, starting at: #COLOUR$7F (#N$7F).
+  $ECDE,$02 Set the starting colour value in #REGc to #COLOUR$7F.
+@ $ECE0 label=CycleDown_Loop
   $ECE0,$03 Call #R$ED6F.
-  $ECE3,$01 #REGa=#REGc.
-  $ECE4,$04 Jump to #R$ECF0 if #REGa is equal to #N$49.
-  $ECE8,$02 #REGa-=#N$09.
-  $ECEA,$01 #REGc=#REGa.
+  $ECE3,$05 Jump to #R$ECF0 if the current colour is: #COLOUR$49 (#N$49).
+  $ECE8,$03 Subtract #N$09 from the current colour value and store the result
+. back in #REGc.
   $ECEB,$03 Call #R$ED62.
   $ECEE,$02 Jump to #R$ECE0.
-
-  $ECF0,$01 #REGa=#REGc.
-  $ECF1,$04 Jump to #R$ED00 if #REGa is equal to #N$76.
-  $ECF5,$02 #REGa+=#N$09.
-  $ECF7,$01 #REGc=#REGa.
+N $ECF0 Next cycle back up again; on first entry, starting at #COLOUR$49 (#N$49).
+@ $ECF0 label=CycleUp_Loop
+  $ECF0,$05 Jump to #R$ED00 if the current colour is: #COLOUR$76 (#N$76).
+  $ECF5,$03 Add #N$09 to the current colour value and store the result back in
+. #REGc.
   $ECF8,$03 Call #R$ED6F.
   $ECFB,$03 Call #R$ED62.
   $ECFE,$02 Jump to #R$ECF0.
-
-  $ED00,$01 Restore #REGbc from the stack.
-  $ED01,$02 Decrease counter by one and loop back to #R$ECD8 until counter is zero.
+N $ED00 Handle the flash loop.
+@ $ED00 label=GameOver_Cycle_Next
+  $ED00,$01 Restore the cycle counter from the stack.
+  $ED01,$02 Decrease the cycle counter by one and loop back to #R$ECD8 until
+. the cycle has repeated #N$0A times.
   $ED03,$02 #REGb=#N$02.
   $ED05,$01 Stash #REGbc on the stack.
   $ED06,$03 #REGhl=#R$ED12.
@@ -3384,12 +3418,15 @@ c $ECBF
 
 b $ED12
 
-c $ED62
-  $ED62,$04 Write #N$00 to *#R$EDEF.
+c $ED62 Game Over Flash Offset
+@ $ED62 label=GameOver_FlashOffset
+  $ED62,$04 Set *#R$EDEF to #N$00.
   $ED66,$03 Call #R$EDD2.
-  $ED69,$05 Write #N$01 to *#R$EDEF.
+  $ED69,$05 Set *#R$EDEF to #N$01.
   $ED6E,$01 Return.
 
+c $ED6F Draw Game Over
+@ $ED6F label=Draw_GameOver
   $ED6F,$04 #REGix=#R$EDF1.
   $ED73,$03 #REGde=#N($0020,$04,$04).
   $ED76,$03 #REGl=*#REGix+#N$00.
@@ -3432,6 +3469,7 @@ c $ED62
   $EDCE,$02 Decrease counter by one and loop back to #R$EDC8 until counter is zero.
   $EDD0,$02 Jump to #R$ED8A.
 
+c $EDD2
   $EDD2,$06 Return if *#R$EDEF is not equal to #N$00.
   $EDD8,$02 Stash #REGbc and #REGhl on the stack.
   $EDDA,$02 #REGh=#N$02.
@@ -3440,13 +3478,18 @@ c $ED62
   $EDE0,$01 Increment #REGhl by one.
   $EDE1,$02,b$01 Keep only bits 3-4.
   $EDE3,$02,b$01 Set bits 0, 2.
-  $EDE5,$02 Set border to the colour held by #REGa.
+  $EDE5,$02 Send to the speaker.
   $EDE7,$01 Decrease #REGbc by one.
   $EDE8,$04 Jump back to #R$EDDF until #REGbc is zero.
   $EDEC,$02 Restore #REGhl and #REGbc from the stack.
   $EDEE,$01 Return.
+
+g $EDEF Game Over Variables
+@ $EDEF label=GameOver_X_Offset
 B $EDEF,$01
+@ $EDF0 label=GameOver_Y_Offset
 B $EDF0,$01
+@ $EDF1 label=GameOver_Data
 W $EDF1,$02
 
 c $EE61

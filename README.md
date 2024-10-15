@@ -22,4 +22,4 @@ Disclaimer
 
 You will need to own the original game in order to disassemble the game code.
 
-1986 [Domark Ltd](https://en.wikipedia.org/wiki/Elite_Systems)
+1986 [Domark Ltd](https://en.wikipedia.org/wiki/Eidos_Interactive)

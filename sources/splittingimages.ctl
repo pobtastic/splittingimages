@@ -224,7 +224,7 @@ c $D1AA Game Entry Point
 E $D1AA Continue on to #R$D1D0.
   $D1AA,$01 Disable interrupts.
   $D1AB,$03 #REGsp=#N$FFFA.
-N $D1AE Write #N$FE from #R$FE00 for #N$100 bytes. All will become clear soon...
+N $D1AE Write #N$FD from #R$FE00 for #N$100 bytes. All will become clear soon...
   $D1AE,$03 #REGhl=#R$FE00.
   $D1B1,$03 #HTML(Set a counter in #REGb of #N$00 (as it's a <code>DJNZ</code>
 . this is really #N$100) and set #REGc to #N$FD for the value to write.)
@@ -1068,7 +1068,7 @@ c $D894
   $D967,$03 Call #R$E9DA.
   $D96A,$05 Write #N$80 to *#R$D838.
   $D96F,$03 Call #R$EB56.
-  $D972,$04 Jump to #R$D96F if #REGa is equal to #N$00.
+  $D972,$04 Jump back to #R$D96F until there's any player input.
   $D976,$04 Write #N$00 to *#R$D838.
   $D97A,$03 Call #R$EE61.
   $D97D,$01 Return.
@@ -1596,7 +1596,7 @@ c $DCDC Move Tile Up
   $DD21,$03 Jump to #R$DD0B if #REGa is not zero.
   $DD24,$01 Restore #REGhl from the stack.
   $DD25,$03 Call #R$DCD1.
-  $DD28,$04 #REGhl=#R$FFE0+#REGde.
+  $DD28,$04 #REGhl=#N$FFE0+#REGde.
   $DD2C,$01 Exchange the #REGde and #REGhl registers.
   $DD2D,$03 #REGbc=#N($0004,$04,$04).
   $DD30,$02 LDIR.
@@ -5436,7 +5436,19 @@ c $FC43
   $FCB0,$01 Enable interrupts.
   $FCB1,$02 Return from the interrupt routine.
 
-c $FDFD
+b $FCB3
+
+c $FDFD Alias: Interrupt Jump Dispatcher
+@ $FDFD label=AliasInterruptRedirect
+D $FDFD All generated interrupts jump here and then are redirected to #R$F85D.
   $FDFD,$03 Jump to #R$F85D.
 
-b $FE00
+b $FE00 Interrupt Low-Order Byte Jump Table
+@ $FE00 label=InterruptLowOrderByteJumpTable
+D $FE00 Used as the low-order byte when an interrupt is generated.
+. The high-order byte is also #N$FD, meaning all interrupts jump to #R$FDFD.
+.
+. See #R$D1AA and #R$FDFD.
+  $FE00,$0100
+
+b $FF01

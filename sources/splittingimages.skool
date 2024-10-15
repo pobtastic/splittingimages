@@ -3679,7 +3679,7 @@ b$CBE1 DEFB $00,$45,$01,$80,$00,$01,$78,$3C
 @label=GameEntryPoint
 c$D1AA DI            ; Disable interrupts.
  $D1AB LD SP,$FFFA   ; #REGsp=#N$FFFA.
-; Write #N$FE from #R$FE00 for #N$100 bytes. All will become clear soon...
+; Write #N$FD from #R$FE00 for #N$100 bytes. All will become clear soon...
  $D1AE LD HL,$FE00   ; #REGhl=#R$FE00.
  $D1B1 LD BC,$00FD   ; #HTML(Set a counter in #REGb of #N$00 (as it's a <code>DJNZ</code>
                      ; this is really #N$100) and set #REGc to #N$FD for the value to write.)
@@ -4850,7 +4850,7 @@ c$D894 LD HL,$D83A   ; #REGhl=#R$D83A.
 *$D96A LD A,$80      ; {Write #N$80 to *#R$D838.
  $D96C LD ($D838),A  ; }
 *$D96F CALL $EB56    ; Call #R$EB56.
- $D972 CP $00        ; {Jump to #R$D96F if #REGa is equal to #N$00.
+ $D972 CP $00        ; {Jump back to #R$D96F until there's any player input.
  $D974 JR Z,$D96F    ; }
  $D976 XOR A         ; {Write #N$00 to *#R$D838.
  $D977 LD ($D838),A  ; }
@@ -5524,7 +5524,7 @@ c$DCDC LD A,($E75E)  ; #REGa=*#R$E75E.
  $DD21 JP NZ,$DD0B   ; Jump to #R$DD0B if #REGa is not zero.
  $DD24 POP HL        ; Restore #REGhl from the stack.
  $DD25 CALL $DCD1    ; Call #R$DCD1.
- $DD28 LD HL,$FFE0   ; {#REGhl=#R$FFE0+#REGde.
+ $DD28 LD HL,$FFE0   ; {#REGhl=#N$FFE0+#REGde.
  $DD2B ADD HL,DE     ; }
  $DD2C EX DE,HL      ; Exchange the #REGde and #REGhl registers.
  $DD2D LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
@@ -10680,341 +10680,64 @@ c$FC43 LD HL,$D83A   ; #REGhl=#R$D83A.
  $FCAF POP AF        ; }
  $FCB0 EI            ; Enable interrupts.
  $FCB1 RETI          ; Return from the interrupt routine.
- $FCB3 NOP           ;
- $FCB4 NOP           ;
- $FCB5 NOP           ;
- $FCB6 NOP           ;
- $FCB7 NOP           ;
- $FCB8 NOP           ;
- $FCB9 NOP           ;
- $FCBA NOP           ;
- $FCBB NOP           ;
- $FCBC NOP           ;
- $FCBD NOP           ;
- $FCBE NOP           ;
- $FCBF NOP           ;
- $FCC0 NOP           ;
- $FCC1 NOP           ;
- $FCC2 NOP           ;
- $FCC3 NOP           ;
- $FCC4 NOP           ;
- $FCC5 NOP           ;
- $FCC6 NOP           ;
- $FCC7 NOP           ;
- $FCC8 NOP           ;
- $FCC9 NOP           ;
- $FCCA NOP           ;
- $FCCB NOP           ;
- $FCCC NOP           ;
- $FCCD NOP           ;
- $FCCE NOP           ;
- $FCCF NOP           ;
- $FCD0 NOP           ;
- $FCD1 NOP           ;
- $FCD2 NOP           ;
- $FCD3 NOP           ;
- $FCD4 NOP           ;
- $FCD5 NOP           ;
- $FCD6 NOP           ;
- $FCD7 NOP           ;
- $FCD8 NOP           ;
- $FCD9 NOP           ;
- $FCDA NOP           ;
- $FCDB NOP           ;
- $FCDC NOP           ;
- $FCDD NOP           ;
- $FCDE NOP           ;
- $FCDF NOP           ;
- $FCE0 NOP           ;
- $FCE1 NOP           ;
- $FCE2 NOP           ;
- $FCE3 NOP           ;
- $FCE4 NOP           ;
- $FCE5 NOP           ;
- $FCE6 NOP           ;
- $FCE7 NOP           ;
- $FCE8 NOP           ;
- $FCE9 NOP           ;
- $FCEA NOP           ;
- $FCEB NOP           ;
- $FCEC NOP           ;
- $FCED NOP           ;
- $FCEE NOP           ;
- $FCEF NOP           ;
- $FCF0 NOP           ;
- $FCF1 NOP           ;
- $FCF2 NOP           ;
- $FCF3 NOP           ;
- $FCF4 NOP           ;
- $FCF5 NOP           ;
- $FCF6 NOP           ;
- $FCF7 NOP           ;
- $FCF8 NOP           ;
- $FCF9 NOP           ;
- $FCFA NOP           ;
- $FCFB NOP           ;
- $FCFC NOP           ;
- $FCFD NOP           ;
- $FCFE NOP           ;
- $FCFF NOP           ;
- $FD00 NOP           ;
- $FD01 NOP           ;
- $FD02 NOP           ;
- $FD03 NOP           ;
- $FD04 NOP           ;
- $FD05 NOP           ;
- $FD06 NOP           ;
- $FD07 NOP           ;
- $FD08 NOP           ;
- $FD09 NOP           ;
- $FD0A NOP           ;
- $FD0B NOP           ;
- $FD0C NOP           ;
- $FD0D NOP           ;
- $FD0E NOP           ;
- $FD0F NOP           ;
- $FD10 NOP           ;
- $FD11 NOP           ;
- $FD12 NOP           ;
- $FD13 NOP           ;
- $FD14 NOP           ;
- $FD15 NOP           ;
- $FD16 NOP           ;
- $FD17 NOP           ;
- $FD18 NOP           ;
- $FD19 NOP           ;
- $FD1A NOP           ;
- $FD1B NOP           ;
- $FD1C NOP           ;
- $FD1D NOP           ;
- $FD1E NOP           ;
- $FD1F NOP           ;
- $FD20 NOP           ;
- $FD21 NOP           ;
- $FD22 NOP           ;
- $FD23 NOP           ;
- $FD24 NOP           ;
- $FD25 NOP           ;
- $FD26 NOP           ;
- $FD27 NOP           ;
- $FD28 NOP           ;
- $FD29 NOP           ;
- $FD2A NOP           ;
- $FD2B NOP           ;
- $FD2C NOP           ;
- $FD2D NOP           ;
- $FD2E NOP           ;
- $FD2F NOP           ;
- $FD30 NOP           ;
- $FD31 NOP           ;
- $FD32 NOP           ;
- $FD33 NOP           ;
- $FD34 NOP           ;
- $FD35 NOP           ;
- $FD36 NOP           ;
- $FD37 NOP           ;
- $FD38 NOP           ;
- $FD39 NOP           ;
- $FD3A NOP           ;
- $FD3B NOP           ;
- $FD3C NOP           ;
- $FD3D NOP           ;
- $FD3E NOP           ;
- $FD3F NOP           ;
- $FD40 NOP           ;
- $FD41 NOP           ;
- $FD42 NOP           ;
- $FD43 NOP           ;
- $FD44 NOP           ;
- $FD45 NOP           ;
- $FD46 NOP           ;
- $FD47 NOP           ;
- $FD48 NOP           ;
- $FD49 NOP           ;
- $FD4A NOP           ;
- $FD4B NOP           ;
- $FD4C NOP           ;
- $FD4D NOP           ;
- $FD4E NOP           ;
- $FD4F NOP           ;
- $FD50 NOP           ;
- $FD51 NOP           ;
- $FD52 NOP           ;
- $FD53 NOP           ;
- $FD54 NOP           ;
- $FD55 NOP           ;
- $FD56 NOP           ;
- $FD57 NOP           ;
- $FD58 NOP           ;
- $FD59 NOP           ;
- $FD5A NOP           ;
- $FD5B NOP           ;
- $FD5C NOP           ;
- $FD5D NOP           ;
- $FD5E NOP           ;
- $FD5F NOP           ;
- $FD60 NOP           ;
- $FD61 NOP           ;
- $FD62 NOP           ;
- $FD63 NOP           ;
- $FD64 NOP           ;
- $FD65 NOP           ;
- $FD66 NOP           ;
- $FD67 NOP           ;
- $FD68 NOP           ;
- $FD69 NOP           ;
- $FD6A NOP           ;
- $FD6B NOP           ;
- $FD6C NOP           ;
- $FD6D NOP           ;
- $FD6E NOP           ;
- $FD6F NOP           ;
- $FD70 NOP           ;
- $FD71 NOP           ;
- $FD72 NOP           ;
- $FD73 NOP           ;
- $FD74 NOP           ;
- $FD75 NOP           ;
- $FD76 NOP           ;
- $FD77 NOP           ;
- $FD78 NOP           ;
- $FD79 NOP           ;
- $FD7A NOP           ;
- $FD7B NOP           ;
- $FD7C NOP           ;
- $FD7D NOP           ;
- $FD7E NOP           ;
- $FD7F NOP           ;
- $FD80 NOP           ;
- $FD81 NOP           ;
- $FD82 NOP           ;
- $FD83 NOP           ;
- $FD84 NOP           ;
- $FD85 NOP           ;
- $FD86 NOP           ;
- $FD87 NOP           ;
- $FD88 NOP           ;
- $FD89 NOP           ;
- $FD8A NOP           ;
- $FD8B NOP           ;
- $FD8C NOP           ;
- $FD8D NOP           ;
- $FD8E NOP           ;
- $FD8F NOP           ;
- $FD90 NOP           ;
- $FD91 NOP           ;
- $FD92 NOP           ;
- $FD93 NOP           ;
- $FD94 NOP           ;
- $FD95 NOP           ;
- $FD96 NOP           ;
- $FD97 NOP           ;
- $FD98 NOP           ;
- $FD99 NOP           ;
- $FD9A NOP           ;
- $FD9B NOP           ;
- $FD9C NOP           ;
- $FD9D NOP           ;
- $FD9E NOP           ;
- $FD9F NOP           ;
- $FDA0 NOP           ;
- $FDA1 NOP           ;
- $FDA2 NOP           ;
- $FDA3 NOP           ;
- $FDA4 NOP           ;
- $FDA5 NOP           ;
- $FDA6 NOP           ;
- $FDA7 NOP           ;
- $FDA8 NOP           ;
- $FDA9 NOP           ;
- $FDAA NOP           ;
- $FDAB NOP           ;
- $FDAC NOP           ;
- $FDAD NOP           ;
- $FDAE NOP           ;
- $FDAF NOP           ;
- $FDB0 NOP           ;
- $FDB1 NOP           ;
- $FDB2 NOP           ;
- $FDB3 NOP           ;
- $FDB4 NOP           ;
- $FDB5 NOP           ;
- $FDB6 NOP           ;
- $FDB7 NOP           ;
- $FDB8 NOP           ;
- $FDB9 NOP           ;
- $FDBA NOP           ;
- $FDBB NOP           ;
- $FDBC NOP           ;
- $FDBD NOP           ;
- $FDBE NOP           ;
- $FDBF NOP           ;
- $FDC0 NOP           ;
- $FDC1 NOP           ;
- $FDC2 NOP           ;
- $FDC3 NOP           ;
- $FDC4 NOP           ;
- $FDC5 NOP           ;
- $FDC6 NOP           ;
- $FDC7 NOP           ;
- $FDC8 NOP           ;
- $FDC9 NOP           ;
- $FDCA NOP           ;
- $FDCB NOP           ;
- $FDCC NOP           ;
- $FDCD NOP           ;
- $FDCE NOP           ;
- $FDCF NOP           ;
- $FDD0 NOP           ;
- $FDD1 NOP           ;
- $FDD2 NOP           ;
- $FDD3 NOP           ;
- $FDD4 NOP           ;
- $FDD5 NOP           ;
- $FDD6 NOP           ;
- $FDD7 NOP           ;
- $FDD8 NOP           ;
- $FDD9 NOP           ;
- $FDDA NOP           ;
- $FDDB NOP           ;
- $FDDC NOP           ;
- $FDDD NOP           ;
- $FDDE NOP           ;
- $FDDF NOP           ;
- $FDE0 NOP           ;
- $FDE1 NOP           ;
- $FDE2 NOP           ;
- $FDE3 NOP           ;
- $FDE4 NOP           ;
- $FDE5 NOP           ;
- $FDE6 NOP           ;
- $FDE7 NOP           ;
- $FDE8 NOP           ;
- $FDE9 NOP           ;
- $FDEA NOP           ;
- $FDEB NOP           ;
- $FDEC NOP           ;
- $FDED NOP           ;
- $FDEE NOP           ;
- $FDEF NOP           ;
- $FDF0 NOP           ;
- $FDF1 NOP           ;
- $FDF2 NOP           ;
- $FDF3 NOP           ;
- $FDF4 NOP           ;
- $FDF5 NOP           ;
- $FDF6 NOP           ;
- $FDF7 NOP           ;
- $FDF8 NOP           ;
- $FDF9 NOP           ;
- $FDFA NOP           ;
- $FDFB NOP           ;
- $FDFC NOP           ;
 
-; Routine at FDFD
+; Data block at FCB3
+b$FCB3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCBB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCC3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCCB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCD3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCDB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCE3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCEB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCF3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FCFB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD03 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD0B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD13 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD1B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD23 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD2B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD33 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD3B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD43 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD4B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD53 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD5B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD63 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD6B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD73 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD7B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD83 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD8B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD93 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FD9B DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDA3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDAB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDB3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDBB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDC3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDCB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDD3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDDB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDE3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDEB DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDF3 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FDFB DEFB $00,$00
+
+; Alias: Interrupt Jump Dispatcher
+;
+; All generated interrupts jump here and then are redirected to #R$F85D.
+@label=AliasInterruptRedirect
 c$FDFD JP $F85D      ; Jump to #R$F85D.
 
-; Data block at FE00
+; Interrupt Low-Order Byte Jump Table
+;
+; Used as the low-order byte when an interrupt is generated.
+; The high-order byte is also #N$FD, meaning all interrupts jump to #R$FDFD.
+; .
+; See #R$D1AA and #R$FDFD.
+@label=InterruptLowOrderByteJumpTable
 b$FE00 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
  $FE08 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
  $FE10 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
@@ -11047,35 +10770,38 @@ b$FE00 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
  $FEE8 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
  $FEF0 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
  $FEF8 DEFB $FD,$FD,$FD,$FD,$FD,$FD,$FD,$FD
- $FF00 DEFB $FD,$00,$00,$00,$00,$00,$00,$00
- $FF08 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $FF10 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $FF18 DEFB $F3,$0D,$CE,$0B,$E3,$50,$CE,$0B
- $FF20 DEFB $E4,$50,$1D,$17,$DC,$0A,$CE,$0B
- $FF28 DEFB $E7,$50,$1A,$17,$DC,$0A,$D7,$18
- $FF30 DEFB $38,$00,$CE,$0B,$6D,$40,$CE,$0B
- $FF38 DEFB $B7,$2D,$62,$5E,$5D,$5E,$E6,$A0
- $FF40 DEFB $2B,$2D,$65,$33,$C8,$DF,$ED,$10
- $FF48 DEFB $0D,$00,$09,$00,$85,$1C,$10,$1C
- $FF50 DEFB $52,$1B,$76,$1B,$03,$13,$00,$3E
- $FF58 DEFB $00,$3C,$42,$42,$7E,$42,$42,$00
- $FF60 DEFB $00,$7C,$42,$7C,$42,$42,$7C,$00
- $FF68 DEFB $00,$3C,$42,$40,$40,$42,$3C,$00
- $FF70 DEFB $00,$78,$44,$42,$42,$44,$78,$00
- $FF78 DEFB $00,$7E,$40,$7C,$40,$40,$7E,$00
- $FF80 DEFB $00,$7E,$40,$7C,$40,$40,$40,$00
- $FF88 DEFB $00,$3C,$42,$40,$4E,$42,$3C,$00
- $FF90 DEFB $00,$42,$42,$7E,$42,$42,$42,$00
- $FF98 DEFB $00,$3E,$08,$08,$08,$08,$3E,$00
- $FFA0 DEFB $00,$02,$02,$02,$42,$42,$3C,$00
- $FFA8 DEFB $00,$44,$48,$70,$48,$44,$42,$00
- $FFB0 DEFB $00,$40,$40,$40,$40,$40,$7E,$00
- $FFB8 DEFB $00,$42,$66,$5A,$42,$42,$42,$00
- $FFC0 DEFB $00,$42,$62,$52,$4A,$46,$42,$00
- $FFC8 DEFB $00,$3C,$42,$42,$42,$42,$3C,$00
- $FFD0 DEFB $00,$7C,$42,$42,$7C,$40,$40,$00
- $FFD8 DEFB $00,$3C,$42,$42,$52,$4A,$3C,$00
- $FFE0 DEFB $00,$7C,$42,$42,$7C,$44,$42,$00
- $FFE8 DEFB $00,$3C,$40,$3C,$02,$42,$3C,$00
- $FFF0 DEFB $00,$FE,$10,$10,$10,$10,$10,$00
- $FFF8 DEFB $00,$42,$42,$42,$42,$42,$3C,$00
+ $FF00 DEFB $FD
+
+; Data block at FF01
+b$FF01 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FF09 DEFB $00,$00,$00,$00,$00,$00,$00,$00
+ $FF11 DEFB $00,$00,$00,$00,$00,$00,$00,$F3
+ $FF19 DEFB $0D,$CE,$0B,$E3,$50,$CE,$0B,$E4
+ $FF21 DEFB $50,$1D,$17,$DC,$0A,$CE,$0B,$E7
+ $FF29 DEFB $50,$1A,$17,$DC,$0A,$D7,$18,$38
+ $FF31 DEFB $00,$CE,$0B,$6D,$40,$CE,$0B,$B7
+ $FF39 DEFB $2D,$62,$5E,$5D,$5E,$E6,$A0,$2B
+ $FF41 DEFB $2D,$65,$33,$C8,$DF,$ED,$10,$0D
+ $FF49 DEFB $00,$09,$00,$85,$1C,$10,$1C,$52
+ $FF51 DEFB $1B,$76,$1B,$03,$13,$00,$3E,$00
+ $FF59 DEFB $3C,$42,$42,$7E,$42,$42,$00,$00
+ $FF61 DEFB $7C,$42,$7C,$42,$42,$7C,$00,$00
+ $FF69 DEFB $3C,$42,$40,$40,$42,$3C,$00,$00
+ $FF71 DEFB $78,$44,$42,$42,$44,$78,$00,$00
+ $FF79 DEFB $7E,$40,$7C,$40,$40,$7E,$00,$00
+ $FF81 DEFB $7E,$40,$7C,$40,$40,$40,$00,$00
+ $FF89 DEFB $3C,$42,$40,$4E,$42,$3C,$00,$00
+ $FF91 DEFB $42,$42,$7E,$42,$42,$42,$00,$00
+ $FF99 DEFB $3E,$08,$08,$08,$08,$3E,$00,$00
+ $FFA1 DEFB $02,$02,$02,$42,$42,$3C,$00,$00
+ $FFA9 DEFB $44,$48,$70,$48,$44,$42,$00,$00
+ $FFB1 DEFB $40,$40,$40,$40,$40,$7E,$00,$00
+ $FFB9 DEFB $42,$66,$5A,$42,$42,$42,$00,$00
+ $FFC1 DEFB $42,$62,$52,$4A,$46,$42,$00,$00
+ $FFC9 DEFB $3C,$42,$42,$42,$42,$3C,$00,$00
+ $FFD1 DEFB $7C,$42,$42,$7C,$40,$40,$00,$00
+ $FFD9 DEFB $3C,$42,$42,$52,$4A,$3C,$00,$00
+ $FFE1 DEFB $7C,$42,$42,$7C,$44,$42,$00,$00
+ $FFE9 DEFB $3C,$40,$3C,$02,$42,$3C,$00,$00
+ $FFF1 DEFB $FE,$10,$10,$10,$10,$10,$00,$00
+ $FFF9 DEFB $42,$42,$42,$42,$42,$3C,$00

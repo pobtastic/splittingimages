@@ -33,796 +33,855 @@ Next: <a href="DF58.html">DF58</a>
 </td>
 </tr>
 </table>
-<div class="description">DE69: Draw New Tile</div>
+<div class="description">DE69: Draw Tile</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="F43E.html">F43E</a>.
+Used by the routine at <a href="F801.html">F801</a>.
 </div>
 </div>
 </td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile</td>
+<td class="asm-label">Draw_Tile</td>
 <td class="address-2"><span id="de69"></span>DE69</td>
 <td class="instruction">LD IX,$DF58</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Set <span class="register">IX</span> to <a href="DF58.html">Table_TileDataOffsets</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de6d"></span>DE6D</td>
 <td class="instruction">LD B,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Initialise <span class="register">B</span> to 00 for the sum below.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de6f"></span>DE6F</td>
 <td class="instruction">LD A,($E2C7)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Load *<a href="E2C7.html">Item_ID</a> into <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="de72"></span>
+<div class="comments">
+<div class="paragraph">
+Find which spritesheet the image is located in. There are 14 sprites in each sheet, so test if the sprite ID is less than 15 to check if it's in the first one. Else, subtract 14 and check again.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de72"></span>DE72</td>
 <td class="instruction">LD C,$03</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">C</span> with 03 to track the three spritesheets (two item sheets and one for the game tiles).</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_0</td>
+<td class="asm-label">FindSpritesheet_Loop</td>
 <td class="address-2"><span id="de74"></span>DE74</td>
 <td class="instruction">CP $15</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="DE69.html#de80">LocateSprite</a> if <span class="register">A</span> is lower than 15 (unsigned comparison).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de76"></span>DE76</td>
-<td class="instruction">JP M,<a href="DE69.html#de80">Draw_NewTile_1</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP M,<a href="DE69.html#de80">LocateSprite</a></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de79"></span>DE79</td>
 <td class="instruction">SUB $14</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Subtract 14 from <span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de7b"></span>DE7B</td>
 <td class="instruction">DEC C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de7c"></span>DE7C</td>
-<td class="instruction">JR NZ,<a href="DE69.html#de74">Draw_NewTile_0</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JR NZ,<a href="DE69.html#de74">FindSpritesheet_Loop</a></td>
+<td class="comment-1" rowspan="1">Jump back to <a href="DE69.html#de74">FindSpritesheet_Loop</a> until <span class="register">C</span> is zero.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="de7e"></span>
+<div class="comments">
+<div class="paragraph">
+Default the sprite ID to 01.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de7e"></span>DE7E</td>
 <td class="instruction">LD A,$01</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=01.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_1</td>
+<td class="routine-comment" colspan="5">
+<span id="de80"></span>
+<div class="comments">
+<div class="paragraph">
+Adjust the sprite ID for 0-based indexing.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">LocateSprite</td>
 <td class="address-2"><span id="de80"></span>DE80</td>
 <td class="instruction">DEC A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease the sprite ID by one.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="de81"></span>
+<div class="comments">
+<div class="paragraph">
+There are 04 offset bytes, so multiply the sprite ID by 04 to find the relevant offsets in the table.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de81"></span>DE81</td>
 <td class="instruction">RLCA</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Multiply the sprite ID by 04 and store the result in <span class="register">C</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de82"></span>DE82</td>
 <td class="instruction">RLCA</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de83"></span>DE83</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="de84"></span>
+<div class="comments">
+<div class="paragraph">
+Fetch the offsets for the sprite being processed.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de84"></span>DE84</td>
 <td class="instruction">ADD IX,BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Add the result to <span class="register">IX</span> to locate the offsets for the tile.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de86"></span>DE86</td>
 <td class="instruction">LD C,(IX+$00)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Fetch the graphic data offset and store it in <span class="register">BC</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de89"></span>DE89</td>
 <td class="instruction">LD B,(IX+$01)</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de8c"></span>DE8C</td>
 <td class="instruction">LD E,(IX+$02)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Fetch the attribute data offset and store it in <span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de8f"></span>DE8F</td>
 <td class="instruction">LD D,(IX+$03)</td>
-<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="de92"></span>
+<div class="comments">
+<div class="paragraph">
+Calculate the graphic data address.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de92"></span>DE92</td>
 <td class="instruction">LD IX,($E2C8)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Add *<a href="E2C8.html">Item_SpriteBank</a> and the offset in <span class="register">BC</span> to locate the start of the graphics data - store the result in <span class="register">IX</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de96"></span>DE96</td>
 <td class="instruction">ADD IX,BC</td>
-<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="de98"></span>
+<div class="comments">
+<div class="paragraph">
+Calculate the attribute address.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de98"></span>DE98</td>
 <td class="instruction">LD HL,($E2C8)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="6">Add *<a href="E2C8.html">Item_SpriteBank</a> and 0A00 to locate the start of the attributes for the spritesheet. Then, add the offset held in <span class="register">DE</span> to the total, this will locate the start of the attributes for the sprite currently being processed - store the result in <span class="register">IY</span> (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de9b"></span>DE9B</td>
 <td class="instruction">LD BC,$0A00</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de9e"></span>DE9E</td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="de9f"></span>DE9F</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dea0"></span>DEA0</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dea1"></span>DEA1</td>
 <td class="instruction">POP IY</td>
-<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dea3"></span>
+<div class="comments">
+<div class="paragraph">
+Print the sprite to the screen.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dea3"></span>DEA3</td>
 <td class="instruction">LD B,$04</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dea5"></span>DEA5</td>
 <td class="instruction">LD H,$28</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=28.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_2</td>
+<td class="asm-label">Draw_Tile_0</td>
 <td class="address-2"><span id="dea7"></span>DEA7</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dea8"></span>DEA8</td>
 <td class="instruction">LD A,$08</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=08.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deaa"></span>DEAA</td>
 <td class="instruction">PUSH IX</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">IX</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deac"></span>DEAC</td>
 <td class="instruction">LD BC,$0014</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=0014.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_3</td>
+<td class="asm-label">Draw_Tile_1</td>
 <td class="address-2"><span id="deaf"></span>DEAF</td>
 <td class="instruction">PUSH AF</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">AF</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deb0"></span>DEB0</td>
 <td class="instruction">LD L,A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">L</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deb1"></span>DEB1</td>
 <td class="instruction">CALL <a href="DE51.html">CalculateScreenAddress</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Call <a href="DE51.html">CalculateScreenAddress</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deb4"></span>DEB4</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write *<span class="register">IX</span>+00 to *<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deb7"></span>DEB7</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deb8"></span>DEB8</td>
 <td class="instruction">ADD IX,BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>+=<span class="register">BC</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deba"></span>DEBA</td>
 <td class="instruction">POP AF</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">AF</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="debb"></span>DEBB</td>
 <td class="instruction">INC A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="debc"></span>DEBC</td>
 <td class="instruction">CP $28</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="DE69.html#deaf">Draw_Tile_1</a> if <span class="register">A</span> is not equal to 28.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="debe"></span>DEBE</td>
-<td class="instruction">JP NZ,<a href="DE69.html#deaf">Draw_NewTile_3</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP NZ,<a href="DE69.html#deaf">Draw_Tile_1</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dec1"></span>
+<div class="comments">
+<div class="paragraph">
+Switch <span class="register">IX</span> to point to the attributes.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dec1"></span>DEC1</td>
 <td class="instruction">PUSH IY</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2"><span class="register">IX</span>=<span class="register">IY</span> (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dec3"></span>DEC3</td>
 <td class="instruction">POP IX</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dec5"></span>DEC5</td>
 <td class="instruction">LD DE,$5825</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=5825 (attribute buffer location).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dec8"></span>DEC8</td>
 <td class="instruction">LD B,$04</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deca"></span>DECA</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_4</td>
+<td class="asm-label">Colour_Tile_Loop</td>
 <td class="address-2"><span id="decb"></span>DECB</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="decc"></span>DECC</td>
 <td class="instruction">LD A,(IX+$00)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write *<span class="register">IX</span>+00 to *<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="decf"></span>DECF</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="ded0"></span>DED0</td>
 <td class="instruction">LD BC,$0014</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2"><span class="register">IX</span>+=0014.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="ded3"></span>DED3</td>
 <td class="instruction">ADD IX,BC</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="ded5"></span>DED5</td>
 <td class="instruction">LD HL,$0020</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3"><span class="register">DE</span>+=0020.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="ded8"></span>DED8</td>
 <td class="instruction">ADD HL,DE</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="ded9"></span>DED9</td>
 <td class="instruction">EX DE,HL</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deda"></span>DEDA</td>
 <td class="instruction">POP BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dedb"></span>DEDB</td>
-<td class="instruction">DJNZ <a href="DE69.html#decb">Draw_NewTile_4</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DJNZ <a href="DE69.html#decb">Colour_Tile_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DE69.html#decb">Colour_Tile_Loop</a> until counter is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dedd"></span>DEDD</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Restore <span class="register">HL</span>, <span class="register">IX</span> and <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dede"></span>DEDE</td>
 <td class="instruction">POP IX</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee0"></span>DEE0</td>
 <td class="instruction">POP BC</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee1"></span>DEE1</td>
 <td class="instruction">LD A,B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=<span class="register">B</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee2"></span>DEE2</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Stash <span class="register">BC</span>, <span class="register">IX</span> and <span class="register">HL</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee3"></span>DEE3</td>
 <td class="instruction">PUSH IX</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee5"></span>DEE5</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee6"></span>DEE6</td>
 <td class="instruction">CP $01</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Jump to <a href="DE69.html#df4b">Draw_Tile_7</a> if <span class="register">A</span> is equal to 01.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dee8"></span>DEE8</td>
-<td class="instruction">JP Z,<a href="DE69.html#df4b">Draw_NewTile_10</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP Z,<a href="DE69.html#df4b">Draw_Tile_7</a></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deeb"></span>DEEB</td>
 <td class="instruction">LD A,$05</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=05.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deed"></span>DEED</td>
 <td class="instruction">LD C,$23</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=23.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_5</td>
+<td class="asm-label">Draw_Tile_2</td>
 <td class="address-2"><span id="deef"></span>DEEF</td>
 <td class="instruction">LD B,C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">C</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="def0"></span>DEF0</td>
 <td class="instruction">SLA B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Shift <span class="register">B</span> left (with carry).</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_6</td>
+<td class="asm-label">Draw_Tile_3</td>
 <td class="address-2"><span id="def2"></span>DEF2</td>
-<td class="instruction">DJNZ <a href="DE69.html#def2">Draw_NewTile_6</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DJNZ <a href="DE69.html#def2">Draw_Tile_3</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DE69.html#def2">Draw_Tile_3</a> until counter is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="def4"></span>DEF4</td>
-<td class="instruction">XOR $10</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">XOR %00010000</td>
+<td class="comment-1" rowspan="1">Flip bit 4.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="def6"></span>DEF6</td>
 <td class="instruction">OUT ($FE),A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="def8"></span>DEF8</td>
 <td class="instruction">DEC C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="def9"></span>DEF9</td>
-<td class="instruction">JP NZ,<a href="DE69.html#deef">Draw_NewTile_5</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP NZ,<a href="DE69.html#deef">Draw_Tile_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DE69.html#deef">Draw_Tile_2</a> until <span class="register">C</span> is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="defc"></span>DEFC</td>
 <td class="instruction">LD HL,$1388</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=1388.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="deff"></span>DEFF</td>
 <td class="instruction">LD DE,$04E2</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=04E2.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_7</td>
+<td class="asm-label">Draw_Tile_4</td>
 <td class="address-2"><span id="df02"></span>DF02</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df03"></span>DF03</td>
-<td class="instruction">AND $F0</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">AND %11110000</td>
+<td class="comment-1" rowspan="1">Keep only bits 4-7.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df05"></span>DF05</td>
-<td class="instruction">OR $05</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df07"></span>DF07</td>
 <td class="instruction">OUT ($FE),A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df09"></span>DF09</td>
 <td class="instruction">INC HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df0a"></span>DF0A</td>
 <td class="instruction">DEC DE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df0b"></span>DF0B</td>
 <td class="instruction">LD A,D</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="3">Jump to <a href="DE69.html#df02">Draw_Tile_4</a> if <span class="register">DE</span> is not zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df0c"></span>DF0C</td>
 <td class="instruction">OR E</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df0d"></span>DF0D</td>
-<td class="instruction">JP NZ,<a href="DE69.html#df02">Draw_NewTile_7</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP NZ,<a href="DE69.html#df02">Draw_Tile_4</a></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df10"></span>DF10</td>
 <td class="instruction">LD A,$01</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write 01 to *<a href="E75D.html#e75f">E75F</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df12"></span>DF12</td>
 <td class="instruction">LD ($E75F),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df15"></span>DF15</td>
 <td class="instruction">LD B,$04</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_8</td>
+<td class="asm-label">Draw_Tile_5</td>
 <td class="address-2"><span id="df17"></span>DF17</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df18"></span>DF18</td>
 <td class="instruction">LD A,($E75F)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e75f">E75F</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df1b"></span>DF1B</td>
 <td class="instruction">LD B,A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df1c"></span>DF1C</td>
 <td class="instruction">LD C,$07</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=07.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df1e"></span>DF1E</td>
 <td class="instruction">CALL <a href="DCC2.html">Calculate_ScreenBlockAddress</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Call <a href="DCC2.html">Calculate_ScreenBlockAddress</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df21"></span>DF21</td>
 <td class="instruction">LD A,$08</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=08.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df23"></span>DF23</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_9</td>
+<td class="asm-label">Draw_Tile_6</td>
 <td class="address-2"><span id="df24"></span>DF24</td>
 <td class="instruction">LD BC,$0003</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=0003.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df27"></span>DF27</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2"><span class="register">DE</span>=<span class="register">HL</span> (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df28"></span>DF28</td>
 <td class="instruction">POP DE</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df29"></span>DF29</td>
 <td class="instruction">INC DE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">DE</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df2a"></span>DF2A</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df2b"></span>DF2B</td>
 <td class="instruction">LDDR</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">LDDR.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df2d"></span>DF2D</td>
 <td class="instruction">INC HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df2e"></span>DF2E</td>
 <td class="instruction">LD (HL),C</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df2f"></span>DF2F</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df30"></span>DF30</td>
 <td class="instruction">INC H</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">H</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df31"></span>DF31</td>
 <td class="instruction">DEC A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df32"></span>DF32</td>
-<td class="instruction">JP NZ,<a href="DE69.html#df24">Draw_NewTile_9</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP NZ,<a href="DE69.html#df24">Draw_Tile_6</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DE69.html#df24">Draw_Tile_6</a> until <span class="register">A</span> is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df35"></span>DF35</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df36"></span>DF36</td>
 <td class="instruction">CALL <a href="DCD1.html">Calculate_AttributeAddress</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Call <a href="DCD1.html">Calculate_AttributeAddress</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df39"></span>DF39</td>
 <td class="instruction">PUSH DE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>=<span class="register">DE</span> (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df3a"></span>DF3A</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df3b"></span>DF3B</td>
 <td class="instruction">INC DE</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment <span class="register">DE</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df3c"></span>DF3C</td>
 <td class="instruction">LD BC,$0003</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=0003.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df3f"></span>DF3F</td>
 <td class="instruction">LDDR</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">LDDR.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df41"></span>DF41</td>
 <td class="instruction">LD A,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Write 00 to *<span class="register">DE</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df43"></span>DF43</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df44"></span>DF44</td>
 <td class="instruction">LD HL,$E75F</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html#e75f">E75F</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df47"></span>DF47</td>
 <td class="instruction">INC (HL)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df48"></span>DF48</td>
 <td class="instruction">POP BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df49"></span>DF49</td>
-<td class="instruction">DJNZ <a href="DE69.html#df17">Draw_NewTile_8</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DJNZ <a href="DE69.html#df17">Draw_Tile_5</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DE69.html#df17">Draw_Tile_5</a> until counter is zero.</td>
 </tr>
 <tr>
-<td class="asm-label">Draw_NewTile_10</td>
+<td class="asm-label">Draw_Tile_7</td>
 <td class="address-2"><span id="df4b"></span>DF4B</td>
 <td class="instruction">POP HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">IX</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df4c"></span>DF4C</td>
 <td class="instruction">POP IX</td>
-<td class="comment-0" rowspan="1"></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df4e"></span>DF4E</td>
 <td class="instruction">DEC IX</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">IX</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df50"></span>DF50</td>
 <td class="instruction">DEC IY</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">IY</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df52"></span>DF52</td>
 <td class="instruction">POP BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df53"></span>DF53</td>
 <td class="instruction">DEC B</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">B</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df54"></span>DF54</td>
-<td class="instruction">JP NZ,<a href="DE69.html#dea7">Draw_NewTile_2</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">JP NZ,<a href="DE69.html#dea7">Draw_Tile_0</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DE69.html#dea7">Draw_Tile_0</a> until <span class="register">B</span> is zero.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="df57"></span>DF57</td>
 <td class="instruction">RET</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Return.</td>
 </tr>
 </table>
 <table class="asm-navigation">

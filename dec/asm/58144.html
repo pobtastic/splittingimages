@@ -33,149 +33,241 @@ Next: <a href="58194.html">58194</a>
 </td>
 </tr>
 </table>
-<div class="description">58144: Routine at E320</div>
+<div class="description">58144: Handler: Home Arrow</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a href="62366.html">62366</a> and <a href="62526.html">62526</a>.
+Used by the routines at <a href="62366.html">62366</a> and <a href="63489.html">63489</a>.
 </div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58144"></span>
+<div class="comments">
+<div class="paragraph">
+To indicate when the cursor is "docked", the home box cycles through a bunch of attribute values:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="home-arrow-animation" src="../../images/udgs/home-arrow-animation.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_HomeArrow</td>
 <td class="address-2"><span id="58144"></span>58144</td>
 <td class="instruction">LD HL,59029</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="59029.html">59029</a>.</td>
+<td class="comment-1" rowspan="1">Point <span class="register">HL</span> at <a href="59029.html">HomeArrowAttributes</a> where the attributes are stored.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58147"></span>
+<div class="comments">
+<div class="paragraph">
+Validate the attribute offset value.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58147"></span>58147</td>
 <td class="instruction">LD A,(55350)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="58144.html#58159">58159</a> if *<a href="55350.html">55350</a> is not equal to 14.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="58144.html#58159">HomeArrow_SkipReset</a> if *<a href="55350.html">HomeArrow_AttributeTable_Offset</a> is not equal to 14.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58150"></span>58150</td>
 <td class="instruction">CP 14</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58152"></span>58152</td>
-<td class="instruction">JR NZ,<a href="58144.html#58159">58159</a></td>
+<td class="instruction">JR NZ,<a href="58144.html#58159">HomeArrow_SkipReset</a></td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58154"></span>
+<div class="comments">
+<div class="paragraph">
+If *<a href="55350.html">HomeArrow_AttributeTable_Offset</a> is at the end of the table, reset it back to 0.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58154"></span>58154</td>
 <td class="instruction">LD A,0</td>
-<td class="comment-1" rowspan="2">Write 0 to *<a href="55350.html">55350</a>.</td>
+<td class="comment-1" rowspan="2">Reset *<a href="55350.html">HomeArrow_AttributeTable_Offset</a> back to the first colour.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58156"></span>58156</td>
 <td class="instruction">LD (55350),A</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58159"></span>
+<div class="comments">
+<div class="paragraph">
+Fetch the attribute value using the offset.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">HomeArrow_SkipReset</td>
 <td class="address-2"><span id="58159"></span>58159</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
+<td class="comment-1" rowspan="2">Create an offset in <span class="register">BC</span> against the arrow attribute table.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58160"></span>58160</td>
 <td class="instruction">LD B,0</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=0.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58162"></span>58162</td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+<td class="comment-1" rowspan="1">Add the offset to the arrow attribute table pointer.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58163"></span>58163</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Fetch the attribute byte from the table and store it in <span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58164"></span>58164</td>
-<td class="instruction">CALL <a href="59010.html">59010</a></td>
-<td class="comment-1" rowspan="1">Call <a href="59010.html">59010</a>.</td>
+<td class="instruction">CALL <a href="59010.html">ColouriseHome</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59010.html">ColouriseHome</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58167"></span>58167</td>
 <td class="instruction">HALT</td>
 <td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58168"></span>
+<div class="comments">
+<div class="paragraph">
+Move the attribute offset to the next value in the attribute table.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58168"></span>58168</td>
 <td class="instruction">LD HL,55350</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55350.html">55350</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55350.html">HomeArrow_AttributeTable_Offset</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58171"></span>58171</td>
 <td class="instruction">INC (HL)</td>
-<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+<td class="comment-1" rowspan="1">Increment the attribute offset value to the next colour value.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58172"></span>
+<div class="comments">
+<div class="paragraph">
+Set up playing a sound.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58172"></span>58172</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="4">Multiply the attribute offset value by 4 and store the result in <span class="register">C</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58173"></span>58173</td>
 <td class="instruction">RLCA</td>
-<td class="comment-1" rowspan="2">RLCA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58174"></span>58174</td>
 <td class="instruction">RLCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58175"></span>58175</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58176"></span>58176</td>
 <td class="instruction">LD B,6</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=6.</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the number of times to make the sound.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58178"></span>58178</td>
 <td class="instruction">LD A,5</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=5.</td>
+<td class="comment-1" rowspan="1">Set the initial border/ speaker state in <span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label">HomeArrow_Sound_Loop</td>
 <td class="address-2"><span id="58180"></span>58180</td>
 <td class="instruction">OUT (254),A</td>
-<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+<td class="comment-1" rowspan="1">Set the border colour/ play sound.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58182"></span>58182</td>
 <td class="instruction">XOR %00010000</td>
-<td class="comment-1" rowspan="1">Flip bit 4.</td>
+<td class="comment-1" rowspan="1">Flip the speaker bit.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58184"></span>58184</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the loop counter on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58185"></span>58185</td>
 <td class="instruction">LD B,C</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">C</span>.</td>
+<td class="comment-1" rowspan="1">Set the delay counter to the value held in REGc.</td>
 </tr>
 <tr>
+<td class="asm-label">HomeArrow_Sound_Delay</td>
 <td class="address-2"><span id="58186"></span>58186</td>
-<td class="instruction">DJNZ <a href="58144.html#58186">58186</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="58144.html#58186">58186</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="58144.html#58186">HomeArrow_Sound_Delay</a></td>
+<td class="comment-1" rowspan="1">Decrease the delay counter by one and loop back to <a href="58144.html#58186">HomeArrow_Sound_Delay</a> until the delay counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58188"></span>58188</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the loop counter from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58189"></span>58189</td>
-<td class="instruction">DJNZ <a href="58144.html#58180">58180</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="58144.html#58180">58180</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="58144.html#58180">HomeArrow_Sound_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the loop counter by one and loop back to <a href="58144.html#58180">HomeArrow_Sound_Loop</a> until the loop counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58191"></span>58191</td>
 <td class="instruction">JP <a href="62366.html">62366</a></td>
 <td class="comment-1" rowspan="1">Jump to <a href="62366.html">62366</a>.</td>

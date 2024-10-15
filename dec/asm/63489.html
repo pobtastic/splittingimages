@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 63489</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="62526.html">62526</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#63489">Map</a></td>
+<td class="next">
+Next: <a href="63581.html">63581</a>
+</td>
+</tr>
+</table>
+<div class="description">63489: Routine at F801</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="62526.html">62526</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-2"><span id="63489"></span>63489</td>
+<td class="instruction">CP 16</td>
+<td class="comment-1" rowspan="2">Jump to <a href="58144.html">Handler_HomeArrow</a> if <span class="register">A</span> is not equal to 16.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63491"></span>63491</td>
+<td class="instruction">JP NZ,<a href="58144.html">Handler_HomeArrow</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63494"></span>63494</td>
+<td class="instruction">LD A,(57962)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="58144.html">Handler_HomeArrow</a> if *<a href="57962.html">57962</a> is not equal to 0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63497"></span>63497</td>
+<td class="instruction">CP 0</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63499"></span>63499</td>
+<td class="instruction">JP NZ,<a href="58144.html">Handler_HomeArrow</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63502"></span>63502</td>
+<td class="instruction">CALL <a href="59155.html">59155</a></td>
+<td class="comment-1" rowspan="1">Call <a href="59155.html">59155</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63505"></span>63505</td>
+<td class="instruction">LD A,(58055)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="58055.html">Item_ID</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63508"></span>63508</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="2">Jump to <a href="58144.html">Handler_HomeArrow</a> if <span class="register">A</span> is equal to 0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63510"></span>63510</td>
+<td class="instruction">JP Z,<a href="58144.html">Handler_HomeArrow</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63513"></span>63513</td>
+<td class="instruction">LD (57962),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="57962.html">57962</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63516"></span>63516</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="3">Halt operation (suspend CPU until the next interrupt) three times.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63517"></span>63517</td>
+<td class="instruction">HALT</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63518"></span>63518</td>
+<td class="instruction">HALT</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63519"></span>63519</td>
+<td class="instruction">CP 21</td>
+<td class="comment-1" rowspan="2">Jump to <a href="63489.html#63563">SetSpriteBank_BufferImage</a> if <span class="register">A</span> is lower than 21.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63521"></span>63521</td>
+<td class="instruction">JP M,<a href="63489.html#63563">SetSpriteBank_BufferImage</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63524"></span>63524</td>
+<td class="instruction">CP 41</td>
+<td class="comment-1" rowspan="2">Jump to <a href="63489.html#63571">SetSpriteBank_01</a> if <span class="register">A</span> is lower than 41.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63526"></span>63526</td>
+<td class="instruction">JP M,<a href="63489.html#63571">SetSpriteBank_01</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63529"></span>63529</td>
+<td class="instruction">CP 61</td>
+<td class="comment-1" rowspan="2">Jump to <a href="63489.html#63576">SetSpriteBank_02</a> if <span class="register">A</span> is lower than 61.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63531"></span>63531</td>
+<td class="instruction">JP M,<a href="63489.html#63576">SetSpriteBank_02</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="63534"></span>
+<div class="comments">
+<div class="paragraph">
+Else, use <a href="44068.html">GraphicsData_Items_01</a> as the default spritesheet.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63534"></span>63534</td>
+<td class="instruction">LD HL,44068</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="44068.html">GraphicsData_Items_01</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="63537"></span>
+<div class="comments">
+<div class="paragraph">
+Set the active spritesheet.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">WriteSpriteBank</td>
+<td class="address-2"><span id="63537"></span>63537</td>
+<td class="instruction">LD (58056),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="58056.html">Item_SpriteBank</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63540"></span>63540</td>
+<td class="instruction">CALL <a href="56937.html">Draw_Tile</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56937.html">Draw_Tile</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63543"></span>63543</td>
+<td class="instruction">CALL <a href="55819.html">55819</a></td>
+<td class="comment-1" rowspan="1">Call <a href="55819.html">55819</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63546"></span>63546</td>
+<td class="instruction">LD HL,(58800)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="58800.html">58800</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63549"></span>63549</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63550"></span>63550</td>
+<td class="instruction">LD (58800),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="58800.html">58800</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63553"></span>63553</td>
+<td class="instruction">LD B,0</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=0.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63555"></span>63555</td>
+<td class="instruction">LD A,6</td>
+<td class="comment-1" rowspan="2">Write 6 to *<a href="55341.html">55341</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63557"></span>63557</td>
+<td class="instruction">LD (55341),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63560"></span>63560</td>
+<td class="instruction">JP <a href="62526.html#62574">62574</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="62526.html#62574">62574</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="63563"></span>
+<div class="comments">
+<div class="paragraph">
+Set the spritebank to the buffer image (containing the image tiles).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">SetSpriteBank_BufferImage</td>
+<td class="address-2"><span id="63563"></span>63563</td>
+<td class="instruction">CALL <a href="57266.html">57266</a></td>
+<td class="comment-1" rowspan="1">Call <a href="57266.html">57266</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63566"></span>63566</td>
+<td class="instruction">LD HL,41187</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="41187.html">Buffer_Image</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63569"></span>63569</td>
+<td class="instruction">JR <a href="63489.html#63537">WriteSpriteBank</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="63489.html#63537">WriteSpriteBank</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="63571"></span>
+<div class="comments">
+<div class="paragraph">
+Set spritebank 1.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">SetSpriteBank_01</td>
+<td class="address-2"><span id="63571"></span>63571</td>
+<td class="instruction">LD HL,44068</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="44068.html">GraphicsData_Items_01</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63574"></span>63574</td>
+<td class="instruction">JR <a href="63489.html#63537">WriteSpriteBank</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="63489.html#63537">WriteSpriteBank</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="63576"></span>
+<div class="comments">
+<div class="paragraph">
+Set spritebank 2.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">SetSpriteBank_02</td>
+<td class="address-2"><span id="63576"></span>63576</td>
+<td class="instruction">LD HL,46949</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="46949.html">GraphicsData_Items_02</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="63579"></span>63579</td>
+<td class="instruction">JR <a href="63489.html#63537">WriteSpriteBank</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="63489.html#63537">WriteSpriteBank</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="62526.html">62526</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#63489">Map</a></td>
+<td class="next">
+Next: <a href="63581.html">63581</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/F801.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

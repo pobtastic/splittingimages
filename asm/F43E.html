@@ -29,7 +29,7 @@ Prev: <a href="F39E.html">F39E</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#f43e">Map</a></td>
 <td class="next">
-Next: <a href="F85D.html">F85D</a>
+Next: <a href="F801.html">F801</a>
 </td>
 </tr>
 </table>
@@ -91,7 +91,7 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f44f"></span>F44F</td>
 <td class="instruction">LD ($E2C7),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E2C7.html">E2C7</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E2C7.html">Item_ID</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f452"></span>F452</td>
@@ -132,8 +132,8 @@ Used by the routine at <a href="E396.html">E396</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f466"></span>F466</td>
-<td class="instruction">JP Z,<a href="F43E.html#f801">$F801</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F43E.html#f801">F801</a> if <span class="register">A</span> is zero.</td>
+<td class="instruction">JP Z,<a href="F801.html">$F801</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F801.html">F801</a> if <span class="register">A</span> is zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f469"></span>F469</td>
@@ -143,6 +143,16 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f46b"></span>F46B</td>
 <td class="instruction">JP NZ,<a href="F43E.html#f528">$F528</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="f46e"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F801.html">F801</a>.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="address-2"><span id="f46e"></span>F46E</td>
@@ -300,7 +310,7 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f4af"></span>F4AF</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">E2C7</a>.</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">Item_ID</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f4b0"></span>F4B0</td>
@@ -846,7 +856,7 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f59a"></span>F59A</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">E2C7</a>.</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">Item_ID</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f59b"></span>F59B</td>
@@ -1405,7 +1415,7 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f68e"></span>F68E</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">E2C7</a>.</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">Item_ID</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f68f"></span>F68F</td>
@@ -1984,7 +1994,7 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f787"></span>F787</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">E2C7</a>.</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<a href="E2C7.html">Item_ID</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f788"></span>F788</td>
@@ -2263,187 +2273,6 @@ Used by the routine at <a href="E396.html">E396</a>.
 <td class="instruction">JP <a href="E0E2.html">$E0E2</a></td>
 <td class="comment-1" rowspan="1">Jump to <a href="E0E2.html">E0E2</a>.</td>
 </tr>
-<tr>
-<td class="address-2"><span id="f801"></span>F801</td>
-<td class="instruction">CP $10</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 10.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f803"></span>F803</td>
-<td class="instruction">JP NZ,<a href="E320.html">$E320</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="E320.html">E320</a> if <span class="register">A</span> is not zero.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f806"></span>F806</td>
-<td class="instruction">LD A,($E26A)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E26A.html">E26A</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f809"></span>F809</td>
-<td class="instruction">CP $00</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 00.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f80b"></span>F80B</td>
-<td class="instruction">JP NZ,<a href="E320.html">$E320</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="E320.html">E320</a> if <span class="register">A</span> is not zero.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f80e"></span>F80E</td>
-<td class="instruction">CALL <a href="E713.html">$E713</a></td>
-<td class="comment-1" rowspan="1">Call <a href="E713.html">E713</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f811"></span>F811</td>
-<td class="instruction">LD A,($E2C7)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E2C7.html">E2C7</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f814"></span>F814</td>
-<td class="instruction">CP $00</td>
-<td class="comment-1" rowspan="2">Jump to <a href="E320.html">E320</a> if <span class="register">A</span> is equal to 00.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f816"></span>F816</td>
-<td class="instruction">JP Z,<a href="E320.html">$E320</a></td>
-</tr>
-<tr>
-<td class="address-1"><span id="f819"></span>F819</td>
-<td class="instruction">LD ($E26A),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E26A.html">E26A</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f81c"></span>F81C</td>
-<td class="instruction">HALT</td>
-<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f81d"></span>F81D</td>
-<td class="instruction">HALT</td>
-<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f81e"></span>F81E</td>
-<td class="instruction">HALT</td>
-<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f81f"></span>F81F</td>
-<td class="instruction">CP $15</td>
-<td class="comment-1" rowspan="2">Jump to <a href="F43E.html#f84b">F84B</a> if <span class="register">A</span> is lower than 15 (unsigned comparison).</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f821"></span>F821</td>
-<td class="instruction">JP M,<a href="F43E.html#f84b">$F84B</a></td>
-</tr>
-<tr>
-<td class="address-1"><span id="f824"></span>F824</td>
-<td class="instruction">CP $29</td>
-<td class="comment-1" rowspan="2">Jump to <a href="F43E.html#f853">F853</a> if <span class="register">A</span> is lower than 29 (unsigned comparison).</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f826"></span>F826</td>
-<td class="instruction">JP M,<a href="F43E.html#f853">$F853</a></td>
-</tr>
-<tr>
-<td class="address-1"><span id="f829"></span>F829</td>
-<td class="instruction">CP $3D</td>
-<td class="comment-1" rowspan="2">Jump to <a href="F43E.html#f858">F858</a> if <span class="register">A</span> is lower than 3D (unsigned comparison).</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f82b"></span>F82B</td>
-<td class="instruction">JP M,<a href="F43E.html#f858">$F858</a></td>
-</tr>
-<tr>
-<td class="address-1"><span id="f82e"></span>F82E</td>
-<td class="instruction">LD HL,$AC24</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="AC24.html">GraphicsData_Items_01</a>.</td>
-</tr>
-<tr>
-<td class="address-2"><span id="f831"></span>F831</td>
-<td class="instruction">LD ($E2C8),HL</td>
-<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="E2C7.html#e2c8">E2C8</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f834"></span>F834</td>
-<td class="instruction">CALL <a href="DE69.html">Draw_NewTile</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DE69.html">Draw_NewTile</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f837"></span>F837</td>
-<td class="instruction">CALL <a href="DA0B.html">$DA0B</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DA0B.html">DA0B</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f83a"></span>F83A</td>
-<td class="instruction">LD HL,($E5B0)</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="E5B0.html">E5B0</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f83d"></span>F83D</td>
-<td class="instruction">INC HL</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f83e"></span>F83E</td>
-<td class="instruction">LD ($E5B0),HL</td>
-<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="E5B0.html">E5B0</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f841"></span>F841</td>
-<td class="instruction">LD B,$00</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=00.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f843"></span>F843</td>
-<td class="instruction">LD A,$06</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=06.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f845"></span>F845</td>
-<td class="instruction">LD ($D82D),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82D.html">D82D</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f848"></span>F848</td>
-<td class="instruction">JP <a href="F43E.html#f46e">$F46E</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F43E.html#f46e">F46E</a>.</td>
-</tr>
-<tr>
-<td class="address-2"><span id="f84b"></span>F84B</td>
-<td class="instruction">CALL <a href="DFB2.html">$DFB2</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DFB2.html">DFB2</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f84e"></span>F84E</td>
-<td class="instruction">LD HL,$A0E3</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="A0E3.html">Buffer_Image</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f851"></span>F851</td>
-<td class="instruction">JR <a href="F43E.html#f831">$F831</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F43E.html#f831">F831</a>.</td>
-</tr>
-<tr>
-<td class="address-2"><span id="f853"></span>F853</td>
-<td class="instruction">LD HL,$AC24</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="AC24.html">GraphicsData_Items_01</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f856"></span>F856</td>
-<td class="instruction">JR <a href="F43E.html#f831">$F831</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F43E.html#f831">F831</a>.</td>
-</tr>
-<tr>
-<td class="address-2"><span id="f858"></span>F858</td>
-<td class="instruction">LD HL,$B765</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="B765.html">GraphicsData_Items_02</a>.</td>
-</tr>
-<tr>
-<td class="address-1"><span id="f85b"></span>F85B</td>
-<td class="instruction">JR <a href="F43E.html#f831">$F831</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F43E.html#f831">F831</a>.</td>
-</tr>
 </table>
 <table class="asm-navigation">
 <tr>
@@ -2452,7 +2281,7 @@ Prev: <a href="F39E.html">F39E</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#f43e">Map</a></td>
 <td class="next">
-Next: <a href="F85D.html">F85D</a>
+Next: <a href="F801.html">F801</a>
 </td>
 </tr>
 </table>

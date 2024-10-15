@@ -33,13 +33,13 @@ Next: <a href="E695.html">E695</a>
 </td>
 </tr>
 </table>
-<div class="description">E682: Routine at E682</div>
+<div class="description">E682: Colourise Home</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routines at <a href="D352.html">D352</a>, <a href="E320.html">E320</a> and <a href="E396.html">E396</a>.
+Used by the routines at <a href="D352.html">D352</a>, <a href="E320.html">Handler_HomeArrow</a> and <a href="E396.html">E396</a>.
 </div>
 </div>
 <table class="input">
@@ -54,56 +54,67 @@ Used by the routines at <a href="D352.html">D352</a>, <a href="E320.html">E320</
 </td>
 </tr>
 <tr>
+<td class="asm-label">ColouriseHome</td>
 <td class="address-2"><span id="e682"></span>E682</td>
 <td class="instruction">LD HL,$5821</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=5821 (attribute buffer location).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e685"></span>E685</td>
 <td class="instruction">LD B,$02</td>
 <td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 02 rows.</td>
 </tr>
 <tr>
+<td class="asm-label">ColouriseHome_Loop</td>
 <td class="address-2"><span id="e687"></span>E687</td>
 <td class="instruction">PUSH BC</td>
 <td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e688"></span>E688</td>
 <td class="instruction">LD B,$03</td>
 <td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 03 character blocks.</td>
 </tr>
 <tr>
+<td class="asm-label">Home_WriteAttribute</td>
 <td class="address-2"><span id="e68a"></span>E68A</td>
 <td class="instruction">LD (HL),A</td>
 <td class="comment-1" rowspan="1">Write the value stored in <span class="register">A</span> to the address held by the attribute buffer pointer.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e68b"></span>E68B</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="1">Increment the attribute buffer pointer by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e68c"></span>E68C</td>
-<td class="instruction">DJNZ <a href="E682.html#e68a">$E68A</a></td>
-<td class="comment-1" rowspan="1">Decrease the character block counter by one and loop back to <a href="E682.html#e68a">E68A</a> until all three byte values have been written.</td>
+<td class="instruction">DJNZ <a href="E682.html#e68a">Home_WriteAttribute</a></td>
+<td class="comment-1" rowspan="1">Decrease the character block counter by one and loop back to <a href="E682.html#e68a">Home_WriteAttribute</a> until all three byte values have been written.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e68e"></span>E68E</td>
 <td class="instruction">LD HL,$5841</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=5841 (attribute buffer location).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e691"></span>E691</td>
 <td class="instruction">POP BC</td>
 <td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e692"></span>E692</td>
-<td class="instruction">DJNZ <a href="E682.html#e687">$E687</a></td>
-<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E682.html#e687">E687</a> until all the rows have been updated.</td>
+<td class="instruction">DJNZ <a href="E682.html#e687">ColouriseHome_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E682.html#e687">ColouriseHome_Loop</a> until all the rows have been updated.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e694"></span>E694</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

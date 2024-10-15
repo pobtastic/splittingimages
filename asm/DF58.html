@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Splitting Images: Data at DF58</title>
+<title>Splitting Images: Game status buffer entry at DF58</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../skoolkit.css" />
 <link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
@@ -15,11 +15,11 @@ gtag('js', new Date());
 gtag('config', 'G-75RERFCHBG');
 </script>
 </head>
-<body class="Asm-b">
+<body class="Asm-g">
 <table class="header">
 <tr>
 <td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
-<td class="page-header">Data</td>
+<td class="page-header">Game status buffer</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -33,63 +33,456 @@ Next: <a href="DFA8.html">DFA8</a>
 </td>
 </tr>
 </table>
-<div class="description">DF58: Data block at DF58</div>
+<div class="description">DF58: Table: Tile Data Offsets</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
+<div class="paragraph">
+Used by the routine at <a href="DE69.html">Draw_Tile</a>.
+</div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="df58"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 01.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Table_TileDataOffsets</td>
 <td class="address-1"><span id="df58"></span>DF58</td>
-<td class="instruction">DEFB $03,$00,$03,$00,$07,$00,$07,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $0003</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df5a"></span>DF5A</td>
+<td class="instruction">DEFW $0003</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df5c"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 02.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df5c"></span>DF5C</td>
+<td class="instruction">DEFW $0007</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df5e"></span>DF5E</td>
+<td class="instruction">DEFW $0007</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df60"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 03.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df60"></span>DF60</td>
-<td class="instruction">DEFB $0B,$00,$0B,$00,$0F,$00,$0F,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $000B</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df62"></span>DF62</td>
+<td class="instruction">DEFW $000B</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df64"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 04.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df64"></span>DF64</td>
+<td class="instruction">DEFW $000F</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df66"></span>DF66</td>
+<td class="instruction">DEFW $000F</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df68"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 05.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df68"></span>DF68</td>
-<td class="instruction">DEFB $13,$00,$13,$00,$83,$02,$53,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $0013</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df6a"></span>DF6A</td>
+<td class="instruction">DEFW $0013</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df6c"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 06.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df6c"></span>DF6C</td>
+<td class="instruction">DEFW $0283</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df6e"></span>DF6E</td>
+<td class="instruction">DEFW $0053</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df70"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 07.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df70"></span>DF70</td>
-<td class="instruction">DEFB $87,$02,$57,$00,$8B,$02,$5B,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $0287</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df72"></span>DF72</td>
+<td class="instruction">DEFW $0057</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df74"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 08.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df74"></span>DF74</td>
+<td class="instruction">DEFW $028B</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df76"></span>DF76</td>
+<td class="instruction">DEFW $005B</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df78"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 09.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df78"></span>DF78</td>
-<td class="instruction">DEFB $8F,$02,$5F,$00,$93,$02,$63,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $028F</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df7a"></span>DF7A</td>
+<td class="instruction">DEFW $005F</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df7c"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 0A.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df7c"></span>DF7C</td>
+<td class="instruction">DEFW $0293</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df7e"></span>DF7E</td>
+<td class="instruction">DEFW $0063</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df80"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 0B.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df80"></span>DF80</td>
-<td class="instruction">DEFB $03,$05,$A3,$00,$07,$05,$A7,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $0503</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df82"></span>DF82</td>
+<td class="instruction">DEFW $00A3</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df84"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 0C.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df84"></span>DF84</td>
+<td class="instruction">DEFW $0507</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df86"></span>DF86</td>
+<td class="instruction">DEFW $00A7</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df88"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 0D.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df88"></span>DF88</td>
-<td class="instruction">DEFB $0B,$05,$AB,$00,$0F,$05,$AF,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $050B</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df8a"></span>DF8A</td>
+<td class="instruction">DEFW $00AB</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df8c"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 0E.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df8c"></span>DF8C</td>
+<td class="instruction">DEFW $050F</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df8e"></span>DF8E</td>
+<td class="instruction">DEFW $00AF</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df90"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 0F.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df90"></span>DF90</td>
-<td class="instruction">DEFB $13,$05,$B3,$00,$83,$07,$F3,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $0513</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df92"></span>DF92</td>
+<td class="instruction">DEFW $00B3</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df94"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 10.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df94"></span>DF94</td>
+<td class="instruction">DEFW $0783</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df96"></span>DF96</td>
+<td class="instruction">DEFW $00F3</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df98"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 11.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="df98"></span>DF98</td>
-<td class="instruction">DEFB $87,$07,$F7,$00,$8B,$07,$FB,$00</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $0787</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df9a"></span>DF9A</td>
+<td class="instruction">DEFW $00F7</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="df9c"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 12.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df9c"></span>DF9C</td>
+<td class="instruction">DEFW $078B</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="df9e"></span>DF9E</td>
+<td class="instruction">DEFW $00FB</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dfa0"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 13.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="dfa0"></span>DFA0</td>
-<td class="instruction">DEFB $8F,$07,$FF,$00,$93,$07,$03,$01</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DEFW $078F</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="dfa2"></span>DFA2</td>
+<td class="instruction">DEFW $00FF</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dfa4"></span>
+<div class="comments">
+<div class="paragraph">
+Tile: 14.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="dfa4"></span>DFA4</td>
+<td class="instruction">DEFW $0793</td>
+<td class="comment-1" rowspan="1">Graphics data offset.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="dfa6"></span>DFA6</td>
+<td class="instruction">DEFW $0103</td>
+<td class="comment-1" rowspan="1">Attribute data offset.</td>
 </tr>
 </table>
 <table class="asm-navigation">

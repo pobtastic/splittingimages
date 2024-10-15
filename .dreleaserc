@@ -1,4 +1,4 @@
 GAME=splittingimages
-SRCFILES=$(echo {splitpersonalities,splittingimages}.skool {splittingimages,analytics,bases,changelog,data,images,pokes,previewimages,sound,splitpersonalities}.ref {dark,wide}.css)
+SRCFILES=$(echo {splitpersonalities,splittingimages}.skool {splittingimages,analytics,bases,changelog,data,images,items,pokes,previewimages,sound,splitpersonalities}.ref {dark,wide}.css)
 SKOOL2BINOPTS="-i 53674"
 WAVCONVERT=""

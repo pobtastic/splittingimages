@@ -112,12 +112,32 @@ B $A0E3,$0B40,$14
 
 b $AC24 Graphics Data: Items 01
 @ $AC24 label=GraphicsData_Items_01
-N $AC24 #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)@$B624-$B763(items-01) } UDGTABLE#
+@ $B624 label=GraphicsData_Items_01_Attributes
+N $AC24 The whole spritesheet:
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)@$B624-$B763(items-01) } UDGTABLE#
+N $AC24 Each individual sprite:
+. #UDGTABLE
+. #FOR$00,$03''y'
+. { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
+. { #FOR$00,$04!!x!
+.   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
+.   #UDGARRAY$04,scale=$02,step=$14(($AC24+{multiplier})-($AE90+{multiplier})-$01-$A0)@($B624+({id}+y*$0F)*$04)-($B663+({id}+y*$0F)*$04)-$01-$14(#FORMAT(items-01-{id:02}))! |
+. !! } '' UDGTABLE#
   $AC24,$0B40,$14
 
 b $B765 Graphics Data: Items 02
 @ $B765 label=GraphicsData_Items_02
-N $B765 #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)@$C165-$C2A4(items-02) } UDGTABLE#
+@ $C165 label=GraphicsData_Items_02_Attributes
+N $B765 The whole spritesheet:
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)@$C165-$C2A4(items-02) } UDGTABLE#
+N $B765 Each individual sprite:
+. #UDGTABLE
+. #FOR$00,$03''y'
+. { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
+. { #FOR$00,$04!!x!
+.   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
+.   #UDGARRAY$04,scale=$02,step=$14(($B765+{multiplier})-($B9D1+{multiplier})-$01-$A0)@($C165+({id}+y*$0F)*$04)-($C2A4+({id}+y*$0F)*$04)-$01-$14(#FORMAT(items-02-{id:02}))! |
+. !! } '' UDGTABLE#
   $B765,$0B40,$14
 
 b $C2A6 Data: Playarea Surround
@@ -743,7 +763,10 @@ D $D835 Used by the routines at #R$D352, #R$D469, #R$E396, #R$E658, #R$E661 and 
 . TABLE#
 B $D835,$01
 
-g $D836
+g $D836 Home Arrow Attribute Table Offset
+@ $D836 label=HomeArrow_AttributeTable_Offset
+D $D836 Used by the routine at #R$E320.
+B $D836,$01
 
 g $D837
 
@@ -1717,10 +1740,135 @@ R $DE51 O:DE Screen buffer address
   $DE67,$01 Store result in #REGe (low byte of the screen buffer address).
   $DE68,$01 Return.
 
-c $DE69 Draw New Tile
-@ $DE69 label=Draw_NewTile
+c $DE69 Draw Tile
+@ $DE69 label=Draw_Tile
+  $DE69,$04 Set #REGix to #R$DF58.
+  $DE6D,$02 Initialise #REGb to #N$00 for the sum below.
+  $DE6F,$03 Load *#R$E2C7 into #REGa.
+N $DE72 Find which spritesheet the image is located in. There are #N$14 sprites
+. in each sheet, so test if the sprite ID is less than #N$15 to check if it's
+. in the first one. Else, subtract #N$14 and check again.
+  $DE72,$02 Set a counter in #REGc with #N$03 to track the three spritesheets
+. (two item sheets and one for the game tiles).
+@ $DE74 label=FindSpritesheet_Loop
+  $DE74,$05 Jump to #R$DE80 if #REGa is lower than #N$15 (unsigned comparison).
+  $DE79,$02 Subtract #N$14 from #REGa.
+  $DE7B,$01 Decrease #REGc by one.
+  $DE7C,$02 Jump back to #R$DE74 until #REGc is zero.
+N $DE7E Default the sprite ID to #N$01.
+  $DE7E,$02 #REGa=#N$01.
+N $DE80 Adjust the sprite ID for 0-based indexing.
+@ $DE80 label=LocateSprite
+  $DE80,$01 Decrease the sprite ID by one.
+N $DE81 There are #N$04 offset bytes, so multiply the sprite ID by #N$04 to
+. find the relevant offsets in the table.
+  $DE81,$03 Multiply the sprite ID by #N$04 and store the result in #REGc.
+N $DE84 Fetch the offsets for the sprite being processed.
+  $DE84,$02 Add the result to #REGix to locate the offsets for the tile.
+  $DE86,$06 Fetch the graphic data offset and store it in #REGbc.
+  $DE8C,$06 Fetch the attribute data offset and store it in #REGde.
+N $DE92 Calculate the graphic data address.
+  $DE92,$06 Add *#R$E2C8 and the offset in #REGbc to locate the start of the
+. graphics data - store the result in #REGix.
+N $DE98 Calculate the attribute address.
+  $DE98,$0B Add *#R$E2C8 and #N($0A00,$04,$04) to locate the start of the
+. attributes for the spritesheet. Then, add the offset held in #REGde to the
+. total, this will locate the start of the attributes for the sprite currently
+. being processed - store the result in #REGiy (using the stack).
+N $DEA3 Print the sprite to the screen.
+  $DEA3,$02 #REGb=#N$04.
+  $DEA5,$02 #REGh=#N$28.
+  $DEA7,$01 Stash #REGbc on the stack.
+  $DEA8,$02 #REGa=#N$08.
+  $DEAA,$02 Stash #REGix on the stack.
+  $DEAC,$03 #REGbc=#N($0014,$04,$04).
+  $DEAF,$01 Stash #REGaf on the stack.
+  $DEB0,$01 #REGl=#REGa.
+  $DEB1,$03 Call #R$DE51.
+  $DEB4,$04 Write *#REGix+#N$00 to *#REGde.
+  $DEB8,$02 #REGix+=#REGbc.
+  $DEBA,$01 Restore #REGaf from the stack.
+  $DEBB,$01 Increment #REGa by one.
+  $DEBC,$05 Jump to #R$DEAF if #REGa is not equal to #N$28.
+N $DEC1 Switch #REGix to point to the attributes.
+  $DEC1,$04 #REGix=#REGiy (using the stack).
+  $DEC5,$03 #REGde=#N$5825 (attribute buffer location).
+  $DEC8,$02 #REGb=#N$04.
+  $DECA,$01 Stash #REGhl on the stack.
+@ $DECB label=Colour_Tile_Loop
+  $DECB,$01 Stash #REGbc on the stack.
+  $DECC,$04 Write *#REGix+#N$00 to *#REGde.
+  $DED0,$05 #REGix+=#N($0014,$04,$04).
+  $DED5,$05 #REGde+=#N($0020,$04,$04).
+  $DEDA,$01 Restore #REGbc from the stack.
+  $DEDB,$02 Decrease counter by one and loop back to #R$DECB until counter is zero.
+  $DEDD,$04 Restore #REGhl, #REGix and #REGbc from the stack.
+  $DEE1,$01 #REGa=#REGb.
+  $DEE2,$04 Stash #REGbc, #REGix and #REGhl on the stack.
+  $DEE6,$05 Jump to #R$DF4B if #REGa is equal to #N$01.
+  $DEEB,$02 #REGa=#N$05.
+  $DEED,$02 #REGc=#N$23.
+  $DEEF,$01 #REGb=#REGc.
+  $DEF0,$02 Shift #REGb left (with carry).
+  $DEF2,$02 Decrease counter by one and loop back to #R$DEF2 until counter is zero.
+  $DEF4,$02,b$01 Flip bit 4.
+  $DEF6,$02 Send to the speaker.
+  $DEF8,$01 Decrease #REGc by one.
+  $DEF9,$03 Jump to #R$DEEF until #REGc is zero.
+  $DEFC,$03 #REGhl=#N$1388.
+  $DEFF,$03 #REGde=#N$04E2.
+  $DF02,$01 #REGa=*#REGhl.
+  $DF03,$02,b$01 Keep only bits 4-7.
+  $DF05,$02,b$01 Set bits 0, 2.
+  $DF07,$02 Send to the speaker.
+  $DF09,$01 Increment #REGhl by one.
+  $DF0A,$01 Decrease #REGde by one.
+  $DF0B,$05 Jump to #R$DF02 if #REGde is not zero.
+  $DF10,$05 Write #N$01 to *#R$E75F.
+  $DF15,$02 #REGb=#N$04.
+  $DF17,$01 Stash #REGbc on the stack.
+  $DF18,$04 #REGb=*#R$E75F.
+  $DF1C,$02 #REGc=#N$07.
+  $DF1E,$03 Call #R$DCC2.
+  $DF21,$02 #REGa=#N$08.
+  $DF23,$01 Stash #REGhl on the stack.
+  $DF24,$03 #REGbc=#N($0003,$04,$04).
+  $DF27,$02 #REGde=#REGhl (using the stack).
+  $DF29,$01 Increment #REGde by one.
+  $DF2A,$01 Stash #REGhl on the stack.
+  $DF2B,$02 LDDR.
+  $DF2D,$01 Increment #REGhl by one.
+  $DF2E,$01 Write #REGc to *#REGhl.
+  $DF2F,$01 Restore #REGhl from the stack.
+  $DF30,$01 Increment #REGh by one.
+  $DF31,$01 Decrease #REGa by one.
+  $DF32,$03 Jump to #R$DF24 until #REGa is zero.
+  $DF35,$01 Restore #REGhl from the stack.
+  $DF36,$03 Call #R$DCD1.
+  $DF39,$02 #REGhl=#REGde (using the stack).
+  $DF3B,$01 Increment #REGde by one.
+  $DF3C,$03 #REGbc=#N($0003,$04,$04).
+  $DF3F,$02 LDDR.
+  $DF41,$03 Write #N$00 to *#REGde.
+  $DF44,$03 #REGhl=#R$E75F.
+  $DF47,$01 Increment *#REGhl by one.
+  $DF48,$01 Restore #REGbc from the stack.
+  $DF49,$02 Decrease counter by one and loop back to #R$DF17 until counter is zero.
+  $DF4B,$03 Restore #REGhl and #REGix from the stack.
+  $DF4E,$02 Decrease #REGix by one.
+  $DF50,$02 Decrease #REGiy by one.
+  $DF52,$01 Restore #REGbc from the stack.
+  $DF53,$01 Decrease #REGb by one.
+  $DF54,$03 Jump to #R$DEA7 until #REGb is zero.
+  $DF57,$01 Return.
 
-b $DF58
+g $DF58 Table: Tile Data Offsets
+@ $DF58 label=Table_TileDataOffsets
+D $DF58 Used by the routine at #R$DE69.
+N $DF58 Tile: #N($01+((#PC-$DF58)/$04)).
+W $DF58,$02 Graphics data offset.
+W $DF5A,$02 Attribute data offset.
+L $DF58,$04,$14
 
 c $DFA8
   $DFA8,$01 Write #REGa to *#REGhl.
@@ -2143,8 +2291,14 @@ g $E2C5 Random Number Seed
 @ $E2C5 label=RandomNumberSeed
 W $E2C5,$02
 
-g $E2C7
-B $E2C7,$02,$01
+g $E2C7 Item ID
+@ $E2C7 label=Item_ID
+B $E2C7,$01
+
+g $E2C8 Item Sprite Bank
+D $E2C8 Will point to either of: #R$A0E3, #R$AC24 or #R$B765.
+@ $E2C8 label=Item_SpriteBank
+W $E2C8,$02
 
 c $E2CA
   $E2CA,$03 #REGhl=#R$D834.
@@ -2191,30 +2345,48 @@ c $E2FD
   $E31C,$03 Call #R$E658.
   $E31F,$01 Return.
 
-c $E320
-  $E320,$03 #REGhl=#R$E695.
+c $E320 Handler: Home Arrow
+@ $E320 label=Handler_HomeArrow
+N $E320 To indicate when the cursor is "docked", the home box cycles through a
+. bunch of attribute values:
+N $E320 #PUSHS #UDGTABLE {
+.   #SIM(start=$D1F1,stop=$D1F7)#POKES$E337,$00
+.   #FOR$00,$0E||x|#SIM(start=$E320,stop=$E33C)
+.     #SCR$02{$00,$00,$50,$50}(*home-arrow-x)#PLOT(0,0,0)(home-arrow-x)
+.   ||
+.   #UDGARRAY#(#ANIMATE$02,$0E(home-arrow))
+. } UDGTABLE# #POPS
+  $E320,$03 Point #REGhl at #R$E695 where the attributes are stored.
+N $E323 Validate the attribute offset value.
   $E323,$07 Jump to #R$E32F if *#R$D836 is not equal to #N$0E.
-  $E32A,$05 Write #N$00 to *#R$D836.
-  $E32F,$01 #REGc=#REGa.
-  $E330,$02 #REGb=#N$00.
-  $E332,$01 #REGhl+=#REGbc.
-  $E333,$01 #REGa=*#REGhl.
+N $E32A If *#R$D836 is at the end of the table, reset it back to #N$00.
+  $E32A,$05 Reset *#R$D836 back to the first colour.
+N $E32F Fetch the attribute value using the offset.
+@ $E32F label=HomeArrow_SkipReset
+  $E32F,$03 Create an offset in #REGbc against the arrow attribute table.
+  $E332,$01 Add the offset to the arrow attribute table pointer.
+  $E333,$01 Fetch the attribute byte from the table and store it in #REGa.
   $E334,$03 Call #R$E682.
   $E337,$01 Halt operation (suspend CPU until the next interrupt).
+N $E338 Move the attribute offset to the next value in the attribute table.
   $E338,$03 #REGhl=#R$D836.
-  $E33B,$01 Increment *#REGhl by one.
-  $E33C,$01 #REGa=*#REGhl.
-  $E33D,$02 RLCA.
-  $E33F,$01 #REGc=#REGa.
-  $E340,$02 #REGb=#N$06.
-  $E342,$02 #REGa=#N$05.
-  $E344,$02 Set border to the colour held by #REGa.
-  $E346,$02,b$01 Flip bit 4.
-  $E348,$01 Stash #REGbc on the stack.
-  $E349,$01 #REGb=#REGc.
-  $E34A,$02 Decrease counter by one and loop back to #R$E34A until counter is zero.
-  $E34C,$01 Restore #REGbc from the stack.
-  $E34D,$02 Decrease counter by one and loop back to #R$E344 until counter is zero.
+  $E33B,$01 Increment the attribute offset value to the next colour value.
+N $E33C Set up playing a sound.
+  $E33C,$04 Multiply the attribute offset value by #N$04 and store the result
+. in #REGc.
+  $E340,$02 Set a counter in #REGb for the number of times to make the sound.
+  $E342,$02 Set the initial border/ speaker state in #REGa.
+@ $E344 label=HomeArrow_Sound_Loop
+  $E344,$02 Set the border colour/ play sound.
+  $E346,$02,b$01 Flip the speaker bit.
+  $E348,$01 Stash the loop counter on the stack.
+  $E349,$01 Set the delay counter to the value held in REGc.
+@ $E34A label=HomeArrow_Sound_Delay
+  $E34A,$02 Decrease the delay counter by one and loop back to #R$E34A until
+. the delay counter is zero.
+  $E34C,$01 Restore the loop counter from the stack.
+  $E34D,$02 Decrease the loop counter by one and loop back to #R$E344 until the
+. loop counter is zero.
   $E34F,$03 Jump to #R$F39E.
 
 c $E352
@@ -2607,12 +2779,15 @@ N $E678 One full row is #N$20 bytes, so this is #N$03 bytes less than one row.
 . the rows have been updated.
   $E681,$01 Return.
 
-c $E682
+c $E682 Colourise Home
+@ $E682 label=ColouriseHome
 R $E682 A The attribute value to write
   $E682,$03 #REGhl=#N$5821 (attribute buffer location).
   $E685,$02 Set a counter in #REGb for #N$02 rows.
+@ $E687 label=ColouriseHome_Loop
   $E687,$01 Stash the row counter on the stack.
   $E688,$02 Set a counter in #REGb for #N$03 character blocks.
+@ $E68A label=Home_WriteAttribute
   $E68A,$01 Write the value stored in #REGa to the address held by the
 . attribute buffer pointer.
   $E68B,$01 Increment the attribute buffer pointer by one.
@@ -2624,7 +2799,11 @@ R $E682 A The attribute value to write
 . the rows have been updated.
   $E694,$01 Return.
 
-g $E695
+g $E695 Home Arrow Attributes
+@ $E695 label=HomeArrowAttributes
+D $E695 Used by the routine at #R$E320.
+B $E695,$01 #COLOUR(#PEEK(#PC)).
+L $E695,$01,$0E
 
 g $E6A3 Home Attributes
 @ $E6A3 label=HomeAttributes
@@ -4715,22 +4894,22 @@ c $F43E
   $F7F7,$03 RLCA.
   $F7FA,$04 #REGix=#R$E186.
   $F7FE,$03 Jump to #R$E0E2.
-  $F801,$02 Compare #REGa with #N$10.
-  $F803,$03 Jump to #R$E320 if #REGa is not zero.
-  $F806,$03 #REGa=*#R$E26A.
-  $F809,$02 Compare #REGa with #N$00.
-  $F80B,$03 Jump to #R$E320 if #REGa is not zero.
+
+c $F801
+  $F801,$05 Jump to #R$E320 if #REGa is not equal to #N$10.
+  $F806,$08 Jump to #R$E320 if *#R$E26A is not equal to #N$00.
   $F80E,$03 Call #R$E713.
   $F811,$03 #REGa=*#R$E2C7.
   $F814,$05 Jump to #R$E320 if #REGa is equal to #N$00.
   $F819,$03 Write #REGa to *#R$E26A.
-  $F81C,$01 Halt operation (suspend CPU until the next interrupt).
-  $F81D,$01 Halt operation (suspend CPU until the next interrupt).
-  $F81E,$01 Halt operation (suspend CPU until the next interrupt).
-  $F81F,$05 Jump to #R$F84B if #REGa is lower than #N$15 (unsigned comparison).
-  $F824,$05 Jump to #R$F853 if #REGa is lower than #N$29 (unsigned comparison).
-  $F829,$05 Jump to #R$F858 if #REGa is lower than #N$3D (unsigned comparison).
+  $F81C,$03 Halt operation (suspend CPU until the next interrupt) three times.
+  $F81F,$05 Jump to #R$F84B if #REGa is lower than #N$15.
+  $F824,$05 Jump to #R$F853 if #REGa is lower than #N$29.
+  $F829,$05 Jump to #R$F858 if #REGa is lower than #N$3D.
+N $F82E Else, use #R$AC24 as the default spritesheet.
   $F82E,$03 #REGhl=#R$AC24.
+N $F831 Set the active spritesheet.
+@ $F831 label=WriteSpriteBank
   $F831,$03 Write #REGhl to *#R$E2C8.
   $F834,$03 Call #R$DE69.
   $F837,$03 Call #R$DA0B.
@@ -4738,14 +4917,19 @@ c $F43E
   $F83D,$01 Increment #REGhl by one.
   $F83E,$03 Write #REGhl to *#R$E5B0.
   $F841,$02 #REGb=#N$00.
-  $F843,$02 #REGa=#N$06.
-  $F845,$03 Write #REGa to *#R$D82D.
+  $F843,$05 Write #N$06 to *#R$D82D.
   $F848,$03 Jump to #R$F46E.
+N $F84B Set the spritebank to the buffer image (containing the image tiles).
+@ $F84B label=SetSpriteBank_BufferImage
   $F84B,$03 Call #R$DFB2.
   $F84E,$03 #REGhl=#R$A0E3.
   $F851,$02 Jump to #R$F831.
+N $F853 Set spritebank #N$01.
+@ $F853 label=SetSpriteBank_01
   $F853,$03 #REGhl=#R$AC24.
   $F856,$02 Jump to #R$F831.
+N $F858 Set spritebank #N$02.
+@ $F858 label=SetSpriteBank_02
   $F858,$03 #REGhl=#R$B765.
   $F85B,$02 Jump to #R$F831.
 

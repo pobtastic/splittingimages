@@ -2769,10 +2769,17 @@ g$A0E3 DEFB $00,$00,$00,$F3,$31,$F4,$AB,$37,$AF,$DD,$21,$00,$00,$11,$11,$00,$CD,
 ;
 ; .
 ;
+; The whole spritesheet:
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)@$B624-$B763(items-01) } UDGTABLE#
+; .
+; Each individual sprite:
 ; #UDGTABLE
-; { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)@$B624-$B763(items-01)
-; }
-; UDGTABLE#
+; #FOR$00,$03''y'
+; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
+; { #FOR$00,$04!!x!
+;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
+;   #UDGARRAY$04,scale=$02,step=$14(($AC24+{multiplier})-($AE90+{multiplier})-$01-$A0)@($B624+({id}+y*$0F)*$04)-($B663+({id}+y*$0F)*$04)-$01-$14(#FORMAT(items-01-{id:02}))! |
+; !! } '' UDGTABLE#
 @label=GraphicsData_Items_01
 b$AC24 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
  $AC38 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -2902,6 +2909,7 @@ b$AC24 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
  $B5E8 DEFB $1F,$80,$08,$10,$00,$00,$00,$00,$00,$00,$00,$00,$61,$B6,$C6,$1C,$00,$00,$00,$00
  $B5FC DEFB $0F,$00,$07,$E0,$00,$00,$00,$00,$00,$00,$00,$00,$61,$B6,$C6,$1C,$00,$00,$00,$00
  $B610 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+@label=GraphicsData_Items_01_Attributes
  $B624 DEFB $45,$45,$45,$45,$07,$45,$45,$07,$44,$44,$07,$44,$04,$05,$05,$05,$47,$47,$47,$47
  $B638 DEFB $45,$45,$45,$45,$05,$05,$05,$07,$46,$46,$06,$06,$44,$06,$06,$44,$47,$7B,$43,$43
  $B64C DEFB $45,$45,$45,$45,$45,$05,$45,$07,$45,$45,$05,$05,$06,$06,$06,$44,$43,$43,$43,$43
@@ -2926,10 +2934,17 @@ b$AC24 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
 ;
 ; .
 ;
+; The whole spritesheet:
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)@$C165-$C2A4(items-02) } UDGTABLE#
+; .
+; Each individual sprite:
 ; #UDGTABLE
-; { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)@$C165-$C2A4(items-02)
-; }
-; UDGTABLE#
+; #FOR$00,$03''y'
+; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
+; { #FOR$00,$04!!x!
+;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
+;   #UDGARRAY$04,scale=$02,step=$14(($B765+{multiplier})-($B9D1+{multiplier})-$01-$A0)@($C165+({id}+y*$0F)*$04)-($C2A4+({id}+y*$0F)*$04)-$01-$14(#FORMAT(items-02-{id:02}))! |
+; !! } '' UDGTABLE#
 @label=GraphicsData_Items_02
 b$B765 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$7F,$FF,$FF,$FE,$7F,$FF,$FF,$FE,$00,$00,$00,$00
  $B779 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$80,$06,$60,$01,$80,$00,$00,$01,$00,$00,$00,$00
@@ -3059,6 +3074,7 @@ b$B765 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$7F,$FF,$FF,$FE,$7F,$FF,$FF,$FE,$00,
  $C129 DEFB $7E,$FB,$2F,$BE,$F5,$5C,$F6,$8F,$F6,$F7,$B5,$AF,$7E,$FB,$EF,$9C,$65,$8C,$6B,$55
  $C13D DEFB $7C,$73,$2F,$9C,$D5,$58,$A6,$8D,$F6,$F7,$B5,$AF,$7C,$73,$EF,$9C,$7D,$CC,$6B,$D5
  $C151 DEFB $00,$00,$00,$00,$D5,$5E,$96,$ED,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+@label=GraphicsData_Items_02_Attributes
  $C165 DEFB $47,$47,$47,$47,$07,$07,$07,$07,$44,$44,$44,$44,$05,$05,$05,$05,$43,$43,$43,$43
  $C179 DEFB $47,$47,$47,$47,$07,$07,$07,$07,$44,$44,$44,$44,$05,$05,$05,$05,$03,$03,$43,$43
  $C18D DEFB $47,$47,$47,$47,$07,$07,$07,$07,$44,$44,$44,$44,$05,$05,$05,$05,$03,$03,$03,$43
@@ -4460,7 +4476,10 @@ g$D834 DEFB $00
 @label=PlayerCursor_Flag
 g$D835 DEFB $00
 
-; Game status buffer entry at D836
+; Home Arrow Attribute Table Offset
+;
+; Used by the routine at #R$E320.
+@label=HomeArrow_AttributeTable_Offset
 g$D836 DEFB $00
 
 ; Game status buffer entry at D837
@@ -4844,7 +4863,7 @@ c$D9BE LD A,($E2C7)  ; #REGa=*#R$E2C7.
 
 ; Routine at DA0B
 ;
-; Used by the routine at #R$F43E.
+; Used by the routine at #R$F801.
 c$DA0B LD B,$06      ; #REGb=#N$06.
  $DA0D LD C,$02      ; #REGc=#N$02.
  $DA0F LD ($E75D),BC ; Write #REGbc to *#R$E75D.
@@ -5676,152 +5695,228 @@ c$DE51 LD A,L        ; Load the X co-ordinate into #REGa.
                      ; address).
  $DE68 RET           ; Return.
 
-; Draw New Tile
+; Draw Tile
 ;
-; Used by the routine at #R$F43E.
-@label=Draw_NewTile
-c$DE69 LD IX,$DF58   ;
- $DE6D LD B,$00      ;
- $DE6F LD A,($E2C7)  ;
- $DE72 LD C,$03      ;
-*$DE74 CP $15        ;
- $DE76 JP M,$DE80    ;
- $DE79 SUB $14       ;
- $DE7B DEC C         ;
- $DE7C JR NZ,$DE74   ;
- $DE7E LD A,$01      ;
-*$DE80 DEC A         ;
- $DE81 RLCA          ;
- $DE82 RLCA          ;
- $DE83 LD C,A        ;
- $DE84 ADD IX,BC     ;
- $DE86 LD C,(IX+$00) ;
- $DE89 LD B,(IX+$01) ;
- $DE8C LD E,(IX+$02) ;
- $DE8F LD D,(IX+$03) ;
- $DE92 LD IX,($E2C8) ;
- $DE96 ADD IX,BC     ;
- $DE98 LD HL,($E2C8) ;
- $DE9B LD BC,$0A00   ;
- $DE9E ADD HL,BC     ;
- $DE9F ADD HL,DE     ;
+; Used by the routine at #R$F801.
+@label=Draw_Tile
+c$DE69 LD IX,$DF58   ; Set #REGix to #R$DF58.
+ $DE6D LD B,$00      ; Initialise #REGb to #N$00 for the sum below.
+ $DE6F LD A,($E2C7)  ; Load *#R$E2C7 into #REGa.
+; Find which spritesheet the image is located in. There are #N$14 sprites
+; in each sheet, so test if the sprite ID is less than #N$15 to check if it's
+; in the first one. Else, subtract #N$14 and check again.
+ $DE72 LD C,$03      ; Set a counter in #REGc with #N$03 to track the three spritesheets
+                     ; (two item sheets and one for the game tiles).
+@label=FindSpritesheet_Loop
+*$DE74 CP $15        ; {Jump to #R$DE80 if #REGa is lower than #N$15 (unsigned
+ $DE76 JP M,$DE80    ; comparison).}
+ $DE79 SUB $14       ; Subtract #N$14 from #REGa.
+ $DE7B DEC C         ; Decrease #REGc by one.
+ $DE7C JR NZ,$DE74   ; Jump back to #R$DE74 until #REGc is zero.
+; Default the sprite ID to #N$01.
+ $DE7E LD A,$01      ; #REGa=#N$01.
+; Adjust the sprite ID for 0-based indexing.
+@label=LocateSprite
+*$DE80 DEC A         ; Decrease the sprite ID by one.
+; There are #N$04 offset bytes, so multiply the sprite ID by #N$04 to
+; find the relevant offsets in the table.
+ $DE81 RLCA          ; {Multiply the sprite ID by #N$04 and store the result in
+ $DE82 RLCA          ; #REGc.
+ $DE83 LD C,A        ; }
+; Fetch the offsets for the sprite being processed.
+ $DE84 ADD IX,BC     ; Add the result to #REGix to locate the offsets for the
+                     ; tile.
+ $DE86 LD C,(IX+$00) ; {Fetch the graphic data offset and store it in #REGbc.
+ $DE89 LD B,(IX+$01) ; }
+ $DE8C LD E,(IX+$02) ; {Fetch the attribute data offset and store it in #REGde.
+ $DE8F LD D,(IX+$03) ; }
+; Calculate the graphic data address.
+ $DE92 LD IX,($E2C8) ; {Add *#R$E2C8 and the offset in #REGbc to locate the start of the
+ $DE96 ADD IX,BC     ; graphics data - store the result in #REGix.}
+; Calculate the attribute address.
+ $DE98 LD HL,($E2C8) ; {Add *#R$E2C8 and #N($0A00,$04,$04) to locate the start of the
+ $DE9B LD BC,$0A00   ; attributes for the spritesheet. Then, add the offset held in #REGde to the
+ $DE9E ADD HL,BC     ; total, this will locate the start of the attributes for the sprite currently
+ $DE9F ADD HL,DE     ; being processed - store the result in #REGiy (using the stack).
  $DEA0 PUSH HL       ;
- $DEA1 POP IY        ;
- $DEA3 LD B,$04      ;
- $DEA5 LD H,$28      ;
-*$DEA7 PUSH BC       ;
- $DEA8 LD A,$08      ;
- $DEAA PUSH IX       ;
- $DEAC LD BC,$0014   ;
-*$DEAF PUSH AF       ;
- $DEB0 LD L,A        ;
- $DEB1 CALL $DE51    ;
- $DEB4 LD A,(IX+$00) ;
- $DEB7 LD (DE),A     ;
- $DEB8 ADD IX,BC     ;
- $DEBA POP AF        ;
- $DEBB INC A         ;
- $DEBC CP $28        ;
- $DEBE JP NZ,$DEAF   ;
- $DEC1 PUSH IY       ;
- $DEC3 POP IX        ;
- $DEC5 LD DE,$5825   ;
- $DEC8 LD B,$04      ;
- $DECA PUSH HL       ;
-*$DECB PUSH BC       ;
- $DECC LD A,(IX+$00) ;
- $DECF LD (DE),A     ;
- $DED0 LD BC,$0014   ;
- $DED3 ADD IX,BC     ;
- $DED5 LD HL,$0020   ;
+ $DEA1 POP IY        ; }
+; Print the sprite to the screen.
+ $DEA3 LD B,$04      ; #REGb=#N$04.
+ $DEA5 LD H,$28      ; #REGh=#N$28.
+*$DEA7 PUSH BC       ; Stash #REGbc on the stack.
+ $DEA8 LD A,$08      ; #REGa=#N$08.
+ $DEAA PUSH IX       ; Stash #REGix on the stack.
+ $DEAC LD BC,$0014   ; #REGbc=#N($0014,$04,$04).
+*$DEAF PUSH AF       ; Stash #REGaf on the stack.
+ $DEB0 LD L,A        ; #REGl=#REGa.
+ $DEB1 CALL $DE51    ; Call #R$DE51.
+ $DEB4 LD A,(IX+$00) ; {Write *#REGix+#N$00 to *#REGde.
+ $DEB7 LD (DE),A     ; }
+ $DEB8 ADD IX,BC     ; #REGix+=#REGbc.
+ $DEBA POP AF        ; Restore #REGaf from the stack.
+ $DEBB INC A         ; Increment #REGa by one.
+ $DEBC CP $28        ; {Jump to #R$DEAF if #REGa is not equal to #N$28.
+ $DEBE JP NZ,$DEAF   ; }
+; Switch #REGix to point to the attributes.
+ $DEC1 PUSH IY       ; {#REGix=#REGiy (using the stack).
+ $DEC3 POP IX        ; }
+ $DEC5 LD DE,$5825   ; #REGde=#N$5825 (attribute buffer location).
+ $DEC8 LD B,$04      ; #REGb=#N$04.
+ $DECA PUSH HL       ; Stash #REGhl on the stack.
+@label=Colour_Tile_Loop
+*$DECB PUSH BC       ; Stash #REGbc on the stack.
+ $DECC LD A,(IX+$00) ; {Write *#REGix+#N$00 to *#REGde.
+ $DECF LD (DE),A     ; }
+ $DED0 LD BC,$0014   ; {#REGix+=#N($0014,$04,$04).
+ $DED3 ADD IX,BC     ; }
+ $DED5 LD HL,$0020   ; {#REGde+=#N($0020,$04,$04).
  $DED8 ADD HL,DE     ;
- $DED9 EX DE,HL      ;
- $DEDA POP BC        ;
- $DEDB DJNZ $DECB    ;
- $DEDD POP HL        ;
+ $DED9 EX DE,HL      ; }
+ $DEDA POP BC        ; Restore #REGbc from the stack.
+ $DEDB DJNZ $DECB    ; Decrease counter by one and loop back to #R$DECB until
+                     ; counter is zero.
+ $DEDD POP HL        ; {Restore #REGhl, #REGix and #REGbc from the stack.
  $DEDE POP IX        ;
- $DEE0 POP BC        ;
- $DEE1 LD A,B        ;
- $DEE2 PUSH BC       ;
+ $DEE0 POP BC        ; }
+ $DEE1 LD A,B        ; #REGa=#REGb.
+ $DEE2 PUSH BC       ; {Stash #REGbc, #REGix and #REGhl on the stack.
  $DEE3 PUSH IX       ;
- $DEE5 PUSH HL       ;
- $DEE6 CP $01        ;
- $DEE8 JP Z,$DF4B    ;
- $DEEB LD A,$05      ;
- $DEED LD C,$23      ;
-*$DEEF LD B,C        ;
- $DEF0 SLA B         ;
-*$DEF2 DJNZ $DEF2    ;
- $DEF4 XOR $10       ;
- $DEF6 OUT ($FE),A   ;
- $DEF8 DEC C         ;
- $DEF9 JP NZ,$DEEF   ;
- $DEFC LD HL,$1388   ;
- $DEFF LD DE,$04E2   ;
-*$DF02 LD A,(HL)     ;
- $DF03 AND $F0       ;
- $DF05 OR $05        ;
- $DF07 OUT ($FE),A   ;
- $DF09 INC HL        ;
- $DF0A DEC DE        ;
- $DF0B LD A,D        ;
+ $DEE5 PUSH HL       ; }
+ $DEE6 CP $01        ; {Jump to #R$DF4B if #REGa is equal to #N$01.
+ $DEE8 JP Z,$DF4B    ; }
+ $DEEB LD A,$05      ; #REGa=#N$05.
+ $DEED LD C,$23      ; #REGc=#N$23.
+*$DEEF LD B,C        ; #REGb=#REGc.
+ $DEF0 SLA B         ; Shift #REGb left (with carry).
+*$DEF2 DJNZ $DEF2    ; Decrease counter by one and loop back to #R$DEF2 until
+                     ; counter is zero.
+ $DEF4 XOR %00010000 ; Flip bit 4.
+ $DEF6 OUT ($FE),A   ; Send to the speaker.
+ $DEF8 DEC C         ; Decrease #REGc by one.
+ $DEF9 JP NZ,$DEEF   ; Jump to #R$DEEF until #REGc is zero.
+ $DEFC LD HL,$1388   ; #REGhl=#N$1388.
+ $DEFF LD DE,$04E2   ; #REGde=#N$04E2.
+*$DF02 LD A,(HL)     ; #REGa=*#REGhl.
+ $DF03 AND %11110000 ; Keep only bits 4-7.
+ $DF05 OR %00000101  ; Set bits 0, 2.
+ $DF07 OUT ($FE),A   ; Send to the speaker.
+ $DF09 INC HL        ; Increment #REGhl by one.
+ $DF0A DEC DE        ; Decrease #REGde by one.
+ $DF0B LD A,D        ; {Jump to #R$DF02 if #REGde is not zero.
  $DF0C OR E          ;
- $DF0D JP NZ,$DF02   ;
- $DF10 LD A,$01      ;
- $DF12 LD ($E75F),A  ;
- $DF15 LD B,$04      ;
-*$DF17 PUSH BC       ;
- $DF18 LD A,($E75F)  ;
- $DF1B LD B,A        ;
- $DF1C LD C,$07      ;
- $DF1E CALL $DCC2    ;
- $DF21 LD A,$08      ;
- $DF23 PUSH HL       ;
-*$DF24 LD BC,$0003   ;
- $DF27 PUSH HL       ;
- $DF28 POP DE        ;
- $DF29 INC DE        ;
- $DF2A PUSH HL       ;
- $DF2B LDDR          ;
- $DF2D INC HL        ;
- $DF2E LD (HL),C     ;
- $DF2F POP HL        ;
- $DF30 INC H         ;
- $DF31 DEC A         ;
- $DF32 JP NZ,$DF24   ;
- $DF35 POP HL        ;
- $DF36 CALL $DCD1    ;
- $DF39 PUSH DE       ;
- $DF3A POP HL        ;
- $DF3B INC DE        ;
- $DF3C LD BC,$0003   ;
- $DF3F LDDR          ;
- $DF41 LD A,$00      ;
- $DF43 LD (DE),A     ;
- $DF44 LD HL,$E75F   ;
- $DF47 INC (HL)      ;
- $DF48 POP BC        ;
- $DF49 DJNZ $DF17    ;
-*$DF4B POP HL        ;
- $DF4C POP IX        ;
- $DF4E DEC IX        ;
- $DF50 DEC IY        ;
- $DF52 POP BC        ;
- $DF53 DEC B         ;
- $DF54 JP NZ,$DEA7   ;
- $DF57 RET           ;
+ $DF0D JP NZ,$DF02   ; }
+ $DF10 LD A,$01      ; {Write #N$01 to *#R$E75F.
+ $DF12 LD ($E75F),A  ; }
+ $DF15 LD B,$04      ; #REGb=#N$04.
+*$DF17 PUSH BC       ; Stash #REGbc on the stack.
+ $DF18 LD A,($E75F)  ; {#REGb=*#R$E75F.
+ $DF1B LD B,A        ; }
+ $DF1C LD C,$07      ; #REGc=#N$07.
+ $DF1E CALL $DCC2    ; Call #R$DCC2.
+ $DF21 LD A,$08      ; #REGa=#N$08.
+ $DF23 PUSH HL       ; Stash #REGhl on the stack.
+*$DF24 LD BC,$0003   ; #REGbc=#N($0003,$04,$04).
+ $DF27 PUSH HL       ; {#REGde=#REGhl (using the stack).
+ $DF28 POP DE        ; }
+ $DF29 INC DE        ; Increment #REGde by one.
+ $DF2A PUSH HL       ; Stash #REGhl on the stack.
+ $DF2B LDDR          ; LDDR.
+ $DF2D INC HL        ; Increment #REGhl by one.
+ $DF2E LD (HL),C     ; Write #REGc to *#REGhl.
+ $DF2F POP HL        ; Restore #REGhl from the stack.
+ $DF30 INC H         ; Increment #REGh by one.
+ $DF31 DEC A         ; Decrease #REGa by one.
+ $DF32 JP NZ,$DF24   ; Jump to #R$DF24 until #REGa is zero.
+ $DF35 POP HL        ; Restore #REGhl from the stack.
+ $DF36 CALL $DCD1    ; Call #R$DCD1.
+ $DF39 PUSH DE       ; {#REGhl=#REGde (using the stack).
+ $DF3A POP HL        ; }
+ $DF3B INC DE        ; Increment #REGde by one.
+ $DF3C LD BC,$0003   ; #REGbc=#N($0003,$04,$04).
+ $DF3F LDDR          ; LDDR.
+ $DF41 LD A,$00      ; {Write #N$00 to *#REGde.
+ $DF43 LD (DE),A     ; }
+ $DF44 LD HL,$E75F   ; #REGhl=#R$E75F.
+ $DF47 INC (HL)      ; Increment *#REGhl by one.
+ $DF48 POP BC        ; Restore #REGbc from the stack.
+ $DF49 DJNZ $DF17    ; Decrease counter by one and loop back to #R$DF17 until
+                     ; counter is zero.
+*$DF4B POP HL        ; {Restore #REGhl and #REGix from the stack.
+ $DF4C POP IX        ; }
+ $DF4E DEC IX        ; Decrease #REGix by one.
+ $DF50 DEC IY        ; Decrease #REGiy by one.
+ $DF52 POP BC        ; Restore #REGbc from the stack.
+ $DF53 DEC B         ; Decrease #REGb by one.
+ $DF54 JP NZ,$DEA7   ; Jump to #R$DEA7 until #REGb is zero.
+ $DF57 RET           ; Return.
 
-; Data block at DF58
-b$DF58 DEFB $03,$00,$03,$00,$07,$00,$07,$00
- $DF60 DEFB $0B,$00,$0B,$00,$0F,$00,$0F,$00
- $DF68 DEFB $13,$00,$13,$00,$83,$02,$53,$00
- $DF70 DEFB $87,$02,$57,$00,$8B,$02,$5B,$00
- $DF78 DEFB $8F,$02,$5F,$00,$93,$02,$63,$00
- $DF80 DEFB $03,$05,$A3,$00,$07,$05,$A7,$00
- $DF88 DEFB $0B,$05,$AB,$00,$0F,$05,$AF,$00
- $DF90 DEFB $13,$05,$B3,$00,$83,$07,$F3,$00
- $DF98 DEFB $87,$07,$F7,$00,$8B,$07,$FB,$00
- $DFA0 DEFB $8F,$07,$FF,$00,$93,$07,$03,$01
+; Table: Tile Data Offsets
+;
+; Used by the routine at #R$DE69.
+;
+; .
+;
+; Tile: #N($01+((#PC-$DF58)/$04)).
+@label=Table_TileDataOffsets
+g$DF58 DEFW $0003    ; Graphics data offset.
+ $DF5A DEFW $0003    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF5C DEFW $0007    ; Graphics data offset.
+ $DF5E DEFW $0007    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF60 DEFW $000B    ; Graphics data offset.
+ $DF62 DEFW $000B    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF64 DEFW $000F    ; Graphics data offset.
+ $DF66 DEFW $000F    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF68 DEFW $0013    ; Graphics data offset.
+ $DF6A DEFW $0013    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF6C DEFW $0283    ; Graphics data offset.
+ $DF6E DEFW $0053    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF70 DEFW $0287    ; Graphics data offset.
+ $DF72 DEFW $0057    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF74 DEFW $028B    ; Graphics data offset.
+ $DF76 DEFW $005B    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF78 DEFW $028F    ; Graphics data offset.
+ $DF7A DEFW $005F    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF7C DEFW $0293    ; Graphics data offset.
+ $DF7E DEFW $0063    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF80 DEFW $0503    ; Graphics data offset.
+ $DF82 DEFW $00A3    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF84 DEFW $0507    ; Graphics data offset.
+ $DF86 DEFW $00A7    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF88 DEFW $050B    ; Graphics data offset.
+ $DF8A DEFW $00AB    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF8C DEFW $050F    ; Graphics data offset.
+ $DF8E DEFW $00AF    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF90 DEFW $0513    ; Graphics data offset.
+ $DF92 DEFW $00B3    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF94 DEFW $0783    ; Graphics data offset.
+ $DF96 DEFW $00F3    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF98 DEFW $0787    ; Graphics data offset.
+ $DF9A DEFW $00F7    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DF9C DEFW $078B    ; Graphics data offset.
+ $DF9E DEFW $00FB    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DFA0 DEFW $078F    ; Graphics data offset.
+ $DFA2 DEFW $00FF    ; Attribute data offset.
+; Tile: #N($01+((#PC-$DF58)/$04)).
+ $DFA4 DEFW $0793    ; Graphics data offset.
+ $DFA6 DEFW $0103    ; Attribute data offset.
 
 ; Routine at DFA8
 ;
@@ -5838,7 +5933,7 @@ c$DFA8 LD (HL),A     ; Write #REGa to *#REGhl.
 
 ; Routine at DFB2
 ;
-; Used by the routines at #R$E2CA and #R$F43E.
+; Used by the routines at #R$E2CA and #R$F801.
 c$DFB2 LD ($E2C7),A             ; Write #REGa to *#R$E2C7.
  $DFB5 CP $01                   ; {Return if #REGa is lower than #N$01
  $DFB7 RET M                    ; (unsigned comparison).}
@@ -6354,10 +6449,15 @@ b$E2A7 DEFB $00,$00,$00,$00,$00,$00,$00,$00
 @label=RandomNumberSeed
 g$E2C5 DEFW $0000
 
-; Game status buffer entry at E2C7
+; Item ID
+@label=Item_ID
 g$E2C7 DEFB $00
- $E2C8 DEFB $00
- $E2C9 DEFB $00
+
+; Item Sprite Bank
+;
+; Will point to either of: #R$A0E3, #R$AC24 or #R$B765.
+@label=Item_SpriteBank
+g$E2C8 DEFW $0000
 
 ; Routine at E2CA
 ;
@@ -6422,38 +6522,63 @@ c$E2FD LD A,($E5B2)  ; {Return if *#R$E5B2 is equal to #N$10.
  $E31C CALL $E658    ; Call #R$E658.
  $E31F RET           ; Return.
 
-; Routine at E320
+; Handler: Home Arrow
 ;
-; Used by the routines at #R$F39E and #R$F43E.
-c$E320 LD HL,$E695   ; #REGhl=#R$E695.
+; Used by the routines at #R$F39E and #R$F801.
+;
+; .
+;
+; To indicate when the cursor is "docked", the home box cycles through a
+; bunch of attribute values:
+; .
+; #PUSHS #UDGTABLE {
+;   #SIM(start=$D1F1,stop=$D1F7)#POKES$E337,$00
+;   #FOR$00,$0E||x|#SIM(start=$E320,stop=$E33C)
+;     #SCR$02{$00,$00,$50,$50}(*home-arrow-x)#PLOT(0,0,0)(home-arrow-x)
+;   ||
+;   #UDGARRAY#(#ANIMATE$02,$0E(home-arrow))
+; } UDGTABLE# #POPS
+@label=Handler_HomeArrow
+c$E320 LD HL,$E695   ; Point #REGhl at #R$E695 where the attributes are stored.
+; Validate the attribute offset value.
  $E323 LD A,($D836)  ; {Jump to #R$E32F if *#R$D836 is not equal to #N$0E.
  $E326 CP $0E        ;
  $E328 JR NZ,$E32F   ; }
- $E32A LD A,$00      ; {Write #N$00 to *#R$D836.
+; If *#R$D836 is at the end of the table, reset it back to #N$00.
+ $E32A LD A,$00      ; {Reset *#R$D836 back to the first colour.
  $E32C LD ($D836),A  ; }
-*$E32F LD C,A        ; #REGc=#REGa.
- $E330 LD B,$00      ; #REGb=#N$00.
- $E332 ADD HL,BC     ; #REGhl+=#REGbc.
- $E333 LD A,(HL)     ; #REGa=*#REGhl.
+; Fetch the attribute value using the offset.
+@label=HomeArrow_SkipReset
+*$E32F LD C,A        ; {Create an offset in #REGbc against the arrow attribute
+ $E330 LD B,$00      ; table.}
+ $E332 ADD HL,BC     ; Add the offset to the arrow attribute table pointer.
+ $E333 LD A,(HL)     ; Fetch the attribute byte from the table and store it in
+                     ; #REGa.
  $E334 CALL $E682    ; Call #R$E682.
  $E337 HALT          ; Halt operation (suspend CPU until the next interrupt).
+; Move the attribute offset to the next value in the attribute table.
  $E338 LD HL,$D836   ; #REGhl=#R$D836.
- $E33B INC (HL)      ; Increment *#REGhl by one.
- $E33C LD A,(HL)     ; #REGa=*#REGhl.
- $E33D RLCA          ; {RLCA.
- $E33E RLCA          ; }
- $E33F LD C,A        ; #REGc=#REGa.
- $E340 LD B,$06      ; #REGb=#N$06.
- $E342 LD A,$05      ; #REGa=#N$05.
-*$E344 OUT ($FE),A   ; Set border to the colour held by #REGa.
- $E346 XOR %00010000 ; Flip bit 4.
- $E348 PUSH BC       ; Stash #REGbc on the stack.
- $E349 LD B,C        ; #REGb=#REGc.
-*$E34A DJNZ $E34A    ; Decrease counter by one and loop back to #R$E34A until
-                     ; counter is zero.
- $E34C POP BC        ; Restore #REGbc from the stack.
- $E34D DJNZ $E344    ; Decrease counter by one and loop back to #R$E344 until
-                     ; counter is zero.
+ $E33B INC (HL)      ; Increment the attribute offset value to the next colour
+                     ; value.
+; Set up playing a sound.
+ $E33C LD A,(HL)     ; {Multiply the attribute offset value by #N$04 and store the result
+ $E33D RLCA          ; in #REGc.
+ $E33E RLCA          ;
+ $E33F LD C,A        ; }
+ $E340 LD B,$06      ; Set a counter in #REGb for the number of times to make
+                     ; the sound.
+ $E342 LD A,$05      ; Set the initial border/ speaker state in #REGa.
+@label=HomeArrow_Sound_Loop
+*$E344 OUT ($FE),A   ; Set the border colour/ play sound.
+ $E346 XOR %00010000 ; Flip the speaker bit.
+ $E348 PUSH BC       ; Stash the loop counter on the stack.
+ $E349 LD B,C        ; Set the delay counter to the value held in REGc.
+@label=HomeArrow_Sound_Delay
+*$E34A DJNZ $E34A    ; Decrease the delay counter by one and loop back to #R$E34A until
+                     ; the delay counter is zero.
+ $E34C POP BC        ; Restore the loop counter from the stack.
+ $E34D DJNZ $E344    ; Decrease the loop counter by one and loop back to #R$E344 until the
+                     ; loop counter is zero.
  $E34F JP $F39E      ; Jump to #R$F39E.
 
 ; Routine at E352
@@ -6972,15 +7097,18 @@ c$E66A LD DE,$5822   ; #REGde=#N$5822 (attribute buffer location).
                      ; the rows have been updated.
  $E681 RET           ; Return.
 
-; Routine at E682
+; Colourise Home
 ;
 ; Used by the routines at #R$D352, #R$E320 and #R$E396.
 ;
 ; A The attribute value to write
+@label=ColouriseHome
 c$E682 LD HL,$5821   ; #REGhl=#N$5821 (attribute buffer location).
  $E685 LD B,$02      ; Set a counter in #REGb for #N$02 rows.
+@label=ColouriseHome_Loop
 *$E687 PUSH BC       ; Stash the row counter on the stack.
  $E688 LD B,$03      ; Set a counter in #REGb for #N$03 character blocks.
+@label=Home_WriteAttribute
 *$E68A LD (HL),A     ; Write the value stored in #REGa to the address held by the
                      ; attribute buffer pointer.
  $E68B INC HL        ; Increment the attribute buffer pointer by one.
@@ -6992,9 +7120,24 @@ c$E682 LD HL,$5821   ; #REGhl=#N$5821 (attribute buffer location).
                      ; the rows have been updated.
  $E694 RET           ; Return.
 
-; Game status buffer entry at E695
-g$E695 DEFB $28,$29,$2A,$2B,$2C,$2D,$2E,$2F
- $E69D DEFB $2E,$2D,$2C,$2B,$2A,$29
+; Home Arrow Attributes
+;
+; Used by the routine at #R$E320.
+@label=HomeArrowAttributes
+g$E695 DEFB $28      ; #COLOUR(#PEEK(#PC)).
+ $E696 DEFB $29      ; #COLOUR(#PEEK(#PC)).
+ $E697 DEFB $2A      ; #COLOUR(#PEEK(#PC)).
+ $E698 DEFB $2B      ; #COLOUR(#PEEK(#PC)).
+ $E699 DEFB $2C      ; #COLOUR(#PEEK(#PC)).
+ $E69A DEFB $2D      ; #COLOUR(#PEEK(#PC)).
+ $E69B DEFB $2E      ; #COLOUR(#PEEK(#PC)).
+ $E69C DEFB $2F      ; #COLOUR(#PEEK(#PC)).
+ $E69D DEFB $2E      ; #COLOUR(#PEEK(#PC)).
+ $E69E DEFB $2D      ; #COLOUR(#PEEK(#PC)).
+ $E69F DEFB $2C      ; #COLOUR(#PEEK(#PC)).
+ $E6A0 DEFB $2B      ; #COLOUR(#PEEK(#PC)).
+ $E6A1 DEFB $2A      ; #COLOUR(#PEEK(#PC)).
+ $E6A2 DEFB $29      ; #COLOUR(#PEEK(#PC)).
 
 ; Home Attributes
 ;
@@ -7158,7 +7301,7 @@ c$E6EC PUSH HL       ; Stash #REGhl on the stack.
 
 ; Routine at E713
 ;
-; Used by the routine at #R$F43E.
+; Used by the routine at #R$F801.
 c$E713 LD HL,$E293   ; #REGhl=#R$E293.
  $E716 LD A,($D826)  ; {Jump to #R$E724 if *#R$D826 is not equal to #N$00.
  $E719 CP $00        ;
@@ -9446,6 +9589,7 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F466 JP Z,$F801    ; Jump to #R$F801 if #REGa is zero.
  $F469 CP $11        ; {Jump to #R$F528 if #REGa is not equal to #N$11.
  $F46B JP NZ,$F528   ; }
+; This entry point is used by the routine at #R$F801.
 *$F46E INC HL        ; Increment #REGhl by one.
  $F46F LD A,(HL)     ; {Jump to #R$F477 if *#REGhl is not equal to #N$00.
  $F470 CP $00        ;
@@ -9899,26 +10043,33 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F7F9 RLCA          ; }
  $F7FA LD IX,$E186   ; #REGix=#R$E186.
  $F7FE JP $E0E2      ; Jump to #R$E0E2.
-*$F801 CP $10        ; Compare #REGa with #N$10.
- $F803 JP NZ,$E320   ; Jump to #R$E320 if #REGa is not zero.
- $F806 LD A,($E26A)  ; #REGa=*#R$E26A.
- $F809 CP $00        ; Compare #REGa with #N$00.
- $F80B JP NZ,$E320   ; Jump to #R$E320 if #REGa is not zero.
+
+; Routine at F801
+;
+; Used by the routine at #R$F43E.
+c$F801 CP $10        ; {Jump to #R$E320 if #REGa is not equal to #N$10.
+ $F803 JP NZ,$E320   ; }
+ $F806 LD A,($E26A)  ; {Jump to #R$E320 if *#R$E26A is not equal to #N$00.
+ $F809 CP $00        ;
+ $F80B JP NZ,$E320   ; }
  $F80E CALL $E713    ; Call #R$E713.
  $F811 LD A,($E2C7)  ; #REGa=*#R$E2C7.
  $F814 CP $00        ; {Jump to #R$E320 if #REGa is equal to #N$00.
  $F816 JP Z,$E320    ; }
  $F819 LD ($E26A),A  ; Write #REGa to *#R$E26A.
- $F81C HALT          ; Halt operation (suspend CPU until the next interrupt).
- $F81D HALT          ; Halt operation (suspend CPU until the next interrupt).
- $F81E HALT          ; Halt operation (suspend CPU until the next interrupt).
- $F81F CP $15        ; {Jump to #R$F84B if #REGa is lower than #N$15 (unsigned
- $F821 JP M,$F84B    ; comparison).}
- $F824 CP $29        ; {Jump to #R$F853 if #REGa is lower than #N$29 (unsigned
- $F826 JP M,$F853    ; comparison).}
- $F829 CP $3D        ; {Jump to #R$F858 if #REGa is lower than #N$3D (unsigned
- $F82B JP M,$F858    ; comparison).}
+ $F81C HALT          ; {Halt operation (suspend CPU until the next interrupt)
+ $F81D HALT          ; three times.
+ $F81E HALT          ; }
+ $F81F CP $15        ; {Jump to #R$F84B if #REGa is lower than #N$15.
+ $F821 JP M,$F84B    ; }
+ $F824 CP $29        ; {Jump to #R$F853 if #REGa is lower than #N$29.
+ $F826 JP M,$F853    ; }
+ $F829 CP $3D        ; {Jump to #R$F858 if #REGa is lower than #N$3D.
+ $F82B JP M,$F858    ; }
+; Else, use #R$AC24 as the default spritesheet.
  $F82E LD HL,$AC24   ; #REGhl=#R$AC24.
+; Set the active spritesheet.
+@label=WriteSpriteBank
 *$F831 LD ($E2C8),HL ; Write #REGhl to *#R$E2C8.
  $F834 CALL $DE69    ; Call #R$DE69.
  $F837 CALL $DA0B    ; Call #R$DA0B.
@@ -9926,14 +10077,20 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F83D INC HL        ; Increment #REGhl by one.
  $F83E LD ($E5B0),HL ; Write #REGhl to *#R$E5B0.
  $F841 LD B,$00      ; #REGb=#N$00.
- $F843 LD A,$06      ; #REGa=#N$06.
- $F845 LD ($D82D),A  ; Write #REGa to *#R$D82D.
+ $F843 LD A,$06      ; {Write #N$06 to *#R$D82D.
+ $F845 LD ($D82D),A  ; }
  $F848 JP $F46E      ; Jump to #R$F46E.
+; Set the spritebank to the buffer image (containing the image tiles).
+@label=SetSpriteBank_BufferImage
 *$F84B CALL $DFB2    ; Call #R$DFB2.
  $F84E LD HL,$A0E3   ; #REGhl=#R$A0E3.
  $F851 JR $F831      ; Jump to #R$F831.
+; Set spritebank #N$01.
+@label=SetSpriteBank_01
 *$F853 LD HL,$AC24   ; #REGhl=#R$AC24.
  $F856 JR $F831      ; Jump to #R$F831.
+; Set spritebank #N$02.
+@label=SetSpriteBank_02
 *$F858 LD HL,$B765   ; #REGhl=#R$B765.
  $F85B JR $F831      ; Jump to #R$F831.
 

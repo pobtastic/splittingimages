@@ -1,0 +1,123 @@
+; Copyright 2024 Paul Maddern (paul@arcadegeek.co.uk)
+
+[Item:Spritesheet 01]
+<p>See #R$AC24.</p>
+<table>
+  <tr>
+    <th colspan=1>Item 01</th>
+    <th colspan=1>Item 02</th>
+    <th colspan=1>Item 03</th>
+    <th colspan=1>Item 04</th>
+    <th colspan=1>Item 05</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-01-00.png"/></td>
+    <td><img src="../images/udgs/items-01-01.png"/></td>
+    <td><img src="../images/udgs/items-01-02.png"/></td>
+    <td><img src="../images/udgs/items-01-03.png"/></td>
+    <td><img src="../images/udgs/items-01-04.png"/></td>
+  </tr>
+  <tr>
+    <th colspan=1>Item 06</th>
+    <th colspan=1>Item 07</th>
+    <th colspan=1>Item 08</th>
+    <th colspan=1>Item 09</th>
+    <th colspan=1>Item 10</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-01-05.png"/></td>
+    <td><img src="../images/udgs/items-01-06.png"/></td>
+    <td><img src="../images/udgs/items-01-07.png"/></td>
+    <td><img src="../images/udgs/items-01-08.png"/></td>
+    <td><img src="../images/udgs/items-01-09.png"/></td>
+  </tr>
+  <tr>
+    <th colspan=1>Item 11</th>
+    <th colspan=1>Item 12</th>
+    <th colspan=1>Item 13</th>
+    <th colspan=1>Item 14</th>
+    <th colspan=1>Item 15</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-01-10.png"/></td>
+    <td><img src="../images/udgs/items-01-11.png"/></td>
+    <td><img src="../images/udgs/items-01-12.png"/></td>
+    <td><img src="../images/udgs/items-01-13.png"/></td>
+    <td><img src="../images/udgs/items-01-14.png"/></td>
+  </tr>
+  <tr>
+    <th colspan=1>Item 16</th>
+    <th colspan=1>Item 17</th>
+    <th colspan=1>Item 18</th>
+    <th colspan=1>Item 19</th>
+    <th colspan=1>Item 20</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-01-15.png"/></td>
+    <td><img src="../images/udgs/items-01-16.png"/></td>
+    <td><img src="../images/udgs/items-01-17.png"/></td>
+    <td><img src="../images/udgs/items-01-18.png"/></td>
+    <td><img src="../images/udgs/items-01-19.png"/></td>
+  </tr>
+</table>
+
+[Item:Spritesheet 02]
+<p>See #R$B765.</p>
+<table>
+  <tr>
+    <th colspan=1>Item 01</th>
+    <th colspan=1>Item 02</th>
+    <th colspan=1>Item 03</th>
+    <th colspan=1>Item 04</th>
+    <th colspan=1>Item 05</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-02-00.png"/></td>
+    <td><img src="../images/udgs/items-02-01.png"/></td>
+    <td><img src="../images/udgs/items-02-02.png"/></td>
+    <td><img src="../images/udgs/items-02-03.png"/></td>
+    <td><img src="../images/udgs/items-02-04.png"/></td>
+  </tr>
+  <tr>
+    <th colspan=1>Item 06</th>
+    <th colspan=1>Item 07</th>
+    <th colspan=1>Item 08</th>
+    <th colspan=1>Item 09</th>
+    <th colspan=1>Item 10</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-02-05.png"/></td>
+    <td><img src="../images/udgs/items-02-06.png"/></td>
+    <td><img src="../images/udgs/items-02-07.png"/></td>
+    <td><img src="../images/udgs/items-02-08.png"/></td>
+    <td><img src="../images/udgs/items-02-09.png"/></td>
+  </tr>
+  <tr>
+    <th colspan=1>Item 11</th>
+    <th colspan=1>Item 12</th>
+    <th colspan=1>Item 13</th>
+    <th colspan=1>Item 14</th>
+    <th colspan=1>Item 15</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-02-10.png"/></td>
+    <td><img src="../images/udgs/items-02-11.png"/></td>
+    <td><img src="../images/udgs/items-02-12.png"/></td>
+    <td><img src="../images/udgs/items-02-13.png"/></td>
+    <td><img src="../images/udgs/items-02-14.png"/></td>
+  </tr>
+  <tr>
+    <th colspan=1>Item 16</th>
+    <th colspan=1>Item 17</th>
+    <th colspan=1>Item 18</th>
+    <th colspan=1>Item 19</th>
+    <th colspan=1>Item 20</th>
+  </tr>
+  <tr>
+    <td><img src="../images/udgs/items-02-15.png"/></td>
+    <td><img src="../images/udgs/items-02-16.png"/></td>
+    <td><img src="../images/udgs/items-02-17.png"/></td>
+    <td><img src="../images/udgs/items-02-18.png"/></td>
+    <td><img src="../images/udgs/items-02-19.png"/></td>
+  </tr>
+</table>

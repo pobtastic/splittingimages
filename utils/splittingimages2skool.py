@@ -54,7 +54,7 @@ class SplittingImages:
             lines.append(f'N ${image_data[i]["addr"]:04X} This is decompressed using the routine at #R$E004 which writes the')
             lines.append('. image to #R$A0E3.')
             lines.append(f'N ${image_data[i]["addr"]:04X} #PUSHS #SIM(start=$D34E,stop=$D351,ix=${image_data[i]["addr"]:04X},sp=$FFFA)')
-            lines.append(f'. #UDGTABLE {{ #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC0F(level-{i:02}) }} UDGTABLE#')
+            lines.append(f'. #UDGTABLE {{ #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-{i:02}) }} UDGTABLE#')
             lines.append('. #POPS')
             lines.append('')
 

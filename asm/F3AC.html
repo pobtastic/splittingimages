@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at F3AC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F39E.html">F39E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#f3ac">Map</a></td>
+<td class="next">
+Next: <a href="F43E.html">F43E</a>
+</td>
+</tr>
+</table>
+<div class="description">F3AC: Handler: Bombs</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F39E.html">Handler_CheckTime</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="f3ac"></span>
+<div class="comments">
+<div class="paragraph">
+See <a href="../reference/pokes.html#bombs">Bombs Don't Explode</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs</td>
+<td class="address-2"><span id="f3ac"></span>F3AC</td>
+<td class="instruction">LD A,($D838)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="F3AC.html#f428">Handler_Bombs_4</a> if *<a href="D838.html">Bomb</a> is equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3af"></span>F3AF</td>
+<td class="instruction">CP $00</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3b1"></span>F3B1</td>
+<td class="instruction">JR Z,<a href="F3AC.html#f428">Handler_Bombs_4</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3b3"></span>F3B3</td>
+<td class="instruction">BIT 1,A</td>
+<td class="comment-1" rowspan="2">Jump to <a href="F3AC.html#f3cb">Handler_Bombs_0</a> if bit 1 of <span class="register">A</span> is not set.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3b5"></span>F3B5</td>
+<td class="instruction">JR Z,<a href="F3AC.html#f3cb">Handler_Bombs_0</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3b7"></span>F3B7</td>
+<td class="instruction">RES 1,A</td>
+<td class="comment-1" rowspan="1">Reset bit 1 of <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3b9"></span>F3B9</td>
+<td class="instruction">LD ($D838),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D838.html">Bomb</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3bc"></span>F3BC</td>
+<td class="instruction">LD A,$15</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=15.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3be"></span>F3BE</td>
+<td class="instruction">CALL <a href="F38F.html">$F38F</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F38F.html">F38F</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3c1"></span>F3C1</td>
+<td class="instruction">LD BC,($DA15)</td>
+<td class="comment-1" rowspan="2">Write *<a href="DA15.html">DA15</a> to *<a href="E75D.html">E75D</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3c5"></span>F3C5</td>
+<td class="instruction">LD ($E75D),BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3c9"></span>F3C9</td>
+<td class="instruction">JR <a href="F3AC.html#f411">Handler_Bombs_3</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F3AC.html#f411">Handler_Bombs_3</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs_0</td>
+<td class="address-2"><span id="f3cb"></span>F3CB</td>
+<td class="instruction">BIT 2,A</td>
+<td class="comment-1" rowspan="2">Jump to <a href="F3AC.html#f3e3">Handler_Bombs_1</a> if bit 2 of <span class="register">A</span> is not set.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3cd"></span>F3CD</td>
+<td class="instruction">JR Z,<a href="F3AC.html#f3e3">Handler_Bombs_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3cf"></span>F3CF</td>
+<td class="instruction">RES 2,A</td>
+<td class="comment-1" rowspan="1">Reset bit 2 of <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3d1"></span>F3D1</td>
+<td class="instruction">LD ($D838),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D838.html">Bomb</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3d4"></span>F3D4</td>
+<td class="instruction">LD A,$3D</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=3D.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3d6"></span>F3D6</td>
+<td class="instruction">CALL <a href="F38F.html">$F38F</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F38F.html">F38F</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3d9"></span>F3D9</td>
+<td class="instruction">LD BC,($DA17)</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=*<a href="DA17.html">DA17</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3dd"></span>F3DD</td>
+<td class="instruction">LD ($E75D),BC</td>
+<td class="comment-1" rowspan="1">Write <span class="register">BC</span> to *<a href="E75D.html">E75D</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3e1"></span>F3E1</td>
+<td class="instruction">JR <a href="F3AC.html#f411">Handler_Bombs_3</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F3AC.html#f411">Handler_Bombs_3</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs_1</td>
+<td class="address-2"><span id="f3e3"></span>F3E3</td>
+<td class="instruction">BIT 3,A</td>
+<td class="comment-1" rowspan="2">Jump to <a href="F3AC.html#f3fb">Handler_Bombs_2</a> if bit 3 of <span class="register">A</span> is not set.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3e5"></span>F3E5</td>
+<td class="instruction">JR Z,<a href="F3AC.html#f3fb">Handler_Bombs_2</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3e7"></span>F3E7</td>
+<td class="instruction">RES 3,A</td>
+<td class="comment-1" rowspan="1">Reset bit 3 of <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3e9"></span>F3E9</td>
+<td class="instruction">LD ($D838),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D838.html">Bomb</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3ec"></span>F3EC</td>
+<td class="instruction">LD A,$3E</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=3E.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3ee"></span>F3EE</td>
+<td class="instruction">CALL <a href="F38F.html">$F38F</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F38F.html">F38F</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3f1"></span>F3F1</td>
+<td class="instruction">LD BC,($DA19)</td>
+<td class="comment-1" rowspan="2">Write *<a href="DA19.html">DA19</a> to *<a href="E75D.html">E75D</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3f5"></span>F3F5</td>
+<td class="instruction">LD ($E75D),BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3f9"></span>F3F9</td>
+<td class="instruction">JR <a href="F3AC.html#f411">Handler_Bombs_3</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F3AC.html#f411">Handler_Bombs_3</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs_2</td>
+<td class="address-2"><span id="f3fb"></span>F3FB</td>
+<td class="instruction">BIT 4,A</td>
+<td class="comment-1" rowspan="2">Jump to <a href="F3AC.html#f428">Handler_Bombs_4</a> if bit 4 of <span class="register">A</span> is not set.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3fd"></span>F3FD</td>
+<td class="instruction">JR Z,<a href="F3AC.html#f428">Handler_Bombs_4</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f3ff"></span>F3FF</td>
+<td class="instruction">RES 4,A</td>
+<td class="comment-1" rowspan="1">Reset bit 4 of <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f401"></span>F401</td>
+<td class="instruction">LD ($D838),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D838.html">Bomb</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f404"></span>F404</td>
+<td class="instruction">LD A,$3F</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=3F.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f406"></span>F406</td>
+<td class="instruction">CALL <a href="F38F.html">$F38F</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F38F.html">F38F</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f409"></span>F409</td>
+<td class="instruction">LD BC,($DA1B)</td>
+<td class="comment-1" rowspan="2">Write *<a href="DA1B.html">DA1B</a> to *<a href="E75D.html">E75D</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f40d"></span>F40D</td>
+<td class="instruction">LD ($E75D),BC</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs_3</td>
+<td class="address-2"><span id="f411"></span>F411</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D833.html">D833</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f412"></span>F412</td>
+<td class="instruction">LD ($D833),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f415"></span>F415</td>
+<td class="instruction">CALL <a href="DABF.html">$DABF</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DABF.html">DABF</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f418"></span>F418</td>
+<td class="instruction">LD A,$01</td>
+<td class="comment-1" rowspan="2">Write 01 to *<a href="D833.html">D833</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f41a"></span>F41A</td>
+<td class="instruction">LD ($D833),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f41d"></span>F41D</td>
+<td class="instruction">CALL <a href="E9DA.html">$E9DA</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E9DA.html">E9DA</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f420"></span>F420</td>
+<td class="instruction">CALL <a href="E775.html">$E775</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E775.html">E775</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f423"></span>F423</td>
+<td class="instruction">POP IY</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">IY</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f425"></span>F425</td>
+<td class="instruction">JP <a href="D352.html#d41e">$D41E</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D352.html#d41e">D41E</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs_4</td>
+<td class="address-2"><span id="f428"></span>F428</td>
+<td class="instruction">CALL <a href="EB56.html">Handler_PlayerInput</a></td>
+<td class="comment-1" rowspan="1">Call <a href="EB56.html">Handler_PlayerInput</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f42b"></span>F42B</td>
+<td class="instruction">CP $00</td>
+<td class="comment-1" rowspan="2">Jump to <a href="E396.html">Handler_Controls</a> if <span class="register">A</span> is not equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f42d"></span>F42D</td>
+<td class="instruction">JP NZ,<a href="E396.html">Handler_Controls</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="f430"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F43E.html">F43E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_Bombs_5</td>
+<td class="address-2"><span id="f430"></span>F430</td>
+<td class="instruction">LD A,($D835)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="E320.html">Handler_HomeArrow</a> if *<a href="D835.html">PlayerCursor_Flag</a> is equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f433"></span>F433</td>
+<td class="instruction">CP $00</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f435"></span>F435</td>
+<td class="instruction">JP Z,<a href="E320.html">Handler_HomeArrow</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f438"></span>F438</td>
+<td class="instruction">CALL <a href="E352.html">$E352</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E352.html">E352</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="f43b"></span>F43B</td>
+<td class="instruction">JP <a href="F39E.html">Handler_CheckTime</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F39E.html">Handler_CheckTime</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F39E.html">F39E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#f3ac">Map</a></td>
+<td class="next">
+Next: <a href="F43E.html">F43E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/62380.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

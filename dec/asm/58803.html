@@ -33,105 +33,133 @@ Next: <a href="58832.html">58832</a>
 </td>
 </tr>
 </table>
-<div class="description">58803: Routine at E5B3</div>
+<div class="description">58803: Sound: Cursor Movement</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="58262.html">58262</a>.
+Used by the routines at <a href="58268.html">Controls_CheckRight</a> and <a href="58361.html">Controls_CheckLeft</a>.
 </div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">Sound_Cursor</td>
 <td class="address-2"><span id="58803"></span>58803</td>
 <td class="instruction">LD A,(55343)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55342.html#55343">PlayerCursor_X_Position</a>.</td>
+<td class="comment-1" rowspan="1">Load *<a href="55342.html#55343">CurrentCursor_X_Position</a> into <span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="58806"></span>
+<div class="comments">
+<div class="paragraph">
+The value in <span class="register">C</span> is used as a delay value.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58806"></span>58806</td>
 <td class="instruction">RLCA</td>
-<td class="comment-1" rowspan="4">RLCA.</td>
+<td class="comment-1" rowspan="5">Multiply <span class="register">A</span> by 32 and store the result in <span class="register">C</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58807"></span>58807</td>
 <td class="instruction">RLCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58808"></span>58808</td>
 <td class="instruction">RLCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58809"></span>58809</td>
 <td class="instruction">RLCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58810"></span>58810</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58811"></span>58811</td>
 <td class="instruction">LD B,100</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=100.</td>
+<td class="comment-1" rowspan="1">Set the number of sound loops in <span class="register">B</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58813"></span>58813</td>
 <td class="instruction">LD HL,1000</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=1000.</td>
+<td class="comment-1" rowspan="1">In <span class="register">HL</span> set a pointer to an arbitrary area in ZX Spectrum ROM.</td>
 </tr>
 <tr>
+<td class="asm-label">Sound_Cursor_Loop</td>
 <td class="address-2"><span id="58816"></span>58816</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Fetch the byte from ZX Spectrum ROM and store it in <span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58817"></span>58817</td>
 <td class="instruction">AND %00011000</td>
 <td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58819"></span>58819</td>
 <td class="instruction">OR %00000101</td>
 <td class="comment-1" rowspan="1">Set bits 0, 2.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58821"></span>58821</td>
 <td class="instruction">OUT (254),A</td>
 <td class="comment-1" rowspan="1">Send to the speaker.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58823"></span>58823</td>
 <td class="instruction">INC HL</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+<td class="comment-1" rowspan="1">Increment the ZX Spectrum memory byte pointer by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58824"></span>58824</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the sound loop counter on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58825"></span>58825</td>
 <td class="instruction">LD B,C</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">C</span>.</td>
+<td class="comment-1" rowspan="1">Write the delay value from <span class="register">C</span> into <span class="register">B</span>.</td>
 </tr>
 <tr>
+<td class="asm-label">Sound_Cursor_DelayLoop</td>
 <td class="address-2"><span id="58826"></span>58826</td>
-<td class="instruction">DJNZ <a href="58803.html#58826">58826</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="58803.html#58826">58826</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="58803.html#58826">Sound_Cursor_DelayLoop</a></td>
+<td class="comment-1" rowspan="1">Decrease the delay counter by one and loop back to <a href="58803.html#58826">Sound_Cursor_DelayLoop</a> until the delay counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58828"></span>58828</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the sound loop counter from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58829"></span>58829</td>
-<td class="instruction">DJNZ <a href="58803.html#58816">58816</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="58803.html#58816">58816</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="58803.html#58816">Sound_Cursor_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the sound loop counter by one and loop back to <a href="58803.html#58816">Sound_Cursor_Loop</a> until the sound loop counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="58831"></span>58831</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

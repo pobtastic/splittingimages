@@ -25,7 +25,7 @@ gtag('config', 'G-75RERFCHBG');
 <table class="asm-navigation">
 <tr>
 <td class="prev">
-Prev: <a href="62366.html">62366</a>
+Prev: <a href="62380.html">62380</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#62526">Map</a></td>
 <td class="next">
@@ -39,7 +39,7 @@ Next: <a href="63489.html">63489</a>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="58262.html">58262</a>.
+Used by the routine at <a href="58642.html">Controls_CheckLeftUp</a>.
 </div>
 </div>
 </td>
@@ -118,12 +118,11 @@ Used by the routine at <a href="58262.html">58262</a>.
 <tr>
 <td class="address-2"><span id="62558"></span>62558</td>
 <td class="instruction">LD A,(55348)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55348.html">55348</a>.</td>
+<td class="comment-1" rowspan="2">Compare *<a href="55348.html">PlayerCursor_TileID</a> with 9.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62561"></span>62561</td>
 <td class="instruction">CP 9</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 9.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62563"></span>62563</td>
@@ -133,12 +132,12 @@ Used by the routine at <a href="58262.html">58262</a>.
 <tr>
 <td class="address-1"><span id="62566"></span>62566</td>
 <td class="instruction">JP Z,<a href="63489.html">63489</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="63489.html">63489</a> if <span class="register">A</span> is zero.</td>
+<td class="comment-1" rowspan="1">Jump to <a href="63489.html">63489</a> if *<a href="55348.html">PlayerCursor_TileID</a> is equal to 9.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62569"></span>62569</td>
 <td class="instruction">CP 17</td>
-<td class="comment-1" rowspan="2">Jump to <a href="62526.html#62760">62760</a> if <span class="register">A</span> is not equal to 17.</td>
+<td class="comment-1" rowspan="2">Jump to <a href="62526.html#62760">62760</a> if *<a href="55348.html">PlayerCursor_TileID</a> is not equal to 17.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62571"></span>62571</td>
@@ -213,8 +212,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="62597"></span>62597</td>
-<td class="instruction">CALL <a href="56190.html">56190</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56190.html">56190</a>.</td>
+<td class="instruction">CALL <a href="56190.html">MoveTile_?</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56190.html">MoveTile_?</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62600"></span>62600</td>
@@ -280,12 +279,11 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62627"></span>62627</td>
 <td class="instruction">CP 15</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 15.</td>
+<td class="comment-1" rowspan="2">Return if *<a href="59229.html#59230">59230</a> is greater than or equal to 15.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62629"></span>62629</td>
 <td class="instruction">RET P</td>
-<td class="comment-1" rowspan="1">Return P.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62630"></span>62630</td>
@@ -295,7 +293,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62632"></span>62632</td>
 <td class="instruction">LD (55341),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62635"></span>62635</td>
@@ -434,7 +432,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62692"></span>62692</td>
 <td class="instruction">LD A,(55341)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62695"></span>62695</td>
@@ -444,7 +442,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62696"></span>62696</td>
 <td class="instruction">LD (55341),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62699"></span>62699</td>
@@ -527,7 +525,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="62736"></span>62736</td>
 <td class="instruction">LD A,(55341)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62739"></span>62739</td>
@@ -560,7 +558,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62746"></span>62746</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62749"></span>62749</td>
@@ -658,8 +656,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="62788"></span>62788</td>
-<td class="instruction">CALL <a href="56293.html">56293</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56293.html">56293</a>.</td>
+<td class="instruction">CALL <a href="56293.html">MoveTile_??</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_??</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62791"></span>62791</td>
@@ -721,8 +719,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="62816"></span>62816</td>
-<td class="instruction">CALL <a href="56293.html">56293</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56293.html">56293</a>.</td>
+<td class="instruction">CALL <a href="56293.html">MoveTile_??</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_??</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62819"></span>62819</td>
@@ -841,7 +839,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62867"></span>62867</td>
 <td class="instruction">LD (55341),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62870"></span>62870</td>
@@ -980,7 +978,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62927"></span>62927</td>
 <td class="instruction">LD A,(55341)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62930"></span>62930</td>
@@ -990,7 +988,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62931"></span>62931</td>
 <td class="instruction">LD (55341),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62934"></span>62934</td>
@@ -1073,7 +1071,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="62971"></span>62971</td>
 <td class="instruction">LD A,(55341)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62974"></span>62974</td>
@@ -1101,7 +1099,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62979"></span>62979</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62982"></span>62982</td>
@@ -1204,8 +1202,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="63024"></span>63024</td>
-<td class="instruction">CALL <a href="56395.html">56395</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56395.html">56395</a>.</td>
+<td class="instruction">CALL <a href="56395.html">MoveTile_Down</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56395.html">MoveTile_Down</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63027"></span>63027</td>
@@ -1267,8 +1265,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="63052"></span>63052</td>
-<td class="instruction">CALL <a href="56395.html">56395</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56395.html">56395</a>.</td>
+<td class="instruction">CALL <a href="56395.html">MoveTile_Down</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56395.html">MoveTile_Down</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63055"></span>63055</td>
@@ -1396,7 +1394,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63108"></span>63108</td>
 <td class="instruction">LD (55340),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63111"></span>63111</td>
@@ -1539,7 +1537,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63171"></span>63171</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63174"></span>63174</td>
@@ -1549,7 +1547,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63175"></span>63175</td>
 <td class="instruction">LD (55340),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63178"></span>63178</td>
@@ -1642,7 +1640,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="63219"></span>63219</td>
 <td class="instruction">LD A,(55341)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63222"></span>63222</td>
@@ -1670,7 +1668,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63227"></span>63227</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63230"></span>63230</td>
@@ -1712,8 +1710,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="63245"></span>63245</td>
-<td class="instruction">JP NZ,<a href="62366.html#62512">62512</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="62366.html#62512">62512</a> if <span class="register">A</span> is not zero.</td>
+<td class="instruction">JP NZ,<a href="62380.html#62512">Handler_Bombs_5</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="62380.html#62512">Handler_Bombs_5</a> if <span class="register">A</span> is not zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63248"></span>63248</td>
@@ -1836,12 +1834,11 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63296"></span>63296</td>
 <td class="instruction">LD A,2</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=2.</td>
+<td class="comment-1" rowspan="2">Write 2 to *<a href="59229.html">59229</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63298"></span>63298</td>
 <td class="instruction">LD (59229),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html">59229</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63301"></span>63301</td>
@@ -1876,27 +1873,23 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63313"></span>63313</td>
 <td class="instruction">LD A,(55346)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55346.html">55346</a>.</td>
+<td class="comment-1" rowspan="5">Return if *<a href="55346.html">55346</a> is either 1 or 3.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63316"></span>63316</td>
 <td class="instruction">CP 1</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 1.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63318"></span>63318</td>
 <td class="instruction">RET Z</td>
-<td class="comment-1" rowspan="1">Return if <span class="register">A</span> is zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63319"></span>63319</td>
 <td class="instruction">CP 3</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 3.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63321"></span>63321</td>
 <td class="instruction">RET Z</td>
-<td class="comment-1" rowspan="1">Return if <span class="register">A</span> is zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63322"></span>63322</td>
@@ -1971,7 +1964,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63355"></span>63355</td>
 <td class="instruction">LD (55340),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63358"></span>63358</td>
@@ -2117,7 +2110,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63420"></span>63420</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63423"></span>63423</td>
@@ -2127,7 +2120,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63424"></span>63424</td>
 <td class="instruction">LD (55340),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63427"></span>63427</td>
@@ -2215,7 +2208,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="63467"></span>63467</td>
 <td class="instruction">LD A,(55341)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63470"></span>63470</td>
@@ -2243,7 +2236,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63475"></span>63475</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63478"></span>63478</td>
@@ -2277,7 +2270,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <table class="asm-navigation">
 <tr>
 <td class="prev">
-Prev: <a href="62366.html">62366</a>
+Prev: <a href="62380.html">62380</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#62526">Map</a></td>
 <td class="next">

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 58565</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58530.html">58530</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58565">Map</a></td>
+<td class="next">
+Next: <a href="58601.html">58601</a>
+</td>
+</tr>
+</table>
+<div class="description">58565: Controls: Left/ Down</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="58530.html">Controls_CheckRightDown</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58565"></span>
+<div class="comments">
+<div class="paragraph">
+Did the player press diagonally left/ down?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Controls_CheckLeftDown</td>
+<td class="address-2"><span id="58565"></span>58565</td>
+<td class="instruction">CP 6</td>
+<td class="comment-1" rowspan="2">Jump to <a href="58601.html">Controls_CheckRightUp</a> if the player didn't press left/ down (2+4=6).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58567"></span>58567</td>
+<td class="instruction">JR NZ,<a href="58601.html">Controls_CheckRightUp</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58569"></span>
+<div class="comments">
+<div class="paragraph">
+Left/ down movement checks for boundaries and the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58569"></span>58569</td>
+<td class="instruction">LD A,(55341)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58572"></span>
+<div class="comments">
+<div class="paragraph">
+Can the player move left?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58572"></span>58572</td>
+<td class="instruction">CP 5</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html#55341">DestinationCursor_X_Position</a> is at or beyond the left-most boundary jump to <a href="58452.html#58456">MoveDown_Checks</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58574"></span>58574</td>
+<td class="instruction">JP M,<a href="58452.html#58456">MoveDown_Checks</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58577"></span>
+<div class="comments">
+<div class="paragraph">
+Is the player about to enter the home box?
+</div>
+<div class="paragraph">
+This is position 6/ 2:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-06-02" src="../../images/scr/cursor-06-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58577"></span>58577</td>
+<td class="instruction">CP 6</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html#55341">DestinationCursor_X_Position</a> is not 6 (which confirms the player can't be beside the home box), jump to <a href="58565.html#58592">MoveLeftDown</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58579"></span>58579</td>
+<td class="instruction">JR NZ,<a href="58565.html#58592">MoveLeftDown</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58581"></span>
+<div class="comments">
+<div class="paragraph">
+If the horizontal co-ordinate is 6 and the vertical co-ordinate is 2 then the player IS beside the home box. We then jump to <a href="58361.html#58365">MoveLeft_Checks</a> to handle the animation of entering the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58581"></span>58581</td>
+<td class="instruction">LD A,(55340)</td>
+<td class="comment-1" rowspan="2">Now compare *<a href="55340.html">DestinationCursor_Y_Position</a> with 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58584"></span>58584</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58586"></span>58586</td>
+<td class="instruction">JP Z,<a href="58361.html#58365">MoveLeft_Checks</a></td>
+<td class="comment-1" rowspan="1">If *<a href="55340.html">DestinationCursor_Y_Position</a> is 2 (which confirms that yes, the player is beside the home box), jump to <a href="58361.html#58365">MoveLeft_Checks</a> so this routine can handle the rest of the movement update.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58589"></span>
+<div class="comments">
+<div class="paragraph">
+Normal left movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58589"></span>58589</td>
+<td class="instruction">LD A,(55341)</td>
+<td class="comment-1" rowspan="1">Reload *<a href="55340.html#55341">DestinationCursor_X_Position</a> into <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58592"></span>
+<div class="comments">
+<div class="paragraph">
+Note this only handles moving left, it then passes the rest of the movement to <a href="58452.html#58456">MoveDown_Checks</a> for handling moving down.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveLeftDown</td>
+<td class="address-2"><span id="58592"></span>58592</td>
+<td class="instruction">SUB 4</td>
+<td class="comment-1" rowspan="1">Move 4 character blocks left.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58594"></span>58594</td>
+<td class="instruction">LD (55341),A</td>
+<td class="comment-1" rowspan="1">Update *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58597"></span>
+<div class="comments">
+<div class="paragraph">
+Update the tile ID the player has now landed on (note, this only covers the "left" movement here - the jump below covers if down should also alter the value).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58597"></span>58597</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58598"></span>58598</td>
+<td class="instruction">JP <a href="58452.html#58456">MoveDown_Checks</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="58452.html#58456">MoveDown_Checks</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58530.html">58530</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58565">Map</a></td>
+<td class="next">
+Next: <a href="58601.html">58601</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E4C5.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

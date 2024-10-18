@@ -29,22 +29,51 @@ Prev: <a href="D853.html">D853</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#d85b">Map</a></td>
 <td class="next">
-Next: <a href="D85D.html">D85D</a>
+Next: <a href="D85F.html">D85F</a>
 </td>
 </tr>
 </table>
-<div class="description">D85B: Game status buffer entry at D85B</div>
+<div class="description">D85B: Time Bar</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
+<div class="paragraph">
+Time Bar flags and variables.
+</div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">TimeBar_CurrentPosition</td>
 <td class="address-1"><span id="d85b"></span>D85B</td>
 <td class="instruction">DEFW $0000</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">The current (end) position of the time bar in the screen buffer.</td>
+</tr>
+<tr>
+<td class="asm-label">TimeBar_Active</td>
+<td class="address-1"><span id="d85d"></span>D85D</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-1" rowspan="1"><table class="default">
+<tr>
+<th colspan="1" rowspan="1">Byte</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">00</td>
+<td class="centre" colspan="1" rowspan="1">Not Active</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">01</td>
+<td class="centre" colspan="1" rowspan="1">Active</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td class="asm-label">TimeBar_Length</td>
+<td class="address-1"><span id="d85e"></span>D85E</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-1" rowspan="1">The length of the time bar in character blocks.</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -54,7 +83,7 @@ Prev: <a href="D853.html">D853</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#d85b">Map</a></td>
 <td class="next">
-Next: <a href="D85D.html">D85D</a>
+Next: <a href="D85F.html">D85F</a>
 </td>
 </tr>
 </table>

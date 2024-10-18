@@ -25,7 +25,7 @@ gtag('config', 'G-75RERFCHBG');
 <table class="asm-navigation">
 <tr>
 <td class="prev">
-Prev: <a href="F39E.html">F39E</a>
+Prev: <a href="F3AC.html">F3AC</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#f43e">Map</a></td>
 <td class="next">
@@ -39,7 +39,7 @@ Next: <a href="F801.html">F801</a>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="E396.html">E396</a>.
+Used by the routine at <a href="E512.html">Controls_CheckLeftUp</a>.
 </div>
 </div>
 </td>
@@ -118,12 +118,11 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-2"><span id="f45e"></span>F45E</td>
 <td class="instruction">LD A,($D834)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D834.html">D834</a>.</td>
+<td class="comment-1" rowspan="2">Compare *<a href="D834.html">PlayerCursor_TileID</a> with 09.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f461"></span>F461</td>
 <td class="instruction">CP $09</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 09.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f463"></span>F463</td>
@@ -133,12 +132,12 @@ Used by the routine at <a href="E396.html">E396</a>.
 <tr>
 <td class="address-1"><span id="f466"></span>F466</td>
 <td class="instruction">JP Z,<a href="F801.html">$F801</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F801.html">F801</a> if <span class="register">A</span> is zero.</td>
+<td class="comment-1" rowspan="1">Jump to <a href="F801.html">F801</a> if *<a href="D834.html">PlayerCursor_TileID</a> is equal to 09.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f469"></span>F469</td>
 <td class="instruction">CP $11</td>
-<td class="comment-1" rowspan="2">Jump to <a href="F43E.html#f528">F528</a> if <span class="register">A</span> is not equal to 11.</td>
+<td class="comment-1" rowspan="2">Jump to <a href="F43E.html#f528">F528</a> if *<a href="D834.html">PlayerCursor_TileID</a> is not equal to 11.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f46b"></span>F46B</td>
@@ -213,8 +212,8 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f485"></span>F485</td>
-<td class="instruction">CALL <a href="DB7E.html">$DB7E</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DB7E.html">DB7E</a>.</td>
+<td class="instruction">CALL <a href="DB7E.html">MoveTile_?</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DB7E.html">MoveTile_?</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f488"></span>F488</td>
@@ -280,12 +279,11 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f4a3"></span>F4A3</td>
 <td class="instruction">CP $0F</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 0F.</td>
+<td class="comment-1" rowspan="2">Return if *<a href="E75D.html#e75e">E75E</a> is greater than or equal to 0F.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f4a5"></span>F4A5</td>
 <td class="instruction">RET P</td>
-<td class="comment-1" rowspan="1">Return P.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f4a6"></span>F4A6</td>
@@ -295,7 +293,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f4a8"></span>F4A8</td>
 <td class="instruction">LD ($D82D),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f4ab"></span>F4AB</td>
@@ -434,7 +432,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f4e4"></span>F4E4</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f4e7"></span>F4E7</td>
@@ -444,7 +442,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f4e8"></span>F4E8</td>
 <td class="instruction">LD ($D82D),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f4eb"></span>F4EB</td>
@@ -527,7 +525,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-2"><span id="f510"></span>F510</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f513"></span>F513</td>
@@ -560,7 +558,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f51a"></span>F51A</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f51d"></span>F51D</td>
@@ -658,8 +656,8 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f544"></span>F544</td>
-<td class="instruction">CALL <a href="DBE5.html">$DBE5</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DBE5.html">DBE5</a>.</td>
+<td class="instruction">CALL <a href="DBE5.html">MoveTile_??</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DBE5.html">MoveTile_??</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f547"></span>F547</td>
@@ -721,8 +719,8 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f560"></span>F560</td>
-<td class="instruction">CALL <a href="DBE5.html">$DBE5</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DBE5.html">DBE5</a>.</td>
+<td class="instruction">CALL <a href="DBE5.html">MoveTile_??</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DBE5.html">MoveTile_??</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f563"></span>F563</td>
@@ -841,7 +839,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f593"></span>F593</td>
 <td class="instruction">LD ($D82D),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f596"></span>F596</td>
@@ -980,7 +978,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f5cf"></span>F5CF</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f5d2"></span>F5D2</td>
@@ -990,7 +988,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f5d3"></span>F5D3</td>
 <td class="instruction">LD ($D82D),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f5d6"></span>F5D6</td>
@@ -1073,7 +1071,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-2"><span id="f5fb"></span>F5FB</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f5fe"></span>F5FE</td>
@@ -1101,7 +1099,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f603"></span>F603</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f606"></span>F606</td>
@@ -1204,8 +1202,8 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f630"></span>F630</td>
-<td class="instruction">CALL <a href="DC4B.html">$DC4B</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DC4B.html">DC4B</a>.</td>
+<td class="instruction">CALL <a href="DC4B.html">MoveTile_Down</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DC4B.html">MoveTile_Down</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f633"></span>F633</td>
@@ -1267,8 +1265,8 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f64c"></span>F64C</td>
-<td class="instruction">CALL <a href="DC4B.html">$DC4B</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DC4B.html">DC4B</a>.</td>
+<td class="instruction">CALL <a href="DC4B.html">MoveTile_Down</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DC4B.html">MoveTile_Down</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f64f"></span>F64F</td>
@@ -1396,7 +1394,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f684"></span>F684</td>
 <td class="instruction">LD ($D82C),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f687"></span>F687</td>
@@ -1539,7 +1537,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f6c3"></span>F6C3</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f6c6"></span>F6C6</td>
@@ -1549,7 +1547,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f6c7"></span>F6C7</td>
 <td class="instruction">LD ($D82C),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f6ca"></span>F6CA</td>
@@ -1642,7 +1640,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-2"><span id="f6f3"></span>F6F3</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f6f6"></span>F6F6</td>
@@ -1670,7 +1668,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f6fb"></span>F6FB</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f6fe"></span>F6FE</td>
@@ -1712,8 +1710,8 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="f70d"></span>F70D</td>
-<td class="instruction">JP NZ,<a href="F39E.html#f430">$F430</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="F39E.html#f430">F430</a> if <span class="register">A</span> is not zero.</td>
+<td class="instruction">JP NZ,<a href="F3AC.html#f430">Handler_Bombs_5</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="F3AC.html#f430">Handler_Bombs_5</a> if <span class="register">A</span> is not zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f710"></span>F710</td>
@@ -1836,12 +1834,11 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f740"></span>F740</td>
 <td class="instruction">LD A,$02</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=02.</td>
+<td class="comment-1" rowspan="2">Write 02 to *<a href="E75D.html">E75D</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f742"></span>F742</td>
 <td class="instruction">LD ($E75D),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html">E75D</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f745"></span>F745</td>
@@ -1876,27 +1873,23 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f751"></span>F751</td>
 <td class="instruction">LD A,($D832)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D832.html">D832</a>.</td>
+<td class="comment-1" rowspan="5">Return if *<a href="D832.html">D832</a> is either 01 or 03.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f754"></span>F754</td>
 <td class="instruction">CP $01</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 01.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f756"></span>F756</td>
 <td class="instruction">RET Z</td>
-<td class="comment-1" rowspan="1">Return if <span class="register">A</span> is zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f757"></span>F757</td>
 <td class="instruction">CP $03</td>
-<td class="comment-1" rowspan="1">Compare <span class="register">A</span> with 03.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f759"></span>F759</td>
 <td class="instruction">RET Z</td>
-<td class="comment-1" rowspan="1">Return if <span class="register">A</span> is zero.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f75a"></span>F75A</td>
@@ -1971,7 +1964,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f77b"></span>F77B</td>
 <td class="instruction">LD ($D82C),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f77e"></span>F77E</td>
@@ -2117,7 +2110,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f7bc"></span>F7BC</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f7bf"></span>F7BF</td>
@@ -2127,7 +2120,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f7c0"></span>F7C0</td>
 <td class="instruction">LD ($D82C),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f7c3"></span>F7C3</td>
@@ -2215,7 +2208,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-2"><span id="f7eb"></span>F7EB</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f7ee"></span>F7EE</td>
@@ -2243,7 +2236,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <tr>
 <td class="address-1"><span id="f7f3"></span>F7F3</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="f7f6"></span>F7F6</td>
@@ -2277,7 +2270,7 @@ This entry point is used by the routine at <a href="F801.html">F801</a>.
 <table class="asm-navigation">
 <tr>
 <td class="prev">
-Prev: <a href="F39E.html">F39E</a>
+Prev: <a href="F3AC.html">F3AC</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#f43e">Map</a></td>
 <td class="next">

@@ -62,7 +62,7 @@ Used by the routine at <a href="F85D.html">F85D</a>.
 <tr>
 <td class="address-1"><span id="fc4b"></span>FC4B</td>
 <td class="instruction">LD HL,$D85D</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D85D.html">D85D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D85B.html#d85d">TimeBar_Active</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="fc4e"></span>FC4E</td>
@@ -144,7 +144,7 @@ Used by the routine at <a href="F85D.html">F85D</a>.
 <span id="fc6d"></span>
 <div class="comments">
 <div class="paragraph">
-This entry point is used by the routine at <a href="D894.html">D894</a>.
+This entry point is used by the routine at <a href="D894.html">LevelComplete</a>.
 </div>
 </div>
 </td>
@@ -152,7 +152,7 @@ This entry point is used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-2"><span id="fc6d"></span>FC6D</td>
 <td class="instruction">LD HL,($D85B)</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D85B.html">D85B</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D85B.html">TimeBar_CurrentPosition</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="fc70"></span>FC70</td>
@@ -187,7 +187,7 @@ This entry point is used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-2"><span id="fc7d"></span>FC7D</td>
 <td class="instruction">LD A,($D85E)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D85E.html">D85E</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D85B.html#d85e">TimeBar_Length</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="fc80"></span>FC80</td>
@@ -202,7 +202,7 @@ This entry point is used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-1"><span id="fc84"></span>FC84</td>
 <td class="instruction">LD ($D85E),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D85E.html">D85E</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D85B.html#d85e">TimeBar_Length</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="fc87"></span>FC87</td>
@@ -237,7 +237,7 @@ This entry point is used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-1"><span id="fc95"></span>FC95</td>
 <td class="instruction">LD ($D85B),HL</td>
-<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D85B.html">D85B</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D85B.html">TimeBar_CurrentPosition</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="fc98"></span>FC98</td>

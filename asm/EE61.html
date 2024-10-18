@@ -39,7 +39,7 @@ Next: <a href="EF4A.html">EF4A</a>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="D894.html">D894</a>.
+Used by the routine at <a href="D894.html">LevelComplete</a>.
 </div>
 </div>
 </td>
@@ -90,7 +90,7 @@ Used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-1"><span id="ee78"></span>EE78</td>
 <td class="instruction">LD A,$12</td>
-<td class="comment-1" rowspan="2">Write 12 to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="2">Write 12 to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="ee7a"></span>EE7A</td>
@@ -166,7 +166,7 @@ Used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-1"><span id="ee94"></span>EE94</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="2">Write *<a href="D82C.html">D82C</a> to *<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html">DestinationCursor_Y_Position</a> to *<a href="E75D.html">E75D</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="ee97"></span>EE97</td>
@@ -209,8 +209,8 @@ Used by the routine at <a href="D894.html">D894</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="eeaa"></span>EEAA</td>
-<td class="instruction">CALL <a href="DB7E.html">$DB7E</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DB7E.html">DB7E</a>.</td>
+<td class="instruction">CALL <a href="DB7E.html">MoveTile_?</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DB7E.html">MoveTile_?</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eead"></span>EEAD</td>
@@ -224,13 +224,13 @@ Used by the routine at <a href="D894.html">D894</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="eeb3"></span>EEB3</td>
-<td class="instruction">CALL <a href="DBE5.html">$DBE5</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DBE5.html">DBE5</a>.</td>
+<td class="instruction">CALL <a href="DBE5.html">MoveTile_??</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DBE5.html">MoveTile_??</a>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="eeb6"></span>EEB6</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eeb9"></span>EEB9</td>
@@ -254,8 +254,8 @@ Used by the routine at <a href="D894.html">D894</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="eec1"></span>EEC1</td>
-<td class="instruction">CALL <a href="DC4B.html">$DC4B</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DC4B.html">DC4B</a>.</td>
+<td class="instruction">CALL <a href="DC4B.html">MoveTile_Down</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DC4B.html">MoveTile_Down</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eec4"></span>EEC4</td>
@@ -287,8 +287,8 @@ Used by the routine at <a href="D894.html">D894</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="eed1"></span>EED1</td>
-<td class="instruction">CALL <a href="DC4B.html">$DC4B</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DC4B.html">DC4B</a>.</td>
+<td class="instruction">CALL <a href="DC4B.html">MoveTile_Down</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DC4B.html">MoveTile_Down</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eed4"></span>EED4</td>
@@ -377,7 +377,7 @@ Used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-1"><span id="eef0"></span>EEF0</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eef3"></span>EEF3</td>
@@ -387,7 +387,7 @@ Used by the routine at <a href="D894.html">D894</a>.
 <tr>
 <td class="address-1"><span id="eef5"></span>EEF5</td>
 <td class="instruction">LD ($D82C),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eef8"></span>EEF8</td>

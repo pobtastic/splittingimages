@@ -45,14 +45,31 @@ Used by the routine at <a href="53712.html">Game_Loop</a>.
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="54377"></span>
+<div class="comments">
+<div class="paragraph">
+The game always starts with the cursor inside the home box.
+</div>
+<div class="paragraph">
+This is position 2/ 2:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-02-02" src="../../images/scr/cursor-02-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label">StartGame</td>
 <td class="address-2"><span id="54377"></span>54377</td>
 <td class="instruction">LD A,2</td>
 <td class="comment-1" rowspan="5">Write 2 to: <ul class="">
-<li>*<a href="55344.html">55344</a></li>
-<li>*<a href="55345.html">55345</a></li>
-<li>*<a href="55342.html">PlayerCursor_Y_Position</a></li>
-<li>*<a href="55342.html#55343">PlayerCursor_X_Position</a></li>
+<li>*<a href="55344.html">StorageCursor_Y_Position</a></li>
+<li>*<a href="55344.html#55345">StorageCursor_X_Position</a></li>
+<li>*<a href="55342.html">CurrentCursor_Y_Position</a></li>
+<li>*<a href="55342.html#55343">CurrentCursor_X_Position</a></li>
 </ul></td>
 </tr>
 <tr>
@@ -79,7 +96,7 @@ Used by the routine at <a href="53712.html">Game_Loop</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="54391"></span>54391</td>
 <td class="instruction">LD A,9</td>
-<td class="comment-1" rowspan="2">Write 9 to *<a href="55348.html">55348</a>.</td>
+<td class="comment-1" rowspan="2">Write 9 to *<a href="55348.html">PlayerCursor_TileID</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -131,8 +148,8 @@ Spend a life to play the game.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="54408"></span>54408</td>
-<td class="instruction">CALL <a href="62238.html">62238</a></td>
-<td class="comment-1" rowspan="1">Call <a href="62238.html">62238</a>.</td>
+<td class="instruction">CALL <a href="62238.html">Draw_TimeBar</a></td>
+<td class="comment-1" rowspan="1">Call <a href="62238.html">Draw_TimeBar</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -144,7 +161,12 @@ Spend a life to play the game.
 <td class="asm-label"></td>
 <td class="address-1"><span id="54414"></span>54414</td>
 <td class="instruction">LD (HL),45</td>
-<td class="comment-1" rowspan="1">Write 45 to *<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -243,7 +265,7 @@ This entry point is used by the routine at <a href="54098.html">54098</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="54445"></span>54445</td>
 <td class="instruction">LD A,(55344)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55344.html">55344</a> to *<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55344.html">StorageCursor_Y_Position</a> to *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -254,7 +276,7 @@ This entry point is used by the routine at <a href="54098.html">54098</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="54451"></span>54451</td>
 <td class="instruction">LD A,(55345)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55345.html">55345</a> to *<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55344.html#55345">StorageCursor_X_Position</a> to *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -292,7 +314,7 @@ This entry point is used by the routine at <a href="54098.html">54098</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="54470"></span>54470</td>
 <td class="instruction">LD A,(55348)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="54377.html#54480">StartGame_1</a> if *<a href="55348.html">55348</a> is equal to 9.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="54377.html#54480">StartGame_1</a> if *<a href="55348.html">PlayerCursor_TileID</a> is equal to 9.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -313,8 +335,8 @@ This entry point is used by the routine at <a href="54098.html">54098</a>.
 <tr>
 <td class="asm-label">StartGame_1</td>
 <td class="address-2"><span id="54480"></span>54480</td>
-<td class="instruction">CALL <a href="55678.html">55678</a></td>
-<td class="comment-1" rowspan="1">Call <a href="55678.html">55678</a>.</td>
+<td class="instruction">CALL <a href="55678.html">Handler_IsLevelComplete</a></td>
+<td class="comment-1" rowspan="1">Call <a href="55678.html">Handler_IsLevelComplete</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

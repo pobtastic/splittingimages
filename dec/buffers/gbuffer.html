@@ -115,18 +115,9 @@ Holds the image for the current level.
 </tr>
 <tr>
 <td class="map-g"><span id="55340"></span><a href="../asm/55340.html">55340</a></td>
-<td class="map-length">1</td>
+<td class="map-length">2</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55340.html">Game status buffer entry at D82C</a></div>
-<div class="map-entry-desc">
-</div>
-</td>
-</tr>
-<tr>
-<td class="map-g"><span id="55341"></span><a href="../asm/55341.html">55341</a></td>
-<td class="map-length">1</td>
-<td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55341.html">Game status buffer entry at D82D</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55340.html">Destination Cursor Position</a></div>
 <div class="map-entry-desc">
 </div>
 </td>
@@ -135,25 +126,16 @@ Holds the image for the current level.
 <td class="map-g"><span id="55342"></span><a href="../asm/55342.html">55342</a></td>
 <td class="map-length">2</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55342.html">Player Cursor Position</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55342.html">Current Player Cursor Position</a></div>
 <div class="map-entry-desc">
 </div>
 </td>
 </tr>
 <tr>
 <td class="map-g"><span id="55344"></span><a href="../asm/55344.html">55344</a></td>
-<td class="map-length">1</td>
+<td class="map-length">2</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55344.html">Game status buffer entry at D830</a></div>
-<div class="map-entry-desc">
-</div>
-</td>
-</tr>
-<tr>
-<td class="map-g"><span id="55345"></span><a href="../asm/55345.html">55345</a></td>
-<td class="map-length">1</td>
-<td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55345.html">Game status buffer entry at D831</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55344.html">Storage Cursor Position</a></div>
 <div class="map-entry-desc">
 </div>
 </td>
@@ -180,8 +162,11 @@ Holds the image for the current level.
 <td class="map-g"><span id="55348"></span><a href="../asm/55348.html">55348</a></td>
 <td class="map-length">1</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55348.html">Game status buffer entry at D834</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55348.html">Player Cursor Tile ID</a></div>
 <div class="map-entry-desc">
+<div class="paragraph">
+Each tile square is numbered, this value represents the tile the cursor is currently placed on. Note the numbering is not entirely sequential.
+</div>
 </div>
 </td>
 </tr>
@@ -192,7 +177,7 @@ Holds the image for the current level.
 <div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55349.html">Player Cursor Flag</a></div>
 <div class="map-entry-desc">
 <div class="paragraph">
-Used by the routines at <a href="../asm/54098.html">54098</a>, <a href="../asm/54377.html">StartGame</a>, <a href="../asm/58262.html">58262</a>, <a href="../asm/58968.html">Remove_PlayerCursor</a>, <a href="../asm/58977.html">Display_PlayerCursor</a> and <a href="../asm/62366.html">62366</a>. <table class="default">
+Used by the routines at <a href="../asm/54098.html">54098</a>, <a href="../asm/54377.html">StartGame</a>, <a href="../asm/58262.html">Handler_Controls</a>, <a href="../asm/58968.html">Remove_PlayerCursor</a>, <a href="../asm/58977.html">Display_PlayerCursor</a> and <a href="../asm/62366.html">Handler_CheckTime</a>. <table class="default">
 <tr>
 <th colspan="1" rowspan="1">Byte</th>
 <th colspan="1" rowspan="1">Meaning</th>
@@ -431,28 +416,13 @@ Used by the routine at <a href="../asm/58144.html">Handler_HomeArrow</a>.
 </tr>
 <tr>
 <td class="map-g"><span id="55387"></span><a href="../asm/55387.html">55387</a></td>
-<td class="map-length">2</td>
+<td class="map-length">4</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55387.html">Game status buffer entry at D85B</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55387.html">Time Bar</a></div>
 <div class="map-entry-desc">
+<div class="paragraph">
+Time Bar flags and variables.
 </div>
-</td>
-</tr>
-<tr>
-<td class="map-g"><span id="55389"></span><a href="../asm/55389.html">55389</a></td>
-<td class="map-length">1</td>
-<td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55389.html">Game status buffer entry at D85D</a></div>
-<div class="map-entry-desc">
-</div>
-</td>
-</tr>
-<tr>
-<td class="map-g"><span id="55390"></span><a href="../asm/55390.html">55390</a></td>
-<td class="map-length">1</td>
-<td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/55390.html">Game status buffer entry at D85E</a></div>
-<div class="map-entry-desc">
 </div>
 </td>
 </tr>
@@ -727,11 +697,14 @@ Used by the routine at <a href="../asm/56937.html">Draw_Tile</a>.
 </td>
 </tr>
 <tr>
-<td class="map-g"><span id="57998"></span><a href="../asm/57998.html">57998</a></td>
-<td class="map-length">4</td>
+<td class="map-g"><span id="57953"></span><a href="../asm/57953.html">57953</a></td>
+<td class="map-length">49</td>
 <td class="map-g-desc">
-<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/57998.html">Game status buffer entry at E28E</a></div>
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/57953.html">In-Game Tiles</a></div>
 <div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/55678.html">Handler_IsLevelComplete</a>.
+</div>
 </div>
 </td>
 </tr>
@@ -867,7 +840,7 @@ Used by the routine at <a href="../asm/58144.html">Handler_HomeArrow</a>.
 <div class="map-entry-title-11"><a class="map-entry-title" href="../asm/59043.html">Home Attributes</a></div>
 <div class="map-entry-desc">
 <div class="paragraph">
-Used by the routine at <a href="../asm/58986.html">58986</a>.
+Used by the routine at <a href="../asm/58986.html">Home_DefaultAttributes</a>.
 </div>
 </div>
 </td>

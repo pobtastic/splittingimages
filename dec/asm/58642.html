@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 58642</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58601.html">58601</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58642">Map</a></td>
+<td class="next">
+Next: <a href="58684.html">58684</a>
+</td>
+</tr>
+</table>
+<div class="description">58642: Controls: Left/ Up</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="58601.html">Controls_CheckRightUp</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58642"></span>
+<div class="comments">
+<div class="paragraph">
+Did the player press diagonally left/ up?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Controls_CheckLeftUp</td>
+<td class="address-2"><span id="58642"></span>58642</td>
+<td class="instruction">CP 10</td>
+<td class="comment-1" rowspan="2">Jump to <a href="62526.html">62526</a> if the player didn't press left up (2+8=10).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58644"></span>58644</td>
+<td class="instruction">JP NZ,<a href="62526.html">62526</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58647"></span>
+<div class="comments">
+<div class="paragraph">
+Left/ up movement checks for boundaries and the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58647"></span>58647</td>
+<td class="instruction">LD A,(55341)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58650"></span>
+<div class="comments">
+<div class="paragraph">
+Can the player move left?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58650"></span>58650</td>
+<td class="instruction">CP 5</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html#55341">DestinationCursor_X_Position</a> is at or beyond the left-most boundary jump to <a href="58491.html#58495">MoveUp_Checks</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58652"></span>58652</td>
+<td class="instruction">JP M,<a href="58491.html#58495">MoveUp_Checks</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58655"></span>
+<div class="comments">
+<div class="paragraph">
+Is the player about to enter the home box?
+</div>
+<div class="paragraph">
+This is position 6/ 6 and also position 6/ 2: <table class="">
+<tr>
+<th colspan="1" rowspan="1">6/ 6 (Below)</th>
+<th colspan="1" rowspan="1">6/ 2 (Beside)</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-06-06" src="../../images/scr/cursor-06-06.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-06-02" src="../../images/scr/cursor-06-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58655"></span>58655</td>
+<td class="instruction">CP 6</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html#55341">DestinationCursor_X_Position</a> is not 6 (which confirms the player can't be beside the home box), jump to <a href="58642.html#58675">MoveLeftUp</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58657"></span>58657</td>
+<td class="instruction">JR NZ,<a href="58642.html#58675">MoveLeftUp</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58659"></span>
+<div class="comments">
+<div class="paragraph">
+Else it is now confirmed that *<a href="55340.html#55341">DestinationCursor_X_Position</a> is at position 6.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58659"></span>58659</td>
+<td class="instruction">LD A,(55340)</td>
+<td class="comment-1" rowspan="3">If *<a href="55340.html">DestinationCursor_Y_Position</a> is 6 (which confirms that yes, the player is diagonally below the home box) jump to <a href="58684.html">Handler_CursorMovement</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58662"></span>58662</td>
+<td class="instruction">CP 6</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58664"></span>58664</td>
+<td class="instruction">JP Z,<a href="58684.html">Handler_CursorMovement</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58667"></span>58667</td>
+<td class="instruction">CP 2</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html">DestinationCursor_Y_Position</a> is 2 (which confirms that yes, the player is beside the home box) jump to <a href="58361.html#58365">MoveLeft_Checks</a> so this routine can handle the rest of the movement update.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58669"></span>58669</td>
+<td class="instruction">JP Z,<a href="58361.html#58365">MoveLeft_Checks</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58672"></span>
+<div class="comments">
+<div class="paragraph">
+Normal left movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58672"></span>58672</td>
+<td class="instruction">LD A,(55341)</td>
+<td class="comment-1" rowspan="1">Reload *<a href="55340.html#55341">DestinationCursor_X_Position</a> into <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">MoveLeftUp</td>
+<td class="address-2"><span id="58675"></span>58675</td>
+<td class="instruction">SUB 4</td>
+<td class="comment-1" rowspan="1">Move 4 character blocks left.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58677"></span>58677</td>
+<td class="instruction">LD (55341),A</td>
+<td class="comment-1" rowspan="1">Update *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58680"></span>
+<div class="comments">
+<div class="paragraph">
+Update the tile ID the player has now landed on (note, this only covers the "left" movement here - the jump below covers if up should also alter the value).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58680"></span>58680</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58681"></span>58681</td>
+<td class="instruction">JP <a href="58491.html#58495">MoveUp_Checks</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="58491.html#58495">MoveUp_Checks</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58601.html">58601</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58642">Map</a></td>
+<td class="next">
+Next: <a href="58684.html">58684</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E512.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

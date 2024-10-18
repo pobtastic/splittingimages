@@ -33,7 +33,7 @@ Next: <a href="62281.html">62281</a>
 </td>
 </tr>
 </table>
-<div class="description">62238: Routine at F31E</div>
+<div class="description">62238: Draw Time Bar</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
@@ -45,114 +45,177 @@ Used by the routine at <a href="54377.html">StartGame</a>.
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="62238"></span>
+<div class="comments">
+<div class="paragraph">
+Test   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="image" src="../../images/udgs/image.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="time-bar-animation" src="../../images/udgs/time-bar-animation.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_TimeBar</td>
 <td class="address-2"><span id="62238"></span>62238</td>
 <td class="instruction">LD HL,20705</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=20705 (screen buffer location).</td>
+<td class="comment-1" rowspan="1">Set the location of where to start drawing the time bar in <span class="register">HL</span> (20705 in the screen buffer).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62241"></span>62241</td>
 <td class="instruction">LD B,20</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=20.</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the total length.</td>
 </tr>
 <tr>
+<td class="asm-label">Draw_TimeBar_Loop</td>
 <td class="address-2"><span id="62243"></span>62243</td>
 <td class="instruction">LD C,4</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=4.</td>
+<td class="comment-1" rowspan="1">Set a pixel counter in <span class="register">C</span> for the height of each segment.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62245"></span>62245</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the current screen position on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label">Draw_TimeBarColumn</td>
 <td class="address-2"><span id="62246"></span>62246</td>
 <td class="instruction">SCF</td>
-<td class="comment-1" rowspan="1">Set the carry flag.</td>
+<td class="comment-1" rowspan="1">Set the carry flag (prepare for the right rotation).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62247"></span>62247</td>
 <td class="instruction">RR (HL)</td>
-<td class="comment-1" rowspan="1">Rotate *<span class="register">HL</span> right.</td>
+<td class="comment-1" rowspan="1">Rotate *<span class="register">HL</span> right one position.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62249"></span>62249</td>
-<td class="instruction">JP C,<a href="62238.html#62261">62261</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="62238.html#62261">62261</a> if  is lower.</td>
+<td class="instruction">JP C,<a href="62238.html#62261">TimeBarNextColumn</a></td>
+<td class="comment-1" rowspan="1">If the carry flag is set after the rotation, move to the next column - jump to <a href="62238.html#62261">TimeBarNextColumn</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62252"></span>62252</td>
 <td class="instruction">INC H</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">H</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62253"></span>62253</td>
 <td class="instruction">DEC C</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">C</span> by one.</td>
+<td class="comment-1" rowspan="1">Decrease the pixel counter by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62254"></span>62254</td>
-<td class="instruction">JP NZ,<a href="62238.html#62246">62246</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="62238.html#62246">62246</a> if <span class="register">C</span> is not zero.</td>
+<td class="instruction">JP NZ,<a href="62238.html#62246">Draw_TimeBarColumn</a></td>
+<td class="comment-1" rowspan="1">Jump back to <a href="62238.html#62246">Draw_TimeBarColumn</a> until the full height of the bar has been drawn.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62257"></span>62257</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the screen position from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62258"></span>62258</td>
-<td class="instruction">JP <a href="62238.html#62243">62243</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="62238.html#62243">62243</a>.</td>
+<td class="instruction">JP <a href="62238.html#62243">Draw_TimeBar_Loop</a></td>
+<td class="comment-1" rowspan="1">Keep jumping back to <a href="62238.html#62243">Draw_TimeBar_Loop</a>.</td>
 </tr>
 <tr>
+<td class="asm-label">TimeBarNextColumn</td>
 <td class="address-2"><span id="62261"></span>62261</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the screen position from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62262"></span>62262</td>
 <td class="instruction">INC HL</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+<td class="comment-1" rowspan="1">Increment the screen position by one.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="62263"></span>
+<div class="comments">
+<div class="paragraph">
+Wait for the next frame.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62263"></span>62263</td>
 <td class="instruction">HALT</td>
 <td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62264"></span>62264</td>
-<td class="instruction">DJNZ <a href="62238.html#62243">62243</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="62238.html#62243">62243</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="62238.html#62243">Draw_TimeBar_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the length counter by one and loop back to <a href="62238.html#62243">Draw_TimeBar_Loop</a> until the entire time bar has been drawn.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="62266"></span>
+<div class="comments">
+<div class="paragraph">
+Set up the time bar being active and counting down in the game.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62266"></span>62266</td>
 <td class="instruction">DEC HL</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
+<td class="comment-1" rowspan="2">Decrease the screen position by one and write it to *<a href="55387.html">TimeBar_CurrentPosition</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62267"></span>62267</td>
 <td class="instruction">LD (55387),HL</td>
-<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="55387.html">55387</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62270"></span>62270</td>
 <td class="instruction">LD A,1</td>
-<td class="comment-1" rowspan="2">Write 1 to *<a href="55389.html">55389</a>.</td>
+<td class="comment-1" rowspan="2">Set *<a href="55387.html#55389">TimeBar_Active</a> to 1 to make it active.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62272"></span>62272</td>
 <td class="instruction">LD (55389),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62275"></span>62275</td>
 <td class="instruction">LD A,20</td>
-<td class="comment-1" rowspan="2">Write 20 to *<a href="55390.html">55390</a>.</td>
+<td class="comment-1" rowspan="2">Set *<a href="55387.html#55390">TimeBar_Length</a> to 20 for the length in character blocks.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62277"></span>62277</td>
 <td class="instruction">LD (55390),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="62280"></span>62280</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

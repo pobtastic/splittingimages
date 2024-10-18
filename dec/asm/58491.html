@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 58491</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58452.html">58452</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58491">Map</a></td>
+<td class="next">
+Next: <a href="58530.html">58530</a>
+</td>
+</tr>
+</table>
+<div class="description">58491: Controls: Up</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="58452.html">Controls_CheckDown</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58491"></span>
+<div class="comments">
+<div class="paragraph">
+Did the player press up?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Controls_CheckUp</td>
+<td class="address-2"><span id="58491"></span>58491</td>
+<td class="instruction">CP 8</td>
+<td class="comment-1" rowspan="2">Jump to <a href="58530.html">Controls_CheckRightDown</a> if the player didn't press up (8).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58493"></span>58493</td>
+<td class="instruction">JR NZ,<a href="58530.html">Controls_CheckRightDown</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58495"></span>
+<div class="comments">
+<div class="paragraph">
+Up movement checks for boundaries and the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveUp_Checks</td>
+<td class="address-2"><span id="58495"></span>58495</td>
+<td class="instruction">LD A,(55340)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58498"></span>
+<div class="comments">
+<div class="paragraph">
+Can the player move up?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58498"></span>58498</td>
+<td class="instruction">CP 5</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html">DestinationCursor_Y_Position</a> is at or beyond the top-most boundary jump to <a href="58684.html">Handler_CursorMovement</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58500"></span>58500</td>
+<td class="instruction">JP M,<a href="58684.html">Handler_CursorMovement</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58503"></span>
+<div class="comments">
+<div class="paragraph">
+Is the player below the home box?
+</div>
+<div class="paragraph">
+This is position 2/ 6:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-02-06" src="../../images/scr/cursor-02-06.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58503"></span>58503</td>
+<td class="instruction">CP 6</td>
+<td class="comment-1" rowspan="2">If *<a href="55340.html">DestinationCursor_Y_Position</a> is not 6 (which confirms the player can't be below the home box), jump to <a href="58491.html#58518">MoveUp</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58505"></span>58505</td>
+<td class="instruction">JR NZ,<a href="58491.html#58518">MoveUp</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58507"></span>
+<div class="comments">
+<div class="paragraph">
+If the horizontal co-ordinate is 2 and the vertical co-ordinate is 6 then the player is below the home box. As the home box can only be entered from the right side, we treat the bottom side as a boundary and don't allow the player to move through it.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58507"></span>58507</td>
+<td class="instruction">LD A,(55341)</td>
+<td class="comment-1" rowspan="2">Now compare *<a href="55340.html#55341">DestinationCursor_X_Position</a> with 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58510"></span>58510</td>
+<td class="instruction">CP 2</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58512"></span>58512</td>
+<td class="instruction">JP Z,<a href="58684.html">Handler_CursorMovement</a></td>
+<td class="comment-1" rowspan="1">If *<a href="55340.html#55341">DestinationCursor_X_Position</a> is 2 (which confirms that yes, the player is below the home box), jump to <a href="58684.html">Handler_CursorMovement</a> to prevent the movement from happening.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58515"></span>
+<div class="comments">
+<div class="paragraph">
+Normal up movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58515"></span>58515</td>
+<td class="instruction">LD A,(55340)</td>
+<td class="comment-1" rowspan="1">Reload *<a href="55340.html">DestinationCursor_Y_Position</a> into <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">MoveUp</td>
+<td class="address-2"><span id="58518"></span>58518</td>
+<td class="instruction">SUB 4</td>
+<td class="comment-1" rowspan="1">Move 4 rows up.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58520"></span>58520</td>
+<td class="instruction">LD (55340),A</td>
+<td class="comment-1" rowspan="1">Update *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58523"></span>
+<div class="comments">
+<div class="paragraph">
+Update the tile ID the player has now landed on.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58523"></span>58523</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="3">Subtract 7 from *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58524"></span>58524</td>
+<td class="instruction">SUB 7</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58526"></span>58526</td>
+<td class="instruction">LD (HL),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58527"></span>58527</td>
+<td class="instruction">JP <a href="58684.html">Handler_CursorMovement</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="58684.html">Handler_CursorMovement</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58452.html">58452</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#58491">Map</a></td>
+<td class="next">
+Next: <a href="58530.html">58530</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../asm/E47B.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

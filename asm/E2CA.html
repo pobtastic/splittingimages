@@ -33,58 +33,72 @@ Next: <a href="E2DA.html">E2DA</a>
 </td>
 </tr>
 </table>
-<div class="description">E2CA: Routine at E2CA</div>
+<div class="description">E2CA: Fetch Tile Object</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="E396.html">E396</a>.
+Used by the routine at <a href="E53C.html">Handler_CursorMovement</a>.
 </div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">FetchTileObject</td>
 <td class="address-2"><span id="e2ca"></span>E2CA</td>
 <td class="instruction">LD HL,$D834</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D834.html">D834</a>.</td>
+<td class="comment-1" rowspan="5">Fetch *<a href="D834.html">PlayerCursor_TileID</a> and create an offset using the current tile ID.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2cd"></span>E2CD</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2ce"></span>E2CE</td>
 <td class="instruction">LD HL,$E260</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E250.html#e260">E260</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2d1"></span>E2D1</td>
 <td class="instruction">LD B,$00</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=00.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2d3"></span>E2D3</td>
 <td class="instruction">LD C,A</td>
-<td class="comment-1" rowspan="1"><span class="register">C</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="e2d4"></span>
+<div class="comments">
+<div class="paragraph">
+Note; the tile IDs are numbered starting from 01 so the routine is fetching from E260+01=<a href="E261.html">E261</a> (<a href="E261.html">InGame_Tiles_Top</a>).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2d4"></span>E2D4</td>
 <td class="instruction">ADD HL,BC</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">BC</span>.</td>
+<td class="comment-1" rowspan="2">Add the offset to <a href="E261.html">E260</a> and fetch the item which is at the currently referenced tile ID location.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2d5"></span>E2D5</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2d6"></span>E2D6</td>
 <td class="instruction">CALL <a href="DFB2.html">$DFB2</a></td>
 <td class="comment-1" rowspan="1">Call <a href="DFB2.html">DFB2</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e2d9"></span>E2D9</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

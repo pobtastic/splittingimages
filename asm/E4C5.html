@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E4C5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E4A2.html">E4A2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e4c5">Map</a></td>
+<td class="next">
+Next: <a href="E4E9.html">E4E9</a>
+</td>
+</tr>
+</table>
+<div class="description">E4C5: Controls: Left/ Down</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E4A2.html">Controls_CheckRightDown</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4c5"></span>
+<div class="comments">
+<div class="paragraph">
+Did the player press diagonally left/ down?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Controls_CheckLeftDown</td>
+<td class="address-2"><span id="e4c5"></span>E4C5</td>
+<td class="instruction">CP $06</td>
+<td class="comment-1" rowspan="2">Jump to <a href="E4E9.html">Controls_CheckRightUp</a> if the player didn't press left/ down (02+04=06).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4c7"></span>E4C7</td>
+<td class="instruction">JR NZ,<a href="E4E9.html">Controls_CheckRightUp</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4c9"></span>
+<div class="comments">
+<div class="paragraph">
+Left/ down movement checks for boundaries and the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4c9"></span>E4C9</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4cc"></span>
+<div class="comments">
+<div class="paragraph">
+Can the player move left?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4cc"></span>E4CC</td>
+<td class="instruction">CP $05</td>
+<td class="comment-1" rowspan="2">If *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is at or beyond the left-most boundary jump to <a href="E454.html#e458">MoveDown_Checks</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4ce"></span>E4CE</td>
+<td class="instruction">JP M,<a href="E454.html#e458">MoveDown_Checks</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4d1"></span>
+<div class="comments">
+<div class="paragraph">
+Is the player about to enter the home box?
+</div>
+<div class="paragraph">
+This is position 06/ 02:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-06-02" src="../images/scr/cursor-06-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4d1"></span>E4D1</td>
+<td class="instruction">CP $06</td>
+<td class="comment-1" rowspan="2">If *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is not 06 (which confirms the player can't be beside the home box), jump to <a href="E4C5.html#e4e0">MoveLeftDown</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4d3"></span>E4D3</td>
+<td class="instruction">JR NZ,<a href="E4C5.html#e4e0">MoveLeftDown</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4d5"></span>
+<div class="comments">
+<div class="paragraph">
+If the horizontal co-ordinate is 06 and the vertical co-ordinate is 02 then the player IS beside the home box. We then jump to <a href="E3F9.html#e3fd">MoveLeft_Checks</a> to handle the animation of entering the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4d5"></span>E4D5</td>
+<td class="instruction">LD A,($D82C)</td>
+<td class="comment-1" rowspan="2">Now compare *<a href="D82C.html">DestinationCursor_Y_Position</a> with 02.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4d8"></span>E4D8</td>
+<td class="instruction">CP $02</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4da"></span>E4DA</td>
+<td class="instruction">JP Z,<a href="E3F9.html#e3fd">MoveLeft_Checks</a></td>
+<td class="comment-1" rowspan="1">If *<a href="D82C.html">DestinationCursor_Y_Position</a> is 02 (which confirms that yes, the player is beside the home box), jump to <a href="E3F9.html#e3fd">MoveLeft_Checks</a> so this routine can handle the rest of the movement update.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4dd"></span>
+<div class="comments">
+<div class="paragraph">
+Normal left movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4dd"></span>E4DD</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="1">Reload *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> into <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4e0"></span>
+<div class="comments">
+<div class="paragraph">
+Note this only handles moving left, it then passes the rest of the movement to <a href="E454.html#e458">MoveDown_Checks</a> for handling moving down.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveLeftDown</td>
+<td class="address-2"><span id="e4e0"></span>E4E0</td>
+<td class="instruction">SUB $04</td>
+<td class="comment-1" rowspan="1">Move 04 character blocks left.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4e2"></span>E4E2</td>
+<td class="instruction">LD ($D82D),A</td>
+<td class="comment-1" rowspan="1">Update *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e4e5"></span>
+<div class="comments">
+<div class="paragraph">
+Update the tile ID the player has now landed on (note, this only covers the "left" movement here - the jump below covers if down should also alter the value).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4e5"></span>E4E5</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e4e6"></span>E4E6</td>
+<td class="instruction">JP <a href="E454.html#e458">MoveDown_Checks</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E454.html#e458">MoveDown_Checks</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E4A2.html">E4A2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e4c5">Map</a></td>
+<td class="next">
+Next: <a href="E4E9.html">E4E9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58565.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

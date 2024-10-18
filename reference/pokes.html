@@ -33,7 +33,7 @@ gtag('config', 'G-75RERFCHBG');
 <div class="box-title">Bombs Don't Explode</div>
 <div class="paragraph">
 <code>
-<div>POKE <a href="../asm/F39E.html#f3b1">F3B1</a>,18</div>
+<div>POKE <a href="../asm/F3AC.html#f3b1">F3B1</a>,18</div>
 </code>
 </div>
 <div class="paragraph">
@@ -41,17 +41,17 @@ Alters the relative jump statement:
 <table>
 <tbody>
 <tr>
-<td class="address-1"><a href="../asm/F39E.html#f3ac">F3AC</a></td>
+<td class="address-1"><a href="../asm/F3AC.html">F3AC</a></td>
 <td class="instruction">LD <span class="register">A</span>,(<a href="../asm/D838.html">D838</a>)</td>
-<td class="comment-1" rowspan=3">Jump to <a href="../asm/F39E.html#f428">F428</a> if *<a href="../asm/D838.html">Bomb</a> is equal to 00.</td>
+<td class="comment-1" rowspan=3">Jump to <a href="../asm/F3AC.html#f428">F428</a> if *<a href="../asm/D838.html">Bomb</a> is equal to 00.</td>
 </tr>
 <tr>
-<td class="address-1"><a href="../asm/F39E.html#f3af">F3AF</a></td>
+<td class="address-1"><a href="../asm/F3AC.html#f3af">F3AF</a></td>
 <td class="instruction">CP 00</td>
 </tr>
 <tr>
-<td class="address-1"><a href="../asm/F39E.html#f3b1">F3B1</a></td>
-<td class="instruction">JR Z,<a href="../asm/F39E.html#f428">F428</a></td>
+<td class="address-1"><a href="../asm/F3AC.html#f3b1">F3B1</a></td>
+<td class="instruction">JR Z,<a href="../asm/F3AC.html#f428">F428</a></td>
 </tr>
 </tbody>
 </table>
@@ -61,8 +61,8 @@ To not be conditional:
 <table>
 <tbody>
 <tr>
-<td class="address-1"><a href="../asm/F39E.html#f3b1">F3B1</a></td>
-<td class="instruction">JR <a href="../asm/F39E.html#f428">F428</a></td>
+<td class="address-1"><a href="../asm/F3AC.html#f3b1">F3B1</a></td>
+<td class="instruction">JR <a href="../asm/F3AC.html#f428">F428</a></td>
 </tr>
 </tbody>
 </table>
@@ -163,7 +163,7 @@ Alters the relative jump statement:
 <tr>
 <td class="address-1"><a href="../asm/F39E.html">F39E</a></td>
 <td class="instruction">LD <span class="register">HL</span>,<a href="../asm/D83A.html">D83A</a></td>
-<td class="comment-1" rowspan=3">Jump to <a href="../asm/F39E.html#f3ac">F3AC</a> if bit 4 of *<a href="../asm/D83A.html">Time</a> is not set.</td>
+<td class="comment-1" rowspan=3">Jump to <a href="../asm/F3AC.html">F3AC</a> if bit 4 of *<a href="../asm/D83A.html">Time</a> is not set.</td>
 </tr>
 <tr>
 <td class="address-1"><a href="../asm/F39E.html#f3a1">F3A1</a></td>
@@ -171,7 +171,7 @@ Alters the relative jump statement:
 </tr>
 <tr>
 <td class="address-1"><a href="../asm/F39E.html#f3a3">F3A3</a></td>
-<td class="instruction">JR Z,<a href="../asm/F39E.html#f3ac">F3AC</a></td>
+<td class="instruction">JR Z,<a href="../asm/F3AC.html">F3AC</a></td>
 </tr>
 </tbody>
 </table>
@@ -182,7 +182,7 @@ To not be conditional:
 <tbody>
 <tr>
 <td class="address-1"><a href="../asm/F39E.html#f3a3">F3A3</a></td>
-<td class="instruction">JR <a href="../asm/F39E.html#f3ac">F3AC</a></td>
+<td class="instruction">JR <a href="../asm/F3AC.html">F3AC</a></td>
 </tr>
 </tbody>
 </table>

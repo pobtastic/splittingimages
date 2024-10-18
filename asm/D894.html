@@ -33,590 +33,708 @@ Next: <a href="D97E.html">D97E</a>
 </td>
 </tr>
 </table>
-<div class="description">D894: Routine at D894</div>
+<div class="description">D894: Level Complete</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="D97E.html">D97E</a>.
+Used by the routine at <a href="D97E.html">Handler_IsLevelComplete</a>.
 </div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete</td>
 <td class="address-2"><span id="d894"></span>D894</td>
 <td class="instruction">LD HL,$D83A</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D83A.html">Time</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d897"></span>D897</td>
 <td class="instruction">RES 0,(HL)</td>
 <td class="comment-1" rowspan="1">Reset bit 0 of *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d899"></span>D899</td>
 <td class="instruction">LD HL,$D839</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D839.html">D839</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d89c"></span>D89C</td>
 <td class="instruction">SET 7,(HL)</td>
 <td class="comment-1" rowspan="1">Set bit 7 of *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d89e"></span>D89E</td>
 <td class="instruction">CALL <a href="EC39.html">Colourise_PreviewGrid</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EC39.html">Colourise_PreviewGrid</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8a1"></span>D8A1</td>
 <td class="instruction">LD HL,$5825</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=5825 (attribute buffer location).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8a4"></span>D8A4</td>
 <td class="instruction">LD B,$04</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_0</td>
 <td class="address-2"><span id="d8a6"></span>D8A6</td>
 <td class="instruction">PUSH BC</td>
 <td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8a7"></span>D8A7</td>
 <td class="instruction">LD B,$10</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=10.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_1</td>
 <td class="address-2"><span id="d8a9"></span>D8A9</td>
 <td class="instruction">LD (HL),$00</td>
 <td class="comment-1" rowspan="1">Write 00 to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ab"></span>D8AB</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ac"></span>D8AC</td>
-<td class="instruction">DJNZ <a href="D894.html#d8a9">$D8A9</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8a9">D8A9</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D894.html#d8a9">LevelComplete_1</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8a9">LevelComplete_1</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ae"></span>D8AE</td>
 <td class="instruction">LD DE,$0010</td>
 <td class="comment-1" rowspan="2"><span class="register">HL</span>+=0010.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8b1"></span>D8B1</td>
 <td class="instruction">ADD HL,DE</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8b2"></span>D8B2</td>
 <td class="instruction">POP BC</td>
 <td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8b3"></span>D8B3</td>
-<td class="instruction">DJNZ <a href="D894.html#d8a6">$D8A6</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8a6">D8A6</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D894.html#d8a6">LevelComplete_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8a6">LevelComplete_0</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8b5"></span>D8B5</td>
 <td class="instruction">LD BC,$00FA</td>
 <td class="comment-1" rowspan="1"><span class="register">BC</span>=00FA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8b8"></span>D8B8</td>
 <td class="instruction">DI</td>
 <td class="comment-1" rowspan="1">Disable interrupts.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_2</td>
 <td class="address-2"><span id="d8b9"></span>D8B9</td>
 <td class="instruction">LD D,$0E</td>
 <td class="comment-1" rowspan="1"><span class="register">D</span>=0E.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8bb"></span>D8BB</td>
 <td class="instruction">LD A,$05</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=05.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_3</td>
 <td class="address-2"><span id="d8bd"></span>D8BD</td>
 <td class="instruction">OUT ($FE),A</td>
 <td class="comment-1" rowspan="1">Send to the speaker.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8bf"></span>D8BF</td>
 <td class="instruction">XOR %00010000</td>
 <td class="comment-1" rowspan="1">Flip bit 4.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8c1"></span>D8C1</td>
 <td class="instruction">LD E,C</td>
 <td class="comment-1" rowspan="1"><span class="register">E</span>=<span class="register">C</span>.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_4</td>
 <td class="address-2"><span id="d8c2"></span>D8C2</td>
 <td class="instruction">DEC E</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">E</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8c3"></span>D8C3</td>
-<td class="instruction">JR NZ,<a href="D894.html#d8c2">$D8C2</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8c2">D8C2</a> if <span class="register">E</span> is not zero.</td>
+<td class="instruction">JR NZ,<a href="D894.html#d8c2">LevelComplete_4</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8c2">LevelComplete_4</a> if <span class="register">E</span> is not zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8c5"></span>D8C5</td>
 <td class="instruction">DEC D</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">D</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8c6"></span>D8C6</td>
-<td class="instruction">JR NZ,<a href="D894.html#d8bd">$D8BD</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8bd">D8BD</a> if <span class="register">D</span> is not zero.</td>
+<td class="instruction">JR NZ,<a href="D894.html#d8bd">LevelComplete_3</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8bd">LevelComplete_3</a> if <span class="register">D</span> is not zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8c8"></span>D8C8</td>
 <td class="instruction">DEC BC</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8c9"></span>D8C9</td>
 <td class="instruction">LD A,B</td>
-<td class="comment-1" rowspan="3">Jump to <a href="D894.html#d8b9">D8B9</a> if <span class="register">BC</span> is not zero.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D894.html#d8b9">LevelComplete_2</a> if <span class="register">BC</span> is not zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ca"></span>D8CA</td>
 <td class="instruction">OR C</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8cb"></span>D8CB</td>
-<td class="instruction">JR NZ,<a href="D894.html#d8b9">$D8B9</a></td>
+<td class="instruction">JR NZ,<a href="D894.html#d8b9">LevelComplete_2</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8cd"></span>D8CD</td>
 <td class="instruction">EI</td>
 <td class="comment-1" rowspan="1">Enable interrupts.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ce"></span>D8CE</td>
 <td class="instruction">CALL <a href="E9BF.html">$E9BF</a></td>
 <td class="comment-1" rowspan="1">Call <a href="E9BF.html">E9BF</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8d1"></span>D8D1</td>
 <td class="instruction">LD B,$64</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=64.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_5</td>
 <td class="address-2"><span id="d8d3"></span>D8D3</td>
 <td class="instruction">HALT</td>
 <td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8d4"></span>D8D4</td>
-<td class="instruction">DJNZ <a href="D894.html#d8d3">$D8D3</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8d3">D8D3</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D894.html#d8d3">LevelComplete_5</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8d3">LevelComplete_5</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8d6"></span>D8D6</td>
 <td class="instruction">DI</td>
 <td class="comment-1" rowspan="1">Disable interrupts.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8d7"></span>D8D7</td>
 <td class="instruction">LD HL,$D83A</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D83A.html">Time</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8da"></span>D8DA</td>
 <td class="instruction">LD (HL),$80</td>
 <td class="comment-1" rowspan="1">Write 80 to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_6</td>
 <td class="address-2"><span id="d8dc"></span>D8DC</td>
 <td class="instruction">CALL <a href="FC43.html#fc6d">$FC6D</a></td>
 <td class="comment-1" rowspan="1">Call <a href="FC43.html#fc6d">FC6D</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8df"></span>D8DF</td>
 <td class="instruction">LD A,($D85E)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D85E.html">D85E</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D85B.html#d85e">TimeBar_Length</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8e2"></span>D8E2</td>
 <td class="instruction">INC A</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8e3"></span>D8E3</td>
 <td class="instruction">LD D,A</td>
 <td class="comment-1" rowspan="1"><span class="register">D</span>=<span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8e4"></span>D8E4</td>
 <td class="instruction">LD E,$7D</td>
 <td class="comment-1" rowspan="1"><span class="register">E</span>=7D.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8e6"></span>D8E6</td>
 <td class="instruction">LD H,$01</td>
 <td class="comment-1" rowspan="1"><span class="register">H</span>=01.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_7</td>
 <td class="address-2"><span id="d8e8"></span>D8E8</td>
 <td class="instruction">LD A,(HL)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8e9"></span>D8E9</td>
 <td class="instruction">AND %00011000</td>
 <td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8eb"></span>D8EB</td>
 <td class="instruction">OR %00000101</td>
 <td class="comment-1" rowspan="1">Set bits 0, 2.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ed"></span>D8ED</td>
 <td class="instruction">OUT ($FE),A</td>
 <td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8ef"></span>D8EF</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8f0"></span>D8F0</td>
 <td class="instruction">LD B,D</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=<span class="register">D</span>.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_8</td>
 <td class="address-2"><span id="d8f1"></span>D8F1</td>
-<td class="instruction">DJNZ <a href="D894.html#d8f1">$D8F1</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8f1">D8F1</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D894.html#d8f1">LevelComplete_8</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D894.html#d8f1">LevelComplete_8</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8f3"></span>D8F3</td>
 <td class="instruction">DEC E</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">E</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8f4"></span>D8F4</td>
-<td class="instruction">JP NZ,<a href="D894.html#d8e8">$D8E8</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8e8">D8E8</a> if <span class="register">E</span> is not zero.</td>
+<td class="instruction">JP NZ,<a href="D894.html#d8e8">LevelComplete_7</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8e8">LevelComplete_7</a> if <span class="register">E</span> is not zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8f7"></span>D8F7</td>
 <td class="instruction">LD HL,$D83A</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D83A.html">Time</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8fa"></span>D8FA</td>
 <td class="instruction">BIT 4,(HL)</td>
 <td class="comment-1" rowspan="1">Test bit 4 of *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8fc"></span>D8FC</td>
-<td class="instruction">JR NZ,<a href="D894.html#d918">$D918</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d918">D918</a> if <span class="register">E</span> is not zero.</td>
+<td class="instruction">JR NZ,<a href="D894.html#d918">LevelComplete_10</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d918">LevelComplete_10</a> if <span class="register">E</span> is not zero.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d8fe"></span>D8FE</td>
 <td class="instruction">LD A,($D840)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D840.html">D840</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d901"></span>D901</td>
 <td class="instruction">AND A</td>
 <td class="comment-1" rowspan="1">Set flags.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d902"></span>D902</td>
 <td class="instruction">INC A</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d903"></span>D903</td>
 <td class="instruction">DAA</td>
 <td class="comment-1" rowspan="1">DAA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d904"></span>D904</td>
 <td class="instruction">LD ($D840),A</td>
 <td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D840.html">D840</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d907"></span>D907</td>
-<td class="instruction">JR NC,<a href="D894.html#d912">$D912</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d912">D912</a> if <span class="register">A</span> is higher.</td>
+<td class="instruction">JR NC,<a href="D894.html#d912">LevelComplete_9</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d912">LevelComplete_9</a> if <span class="register">A</span> is higher.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d909"></span>D909</td>
 <td class="instruction">LD A,($D83F)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D83F.html">D83F</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d90c"></span>D90C</td>
 <td class="instruction">CCF</td>
 <td class="comment-1" rowspan="1">Invert the carry flag.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d90d"></span>D90D</td>
 <td class="instruction">INC A</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">A</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d90e"></span>D90E</td>
 <td class="instruction">DAA</td>
 <td class="comment-1" rowspan="1">DAA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d90f"></span>D90F</td>
 <td class="instruction">LD ($D83F),A</td>
 <td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D83F.html">D83F</a>.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_9</td>
 <td class="address-2"><span id="d912"></span>D912</td>
 <td class="instruction">CALL <a href="EA00.html">Print_Bonus</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EA00.html">Print_Bonus</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d915"></span>D915</td>
-<td class="instruction">JP <a href="D894.html#d8dc">$D8DC</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8dc">D8DC</a>.</td>
+<td class="instruction">JP <a href="D894.html#d8dc">LevelComplete_6</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html#d8dc">LevelComplete_6</a>.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_10</td>
 <td class="address-2"><span id="d918"></span>D918</td>
 <td class="instruction">LD HL,$D841</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D841.html">D841</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d91b"></span>D91B</td>
 <td class="instruction">LD A,($D876)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D874.html#d876">Score_Digit_03</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d91e"></span>D91E</td>
 <td class="instruction">AND A</td>
 <td class="comment-1" rowspan="1">Set flags.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d91f"></span>D91F</td>
 <td class="instruction">ADD A,(HL)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>+=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d920"></span>D920</td>
 <td class="instruction">DAA</td>
 <td class="comment-1" rowspan="1">DAA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d921"></span>D921</td>
 <td class="instruction">LD ($D876),A</td>
 <td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D874.html#d876">Score_Digit_03</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d924"></span>D924</td>
 <td class="instruction">LD (HL),$00</td>
 <td class="comment-1" rowspan="1">Write 00 to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d926"></span>D926</td>
 <td class="instruction">DEC HL</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d927"></span>D927</td>
 <td class="instruction">LD A,($D875)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D874.html#d875">Score_Digit_02</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d92a"></span>D92A</td>
 <td class="instruction">ADC A,(HL)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>+=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d92b"></span>D92B</td>
 <td class="instruction">DAA</td>
 <td class="comment-1" rowspan="1">DAA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d92c"></span>D92C</td>
 <td class="instruction">LD ($D875),A</td>
 <td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D874.html#d875">Score_Digit_02</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d92f"></span>D92F</td>
 <td class="instruction">LD (HL),$00</td>
 <td class="comment-1" rowspan="1">Write 00 to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d931"></span>D931</td>
 <td class="instruction">DEC HL</td>
 <td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d932"></span>D932</td>
 <td class="instruction">LD A,($D874)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D874.html">Score_Digit_01</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d935"></span>D935</td>
 <td class="instruction">ADC A,(HL)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>+=*<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d936"></span>D936</td>
 <td class="instruction">DAA</td>
 <td class="comment-1" rowspan="1">DAA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d937"></span>D937</td>
 <td class="instruction">LD ($D874),A</td>
 <td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D874.html">Score_Digit_01</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d93a"></span>D93A</td>
 <td class="instruction">LD (HL),$00</td>
 <td class="comment-1" rowspan="1">Write 00 to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d93c"></span>D93C</td>
 <td class="instruction">LD HL,$F0EA</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="F092.html#f0ea">F0EA</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d93f"></span>D93F</td>
 <td class="instruction">LD B,$23</td>
 <td class="comment-1" rowspan="1"><span class="register">B</span>=23.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d941"></span>D941</td>
 <td class="instruction">CALL <a href="EF4A.html">$EF4A</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EF4A.html">EF4A</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d944"></span>D944</td>
 <td class="instruction">CALL <a href="EA00.html">Print_Bonus</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EA00.html">Print_Bonus</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d947"></span>D947</td>
 <td class="instruction">CALL <a href="EA14.html">Print_Score</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EA14.html">Print_Score</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d94a"></span>D94A</td>
 <td class="instruction">LD A,($D86D)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="D894.html#d96a">D96A</a> if *<a href="D86D.html">D86D</a> is not equal to 00.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D894.html#d96a">LevelComplete_11</a> if *<a href="D86D.html">D86D</a> is not equal to 00.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d94d"></span>D94D</td>
 <td class="instruction">CP $00</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d94f"></span>D94F</td>
-<td class="instruction">JR NZ,<a href="D894.html#d96a">$D96A</a></td>
+<td class="instruction">JR NZ,<a href="D894.html#d96a">LevelComplete_11</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d951"></span>D951</td>
 <td class="instruction">LD A,($D874)</td>
 <td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D874.html">Score_Digit_01</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d954"></span>D954</td>
 <td class="instruction">AND %11110000</td>
 <td class="comment-1" rowspan="1">Keep only bits 4-7.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d956"></span>D956</td>
 <td class="instruction">RRCA</td>
 <td class="comment-1" rowspan="4">RRCA.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d957"></span>D957</td>
 <td class="instruction">RRCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d958"></span>D958</td>
 <td class="instruction">RRCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d959"></span>D959</td>
 <td class="instruction">RRCA</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d95a"></span>D95A</td>
 <td class="instruction">CP $01</td>
-<td class="comment-1" rowspan="2">Jump to <a href="D894.html#d96a">D96A</a> if <span class="register">A</span> is lower than 01 (unsigned comparison).</td>
+<td class="comment-1" rowspan="2">Jump to <a href="D894.html#d96a">LevelComplete_11</a> if <span class="register">A</span> is lower than 01 (unsigned comparison).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d95c"></span>D95C</td>
-<td class="instruction">JP M,<a href="D894.html#d96a">$D96A</a></td>
+<td class="instruction">JP M,<a href="D894.html#d96a">LevelComplete_11</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d95f"></span>D95F</td>
 <td class="instruction">LD A,$01</td>
 <td class="comment-1" rowspan="2">Write 01 to *<a href="D86D.html">D86D</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d961"></span>D961</td>
 <td class="instruction">LD ($D86D),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d964"></span>D964</td>
 <td class="instruction">CALL <a href="E9BF.html">$E9BF</a></td>
 <td class="comment-1" rowspan="1">Call <a href="E9BF.html">E9BF</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d967"></span>D967</td>
 <td class="instruction">CALL <a href="E9DA.html">$E9DA</a></td>
 <td class="comment-1" rowspan="1">Call <a href="E9DA.html">E9DA</a>.</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_11</td>
 <td class="address-2"><span id="d96a"></span>D96A</td>
 <td class="instruction">LD A,$80</td>
 <td class="comment-1" rowspan="2">Write 80 to *<a href="D838.html">Bomb</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d96c"></span>D96C</td>
 <td class="instruction">LD ($D838),A</td>
 </tr>
 <tr>
+<td class="asm-label">LevelComplete_12</td>
 <td class="address-2"><span id="d96f"></span>D96F</td>
 <td class="instruction">CALL <a href="EB56.html">Handler_PlayerInput</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EB56.html">Handler_PlayerInput</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d972"></span>D972</td>
 <td class="instruction">CP $00</td>
-<td class="comment-1" rowspan="2">Jump back to <a href="D894.html#d96f">D96F</a> until there's any player input.</td>
+<td class="comment-1" rowspan="2">Jump back to <a href="D894.html#d96f">LevelComplete_12</a> until there's any player input.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d974"></span>D974</td>
-<td class="instruction">JR Z,<a href="D894.html#d96f">$D96F</a></td>
+<td class="instruction">JR Z,<a href="D894.html#d96f">LevelComplete_12</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d976"></span>D976</td>
 <td class="instruction">XOR A</td>
 <td class="comment-1" rowspan="2">Write 00 to *<a href="D838.html">Bomb</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d977"></span>D977</td>
 <td class="instruction">LD ($D838),A</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d97a"></span>D97A</td>
 <td class="instruction">CALL <a href="EE61.html">$EE61</a></td>
 <td class="comment-1" rowspan="1">Call <a href="EE61.html">EE61</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d97d"></span>D97D</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

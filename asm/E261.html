@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Splitting Images: Data at E261</title>
+<title>Splitting Images: Game status buffer entry at E261</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" type="text/css" href="../skoolkit.css" />
 <link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
@@ -15,11 +15,11 @@ gtag('js', new Date());
 gtag('config', 'G-75RERFCHBG');
 </script>
 </head>
-<body class="Asm-b">
+<body class="Asm-g">
 <table class="header">
 <tr>
 <td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
-<td class="page-header">Data</td>
+<td class="page-header">Game status buffer</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -29,21 +29,121 @@ Prev: <a href="E250.html">E250</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#e261">Map</a></td>
 <td class="next">
-Next: <a href="E264.html">E264</a>
+Next: <a href="E292.html">E292</a>
 </td>
 </tr>
 </table>
-<div class="description">E261: Data block at E261</div>
+<div class="description">E261: In-Game Tiles</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D97E.html">Handler_IsLevelComplete</a>.
+</div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">InGame_Tiles_Top</td>
 <td class="address-1"><span id="e261"></span>E261</td>
 <td class="instruction">DEFB $00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e264"></span>E264</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e26a"></span>E26A</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">InGame_Tiles</td>
+<td class="address-1"><span id="e270"></span>E270</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e275"></span>E275</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e276"></span>E276</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e277"></span>E277</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e27c"></span>E27C</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e27d"></span>E27D</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e27e"></span>E27E</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e283"></span>E283</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e284"></span>E284</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e285"></span>E285</td>
+<td class="instruction">DEFB $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e28a"></span>E28A</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e28b"></span>E28B</td>
+<td class="instruction">DEFB $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e28c"></span>E28C</td>
+<td class="instruction">DEFB $00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e28e"></span>E28E</td>
+<td class="instruction">DEFB $00,$00,$00,$00</td>
 <td class="comment-0" rowspan="1"></td>
 </tr>
 </table>
@@ -54,7 +154,7 @@ Prev: <a href="E250.html">E250</a>
 </td>
 <td class="up">Up: <a href="../maps/all.html#e261">Map</a></td>
 <td class="next">
-Next: <a href="E264.html">E264</a>
+Next: <a href="E292.html">E292</a>
 </td>
 </tr>
 </table>

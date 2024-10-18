@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E39C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E396.html">E396</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e39c">Map</a></td>
+<td class="next">
+Next: <a href="E3F9.html">E3F9</a>
+</td>
+</tr>
+</table>
+<div class="description">E39C: Controls: Right</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e39c"></span>
+<div class="comments">
+<div class="paragraph">
+Did the player press right?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Controls_CheckRight</td>
+<td class="address-2"><span id="e39c"></span>E39C</td>
+<td class="instruction">CP $01</td>
+<td class="comment-1" rowspan="2">Jump to <a href="E3F9.html">Controls_CheckLeft</a> if the player didn't press right (01).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e39e"></span>E39E</td>
+<td class="instruction">JR NZ,<a href="E3F9.html">Controls_CheckLeft</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3a0"></span>
+<div class="comments">
+<div class="paragraph">
+Right movement checks for boundaries and the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveRight_Checks</td>
+<td class="address-2"><span id="e3a0"></span>E3A0</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3a3"></span>
+<div class="comments">
+<div class="paragraph">
+Can the player move right?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3a3"></span>E3A3</td>
+<td class="instruction">CP $0F</td>
+<td class="comment-1" rowspan="2">If *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is at or beyond the right-most boundary jump to *<a href="E53C.html">Handler_CursorMovement</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3a5"></span>E3A5</td>
+<td class="instruction">JP P,<a href="E53C.html">Handler_CursorMovement</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3a8"></span>
+<div class="comments">
+<div class="paragraph">
+Is the player inside the home box?
+</div>
+<div class="paragraph">
+The game restricts this (i.e. this image would never happen), but to demonstrate - this is position 02/ 02:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-02-02" src="../images/scr/cursor-02-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3a8"></span>E3A8</td>
+<td class="instruction">CP $02</td>
+<td class="comment-1" rowspan="2">If *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is not 02 (which confirms the player can't be inside the home box), jump to <a href="E39C.html#e3f0">MoveRight</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3aa"></span>E3AA</td>
+<td class="instruction">JR NZ,<a href="E39C.html#e3f0">MoveRight</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3ac"></span>
+<div class="comments">
+<div class="paragraph">
+If both the horizontal and the vertical co-ordinates are 02 then the player IS inside the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3ac"></span>E3AC</td>
+<td class="instruction">LD A,($D82C)</td>
+<td class="comment-1" rowspan="2">Now compare *<a href="D82C.html">DestinationCursor_Y_Position</a> with 02.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3af"></span>E3AF</td>
+<td class="instruction">CP $02</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3b1"></span>E3B1</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="1">Reload *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> into <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3b4"></span>E3B4</td>
+<td class="instruction">JR NZ,<a href="E39C.html#e3f0">MoveRight</a></td>
+<td class="comment-1" rowspan="1">If *<a href="D82C.html">DestinationCursor_Y_Position</a> is not 02 (which confirms the player can't be inside the home box), jump to <a href="E39C.html#e3f0">MoveRight</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3b6"></span>
+<div class="comments">
+<div class="paragraph">
+Else the player is inside the home box, so the treatment of the cursor isn't quite so simple.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3b6"></span>E3B6</td>
+<td class="instruction">ADD A,$04</td>
+<td class="comment-1" rowspan="2">Move *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> to 04 character blocks to the right.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3b8"></span>E3B8</td>
+<td class="instruction">LD ($D82D),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3bb"></span>E3BB</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Update the tile ID the player will land on.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3bc"></span>E3BC</td>
+<td class="instruction">LD A,$00</td>
+<td class="comment-1" rowspan="2">Write 00 to *<a href="D835.html">PlayerCursor_Flag</a>, the cursor is still inside the home box and so isn't drawn to the screen buffer just yet.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3be"></span>E3BE</td>
+<td class="instruction">LD ($D835),A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3c1"></span>
+<div class="comments">
+<div class="paragraph">
+The player is leaving the home box, so reset the colour of the arrow.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3c1"></span>E3C1</td>
+<td class="instruction">LD A,$2F</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=INK:
+WHITE,
+PAPER:
+CYAN
+
+.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3c3"></span>E3C3</td>
+<td class="instruction">CALL <a href="E682.html">ColouriseHome</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E682.html">ColouriseHome</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3c6"></span>
+<div class="comments">
+<div class="paragraph">
+Animate the cursor leaving the home box.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3c6"></span>E3C6</td>
+<td class="instruction">LD HL,$D82F</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D82E.html#d82f">CurrentCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3c9"></span>E3C9</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Move the cursor position right by one character block.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3ca"></span>
+<div class="comments">
+<div class="paragraph">
+Each valid direction moves the cursor one-cursor-width character blocks and rather than simply jump the whole way, the game auto-moves one character block at a time until the cursor reaches it's destination.
+</div>
+<div class="paragraph">
+I've called these "frames" here, but it's the same cursor just moving between positions, there are no differently stored frames.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3ca"></span>E3CA</td>
+<td class="instruction">LD B,$03</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 03 animation "frames".</td>
+</tr>
+<tr>
+<td class="asm-label">AnimateMoveRight_Loop</td>
+<td class="address-2"><span id="e3cc"></span>E3CC</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash the frame counter and horizontal position on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3cd"></span>E3CD</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3ce"></span>
+<div class="comments">
+<div class="paragraph">
+To demonstrate the three "frames" of movement: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">03</th>
+<th colspan="1" rowspan="1">04</th>
+<th colspan="1" rowspan="1">05</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><img alt="cursor-03-02" src="../images/scr/cursor-03-02.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-04-02" src="../images/scr/cursor-04-02.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-05-02" src="../images/scr/cursor-05-02.png" /></td>
+</tr>
+</table> If the code only called <a href="E5E4.html">Draw_Cursor</a> then the above is what would actually display! Instead the default attributes are written to the home box very quickly, and then the code forces a HALT to wait for the next frame to avoid any flicker.
+</div>
+<div class="paragraph">
+So this is what is actually displayed: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">03</th>
+<th colspan="1" rowspan="1">04</th>
+<th colspan="1" rowspan="1">05</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><img alt="cursor-good-03-02" src="../images/scr/cursor-good-03-02.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-good-04-02" src="../images/scr/cursor-good-04-02.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-good-05-02" src="../images/scr/cursor-good-05-02.png" /></td>
+</tr>
+</table> And then position 06 is just the cursor being printed normally (hence only 03 "frames" are needed here).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3ce"></span>E3CE</td>
+<td class="instruction">CALL <a href="E5E4.html">Draw_Cursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E5E4.html">Draw_Cursor</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3d1"></span>E3D1</td>
+<td class="instruction">CALL <a href="E66A.html">Home_DefaultAttributes</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E66A.html">Home_DefaultAttributes</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3d4"></span>E3D4</td>
+<td class="instruction">CALL <a href="E5B3.html">Sound_Cursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E5B3.html">Sound_Cursor</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3d7"></span>
+<div class="comments">
+<div class="paragraph">
+Wait for the next frame.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3d7"></span>E3D7</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3d8"></span>E3D8</td>
+<td class="instruction">CALL <a href="E63F.html">Remove_PlayerCursorAttributes</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E63F.html">Remove_PlayerCursorAttributes</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3db"></span>E3DB</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore the horizontal position and frame counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3dc"></span>E3DC</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3dd"></span>E3DD</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Move the cursor position right by one character block.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3de"></span>E3DE</td>
+<td class="instruction">DJNZ <a href="E39C.html#e3cc">AnimateMoveRight_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the frame counter by one and loop back to <a href="E39C.html#e3cc">AnimateMoveRight_Loop</a> until all 03 frames have played.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3e0"></span>
+<div class="comments">
+<div class="paragraph">
+Display the cursor in its final position.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3e0"></span>E3E0</td>
+<td class="instruction">CALL <a href="E661.html">Display_PlayerCursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E661.html">Display_PlayerCursor</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3e3"></span>
+<div class="comments">
+<div class="paragraph">
+Update the stored cursor positions.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3e3"></span>E3E3</td>
+<td class="instruction">LD A,($D82C)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html">DestinationCursor_Y_Position</a> to *<a href="D830.html">StorageCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3e6"></span>E3E6</td>
+<td class="instruction">LD ($D830),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3e9"></span>E3E9</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> to *<a href="D830.html#d831">StorageCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3ec"></span>E3EC</td>
+<td class="instruction">LD ($D831),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3ef"></span>E3EF</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3f0"></span>
+<div class="comments">
+<div class="paragraph">
+Normal right movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveRight</td>
+<td class="address-2"><span id="e3f0"></span>E3F0</td>
+<td class="instruction">ADD A,$04</td>
+<td class="comment-1" rowspan="1">Move 04 character blocks right.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f2"></span>E3F2</td>
+<td class="instruction">LD ($D82D),A</td>
+<td class="comment-1" rowspan="1">Update *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3f5"></span>
+<div class="comments">
+<div class="paragraph">
+Update the tile ID the player has now landed on.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f5"></span>E3F5</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f6"></span>E3F6</td>
+<td class="instruction">JP <a href="E53C.html">Handler_CursorMovement</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E53C.html">Handler_CursorMovement</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E396.html">E396</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e39c">Map</a></td>
+<td class="next">
+Next: <a href="E3F9.html">E3F9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58268.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

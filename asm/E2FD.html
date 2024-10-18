@@ -47,7 +47,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <tr>
 <td class="address-2"><span id="e2fd"></span>E2FD</td>
 <td class="instruction">LD A,($E5B2)</td>
-<td class="comment-1" rowspan="3">Return if *<a href="E5B2.html">Data_Control</a> is equal to 10.</td>
+<td class="comment-1" rowspan="3">Return if the player has pressed fire (10).</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e300"></span>E300</td>
@@ -82,17 +82,15 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <tr>
 <td class="address-1"><span id="e30c"></span>E30C</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="4">Return if *<a href="D82C.html">DestinationCursor_Y_Position</a> is not equal to *<a href="D830.html">StorageCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e30f"></span>E30F</td>
 <td class="instruction">LD HL,$D830</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D830.html">D830</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e312"></span>E312</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e313"></span>E313</td>
@@ -101,17 +99,15 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <tr>
 <td class="address-1"><span id="e314"></span>E314</td>
 <td class="instruction">LD A,($D82D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="4">Return if *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is not equal to *<a href="D830.html#d831">StorageCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e317"></span>E317</td>
 <td class="instruction">LD HL,$D831</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D831.html">D831</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e31a"></span>E31A</td>
 <td class="instruction">CP (HL)</td>
-<td class="comment-1" rowspan="2">Return if <span class="register">A</span> is not equal to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="e31b"></span>E31B</td>

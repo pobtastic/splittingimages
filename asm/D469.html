@@ -45,14 +45,31 @@ Used by the routine at <a href="D1D0.html">Game_Loop</a>.
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d469"></span>
+<div class="comments">
+<div class="paragraph">
+The game always starts with the cursor inside the home box.
+</div>
+<div class="paragraph">
+This is position 02/ 02:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="cursor-02-02" src="../images/scr/cursor-02-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label">StartGame</td>
 <td class="address-2"><span id="d469"></span>D469</td>
 <td class="instruction">LD A,$02</td>
 <td class="comment-1" rowspan="5">Write 02 to: <ul class="">
-<li>*<a href="D830.html">D830</a></li>
-<li>*<a href="D831.html">D831</a></li>
-<li>*<a href="D82E.html">PlayerCursor_Y_Position</a></li>
-<li>*<a href="D82E.html#d82f">PlayerCursor_X_Position</a></li>
+<li>*<a href="D830.html">StorageCursor_Y_Position</a></li>
+<li>*<a href="D830.html#d831">StorageCursor_X_Position</a></li>
+<li>*<a href="D82E.html">CurrentCursor_Y_Position</a></li>
+<li>*<a href="D82E.html#d82f">CurrentCursor_X_Position</a></li>
 </ul></td>
 </tr>
 <tr>
@@ -79,7 +96,7 @@ Used by the routine at <a href="D1D0.html">Game_Loop</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="d477"></span>D477</td>
 <td class="instruction">LD A,$09</td>
-<td class="comment-1" rowspan="2">Write 09 to *<a href="D834.html">D834</a>.</td>
+<td class="comment-1" rowspan="2">Write 09 to *<a href="D834.html">PlayerCursor_TileID</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -131,8 +148,8 @@ Spend a life to play the game.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d488"></span>D488</td>
-<td class="instruction">CALL <a href="F31E.html">$F31E</a></td>
-<td class="comment-1" rowspan="1">Call <a href="F31E.html">F31E</a>.</td>
+<td class="instruction">CALL <a href="F31E.html">Draw_TimeBar</a></td>
+<td class="comment-1" rowspan="1">Call <a href="F31E.html">Draw_TimeBar</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -144,7 +161,12 @@ Spend a life to play the game.
 <td class="asm-label"></td>
 <td class="address-1"><span id="d48e"></span>D48E</td>
 <td class="instruction">LD (HL),$2D</td>
-<td class="comment-1" rowspan="1">Write 2D to *<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -243,7 +265,7 @@ This entry point is used by the routine at <a href="D352.html">D352</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4ad"></span>D4AD</td>
 <td class="instruction">LD A,($D830)</td>
-<td class="comment-1" rowspan="2">Write *<a href="D830.html">D830</a> to *<a href="D82C.html">D82C</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="D830.html">StorageCursor_Y_Position</a> to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -254,7 +276,7 @@ This entry point is used by the routine at <a href="D352.html">D352</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4b3"></span>D4B3</td>
 <td class="instruction">LD A,($D831)</td>
-<td class="comment-1" rowspan="2">Write *<a href="D831.html">D831</a> to *<a href="D82D.html">D82D</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="D830.html#d831">StorageCursor_X_Position</a> to *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -292,7 +314,7 @@ This entry point is used by the routine at <a href="D352.html">D352</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="d4c6"></span>D4C6</td>
 <td class="instruction">LD A,($D834)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="D469.html#d4d0">StartGame_1</a> if *<a href="D834.html">D834</a> is equal to 09.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D469.html#d4d0">StartGame_1</a> if *<a href="D834.html">PlayerCursor_TileID</a> is equal to 09.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -313,8 +335,8 @@ This entry point is used by the routine at <a href="D352.html">D352</a>.
 <tr>
 <td class="asm-label">StartGame_1</td>
 <td class="address-2"><span id="d4d0"></span>D4D0</td>
-<td class="instruction">CALL <a href="D97E.html">$D97E</a></td>
-<td class="comment-1" rowspan="1">Call <a href="D97E.html">D97E</a>.</td>
+<td class="instruction">CALL <a href="D97E.html">Handler_IsLevelComplete</a></td>
+<td class="comment-1" rowspan="1">Call <a href="D97E.html">Handler_IsLevelComplete</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

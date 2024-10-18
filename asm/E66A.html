@@ -33,23 +33,25 @@ Next: <a href="E682.html">E682</a>
 </td>
 </tr>
 </table>
-<div class="description">E66A: Routine at E66A</div>
+<div class="description">E66A: Set Home To Default Attributes</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
 <div class="paragraph">
-Used by the routine at <a href="E396.html">E396</a>.
+Used by the routines at <a href="E39C.html">Controls_CheckRight</a> and <a href="E3F9.html">Controls_CheckLeft</a>.
 </div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">Home_DefaultAttributes</td>
 <td class="address-2"><span id="e66a"></span>E66A</td>
 <td class="instruction">LD DE,$5822</td>
 <td class="comment-1" rowspan="1"><span class="register">DE</span>=5822 (attribute buffer location).</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e66d"></span>E66D</td>
 <td class="instruction">LD HL,$E6A3</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E6A3.html">HomeAttributes</a>.</td>
@@ -65,21 +67,25 @@ The home block is 04x04 (04 rows of 04 bytes) but not all of it cycles attribute
 </td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e670"></span>E670</td>
 <td class="instruction">LD B,$04</td>
 <td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 04 rows.</td>
 </tr>
 <tr>
+<td class="asm-label">Home_DefaultAttributes_Loop</td>
 <td class="address-2"><span id="e672"></span>E672</td>
 <td class="instruction">PUSH BC</td>
 <td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e673"></span>E673</td>
 <td class="instruction">LD BC,$0003</td>
 <td class="comment-1" rowspan="2">Copy 0003 bytes from the attribute buffer to <a href="E6A3.html">HomeAttributes</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e676"></span>E676</td>
 <td class="instruction">LDIR</td>
 </tr>
@@ -94,33 +100,40 @@ One full row is 20 bytes, so this is 03 bytes less than one row. Hence this move
 </td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e678"></span>E678</td>
 <td class="instruction">EX DE,HL</td>
 <td class="comment-1" rowspan="4">Add 001D to the attribute buffer position.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e679"></span>E679</td>
 <td class="instruction">LD BC,$001D</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e67c"></span>E67C</td>
 <td class="instruction">ADD HL,BC</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e67d"></span>E67D</td>
 <td class="instruction">EX DE,HL</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e67e"></span>E67E</td>
 <td class="instruction">POP BC</td>
 <td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e67f"></span>E67F</td>
-<td class="instruction">DJNZ <a href="E66A.html#e672">$E672</a></td>
-<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E66A.html#e672">E672</a> until all the rows have been updated.</td>
+<td class="instruction">DJNZ <a href="E66A.html#e672">Home_DefaultAttributes_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E66A.html#e672">Home_DefaultAttributes_Loop</a> until all the rows have been updated.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="e681"></span>E681</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

@@ -33,15 +33,19 @@ Next: <a href="D835.html">D835</a>
 </td>
 </tr>
 </table>
-<div class="description">D834: Game status buffer entry at D834</div>
+<div class="description">D834: Player Cursor Tile ID</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
 <div class="details">
+<div class="paragraph">
+Each tile square is numbered, this value represents the tile the cursor is currently placed on. Note the numbering is not entirely sequential.
+</div>
 </div>
 </td>
 </tr>
 <tr>
+<td class="asm-label">PlayerCursor_TileID</td>
 <td class="address-1"><span id="d834"></span>D834</td>
 <td class="instruction">DEFB $00</td>
 <td class="comment-0" rowspan="1"></td>

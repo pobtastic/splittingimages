@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E53C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E512.html">E512</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e53c">Map</a></td>
+<td class="next">
+Next: <a href="E5B0.html">E5B0</a>
+</td>
+</tr>
+</table>
+<div class="description">E53C: Handler: Cursor Movement</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E39C.html">Controls_CheckRight</a>, <a href="E3F9.html">Controls_CheckLeft</a>, <a href="E454.html">Controls_CheckDown</a>, <a href="E47B.html">Controls_CheckUp</a> and <a href="E512.html">Controls_CheckLeftUp</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_CursorMovement</td>
+<td class="address-2"><span id="e53c"></span>E53C</td>
+<td class="instruction">CALL <a href="E2CA.html">FetchTileObject</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E2CA.html">FetchTileObject</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e53f"></span>E53F</td>
+<td class="instruction">LD A,($D82C)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html">DestinationCursor_Y_Position</a> to *<a href="D830.html">StorageCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e542"></span>E542</td>
+<td class="instruction">LD ($D830),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e545"></span>E545</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> to *<a href="D830.html#d831">StorageCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e548"></span>E548</td>
+<td class="instruction">LD ($D831),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e54b"></span>E54B</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e54d"></span>E54D</td>
+<td class="instruction">RLCA</td>
+<td class="comment-1" rowspan="2">Multiply <span class="register">A</span> by 02 and store the result in <span class="register">L</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e54e"></span>E54E</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e54f"></span>E54F</td>
+<td class="instruction">LD H,$00</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e551"></span>E551</td>
+<td class="instruction">LD B,$46</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the first outer loop.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e553"></span>E553</td>
+<td class="instruction">LD D,$05</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">D</span> for the first inner loop.</td>
+</tr>
+<tr>
+<td class="asm-label">CursorMovement_SoundLoop_01</td>
+<td class="address-2"><span id="e555"></span>E555</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Fetch a byte from the ZX Spectrum ROM and store it in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e556"></span>E556</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e558"></span>E558</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e55a"></span>E55A</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e55c"></span>E55C</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the ROM pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e55d"></span>E55D</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the outer loop counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e55e"></span>E55E</td>
+<td class="instruction">LD B,D</td>
+<td class="comment-1" rowspan="1">Set <span class="register">B</span> to the inner loop counter held by <span class="register">D</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">CursorMovement_DelayLoop_01</td>
+<td class="address-2"><span id="e55f"></span>E55F</td>
+<td class="instruction">DJNZ <a href="E53C.html#e55f">CursorMovement_DelayLoop_01</a></td>
+<td class="comment-1" rowspan="1">Decrease the inner loop counter by one and loop back to <a href="E53C.html#e55f">CursorMovement_DelayLoop_01</a> until the counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e561"></span>E561</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the outer loop counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e562"></span>E562</td>
+<td class="instruction">DJNZ <a href="E53C.html#e555">CursorMovement_SoundLoop_01</a></td>
+<td class="comment-1" rowspan="1">Decrease the outer loop counter by one and loop back to <a href="E53C.html#e555">CursorMovement_SoundLoop_01</a> until the counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e564"></span>E564</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e565"></span>
+<div class="comments">
+<div class="paragraph">
+Update the cursor position.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e565"></span>E565</td>
+<td class="instruction">LD A,($D82C)</td>
+<td class="comment-1" rowspan="4">Jump to <a href="E53C.html#e575">Handler_CursorMovement_1</a> if *<a href="D82C.html">DestinationCursor_Y_Position</a> is equal to *<a href="D82E.html">CurrentCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e568"></span>E568</td>
+<td class="instruction">LD HL,$D82E</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e56b"></span>E56B</td>
+<td class="instruction">CP (HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e56c"></span>E56C</td>
+<td class="instruction">JR Z,<a href="E53C.html#e575">Handler_CursorMovement_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e56e"></span>E56E</td>
+<td class="instruction">JP P,<a href="E53C.html#e574">Handler_CursorMovement_0</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E53C.html#e574">Handler_CursorMovement_0</a> if *<a href="D82C.html">DestinationCursor_Y_Position</a> is greater than or equal to *<a href="D82E.html">CurrentCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e571"></span>E571</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<a href="D82E.html">CurrentCursor_Y_Position</a> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e572"></span>E572</td>
+<td class="instruction">JR <a href="E53C.html#e575">Handler_CursorMovement_1</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E53C.html#e575">Handler_CursorMovement_1</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_CursorMovement_0</td>
+<td class="address-2"><span id="e574"></span>E574</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_CursorMovement_1</td>
+<td class="address-2"><span id="e575"></span>E575</td>
+<td class="instruction">LD A,($D82D)</td>
+<td class="comment-1" rowspan="4">Jump to <a href="E53C.html#e585">Handler_CursorMovement_3</a> if *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is equal to *<a href="D82E.html#d82f">CurrentCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e578"></span>E578</td>
+<td class="instruction">LD HL,$D82F</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e57b"></span>E57B</td>
+<td class="instruction">CP (HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e57c"></span>E57C</td>
+<td class="instruction">JR Z,<a href="E53C.html#e585">Handler_CursorMovement_3</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e57e"></span>E57E</td>
+<td class="instruction">JP P,<a href="E53C.html#e584">Handler_CursorMovement_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E53C.html#e584">Handler_CursorMovement_2</a> if *<a href="D82C.html#d82d">DestinationCursor_X_Position</a> is greater than or equal to *<a href="D82E.html#d82f">CurrentCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e581"></span>E581</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<a href="D82E.html#d82f">CurrentCursor_X_Position</a> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e582"></span>E582</td>
+<td class="instruction">JR <a href="E53C.html#e585">Handler_CursorMovement_3</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E53C.html#e585">Handler_CursorMovement_3</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_CursorMovement_2</td>
+<td class="address-2"><span id="e584"></span>E584</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label">Handler_CursorMovement_3</td>
+<td class="address-2"><span id="e585"></span>E585</td>
+<td class="instruction">LD A,($D82E)</td>
+<td class="comment-1" rowspan="4">Jump to <a href="E53C.html">Handler_CursorMovement</a> if *<a href="D82E.html">CurrentCursor_Y_Position</a> is not equal to *<a href="D82C.html">DestinationCursor_Y_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e588"></span>E588</td>
+<td class="instruction">LD HL,$D82C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e58b"></span>E58B</td>
+<td class="instruction">CP (HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e58c"></span>E58C</td>
+<td class="instruction">JR NZ,<a href="E53C.html#e53c">Handler_CursorMovement</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e58e"></span>E58E</td>
+<td class="instruction">LD A,($D82F)</td>
+<td class="comment-1" rowspan="4">Jump to <a href="E53C.html">Handler_CursorMovement</a> if *<a href="D82E.html#d82f">CurrentCursor_X_Position</a> is not equal to *<a href="D82C.html#d82d">DestinationCursor_X_Position</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e591"></span>E591</td>
+<td class="instruction">LD HL,$D82D</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e594"></span>E594</td>
+<td class="instruction">CP (HL)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e595"></span>E595</td>
+<td class="instruction">JR NZ,<a href="E53C.html#e53c">Handler_CursorMovement</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e597"></span>
+<div class="comments">
+<div class="paragraph">
+The final sound effect when the cursor reaches its destination.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e597"></span>E597</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="2">Set the lower byte in <span class="register">L</span>, which for randomness is the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e599"></span>E599</td>
+<td class="instruction">LD L,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e59a"></span>E59A</td>
+<td class="instruction">LD H,$0A</td>
+<td class="comment-1" rowspan="1">Set the upper byte of the sound data address (00A00-00AFF).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e59c"></span>E59C</td>
+<td class="instruction">LD B,$23</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the second outer loop.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e59e"></span>E59E</td>
+<td class="instruction">LD C,$64</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">C</span> for the second inner loop.</td>
+</tr>
+<tr>
+<td class="asm-label">CursorMovement_SoundLoop_02</td>
+<td class="address-2"><span id="e5a0"></span>E5A0</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1">Fetch a byte from the ZX Spectrum ROM and store it in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5a1"></span>E5A1</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the ROM pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5a2"></span>E5A2</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5a4"></span>E5A4</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5a6"></span>E5A6</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Send to the speaker.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5a8"></span>E5A8</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the outer loop counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5a9"></span>E5A9</td>
+<td class="instruction">LD B,C</td>
+<td class="comment-1" rowspan="1">Set <span class="register">B</span> to the inner loop counter held by <span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">CursorMovement_DelayLoop_02</td>
+<td class="address-2"><span id="e5aa"></span>E5AA</td>
+<td class="instruction">DJNZ <a href="E53C.html#e5aa">CursorMovement_DelayLoop_02</a></td>
+<td class="comment-1" rowspan="1">Decrease the inner loop counter by one and loop back to <a href="E53C.html#e5aa">CursorMovement_DelayLoop_02</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5ac"></span>E5AC</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the outer loop counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5ad"></span>E5AD</td>
+<td class="instruction">DJNZ <a href="E53C.html#e5a0">CursorMovement_SoundLoop_02</a></td>
+<td class="comment-1" rowspan="1">Decrease the outer loop counter by one and loop back to <a href="E53C.html#e5a0">CursorMovement_SoundLoop_02</a> until the counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e5af"></span>E5AF</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E512.html">E512</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#e53c">Map</a></td>
+<td class="next">
+Next: <a href="E5B0.html">E5B0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/asm/58684.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

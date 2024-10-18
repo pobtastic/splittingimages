@@ -64,13 +64,13 @@ Used by the routine at <a href="54377.html">StartGame</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="54112"></span>54112</td>
-<td class="instruction">CALL <a href="62366.html">62366</a></td>
-<td class="comment-1" rowspan="1">Call <a href="62366.html">62366</a>.</td>
+<td class="instruction">CALL <a href="62366.html">Handler_CheckTime</a></td>
+<td class="comment-1" rowspan="1">Call <a href="62366.html">Handler_CheckTime</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54115"></span>54115</td>
 <td class="instruction">LD A,(55348)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="54098.html#54151">54151</a> if *<a href="55348.html">55348</a> is equal to 9.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="54098.html#54151">54151</a> if *<a href="55348.html">PlayerCursor_TileID</a> is equal to 9.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54118"></span>54118</td>
@@ -101,7 +101,7 @@ Used by the routine at <a href="54377.html">StartGame</a>.
 <tr>
 <td class="address-1"><span id="54130"></span>54130</td>
 <td class="instruction">LD A,(55344)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55344.html">55344</a> to *<a href="55340.html">55340</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55344.html">StorageCursor_Y_Position</a> to *<a href="55340.html">DestinationCursor_Y_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54133"></span>54133</td>
@@ -110,7 +110,7 @@ Used by the routine at <a href="54377.html">StartGame</a>.
 <tr>
 <td class="address-1"><span id="54136"></span>54136</td>
 <td class="instruction">LD A,(55345)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55345.html">55345</a> to *<a href="55341.html">55341</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55344.html#55345">StorageCursor_X_Position</a> to *<a href="55340.html#55341">DestinationCursor_X_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54139"></span>54139</td>
@@ -168,11 +168,11 @@ Used by the routine at <a href="54377.html">StartGame</a>.
 <tr>
 <td class="address-1"><span id="54166"></span>54166</td>
 <td class="instruction">BIT 6,(HL)</td>
-<td class="comment-1" rowspan="2">Call <a href="62281.html">62281</a> if bit 6 of *<span class="register">HL</span> is set.</td>
+<td class="comment-1" rowspan="2">Call <a href="62281.html">Handler_TimeBar</a> if bit 6 of *<span class="register">HL</span> is set.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54168"></span>54168</td>
-<td class="instruction">CALL NZ,<a href="62281.html">62281</a></td>
+<td class="instruction">CALL NZ,<a href="62281.html">Handler_TimeBar</a></td>
 </tr>
 <tr>
 <td class="address-1"><span id="54171"></span>54171</td>
@@ -467,7 +467,7 @@ Used by the routine at <a href="54377.html">StartGame</a>.
 <span id="54302"></span>
 <div class="comments">
 <div class="paragraph">
-This entry point is used by the routine at <a href="62366.html">62366</a>.
+This entry point is used by the routines at <a href="62366.html">Handler_CheckTime</a> and <a href="62380.html">Handler_Bombs</a>.
 </div>
 </div>
 </td>
@@ -475,7 +475,7 @@ This entry point is used by the routine at <a href="62366.html">62366</a>.
 <tr>
 <td class="address-2"><span id="54302"></span>54302</td>
 <td class="instruction">LD A,(55342)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55342.html">PlayerCursor_Y_Position</a> to *<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55342.html">CurrentCursor_Y_Position</a> to *<a href="59229.html">59229</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54305"></span>54305</td>
@@ -484,7 +484,7 @@ This entry point is used by the routine at <a href="62366.html">62366</a>.
 <tr>
 <td class="address-1"><span id="54308"></span>54308</td>
 <td class="instruction">LD A,(55343)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55342.html#55343">PlayerCursor_X_Position</a> to *<a href="59229.html#59230">59230</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55342.html#55343">CurrentCursor_X_Position</a> to *<a href="59229.html#59230">59230</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54311"></span>54311</td>
@@ -493,7 +493,7 @@ This entry point is used by the routine at <a href="62366.html">62366</a>.
 <tr>
 <td class="address-1"><span id="54314"></span>54314</td>
 <td class="instruction">LD A,(55348)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="54098.html#54358">54358</a> if *<a href="55348.html">55348</a> is not equal to 9.</td>
+<td class="comment-1" rowspan="3">Jump to <a href="54098.html#54358">54358</a> if *<a href="55348.html">PlayerCursor_TileID</a> is not equal to 9.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="54317"></span>54317</td>

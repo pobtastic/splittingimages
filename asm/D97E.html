@@ -33,7 +33,7 @@ Next: <a href="D99B.html">D99B</a>
 </td>
 </tr>
 </table>
-<div class="description">D97E: Routine at D97E</div>
+<div class="description">D97E: Handler: Is Level Complete?</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
@@ -45,93 +45,133 @@ Used by the routine at <a href="D469.html">StartGame</a>.
 </td>
 </tr>
 <tr>
+<td class="asm-label">Handler_IsLevelComplete</td>
 <td class="address-2"><span id="d97e"></span>D97E</td>
 <td class="instruction">LD HL,$E270</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E270.html">E270</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E261.html#e270">InGame_Tiles</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d981"></span>D981</td>
 <td class="instruction">LD D,$01</td>
-<td class="comment-1" rowspan="1"><span class="register">D</span>=01.</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span> is used as a tile checker - so initialise it with 01 which is the "good" value of the first tile.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d983"></span>D983</td>
 <td class="instruction">LD B,$04</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+<td class="comment-1" rowspan="1">Set a row counter in <span class="register">B</span> of 04 rows to check.</td>
 </tr>
 <tr>
+<td class="asm-label">CheckRow_Loop</td>
 <td class="address-2"><span id="d985"></span>D985</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d986"></span>D986</td>
 <td class="instruction">LD B,$05</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=05.</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> of the number of tiles to check per row.</td>
 </tr>
 <tr>
+<td class="asm-label">CheckTiles_Loop</td>
 <td class="address-2"><span id="d988"></span>D988</td>
 <td class="instruction">LD A,(HL)</td>
-<td class="comment-1" rowspan="3">Jump to <a href="D97E.html#d999">D999</a> if *<span class="register">HL</span> is not equal to <span class="register">D</span>.</td>
+<td class="comment-1" rowspan="1">Load the tile value into <span class="register">A</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d989"></span>D989</td>
 <td class="instruction">CP D</td>
+<td class="comment-1" rowspan="2">Jump to <a href="D97E.html#d999">BailOrderIncorrect</a> if the tile value and the tile checker value don't match.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d98a"></span>D98A</td>
-<td class="instruction">JR NZ,<a href="D97E.html#d999">$D999</a></td>
+<td class="instruction">JR NZ,<a href="D97E.html#d999">BailOrderIncorrect</a></td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d98c"></span>D98C</td>
 <td class="instruction">INC HL</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+<td class="comment-1" rowspan="1">Move to the next tile.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d98d"></span>D98D</td>
 <td class="instruction">INC D</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">D</span> by one.</td>
+<td class="comment-1" rowspan="1">Increment the tile checker by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d98e"></span>D98E</td>
-<td class="instruction">DJNZ <a href="D97E.html#d988">$D988</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D97E.html#d988">D988</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D97E.html#d988">CheckTiles_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the tile counter by one and loop back to <a href="D97E.html#d988">CheckTiles_Loop</a> until all of the tiles in this row have been checked.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d990"></span>D990</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="2">Increment <span class="register">HL</span> by two.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d991"></span>D991</td>
 <td class="instruction">INC HL</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d992"></span>D992</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d993"></span>D993</td>
-<td class="instruction">DJNZ <a href="D97E.html#d985">$D985</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D97E.html#d985">D985</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="D97E.html#d985">CheckRow_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="D97E.html#d985">CheckRow_Loop</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d995"></span>
+<div class="comments">
+<div class="paragraph">
+The level is complete! All tiles are in order so jump to <a href="D894.html">LevelComplete</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d995"></span>D995</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Housekeeping; clean up the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d996"></span>D996</td>
-<td class="instruction">JP <a href="D894.html">$D894</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="D894.html">D894</a>.</td>
+<td class="instruction">JP <a href="D894.html">LevelComplete</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D894.html">LevelComplete</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d999"></span>
+<div class="comments">
+<div class="paragraph">
+The level isn't complete, so discard the row counter on the stack and return.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">BailOrderIncorrect</td>
 <td class="address-2"><span id="d999"></span>D999</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Housekeeping; clean up the stack.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="d99a"></span>D99A</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

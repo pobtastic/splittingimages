@@ -4050,7 +4050,7 @@ c$D352 LD DE,$0780    ; {Write #N($0780,$04,$04) to *#R$D88E.
  $D415 JP Z,$D4A5     ; }
  $D418 CALL $E9DA     ; Call #R$E9DA.
  $D41B CALL $E775     ; Call #R$E775.
-; This entry point is used by the routine at #R$F39E.
+; This entry point is used by the routines at #R$F39E and #R$F3AC.
 *$D41E LD A,($D82E)   ; {Write *#R$D82E to *#R$E75D.
  $D421 LD ($E75D),A   ; }
  $D424 LD A,($D82F)   ; {Write *#R$D82F to *#R$E75E.
@@ -4085,6 +4085,15 @@ c$D352 LD DE,$0780    ; {Write #N($0780,$04,$04) to *#R$D88E.
 ; Start Game
 ;
 ; Used by the routine at #R$D1D0.
+;
+; .
+;
+; The game always starts with the cursor inside the home box.
+; .
+; This is position #N$02/ #N$02:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$02
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-02) }
+; UDGTABLE# #POPS
 @label=StartGame
 c$D469 LD A,$02      ; {Write #N$02 to: #LIST { *#R$D830 } { *#R$D831 } {
  $D46B LD ($D830),A  ; *#R$D82E } { *#R$D82F } LIST#
@@ -4104,7 +4113,7 @@ c$D469 LD A,$02      ; {Write #N$02 to: #LIST { *#R$D830 } { *#R$D831 } {
  $D486 LD (HL),$00   ; }
  $D488 CALL $F31E    ; Call #R$F31E.
  $D48B LD HL,($D872) ; #REGhl=*#R$D872.
- $D48E LD (HL),$2D   ; Write #N$2D to *#REGhl.
+ $D48E LD (HL),$2D   ; Write #COLOUR$2D to *#REGhl.
  $D490 INC HL        ; Increment #REGhl by one.
  $D491 LD (HL),$2D   ; Write #N$2D to *#REGhl.
  $D493 INC HL        ; Increment #REGhl by one.
@@ -4518,23 +4527,23 @@ g$D82A DEFB $00
 ; Game status buffer entry at D82B
 g$D82B DEFB $00
 
-; Game status buffer entry at D82C
+; Destination Cursor Position
+@label=DestinationCursor_Y_Position
 g$D82C DEFB $00
+@label=DestinationCursor_X_Position
+ $D82D DEFB $00
 
-; Game status buffer entry at D82D
-g$D82D DEFB $00
-
-; Player Cursor Position
-@label=PlayerCursor_Y_Position
+; Current Player Cursor Position
+@label=CurrentCursor_Y_Position
 g$D82E DEFB $00
-@label=PlayerCursor_X_Position
+@label=CurrentCursor_X_Position
  $D82F DEFB $00
 
-; Game status buffer entry at D830
+; Storage Cursor Position
+@label=StorageCursor_Y_Position
 g$D830 DEFB $00
-
-; Game status buffer entry at D831
-g$D831 DEFB $00
+@label=StorageCursor_X_Position
+ $D831 DEFB $00
 
 ; Game status buffer entry at D832
 g$D832 DEFB $00
@@ -4542,7 +4551,11 @@ g$D832 DEFB $00
 ; Game status buffer entry at D833
 g$D833 DEFB $00
 
-; Game status buffer entry at D834
+; Player Cursor Tile ID
+;
+; Each tile square is numbered, this value represents the tile the cursor
+; is currently placed on. Note the numbering is not entirely sequential.
+@label=PlayerCursor_TileID
 g$D834 DEFB $00
 
 ; Player Cursor Flag
@@ -4639,14 +4652,20 @@ g$D853 DEFW $0000
  $D857 DEFW $0000
  $D859 DEFW $0000
 
-; Game status buffer entry at D85B
-g$D85B DEFW $0000
-
-; Game status buffer entry at D85D
-g$D85D DEFB $00
-
-; Game status buffer entry at D85E
-g$D85E DEFB $00
+; Time Bar
+;
+; Time Bar flags and variables.
+@label=TimeBar_CurrentPosition
+g$D85B DEFW $0000    ; The current (end) position of the time bar in the screen
+                     ; buffer.
+@label=TimeBar_Active
+ $D85D DEFB $00      ; #TABLE(default,centre,centre)
+                     ; { =h Byte | =h Meaning }
+                     ; { #N$00 | Not Active }
+                     ; { #N$01 | Active }
+                     ; TABLE#
+@label=TimeBar_Length
+ $D85E DEFB $00      ; The length of the time bar in character blocks.
 
 ; Game status buffer entry at D85F
 g$D85F DEFB $00,$00,$00,$00,$00,$00,$00,$00
@@ -4731,9 +4750,10 @@ g$D890 DEFW $0000
 @label=LevelGraphicsData
 g$D892 DEFW $0000
 
-; Routine at D894
+; Level Complete
 ;
 ; Used by the routine at #R$D97E.
+@label=LevelComplete
 c$D894 LD HL,$D83A   ; #REGhl=#R$D83A.
  $D897 RES 0,(HL)    ; Reset bit 0 of *#REGhl.
  $D899 LD HL,$D839   ; #REGhl=#R$D839.
@@ -4857,29 +4877,38 @@ c$D894 LD HL,$D83A   ; #REGhl=#R$D83A.
  $D97A CALL $EE61    ; Call #R$EE61.
  $D97D RET           ; Return.
 
-; Routine at D97E
+; Handler: Is Level Complete?
 ;
 ; Used by the routine at #R$D469.
+@label=Handler_IsLevelComplete
 c$D97E LD HL,$E270   ; #REGhl=#R$E270.
- $D981 LD D,$01      ; #REGd=#N$01.
- $D983 LD B,$04      ; #REGb=#N$04.
-*$D985 PUSH BC       ; Stash #REGbc on the stack.
- $D986 LD B,$05      ; #REGb=#N$05.
-*$D988 LD A,(HL)     ; {Jump to #R$D999 if *#REGhl is not equal to #REGd.
- $D989 CP D          ;
- $D98A JR NZ,$D999   ; }
- $D98C INC HL        ; Increment #REGhl by one.
- $D98D INC D         ; Increment #REGd by one.
- $D98E DJNZ $D988    ; Decrease counter by one and loop back to #R$D988 until
-                     ; counter is zero.
+ $D981 LD D,$01      ; #REGd is used as a tile checker - so initialise it with #N$01,
+                     ; which is the "good" value of the first tile.
+ $D983 LD B,$04      ; Set a row counter in #REGb of #N$04 rows to check.
+@label=CheckRow_Loop
+*$D985 PUSH BC       ; Stash the row counter on the stack.
+ $D986 LD B,$05      ; Set a counter in #REGb of the number of tiles to check
+                     ; per row.
+@label=CheckTiles_Loop
+*$D988 LD A,(HL)     ; Load the tile value into #REGa.
+ $D989 CP D          ; {Jump to #R$D999 if the tile value and the tile checker value don't
+ $D98A JR NZ,$D999   ; match.}
+ $D98C INC HL        ; Move to the next tile.
+ $D98D INC D         ; Increment the tile checker by one.
+ $D98E DJNZ $D988    ; Decrease the tile counter by one and loop back to #R$D988 until all
+                     ; of the tiles in this row have been checked.
  $D990 INC HL        ; {Increment #REGhl by two.
  $D991 INC HL        ; }
- $D992 POP BC        ; Restore #REGbc from the stack.
- $D993 DJNZ $D985    ; Decrease counter by one and loop back to #R$D985 until
-                     ; counter is zero.
- $D995 POP BC        ; Restore #REGbc from the stack.
+ $D992 POP BC        ; Restore the row counter from the stack.
+ $D993 DJNZ $D985    ; Decrease the row counter by one and loop back to #R$D985
+                     ; until counter is zero.
+; The level is complete! All tiles are in order so jump to #R$D894.
+ $D995 POP BC        ; Housekeeping; clean up the stack.
  $D996 JP $D894      ; Jump to #R$D894.
-*$D999 POP BC        ; Restore #REGbc from the stack.
+; The level isn't complete, so discard the row counter on the stack and
+; return.
+@label=BailOrderIncorrect
+*$D999 POP BC        ; Housekeeping; clean up the stack.
  $D99A RET           ; Return.
 
 ; Routine at D99B
@@ -5088,7 +5117,7 @@ c$DAB1 LD IX,$3D00   ; #HTML(#REGix=<a rel="noopener nofollow"
 
 ; Routine at DABF
 ;
-; Used by the routines at #R$D352 and #R$F39E.
+; Used by the routines at #R$D352 and #R$F3AC.
 c$DABF LD A,($E75D)  ; #REGa=*#R$E75D.
  $DAC2 DEC A         ; Decrease #REGa by one.
  $DAC3 LD ($E75F),A  ; Write #REGa to *#R$E75F.
@@ -5225,9 +5254,10 @@ c$DB2E PUSH AF        ; Stash #REGaf on the stack.
  $DB7C POP BC         ; }
  $DB7D RET            ; Return.
 
-; Routine at DB7E
+; Move Tile ?
 ;
 ; Used by the routines at #R$EE61 and #R$F43E.
+@label=MoveTile_?
 c$DB7E LD A,($E75D)  ; #REGa=*#R$E75D.
  $DB81 DEC A         ; Decrease #REGa by one.
  $DB82 LD ($E75F),A  ; Write #REGa to *#R$E75F.
@@ -5290,9 +5320,10 @@ c$DB7E LD A,($E75D)  ; #REGa=*#R$E75D.
                      ; counter is zero.
  $DBE4 RET           ; Return.
 
-; Routine at DBE5
+; Move Tile ??
 ;
 ; Used by the routines at #R$EE61 and #R$F43E.
+@label=MoveTile_??
 c$DBE5 LD A,($E75D)  ; #REGa=*#R$E75D.
  $DBE8 DEC A         ; Decrease #REGa by one.
  $DBE9 LD ($E75F),A  ; Write #REGa to *#R$E75F.
@@ -5355,14 +5386,16 @@ c$DBE5 LD A,($E75D)  ; #REGa=*#R$E75D.
                      ; counter is zero.
  $DC4A RET           ; Return.
 
-; Routine at DC4B
+; Move Tile Down
 ;
 ; Used by the routines at #R$EE61 and #R$F43E.
+@label=MoveTile_Down
 c$DC4B LD A,($E75E)  ; #REGa=*#R$E75E.
  $DC4E DEC A         ; Decrease #REGa by one.
  $DC4F LD ($E760),A  ; Write #REGa to *#R$E760.
  $DC52 LD A,($E761)  ; {#REGb=*#R$E761.
  $DC55 LD B,A        ; }
+@label=MoveTile_Down_Loop
 *$DC56 PUSH BC       ; Stash #REGbc on the stack.
  $DC57 LD A,($E75D)  ; #REGa=*#R$E75D.
  $DC5A ADD A,$02     ; #REGa+=#N$02.
@@ -6014,28 +6047,30 @@ c$DFA8 LD (HL),A     ; Write #REGa to *#REGhl.
 ; Routine at DFB2
 ;
 ; Used by the routines at #R$E2CA and #R$F801.
+;
+; A Item ID
 c$DFB2 LD ($E2C7),A             ; Write #REGa to *#R$E2C7.
- $DFB5 CP $01                   ; {Return if #REGa is lower than #N$01
- $DFB7 RET M                    ; (unsigned comparison).}
- $DFB8 CP $15                   ; Compare #REGa with #N$15.
- $DFBA RET P                    ; Return P.
- $DFBB LD A,($D837)             ; #REGa=*#R$D837.
- $DFBE CP $00                   ; {Jump to #R$DFD4 if #REGa is equal to #N$00.
+ $DFB5 CP $01                   ; {Return if #REGa is lower than #N$01.
+ $DFB7 RET M                    ; }
+ $DFB8 CP $15                   ; {Return if #REGa is greater than or equal to
+ $DFBA RET P                    ; #N$15.}
+ $DFBB LD A,($D837)             ; {Jump to #R$DFD4 if *#R$D837 is equal to
+ $DFBE CP $00                   ; #N$00.
  $DFC0 JR Z,$DFD4               ; }
  $DFC2 LD HL,$DFEE              ; #REGhl=#R$DFEF(#N$DFEE).
  $DFC5 LD B,$00                 ; #REGb=#N$00.
- $DFC7 LD C,A                   ; #REGc=#REGa.
+ $DFC7 LD C,A                   ; #REGc=*#R$D837.
  $DFC8 ADD HL,BC                ; #REGhl+=#REGbc.
  $DFC9 LD C,(HL)                ; #REGc=*#REGhl.
  $DFCA LD HL,$5896              ; #REGhl=#N$5896 (attribute buffer location).
  $DFCD ADD HL,BC                ; #REGhl+=#REGbc.
  $DFCE LD A,($E003)             ; #REGa=*#R$E003.
  $DFD1 CALL $DFA8               ; Call #R$DFA8.
-*$DFD4 LD A,($E2C7)             ; #REGa=*#R$E2C7.
- $DFD7 LD ($D837),A             ; Write #REGa to *#R$D837.
+*$DFD4 LD A,($E2C7)             ; {Write *#R$E2C7 to *#R$D837.
+ $DFD7 LD ($D837),A             ; }
  $DFDA LD HL,$DFEE              ; #REGhl=#R$DFEF(#N$DFEE).
  $DFDD LD B,$00                 ; #REGb=#N$00.
- $DFDF LD C,A                   ; #REGc=#REGa.
+ $DFDF LD C,A                   ; #REGc=*#R$E2C7.
  $DFE0 ADD HL,BC                ; #REGhl+=#REGbc.
  $DFE1 LD C,(HL)                ; #REGc=*#REGhl.
  $DFE2 LD HL,$5896              ; #REGhl=#N$5896 (attribute buffer location).
@@ -6487,25 +6522,28 @@ c$E250 LD A,$05      ; #REGa=#N$05.
  $E25E JR NZ,$E254   ; Jump to #R$E254 until the frequency is zero.
  $E260 RET           ; Return.
 
-; Data block at E261
-b$E261 DEFB $00,$00,$00
-
-; Data block at E264
-b$E264 DEFB $00,$00,$00,$00,$00,$00
-
-; Data block at E26A
-b$E26A DEFB $00,$00,$00,$00,$00,$00
-
-; Data block at E270
-b$E270 DEFB $00,$00,$00,$00,$00,$00
-
-; Data block at E276
-b$E276 DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $E27E DEFB $00,$00,$00,$00,$00,$00,$00,$00
- $E286 DEFB $00,$00,$00,$00,$00,$00,$00,$00
-
-; Game status buffer entry at E28E
-g$E28E DEFB $00,$00,$00,$00
+; In-Game Tiles
+;
+; Used by the routine at #R$D97E.
+@label=InGame_Tiles_Top
+g$E261 DEFB $00,$00,$00
+ $E264 DEFB $00,$00,$00,$00,$00,$00
+ $E26A DEFB $00,$00,$00,$00,$00,$00
+@label=InGame_Tiles
+ $E270 DEFB $00,$00,$00,$00,$00
+ $E275 DEFB $00
+ $E276 DEFB $00
+ $E277 DEFB $00,$00,$00,$00,$00
+ $E27C DEFB $00
+ $E27D DEFB $00
+ $E27E DEFB $00,$00,$00,$00,$00
+ $E283 DEFB $00
+ $E284 DEFB $00
+ $E285 DEFB $00,$00,$00,$00,$00
+ $E28A DEFB $00
+ $E28B DEFB $00
+ $E28C DEFB $00,$00
+ $E28E DEFB $00,$00,$00,$00
 
 ; Data block at E292
 b$E292 DEFB $00
@@ -6539,16 +6577,19 @@ g$E2C7 DEFB $00
 @label=Item_SpriteBank
 g$E2C8 DEFW $0000
 
-; Routine at E2CA
+; Fetch Tile Object
 ;
-; Used by the routine at #R$E396.
-c$E2CA LD HL,$D834   ; #REGhl=#R$D834.
- $E2CD LD A,(HL)     ; #REGa=*#REGhl.
- $E2CE LD HL,$E260   ; #REGhl=#R$E260.
- $E2D1 LD B,$00      ; #REGb=#N$00.
- $E2D3 LD C,A        ; #REGc=#REGa.
- $E2D4 ADD HL,BC     ; #REGhl+=#REGbc.
- $E2D5 LD A,(HL)     ; #REGa=*#REGhl.
+; Used by the routine at #R$E53C.
+@label=FetchTileObject
+c$E2CA LD HL,$D834   ; {Fetch *#R$D834 and create an offset using the current
+ $E2CD LD A,(HL)     ; tile ID.
+ $E2CE LD HL,$E260   ;
+ $E2D1 LD B,$00      ;
+ $E2D3 LD C,A        ; }
+; Note; the tile IDs are numbered starting from #N$01, so the routine is
+; fetching from #N$E260+#N$01=#R$E261(#N$E261) (#R$E261).
+ $E2D4 ADD HL,BC     ; {Add the offset to #R$E261(#N$E260) and fetch the item which is at
+ $E2D5 LD A,(HL)     ; the currently referenced tile ID location.}
  $E2D6 CALL $DFB2    ; Call #R$DFB2.
  $E2D9 RET           ; Return.
 
@@ -6573,8 +6614,8 @@ c$E2DA LD HL,($E5B0) ; #REGhl=*#R$E5B0.
 ; Used by the routine at #R$F43E.
 c$E2F1 PUSH DE       ; Stash #REGde on the stack.
  $E2F2 LD DE,($E5B0) ; #REGde=*#R$E5B0.
- $E2F6 LD A,(DE)     ; #REGa=*#REGde.
- $E2F7 LD (HL),A     ; Write #REGa to *#REGhl.
+ $E2F6 LD A,(DE)     ; {Write *#REGde to *#REGhl.
+ $E2F7 LD (HL),A     ; }
  $E2F8 LD A,$00      ; {Write #N$00 to *#REGde.
  $E2FA LD (DE),A     ; }
  $E2FB POP DE        ; Restore #REGde from the stack.
@@ -6583,7 +6624,7 @@ c$E2F1 PUSH DE       ; Stash #REGde on the stack.
 ; Routine at E2FD
 ;
 ; Used by the routine at #R$F43E.
-c$E2FD LD A,($E5B2)  ; {Return if *#R$E5B2 is equal to #N$10.
+c$E2FD LD A,($E5B2)  ; {Return if the player has pressed fire (#N$10).
  $E300 CP $10        ;
  $E302 RET Z         ; }
  $E303 LD A,($D832)  ; {Return if *#R$D832 is equal to #N$02.
@@ -6591,20 +6632,20 @@ c$E2FD LD A,($E5B2)  ; {Return if *#R$E5B2 is equal to #N$10.
  $E308 RET Z         ; }
  $E309 CP $00        ; {Return if *#R$D832 is equal to #N$00.
  $E30B RET Z         ; }
- $E30C LD A,($D82C)  ; #REGa=*#R$D82C.
- $E30F LD HL,$D830   ; #REGhl=#R$D830.
- $E312 CP (HL)       ; {Return if #REGa is not equal to *#REGhl.
+ $E30C LD A,($D82C)  ; {Return if *#R$D82C is not equal to *#R$D830.
+ $E30F LD HL,$D830   ;
+ $E312 CP (HL)       ;
  $E313 RET NZ        ; }
- $E314 LD A,($D82D)  ; #REGa=*#R$D82D.
- $E317 LD HL,$D831   ; #REGhl=#R$D831.
- $E31A CP (HL)       ; {Return if #REGa is not equal to *#REGhl.
+ $E314 LD A,($D82D)  ; {Return if *#R$D82D is not equal to *#R$D831.
+ $E317 LD HL,$D831   ;
+ $E31A CP (HL)       ;
  $E31B RET NZ        ; }
  $E31C CALL $E658    ; Call #R$E658.
  $E31F RET           ; Return.
 
 ; Handler: Home Arrow
 ;
-; Used by the routines at #R$F39E and #R$F801.
+; Used by the routines at #R$F3AC and #R$F801.
 ;
 ; .
 ;
@@ -6663,7 +6704,7 @@ c$E320 LD HL,$E695   ; Point #REGhl at #R$E695 where the attributes are stored.
 
 ; Routine at E352
 ;
-; Used by the routines at #R$F255, #R$F39E and #R$F43E.
+; Used by the routines at #R$F255, #R$F3AC and #R$F43E.
 c$E352 LD A,R        ; {Set the low byte in #REGl to the contents of the Memory
  $E354 LD L,A        ; Refresh Register.}
  $E355 LD H,$C8      ; Set the high byte in #REGh to #N$C8.
@@ -6715,232 +6756,526 @@ c$E352 LD A,R        ; {Set the low byte in #REGl to the contents of the Memory
                      ; loop counter is zero.
  $E395 RET           ; Return.
 
-; Routine at E396
+; Handler: Controls
 ;
-; Used by the routine at #R$F39E.
+; Used by the routine at #R$F3AC.
+@label=Handler_Controls
 c$E396 LD A,($E5B2)  ; #REGa=*#R$E5B2.
  $E399 LD HL,$D834   ; #REGhl=#R$D834.
- $E39C CP $01        ; {Jump to #R$E3F9 if #REGa is not equal to #N$01.
- $E39E JR NZ,$E3F9   ; }
+; Continue on to #R$E39C.
+
+; Controls: Right
+;
+; .
+;
+; .
+;
+; Did the player press right?
+@label=Controls_CheckRight
+c$E39C CP $01        ; {Jump to #R$E3F9 if the player didn't press right
+ $E39E JR NZ,$E3F9   ; (#N$01).}
+; Right movement checks for boundaries and the home box.
+@label=MoveRight_Checks
 *$E3A0 LD A,($D82D)  ; #REGa=*#R$D82D.
- $E3A3 CP $0F        ; Compare #REGa with #N$0F.
- $E3A5 JP P,$E53C    ; Jump to #R$E53C P.
- $E3A8 CP $02        ; Compare #REGa with #N$02.
- $E3AA JR NZ,$E3F0   ; Jump to #R$E3F0 if #REGa is not zero.
- $E3AC LD A,($D82C)  ; {Compare *#R$D82C with #N$02.
+; Can the player move right?
+ $E3A3 CP $0F        ; {If *#R$D82D is at or beyond the right-most boundary jump to
+ $E3A5 JP P,$E53C    ; *#R$E53C.}
+; Is the player inside the home box?
+; .
+; The game restricts this (i.e. this image would never happen), but to
+; demonstrate - this is position #N$02/ #N$02:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$02
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-02) }
+; UDGTABLE# #POPS
+ $E3A8 CP $02        ; {If *#R$D82D is not #N$02 (which confirms the player can't be inside
+ $E3AA JR NZ,$E3F0   ; the home box), jump to #R$E3F0.}
+; If both the horizontal and the vertical co-ordinates are #N$02, then
+; the player IS inside the home box.
+ $E3AC LD A,($D82C)  ; {Now compare *#R$D82C with #N$02.
  $E3AF CP $02        ; }
- $E3B1 LD A,($D82D)  ; #REGa=*#R$D82D.
- $E3B4 JR NZ,$E3F0   ; Jump to #R$E3F0 if *#R$D82C is not equal to #N$02.
- $E3B6 ADD A,$04     ; #REGa+=#N$04.
- $E3B8 LD ($D82D),A  ; Write #REGa to *#R$D82D.
- $E3BB INC (HL)      ; Increment *#REGhl by one.
- $E3BC LD A,$00      ; {Write #N$00 to *#R$D835.
- $E3BE LD ($D835),A  ; }
+ $E3B1 LD A,($D82D)  ; Reload *#R$D82D into #REGa.
+ $E3B4 JR NZ,$E3F0   ; If *#R$D82C is not #N$02 (which confirms the player can't be inside
+                     ; the home box), jump to #R$E3F0.
+; Else the player is inside the home box, so the treatment of the cursor
+; isn't quite so simple.
+ $E3B6 ADD A,$04     ; {Move *#R$D82D to #N$04 character blocks to the right.
+ $E3B8 LD ($D82D),A  ; }
+ $E3BB INC (HL)      ; Update the tile ID the player will land on.
+ $E3BC LD A,$00      ; {Write #N$00 to *#R$D835, the cursor is still inside the home box
+ $E3BE LD ($D835),A  ; and so isn't drawn to the screen buffer just yet.}
+; The player is leaving the home box, so reset the colour of the arrow.
  $E3C1 LD A,$2F      ; #REGa=#COLOUR$2F.
  $E3C3 CALL $E682    ; Call #R$E682.
+; Animate the cursor leaving the home box.
  $E3C6 LD HL,$D82F   ; #REGhl=#R$D82F.
- $E3C9 INC (HL)      ; Increment *#REGhl by one.
- $E3CA LD B,$03      ; #REGb=#N$03.
-*$E3CC PUSH BC       ; {Stash #REGbc and #REGhl on the stack.
- $E3CD PUSH HL       ; }
+ $E3C9 INC (HL)      ; Move the cursor position right by one character block.
+; Each valid direction moves the cursor one-cursor-width character blocks
+; and rather than simply jump the whole way, the game auto-moves one character
+; block at a time until the cursor reaches it's destination.
+; .
+; I've called these "frames" here, but it's the same cursor just moving
+; between positions, there are no differently stored frames.
+ $E3CA LD B,$03      ; Set a counter in #REGb for #N$03 animation "frames".
+@label=AnimateMoveRight_Loop
+*$E3CC PUSH BC       ; {Stash the frame counter and horizontal position on the
+ $E3CD PUSH HL       ; stack.}
+; To demonstrate the three "frames" of movement:
+; #UDGTABLE(default,centre) { #FOR$03,$05(n,=h #Nn, | ) } {
+;   #FOR$03,$05""n"
+;     #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$0n
+;     #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-0n-02) #POPS
+;   " | ""
+; } UDGTABLE#
+; If the code only called #R$E5E4 then the above is what would actually
+; display! Instead the default attributes are written to the home box very
+; quickly, and then the code forces a HALT to wait for the next frame to avoid
+; any flicker.
+; .
+; So this is what is actually displayed:
+; #UDGTABLE(default,centre) { #FOR$03,$05(n,=h #Nn, | ) } {
+;   #FOR$03,$05""n"
+;     #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$0n
+;     #SIM(start=$E3CE,stop=$E3D4)#SCR$01(cursor-good-0n-02) #POPS
+;   " | ""
+; } UDGTABLE#
+; And then position #N$06 is just the cursor being printed normally (hence only
+; #N$03 "frames" are needed here).
  $E3CE CALL $E5E4    ; Call #R$E5E4.
  $E3D1 CALL $E66A    ; Call #R$E66A.
  $E3D4 CALL $E5B3    ; Call #R$E5B3.
+; Wait for the next frame.
  $E3D7 HALT          ; Halt operation (suspend CPU until the next interrupt).
  $E3D8 CALL $E63F    ; Call #R$E63F.
- $E3DB POP HL        ; {Restore #REGhl and #REGbc from the stack.
- $E3DC POP BC        ; }
- $E3DD INC (HL)      ; Increment *#REGhl by one.
- $E3DE DJNZ $E3CC    ; Decrease counter by one and loop back to #R$E3CC until
-                     ; counter is zero.
+ $E3DB POP HL        ; {Restore the horizontal position and frame counter from
+ $E3DC POP BC        ; the stack.}
+ $E3DD INC (HL)      ; Move the cursor position right by one character block.
+ $E3DE DJNZ $E3CC    ; Decrease the frame counter by one and loop back to #R$E3CC until
+                     ; all #N$03 frames have played.
+; Display the cursor in its final position.
  $E3E0 CALL $E661    ; Call #R$E661.
+; Update the stored cursor positions.
  $E3E3 LD A,($D82C)  ; {Write *#R$D82C to *#R$D830.
  $E3E6 LD ($D830),A  ; }
  $E3E9 LD A,($D82D)  ; {Write *#R$D82D to *#R$D831.
  $E3EC LD ($D831),A  ; }
  $E3EF RET           ; Return.
-*$E3F0 ADD A,$04     ; #REGa+=#N$04.
- $E3F2 LD ($D82D),A  ; Write #REGa to *#R$D82D.
+; Normal right movement.
+@label=MoveRight
+*$E3F0 ADD A,$04     ; Move #N$04 character blocks right.
+ $E3F2 LD ($D82D),A  ; Update *#R$D82D.
+; Update the tile ID the player has now landed on.
  $E3F5 INC (HL)      ; Increment *#REGhl by one.
  $E3F6 JP $E53C      ; Jump to #R$E53C.
-*$E3F9 CP $02        ; {Jump to #R$E454 if #REGa is not equal to #N$02.
- $E3FB JR NZ,$E454   ; }
+
+; Controls: Left
+;
+; Used by the routine at #R$E39C.
+;
+; .
+;
+; Did the player press left?
+@label=Controls_CheckLeft
+c$E3F9 CP $02        ; {Jump to #R$E454 if the player didn't press left
+ $E3FB JR NZ,$E454   ; (#N$02).}
+; Left movement checks for boundaries and the home box.
+@label=MoveLeft_Checks
 *$E3FD LD A,($D82D)  ; #REGa=*#R$D82D.
- $E400 CP $05        ; Compare #REGa with #N$05.
- $E402 JP M,$E53C    ; Jump to #R$E53C M.
- $E405 CP $06        ; {Jump to #R$E44B if #REGa is not equal to #N$06.
- $E407 JR NZ,$E44B   ; }
- $E409 LD A,($D82C)  ; #REGa=*#R$D82C.
- $E40C CP $02        ; Compare #REGa with #N$02.
- $E40E LD A,($D82D)  ; #REGa=*#R$D82D.
- $E411 JR NZ,$E44B   ; Jump to #R$E44B if #REGa is not zero.
- $E413 SUB $04       ; #REGa-=#N$04.
- $E415 LD ($D82D),A  ; Write #REGa to *#R$D82D.
- $E418 DEC (HL)      ; Decrease *#REGhl by one.
+; Can the player move left?
+ $E400 CP $05        ; {If *#R$D82D is at or beyond the left-most boundary jump to
+ $E402 JP M,$E53C    ; *#R$E53C.}
+; Is the player about to enter the home box?
+; .
+; This is position #N$06/ #N$02:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$06
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-06-02) }
+; UDGTABLE# #POPS
+ $E405 CP $06        ; {If *#R$D82D is not #N$06 (which confirms the player can't be beside
+ $E407 JR NZ,$E44B   ; the home box), jump to #R$E44B.}
+; If the horizontal co-ordinate is #N$06 and the vertical co-ordinate is
+; #N$02 then the player IS beside the home box.
+ $E409 LD A,($D82C)  ; {Now compare *#R$D82C with #N$02.
+ $E40C CP $02        ; }
+ $E40E LD A,($D82D)  ; Reload *#R$D82D into #REGa.
+ $E411 JR NZ,$E44B   ; If *#R$D82C is not #N$02 (which confirms the player can't be beside
+                     ; the home box), jump to #R$E44B.
+; Else the player is entering the home box, so the treatment of the
+; cursor isn't quite so simple.
+ $E413 SUB $04       ; {Move *#R$D82D to #N$04 character blocks to the left.
+ $E415 LD ($D82D),A  ; }
+ $E418 DEC (HL)      ; Update the tile ID the player will land on.
  $E419 CALL $E658    ; Call #R$E658.
+; Animate the cursor entering the home box.
  $E41C LD HL,$D82F   ; #REGhl=#R$D82F.
- $E41F LD B,$04      ; #REGb=#N$04.
+; Each valid direction moves the cursor one-cursor-width character blocks
+; and rather than simply jump the whole way, the game auto-moves one character
+; block at a time until the cursor reaches it's destination.
+; .
+; I've called these "frames" here, but it's the same cursor just moving
+; between positions, there are no differently stored frames.
+ $E41F LD B,$04      ; Set a counter in #REGb for #N$04 animation "frames".
  $E421 CP $02        ; {Jump to #R$E3FD if #REGa is equal to #N$02.
  $E423 JR Z,$E3FD    ; }
-*$E425 PUSH BC       ; {Stash #REGbc and #REGhl on the stack.
- $E426 PUSH HL       ; }
+@label=AnimateMoveLeft_Loop
+*$E425 PUSH BC       ; {Stash the frame counter and horizontal position on the
+ $E426 PUSH HL       ; stack.}
+; To demonstrate the four "frames" of movement:
+; #UDGTABLE(default,centre) { #FOR($06,$03,-$01)(n,=h #Nn, | ) } {
+;   #FOR($06,$03,-$01)!!n!
+;     #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$0n
+;     #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-0n-02) #POPS
+;   ! | !!
+; } UDGTABLE#
+; If the code only called #R$E5E4 then the above is what would actually
+; display! Instead the default attributes are written to the home box very
+; quickly, and then the code forces a HALT to wait for the next frame to avoid
+; any flicker.
+; .
+; So this is what is actually displayed:
+; #UDGTABLE(default,centre) { #FOR($06,$03,-$01)(n,=h #Nn, | ) } {
+;   #FOR($06,$03,-$01)!!n!
+;     #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$0n
+;     #SIM(start=$E3CE,stop=$E3D4)#SCR$01(cursor-good-0n-02) #POPS! |
+;   !!
+; } UDGTABLE#
+; And then position #N$02 is handled below by setting *#R$D835 to #N$00.
  $E427 CALL $E5E4    ; Call #R$E5E4.
  $E42A CALL $E66A    ; Call #R$E66A.
  $E42D CALL $E5B3    ; Call #R$E5B3.
+; Wait for the next frame.
  $E430 HALT          ; Halt operation (suspend CPU until the next interrupt).
  $E431 CALL $E63F    ; Call #R$E63F.
- $E434 POP HL        ; {Restore #REGhl and #REGbc from the stack.
- $E435 POP BC        ; }
- $E436 DEC (HL)      ; Decrease *#REGhl by one.
- $E437 DJNZ $E425    ; Decrease counter by one and loop back to #R$E425 until
-                     ; counter is zero.
+ $E434 POP HL        ; {Restore the horizontal position and frame counter from
+ $E435 POP BC        ; the stack.}
+ $E436 DEC (HL)      ; Move the cursor position left by one character block.
+ $E437 DJNZ $E425    ; Decrease the frame counter by one and loop back to #R$E425 until
+                     ; all #N$04 frames have played.
+; Mark that the cursor is now inside the home box.
  $E439 LD A,$00      ; {Write #N$00 to *#R$D835.
  $E43B LD ($D835),A  ; }
+; Update the stored cursor positions.
  $E43E LD A,($D82C)  ; {Write *#R$D82C to *#R$D830.
  $E441 LD ($D830),A  ; }
  $E444 LD A,($D82D)  ; {Write *#R$D82D to *#R$D831.
  $E447 LD ($D831),A  ; }
  $E44A RET           ; Return.
-*$E44B SUB $04       ; #REGa-=#N$04.
- $E44D LD ($D82D),A  ; Write #REGa to *#R$D82D.
+; Normal left movement.
+@label=MoveLeft
+*$E44B SUB $04       ; Move #N$04 character blocks left.
+ $E44D LD ($D82D),A  ; Update *#R$D82D.
+; Update the tile ID the player has now landed on.
  $E450 DEC (HL)      ; Decrease *#REGhl by one.
  $E451 JP $E53C      ; Jump to #R$E53C.
-*$E454 CP $04        ; {Jump to #R$E47B if #REGa is not equal to #N$04.
- $E456 JR NZ,$E47B   ; }
+
+; Controls: Down
+;
+; Used by the routine at #R$E3F9.
+;
+; .
+;
+; Did the player press down?
+@label=Controls_CheckDown
+c$E454 CP $04        ; {Jump to #R$E47B if the player didn't press down
+ $E456 JR NZ,$E47B   ; (#N$04).}
+; Down movement checks for boundaries and the home box.
+@label=MoveDown_Checks
 *$E458 LD A,($D82C)  ; #REGa=*#R$D82C.
- $E45B CP $0F        ; Compare #REGa with #N$0F.
- $E45D JP P,$E53C    ; Jump to #R$E53C P.
- $E460 CP $02        ; {Jump to #R$E46F if #REGa is not equal to #N$02.
- $E462 JR NZ,$E46F   ; }
- $E464 LD A,($D82D)  ; {Jump to #R$E53C if *#R$D82D is equal to #N$02.
- $E467 CP $02        ;
- $E469 JP Z,$E53C    ; }
- $E46C LD A,($D82C)  ; #REGa=*#R$D82C.
-*$E46F ADD A,$04     ; #REGa+=#N$04.
- $E471 LD ($D82C),A  ; Write #REGa to *#R$D82C.
- $E474 LD A,(HL)     ; #REGa=*#REGhl.
- $E475 ADD A,$07     ; #REGa+=#N$07.
- $E477 LD (HL),A     ; Write #REGa to *#REGhl.
+; Can the player move down?
+ $E45B CP $0F        ; {If *#R$D82C is at or beyond the bottom-most boundary
+ $E45D JP P,$E53C    ; jump to #R$E53C.}
+; Is the player inside the home box?
+; .
+; The game restricts this (i.e. this image would never happen), but to
+; demonstrate - this is position #N$02/ #N$02:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$02
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-02) }
+; UDGTABLE# #POPS
+ $E460 CP $02        ; {If *#R$D82C is not #N$02 (which confirms the player can't be inside
+ $E462 JR NZ,$E46F   ; the home box), jump to #R$E46F.}
+; If both the horizontal and the vertical co-ordinates are #N$02, then
+; the player IS inside the home box. The outcome is different to left and right
+; though - the home box can only be exited by moving right. So for this "down"
+; action, we treat the bottom side of the home box as another boundary and
+; don't allow the player to move through it.
+ $E464 LD A,($D82D)  ; {Now compare *#R$D82D with #N$02.
+ $E467 CP $02        ; }
+ $E469 JP Z,$E53C    ; If *#R$D82D is #N$02 (which confirms that yes, the player is inside
+                     ; the home box), jump to #R$E53C to prevent the movement from happening.
+; Normal down movement.
+ $E46C LD A,($D82C)  ; Reload *#R$D82C into #REGa.
+@label=MoveDown
+*$E46F ADD A,$04     ; Move #N$04 rows down.
+ $E471 LD ($D82C),A  ; Update *#R$D82C.
+; Update the tile ID the player has now landed on.
+ $E474 LD A,(HL)     ; {Add #N$07 to *#REGhl.
+ $E475 ADD A,$07     ;
+ $E477 LD (HL),A     ; }
  $E478 JP $E53C      ; Jump to #R$E53C.
-*$E47B CP $08        ; {Jump to #R$E4A2 if #REGa is not equal to #N$08.
+
+; Controls: Up
+;
+; Used by the routine at #R$E454.
+;
+; .
+;
+; Did the player press up?
+@label=Controls_CheckUp
+c$E47B CP $08        ; {Jump to #R$E4A2 if the player didn't press up (#N$08).
  $E47D JR NZ,$E4A2   ; }
+; Up movement checks for boundaries and the home box.
+@label=MoveUp_Checks
 *$E47F LD A,($D82C)  ; #REGa=*#R$D82C.
- $E482 CP $05        ; Compare #REGa with #N$05.
- $E484 JP M,$E53C    ; Jump to #R$E53C M.
- $E487 CP $06        ; {Jump to #R$E496 if #REGa is not equal to #N$06.
- $E489 JR NZ,$E496   ; }
- $E48B LD A,($D82D)  ; {Jump to #R$E53C if *#R$D82D is equal to #N$02.
- $E48E CP $02        ;
- $E490 JP Z,$E53C    ; }
- $E493 LD A,($D82C)  ; #REGa=*#R$D82C.
-*$E496 SUB $04       ; #REGa-=#N$04.
- $E498 LD ($D82C),A  ; Write #REGa to *#R$D82C.
- $E49B LD A,(HL)     ; #REGa=*#REGhl.
- $E49C SUB $07       ; #REGa-=#N$07.
- $E49E LD (HL),A     ; Write #REGa to *#REGhl.
+; Can the player move up?
+ $E482 CP $05        ; {If *#R$D82C is at or beyond the top-most boundary jump
+ $E484 JP M,$E53C    ; to #R$E53C.}
+; Is the player below the home box?
+; .
+; This is position #N$02/ #N$06:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$06;$D82F,$02
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-06) }
+; UDGTABLE# #POPS
+ $E487 CP $06        ; {If *#R$D82C is not #N$06 (which confirms the player can't be below
+ $E489 JR NZ,$E496   ; the home box), jump to #R$E496.}
+; If the horizontal co-ordinate is #N$02 and the vertical co-ordinate is
+; #N$06 then the player is below the home box. As the home box can only be
+; entered from the right side, we treat the bottom side as a boundary and don't
+; allow the player to move through it.
+ $E48B LD A,($D82D)  ; {Now compare *#R$D82D with #N$02.
+ $E48E CP $02        ; }
+ $E490 JP Z,$E53C    ; If *#R$D82D is #N$02 (which confirms that yes, the player is below
+                     ; the home box), jump to #R$E53C to prevent the movement from happening.
+; Normal up movement.
+ $E493 LD A,($D82C)  ; Reload *#R$D82C into #REGa.
+@label=MoveUp
+*$E496 SUB $04       ; Move #N$04 rows up.
+ $E498 LD ($D82C),A  ; Update *#R$D82C.
+; Update the tile ID the player has now landed on.
+ $E49B LD A,(HL)     ; {Subtract #N$07 from *#REGhl.
+ $E49C SUB $07       ;
+ $E49E LD (HL),A     ; }
  $E49F JP $E53C      ; Jump to #R$E53C.
-*$E4A2 CP $05        ; {Jump to #R$E4C5 if #REGa is not equal to #N$05.
- $E4A4 JR NZ,$E4C5   ; }
+
+; Controls: Right/ Down
+;
+; Used by the routine at #R$E47B.
+;
+; .
+;
+; Did the player press diagonally right/ down?
+@label=Controls_CheckRightDown
+c$E4A2 CP $05        ; {Jump to #R$E4C5 if the player didn't press right/ down
+ $E4A4 JR NZ,$E4C5   ; (#N$01+#N$04=#N$05).}
+; Right/ down movement checks for boundaries and the home box.
  $E4A6 LD A,($D82D)  ; #REGa=*#R$D82D.
- $E4A9 CP $0F        ; Compare #REGa with #N$0F.
- $E4AB JP P,$E458    ; Jump to #R$E458 P.
- $E4AE CP $02        ; {Jump to #R$E4BD if #REGa is not equal to #N$02.
- $E4B0 JR NZ,$E4BD   ; }
- $E4B2 LD A,($D82C)  ; {Jump to #R$E3A0 if *#R$D82C is equal to #N$02.
- $E4B5 CP $02        ;
- $E4B7 JP Z,$E3A0    ; }
- $E4BA LD A,($D82D)  ; #REGa=*#R$D82D.
-*$E4BD ADD A,$04     ; #REGa+=#N$04.
- $E4BF LD ($D82D),A  ; Write #REGa to *#R$D82D.
+; Can the player move right?
+ $E4A9 CP $0F        ; {If *#R$D82D is at or beyond the right-most boundary
+ $E4AB JP P,$E458    ; jump to #R$E458.}
+; Is the player inside the home box?
+; .
+; The game restricts this (i.e. this image would never happen), but to
+; demonstrate - this is position #N$02/ #N$02:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$02
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-02) }
+; UDGTABLE# #POPS
+ $E4AE CP $02        ; {If *#R$D82D is not #N$02 (which confirms the player can't be inside
+ $E4B0 JR NZ,$E4BD   ; the home box), jump to #R$E4BD.}
+; If both the horizontal and the vertical co-ordinates are #N$02 then the
+; player IS inside the home box. We then jump to #R$E3A0 to handle the
+; animation of moving out of the home box.
+ $E4B2 LD A,($D82C)  ; {If *#R$D82C is #N$02 (which confirms that yes, the player is inside
+ $E4B5 CP $02        ; the home box), jump to #R$E3A0 so this routine can handle the rest of the
+ $E4B7 JP Z,$E3A0    ; movement update.}
+; Normal right movement.
+ $E4BA LD A,($D82D)  ; Reload *#R$D82D into #REGa.
+; Note this only handles moving right, it then passes the rest of the
+; movement to #R$E458 for handling moving down.
+@label=MoveRightDown
+*$E4BD ADD A,$04     ; Move #N$04 character blocks right.
+ $E4BF LD ($D82D),A  ; Update *#R$D82D.
+; Update the tile ID the player has now landed on (note, this only covers
+; the "right" movement here - the jump below covers if down should also alter
+; the value).
  $E4C2 INC (HL)      ; Increment *#REGhl by one.
  $E4C3 JR $E458      ; Jump to #R$E458.
-*$E4C5 CP $06        ; {Jump to #R$E4E9 if #REGa is not equal to #N$06.
- $E4C7 JR NZ,$E4E9   ; }
+
+; Controls: Left/ Down
+;
+; Used by the routine at #R$E4A2.
+;
+; .
+;
+; Did the player press diagonally left/ down?
+@label=Controls_CheckLeftDown
+c$E4C5 CP $06        ; {Jump to #R$E4E9 if the player didn't press left/ down
+ $E4C7 JR NZ,$E4E9   ; (#N$02+#N$04=#N$06).}
+; Left/ down movement checks for boundaries and the home box.
  $E4C9 LD A,($D82D)  ; #REGa=*#R$D82D.
- $E4CC CP $05        ; Compare #REGa with #N$05.
- $E4CE JP M,$E458    ; Jump to #R$E458 M.
- $E4D1 CP $06        ; {Jump to #R$E4E0 if #REGa is not equal to #N$06.
- $E4D3 JR NZ,$E4E0   ; }
- $E4D5 LD A,($D82C)  ; {Jump to #R$E3FD if *#R$D82C is equal to #N$02.
- $E4D8 CP $02        ;
- $E4DA JP Z,$E3FD    ; }
- $E4DD LD A,($D82D)  ; #REGa=*#R$D82D.
-*$E4E0 SUB $04       ; #REGa-=#N$04.
- $E4E2 LD ($D82D),A  ; Write #REGa to *#R$D82D.
+; Can the player move left?
+ $E4CC CP $05        ; {If *#R$D82D is at or beyond the left-most boundary jump
+ $E4CE JP M,$E458    ; to #R$E458.}
+; Is the player about to enter the home box?
+; .
+; This is position #N$06/ #N$02:
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$06
+; #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-06-02) }
+; UDGTABLE# #POPS
+ $E4D1 CP $06        ; {If *#R$D82D is not #N$06 (which confirms the player can't be beside
+ $E4D3 JR NZ,$E4E0   ; the home box), jump to #R$E4E0.}
+; If the horizontal co-ordinate is #N$06 and the vertical co-ordinate is
+; #N$02 then the player IS beside the home box. We then jump to #R$E3FD to
+; handle the animation of entering the home box.
+ $E4D5 LD A,($D82C)  ; {Now compare *#R$D82C with #N$02.
+ $E4D8 CP $02        ; }
+ $E4DA JP Z,$E3FD    ; If *#R$D82C is #N$02 (which confirms that yes, the player is beside
+                     ; the home box), jump to #R$E3FD so this routine can handle the rest of the
+                     ; movement update.
+; Normal left movement.
+ $E4DD LD A,($D82D)  ; Reload *#R$D82D into #REGa.
+; Note this only handles moving left, it then passes the rest of the
+; movement to #R$E458 for handling moving down.
+@label=MoveLeftDown
+*$E4E0 SUB $04       ; Move #N$04 character blocks left.
+ $E4E2 LD ($D82D),A  ; Update *#R$D82D.
+; Update the tile ID the player has now landed on (note, this only covers
+; the "left" movement here - the jump below covers if down should also alter
+; the value).
  $E4E5 DEC (HL)      ; Decrease *#REGhl by one.
  $E4E6 JP $E458      ; Jump to #R$E458.
-*$E4E9 CP $09        ; {Jump to #R$E512 if #REGa is not equal to #N$09.
- $E4EB JR NZ,$E512   ; }
+
+; Controls: Right/ Up
+;
+; Used by the routine at #R$E4C5.
+;
+; .
+;
+; Did the player press diagonally right/ up?
+@label=Controls_CheckRightUp
+c$E4E9 CP $09        ; {Jump to #R$E512 if the player didn't press right/ up
+ $E4EB JR NZ,$E512   ; (#N$01+#N$08=#N$09).}
+; Right/ up movement checks for boundaries and the home box.
  $E4ED LD A,($D82D)  ; #REGa=*#R$D82D.
- $E4F0 CP $0F        ; Compare #REGa with #N$0F.
- $E4F2 JP P,$E47F    ; Jump to #R$E47F P.
- $E4F5 CP $02        ; {Jump to #R$E509 if #REGa is not equal to #N$02.
- $E4F7 JR NZ,$E509   ; }
- $E4F9 LD A,($D82C)  ; {Jump to #R$E3A0 if *#R$D82C is equal to #N$06.
- $E4FC CP $06        ;
- $E4FE JP Z,$E3A0    ; }
- $E501 CP $02        ; {Jump to #R$E3A0 if *#R$D82C is equal to #N$02.
+; Can the player move right?
+ $E4F0 CP $0F        ; {If *#R$D82D is at or beyond the right-most boundary
+ $E4F2 JP P,$E47F    ; jump to #R$E47F.}
+; Is the player either inside or below the home box?
+; .
+; This is position #N$02/ #N$02 and also position #N$02/ #N$06:
+; #UDGTABLE { =h #N$02/ #N$02 (Inside) | =h #N$02/ #N$06 (Below) }
+; { #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$02
+;   #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-02) #POPS |
+;   #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$06;$D82F,$02
+;   #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-06) #POPS
+; } UDGTABLE#
+ $E4F5 CP $02        ; {If *#R$D82D is not #N$02 (which confirms the player can't be inside
+ $E4F7 JR NZ,$E509   ; the home box), jump to #R$E509.}
+; Else it is now confirmed that *#R$D82D is at position #N$02.
+ $E4F9 LD A,($D82C)  ; {If *#R$D82C is either #N$06 (which confirms that yes, the player is
+ $E4FC CP $06        ; below the home box) or #N$02 (which confirms that yes, the player is inside
+ $E4FE JP Z,$E3A0    ; the home box), jump to #R$E3A0.
+ $E501 CP $02        ;
  $E503 JP Z,$E3A0    ; }
- $E506 LD A,($D82D)  ; #REGa=*#R$D82D.
-*$E509 ADD A,$04     ; #REGa+=#N$04.
- $E50B LD ($D82D),A  ; Write #REGa to *#R$D82D.
+; Normal right movement.
+ $E506 LD A,($D82D)  ; Reload *#R$D82D into #REGa.
+@label=MoveRightUp
+*$E509 ADD A,$04     ; Move #N$04 character blocks right.
+ $E50B LD ($D82D),A  ; Update *#R$D82D.
+; Update the tile ID the player has now landed on (note, this only covers
+; the "right" movement here - the jump below covers if up should also alter the
+; value).
  $E50E INC (HL)      ; Increment *#REGhl by one.
  $E50F JP $E47F      ; Jump to #R$E47F.
-*$E512 CP $0A        ; Compare #REGa with #N$0A.
- $E514 JP NZ,$F43E   ; Jump to #R$F43E if #REGa is not zero.
+
+; Controls: Left/ Up
+;
+; Used by the routine at #R$E4E9.
+;
+; .
+;
+; Did the player press diagonally left/ up?
+@label=Controls_CheckLeftUp
+c$E512 CP $0A        ; {Jump to #R$F43E if the player didn't press left up
+ $E514 JP NZ,$F43E   ; (#N$02+#N$08=#N$0A).}
+; Left/ up movement checks for boundaries and the home box.
  $E517 LD A,($D82D)  ; #REGa=*#R$D82D.
- $E51A CP $05        ; Compare #REGa with #N$05.
- $E51C JP M,$E47F    ; Jump to #R$E47F M.
- $E51F CP $06        ; Compare #REGa with #N$06.
- $E521 JR NZ,$E533   ; Jump to #R$E533 if #REGa is not zero.
- $E523 LD A,($D82C)  ; #REGa=*#R$D82C.
- $E526 CP $06        ; Compare #REGa with #N$06.
- $E528 JP Z,$E53C    ; Jump to #R$E53C if #REGa is zero.
- $E52B CP $02        ; Compare #REGa with #N$02.
- $E52D JP Z,$E3FD    ; Jump to #R$E3FD if #REGa is zero.
- $E530 LD A,($D82D)  ; #REGa=*#R$D82D.
-*$E533 SUB $04       ; #REGa-=#N$04.
- $E535 LD ($D82D),A  ; Write #REGa to *#R$D82D.
+; Can the player move left?
+ $E51A CP $05        ; {If *#R$D82D is at or beyond the left-most boundary jump
+ $E51C JP M,$E47F    ; to #R$E47F.}
+; Is the player about to enter the home box?
+; .
+; This is position #N$06/ #N$06 and also position #N$06/ #N$02:
+; #UDGTABLE { =h #N$06/ #N$06 (Below) | =h #N$06/ #N$02 (Beside) }
+; { #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$06;$D82F,$06
+;   #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-06-06) #POPS |
+;   #PUSHS #SIM(start=$D1F1,stop=$D1F7)#POKES$D82E,$02;$D82F,$06
+;   #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-06-02) #POPS
+; } UDGTABLE#
+ $E51F CP $06        ; {If *#R$D82D is not #N$06 (which confirms the player can't be beside
+ $E521 JR NZ,$E533   ; the home box), jump to #R$E533.}
+; Else it is now confirmed that *#R$D82D is at position #N$06.
+ $E523 LD A,($D82C)  ; {If *#R$D82C is #N$06 (which confirms that yes, the player is
+ $E526 CP $06        ; diagonally below the home box) jump to #R$E53C.
+ $E528 JP Z,$E53C    ; }
+ $E52B CP $02        ; {If *#R$D82C is #N$02 (which confirms that yes, the player is beside
+ $E52D JP Z,$E3FD    ; the home box) jump to #R$E3FD so this routine can handle the rest of the
+                     ; movement update.}
+; Normal left movement.
+ $E530 LD A,($D82D)  ; Reload *#R$D82D into #REGa.
+@label=MoveLeftUp
+*$E533 SUB $04       ; Move #N$04 character blocks left.
+ $E535 LD ($D82D),A  ; Update *#R$D82D.
+; Update the tile ID the player has now landed on (note, this only covers
+; the "left" movement here - the jump below covers if up should also alter the
+; value).
  $E538 DEC (HL)      ; Decrease *#REGhl by one.
  $E539 JP $E47F      ; Jump to #R$E47F.
-*$E53C CALL $E2CA    ; Call #R$E2CA.
+
+; Handler: Cursor Movement
+;
+; Used by the routines at #R$E39C, #R$E3F9, #R$E454, #R$E47B and #R$E512.
+@label=Handler_CursorMovement
+c$E53C CALL $E2CA    ; Call #R$E2CA.
  $E53F LD A,($D82C)  ; {Write *#R$D82C to *#R$D830.
  $E542 LD ($D830),A  ; }
  $E545 LD A,($D82D)  ; {Write *#R$D82D to *#R$D831.
  $E548 LD ($D831),A  ; }
  $E54B LD A,R        ; #REGa=the contents of the Memory Refresh Register.
- $E54D RLCA          ; RLCA.
- $E54E LD L,A        ; #REGl=#REGa.
+ $E54D RLCA          ; {Multiply #REGa by #N$02 and store the result in #REGl.
+ $E54E LD L,A        ; }
  $E54F LD H,$00      ; #REGh=#N$00.
- $E551 LD B,$46      ; #REGb=#N$46.
- $E553 LD D,$05      ; #REGd=#N$05.
-*$E555 LD A,(HL)     ; #REGa=*#REGhl.
+ $E551 LD B,$46      ; Set a counter in #REGb for the first outer loop.
+ $E553 LD D,$05      ; Set a counter in #REGd for the first inner loop.
+@label=CursorMovement_SoundLoop_01
+*$E555 LD A,(HL)     ; Fetch a byte from the ZX Spectrum ROM and store it in
+                     ; #REGa.
  $E556 AND %00011000 ; Keep only bits 3-4.
  $E558 OR %00000101  ; Set bits 0, 2.
- $E55A OUT ($FE),A   ; Set border to the colour held by #REGa.
- $E55C INC HL        ; Increment #REGhl by one.
- $E55D PUSH BC       ; Stash #REGbc on the stack.
- $E55E LD B,D        ; #REGb=#REGd.
-*$E55F DJNZ $E55F    ; Decrease counter by one and loop back to #R$E55F until
-                     ; counter is zero.
- $E561 POP BC        ; Restore #REGbc from the stack.
- $E562 DJNZ $E555    ; Decrease counter by one and loop back to #R$E555 until
-                     ; counter is zero.
+ $E55A OUT ($FE),A   ; Send to the speaker.
+ $E55C INC HL        ; Increment the ROM pointer by one.
+ $E55D PUSH BC       ; Stash the outer loop counter on the stack.
+ $E55E LD B,D        ; Set #REGb to the inner loop counter held by #REGd.
+@label=CursorMovement_DelayLoop_01
+*$E55F DJNZ $E55F    ; Decrease the inner loop counter by one and loop back to #R$E55F
+                     ; until the counter is zero.
+ $E561 POP BC        ; Restore the outer loop counter from the stack.
+ $E562 DJNZ $E555    ; Decrease the outer loop counter by one and loop back to #R$E555
+                     ; until the counter is zero.
  $E564 HALT          ; Halt operation (suspend CPU until the next interrupt).
+; Update the cursor position.
  $E565 LD A,($D82C)  ; {Jump to #R$E575 if *#R$D82C is equal to *#R$D82E.
  $E568 LD HL,$D82E   ;
  $E56B CP (HL)       ;
  $E56C JR Z,$E575    ; }
- $E56E JP P,$E574    ; Jump to #R$E574 P.
- $E571 DEC (HL)      ; Decrease *#REGhl by one.
+ $E56E JP P,$E574    ; Jump to #R$E574 if *#R$D82C is greater than or equal to
+                     ; *#R$D82E.
+ $E571 DEC (HL)      ; Decrease *#R$D82E by one.
  $E572 JR $E575      ; Jump to #R$E575.
 *$E574 INC (HL)      ; Increment *#REGhl by one.
 *$E575 LD A,($D82D)  ; {Jump to #R$E585 if *#R$D82D is equal to *#R$D82F.
  $E578 LD HL,$D82F   ;
  $E57B CP (HL)       ;
  $E57C JR Z,$E585    ; }
- $E57E JP P,$E584    ; Jump to #R$E584 P.
- $E581 DEC (HL)      ; Decrease *#REGhl by one.
+ $E57E JP P,$E584    ; Jump to #R$E584 if *#R$D82D is greater than or equal to
+                     ; *#R$D82F.
+ $E581 DEC (HL)      ; Decrease *#R$D82F by one.
  $E582 JR $E585      ; Jump to #R$E585.
 *$E584 INC (HL)      ; Increment *#REGhl by one.
 *$E585 LD A,($D82E)  ; {Jump to #R$E53C if *#R$D82E is not equal to *#R$D82C.
@@ -6951,23 +7286,28 @@ c$E396 LD A,($E5B2)  ; #REGa=*#R$E5B2.
  $E591 LD HL,$D82D   ;
  $E594 CP (HL)       ;
  $E595 JR NZ,$E53C   ; }
- $E597 LD A,R        ; {#REGl=the contents of the Memory Refresh Register.
- $E599 LD L,A        ; }
- $E59A LD H,$0A      ; #REGh=#N$0A.
- $E59C LD B,$23      ; #REGb=#N$23.
- $E59E LD C,$64      ; #REGc=#N$64.
-*$E5A0 LD A,(HL)     ; #REGa=*#REGhl.
- $E5A1 INC HL        ; Increment #REGhl by one.
+; The final sound effect when the cursor reaches its destination.
+ $E597 LD A,R        ; {Set the lower byte in #REGl, which for randomness is the contents
+ $E599 LD L,A        ; of the Memory Refresh Register.}
+ $E59A LD H,$0A      ; Set the upper byte of the sound data address
+                     ; (#N0A00-#N0AFF).
+ $E59C LD B,$23      ; Set a counter in #REGb for the second outer loop.
+ $E59E LD C,$64      ; Set a counter in #REGc for the second inner loop.
+@label=CursorMovement_SoundLoop_02
+*$E5A0 LD A,(HL)     ; Fetch a byte from the ZX Spectrum ROM and store it in
+                     ; #REGa.
+ $E5A1 INC HL        ; Increment the ROM pointer by one.
  $E5A2 AND %00011000 ; Keep only bits 3-4.
  $E5A4 OR %00000101  ; Set bits 0, 2.
- $E5A6 OUT ($FE),A   ; Set border to the colour held by #REGa.
- $E5A8 PUSH BC       ; Stash #REGbc on the stack.
- $E5A9 LD B,C        ; #REGb=#REGc.
-*$E5AA DJNZ $E5AA    ; Decrease counter by one and loop back to #R$E5AA until
-                     ; counter is zero.
- $E5AC POP BC        ; Restore #REGbc from the stack.
- $E5AD DJNZ $E5A0    ; Decrease counter by one and loop back to #R$E5A0 until
-                     ; counter is zero.
+ $E5A6 OUT ($FE),A   ; Send to the speaker.
+ $E5A8 PUSH BC       ; Stash the outer loop counter on the stack.
+ $E5A9 LD B,C        ; Set #REGb to the inner loop counter held by #REGc.
+@label=CursorMovement_DelayLoop_02
+*$E5AA DJNZ $E5AA    ; Decrease the inner loop counter by one and loop back to #R$E5AA
+                     ; until counter is zero.
+ $E5AC POP BC        ; Restore the outer loop counter from the stack.
+ $E5AD DJNZ $E5A0    ; Decrease the outer loop counter by one and loop back to #R$E5A0
+                     ; until the counter is zero.
  $E5AF RET           ; Return.
 
 ; Game status buffer entry at E5B0
@@ -6988,29 +7328,35 @@ g$E5B0 DEFW $0000
 @label=Data_Control
 g$E5B2 DEFB $00
 
-; Routine at E5B3
+; Sound: Cursor Movement
 ;
-; Used by the routine at #R$E396.
-c$E5B3 LD A,($D82F)  ; #REGa=*#R$D82F.
- $E5B6 RLCA          ; {RLCA.
+; Used by the routines at #R$E39C and #R$E3F9.
+@label=Sound_Cursor
+c$E5B3 LD A,($D82F)  ; Load *#R$D82F into #REGa.
+; The value in #REGc is used as a delay value.
+ $E5B6 RLCA          ; {Multiply #REGa by #N$20 and store the result in #REGc.
  $E5B7 RLCA          ;
  $E5B8 RLCA          ;
- $E5B9 RLCA          ; }
- $E5BA LD C,A        ; #REGc=#REGa.
- $E5BB LD B,$64      ; #REGb=#N$64.
- $E5BD LD HL,$03E8   ; #REGhl=#N($03E8,$04,$04).
-*$E5C0 LD A,(HL)     ; #REGa=*#REGhl.
+ $E5B9 RLCA          ;
+ $E5BA LD C,A        ; }
+ $E5BB LD B,$64      ; Set the number of sound loops in #REGb.
+ $E5BD LD HL,$03E8   ; In #REGhl set a pointer to an arbitrary area in ZX
+                     ; Spectrum ROM.
+@label=Sound_Cursor_Loop
+*$E5C0 LD A,(HL)     ; Fetch the byte from ZX Spectrum ROM and store it in
+                     ; #REGa.
  $E5C1 AND %00011000 ; Keep only bits 3-4.
  $E5C3 OR %00000101  ; Set bits 0, 2.
  $E5C5 OUT ($FE),A   ; Send to the speaker.
- $E5C7 INC HL        ; Increment #REGhl by one.
- $E5C8 PUSH BC       ; Stash #REGbc on the stack.
- $E5C9 LD B,C        ; #REGb=#REGc.
-*$E5CA DJNZ $E5CA    ; Decrease counter by one and loop back to #R$E5CA until
-                     ; counter is zero.
- $E5CC POP BC        ; Restore #REGbc from the stack.
- $E5CD DJNZ $E5C0    ; Decrease counter by one and loop back to #R$E5C0 until
-                     ; counter is zero.
+ $E5C7 INC HL        ; Increment the ZX Spectrum memory byte pointer by one.
+ $E5C8 PUSH BC       ; Stash the sound loop counter on the stack.
+ $E5C9 LD B,C        ; Write the delay value from #REGc into #REGb.
+@label=Sound_Cursor_DelayLoop
+*$E5CA DJNZ $E5CA    ; Decrease the delay counter by one and loop back to #R$E5CA until
+                     ; the delay counter is zero.
+ $E5CC POP BC        ; Restore the sound loop counter from the stack.
+ $E5CD DJNZ $E5C0    ; Decrease the sound loop counter by one and loop back to #R$E5C0
+                     ; until the sound loop counter is zero.
  $E5CF RET           ; Return.
 
 ; Saved Attributes Block For Cursor
@@ -7037,7 +7383,7 @@ g$E5E2 DEFW $0000
 
 ; Draw Cursor
 ;
-; Used by the routines at #R$E396, #R$E661 and #R$F85D.
+; Used by the routines at #R$E39C, #R$E3F9, #R$E661 and #R$F85D.
 ;
 ; .
 ;
@@ -7105,7 +7451,7 @@ c$E5E4 LD A,($D82E)  ; {#REGb=*#R$D82E-#N$01.
 
 ; Remove Player Cursor Attributes
 ;
-; Used by the routines at #R$E396, #R$E658 and #R$F85D.
+; Used by the routines at #R$E39C, #R$E3F9, #R$E658 and #R$F85D.
 ;
 ; .
 ;
@@ -7139,7 +7485,7 @@ c$E63F LD HL,$E5D0   ; Load #REGhl with #R$E5D0.
 
 ; Remove Player Cursor
 ;
-; Used by the routines at #R$D352, #R$E2FD and #R$E396.
+; Used by the routines at #R$D352, #R$E2FD and #R$E3F9.
 @label=Remove_PlayerCursor
 c$E658 LD A,$00      ; {Set *#R$D835 to OFF (#N$00).
  $E65A LD ($D835),A  ; }
@@ -7148,21 +7494,23 @@ c$E658 LD A,$00      ; {Set *#R$D835 to OFF (#N$00).
 
 ; Display Player Cursor
 ;
-; Used by the routines at #R$D352, #R$D469 and #R$E396.
+; Used by the routines at #R$D352, #R$D469 and #R$E39C.
 @label=Display_PlayerCursor
 c$E661 CALL $E5E4    ; Call #R$E5E4.
  $E664 LD A,$01      ; {Set *#R$D835 to ON (#N$01).
  $E666 LD ($D835),A  ; }
  $E669 RET           ; Return.
 
-; Routine at E66A
+; Set Home To Default Attributes
 ;
-; Used by the routine at #R$E396.
+; Used by the routines at #R$E39C and #R$E3F9.
+@label=Home_DefaultAttributes
 c$E66A LD DE,$5822   ; #REGde=#N$5822 (attribute buffer location).
  $E66D LD HL,$E6A3   ; #REGhl=#R$E6A3.
 ; The home block is #N$04x#N$04 (#N$04 rows of #N$04 bytes) but not all
 ; of it cycles attributes. Only #N$03x#N$04 is used here.
  $E670 LD B,$04      ; Set a counter in #REGb for #N$04 rows.
+@label=Home_DefaultAttributes_Loop
 *$E672 PUSH BC       ; Stash the row counter on the stack.
  $E673 LD BC,$0003   ; {Copy #N($0003,$04,$04) bytes from the attribute buffer
  $E676 LDIR          ; to #R$E6A3.}
@@ -7179,7 +7527,7 @@ c$E66A LD DE,$5822   ; #REGde=#N$5822 (attribute buffer location).
 
 ; Colourise Home
 ;
-; Used by the routines at #R$D352, #R$E320 and #R$E396.
+; Used by the routines at #R$D352, #R$E320 and #R$E39C.
 ;
 ; A The attribute value to write
 @label=ColouriseHome
@@ -7451,7 +7799,7 @@ b$E771 DEFB $00,$00,$00,$00
 
 ; Routine at E775
 ;
-; Used by the routines at #R$D352 and #R$F39E.
+; Used by the routines at #R$D352 and #R$F3AC.
 c$E775 LD A,($E75D)  ; #REGa=*#R$E75D.
  $E778 LD ($E762),A  ; Write #REGa to *#R$E762.
  $E77B INC A         ; Increment #REGa by one.
@@ -7793,17 +8141,17 @@ c$E9BF LD HL,$D827   ; #REGhl=#R$D827.
  $E9C8 LD ($D872),HL ; Write #REGhl to *#R$D872.
  $E9CB LD (HL),$28   ; Write #COLOUR$28 to *#REGhl.
  $E9CD INC HL        ; Increment #REGhl by one.
- $E9CE LD (HL),$28   ; Write #N$28 to *#REGhl.
+ $E9CE LD (HL),$28   ; Write #COLOUR$28 to *#REGhl.
  $E9D0 LD DE,$001F   ; {#REGhl+=#N($001F,$04,$04).
  $E9D3 ADD HL,DE     ; }
- $E9D4 LD (HL),$28   ; Write #N$28 to *#REGhl.
+ $E9D4 LD (HL),$28   ; Write #COLOUR$28 to *#REGhl.
  $E9D6 INC HL        ; Increment #REGhl by one.
- $E9D7 LD (HL),$28   ; Write #N$28 to *#REGhl.
+ $E9D7 LD (HL),$28   ; Write #COLOUR$28 to *#REGhl.
  $E9D9 RET           ; Return.
 
 ; Routine at E9DA
 ;
-; Used by the routines at #R$D352, #R$D894 and #R$F39E.
+; Used by the routines at #R$D352, #R$D894 and #R$F3AC.
 c$E9DA LD A,R        ; #REGa=the contents of the Memory Refresh Register.
  $E9DC PUSH AF       ; Stash #REGaf on the stack.
  $E9DD DI            ; Disable interrupts.
@@ -8106,7 +8454,7 @@ g$EB3A DEFB $09,$10,$09,$12,$09,$10,$09,$13
 
 ; Handler: Get Player Input
 ;
-; Used by the routines at #R$D894, #R$E352, #R$EF4A and #R$F39E.
+; Used by the routines at #R$D894, #R$E352, #R$EF4A and #R$F3AC.
 @label=Handler_PlayerInput
 c$EB56 PUSH HL       ; {Stash #REGhl and #REGix on the stack.
  $EB57 PUSH IX       ; }
@@ -9006,8 +9354,9 @@ c$EF4A LD DE,$07D0    ; #REGde=#N$07D0.
  $EF55 JR NZ,$EF4D    ; }
  $EF57 LD IX,$D838    ; #REGix=#R$D838.
  $EF5B SET 7,(IX+$00) ; Set bit 7 of *#REGix+#N$00.
+@label=Debounce__Loop
 *$EF5F CALL $EB56     ; Call #R$EB56.
- $EF62 CP $00         ; {Jump to #R$EF5F if #REGa is not equal to #N$00.
+ $EF62 CP $00         ; {Jump back to #R$EF5F if there's any player input.
  $EF64 JR NZ,$EF5F    ; }
  $EF66 RES 7,(IX+$00) ; Reset bit 7 of *#REGix+#N$00.
 ; This entry point is used by the routine at #R$ECBF.
@@ -9474,7 +9823,8 @@ c$F286 CP D          ; {Jump to #R$F293 if #REGa is not equal to #REGd.
  $F2A9 LD A,$50      ; #REGa=#N$50.
  $F2AB JP $F216      ; Jump to #R$F216.
 
-; Data block at F2AE
+; Graphics: Bomb Fuse
+@label=Graphics_BombFuse
 b$F2AE DEFB $00,$20,$8A,$38,$1C,$10,$24,$00 ; #UDG(#PC,attr=$46)
  $F2B6 DEFB $00,$00,$28,$38,$18,$5C,$02,$00 ; #UDG(#PC,attr=$46)
  $F2BE DEFB $00,$48,$16,$3C,$5A,$3C,$28,$10 ; #UDG(#PC,attr=$46)
@@ -9482,81 +9832,126 @@ b$F2AE DEFB $00,$20,$8A,$38,$1C,$10,$24,$00 ; #UDG(#PC,attr=$46)
 
 ; Custom Font
 @label=CustomFont
-b$F2CE DEFB $7C,$FE,$E6,$E6,$E6,$E6,$FE,$7C ; #UDG(#PC,attr=$46)
- $F2D6 DEFB $38,$78,$78,$38,$38,$38,$7C,$7C ; #UDG(#PC,attr=$46)
- $F2DE DEFB $FC,$FE,$0E,$7E,$FC,$E0,$FE,$FE ; #UDG(#PC,attr=$46)
- $F2E6 DEFB $FC,$FE,$0E,$3C,$3E,$0E,$FE,$FC ; #UDG(#PC,attr=$46)
- $F2EE DEFB $C0,$C0,$CE,$CE,$FE,$FE,$0E,$0E ; #UDG(#PC,attr=$46)
- $F2F6 DEFB $FE,$FE,$E0,$FC,$FE,$0E,$FE,$FC ; #UDG(#PC,attr=$46)
- $F2FE DEFB $3C,$78,$F0,$FC,$EE,$EE,$EE,$7C ; #UDG(#PC,attr=$46)
- $F306 DEFB $7E,$7E,$0E,$3C,$3C,$70,$60,$60 ; #UDG(#PC,attr=$46)
- $F30E DEFB $7C,$E6,$E6,$7C,$FE,$E6,$E6,$7C ; #UDG(#PC,attr=$46)
- $F316 DEFB $7C,$EE,$EE,$EE,$7E,$1E,$3C,$78 ; #UDG(#PC,attr=$46)
+b$F2CE DEFB $7C,$FE,$E6,$E6,$E6,$E6,$FE,$7C ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F2D6 DEFB $38,$78,$78,$38,$38,$38,$7C,$7C ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F2DE DEFB $FC,$FE,$0E,$7E,$FC,$E0,$FE,$FE ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F2E6 DEFB $FC,$FE,$0E,$3C,$3E,$0E,$FE,$FC ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F2EE DEFB $C0,$C0,$CE,$CE,$FE,$FE,$0E,$0E ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F2F6 DEFB $FE,$FE,$E0,$FC,$FE,$0E,$FE,$FC ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F2FE DEFB $3C,$78,$F0,$FC,$EE,$EE,$EE,$7C ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F306 DEFB $7E,$7E,$0E,$3C,$3C,$70,$60,$60 ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F30E DEFB $7C,$E6,$E6,$7C,$FE,$E6,$E6,$7C ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+ $F316 DEFB $7C,$EE,$EE,$EE,$7E,$1E,$3C,$78 ; #LET(fname=#CHR($30+(#PC-$F2CE)/$08))
+                                            ; #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
 
-; Routine at F31E
+; Draw Time Bar
 ;
 ; Used by the routine at #R$D469.
-c$F31E LD HL,$50E1   ; #REGhl=#N$50E1 (screen buffer location).
- $F321 LD B,$14      ; #REGb=#N$14.
-*$F323 LD C,$04      ; #REGc=#N$04.
- $F325 PUSH HL       ; Stash #REGhl on the stack.
-*$F326 SCF           ; Set the carry flag.
- $F327 RR (HL)       ; Rotate *#REGhl right.
- $F329 JP C,$F335    ; Jump to #R$F335 if  is lower.
+;
+; .
+;
+; Test
+; #PUSHS #SIM(start=$D1F1,stop=$D1F7)
+; #UDGTABLE { #SCR$01(*cursor-background)
+;   #FOR$00,$04||x|#OVER($02+x*$04,$02)(cursor-background,font-x)||
+;   #FOR$00,$04||x|#OVER($02+x*$04,$06)(cursor-background,font-x)||
+; #UDGARRAY*cursor-background(image) }
+; UDGTABLE# #POPS
+; .
+; #PUSHS #UDGTABLE {
+;   #SIM(start=$D1F1,stop=$D1F7)#SIM(start=$F31E,stop=$F323)
+;   #FOR$00,$13||x|#SIM(start=$F323,stop=$F337)
+;     #SCR$02(*time-bar-x)#PLOT(0,0,0)(time-bar-x)
+;   ||
+;   #UDGARRAY#(#ANIMATE$05,$13(time-bar))
+; } UDGTABLE# #POPS
+@label=Draw_TimeBar
+c$F31E LD HL,$50E1   ; Set the location of where to start drawing the time bar in #REGhl
+                     ; (#N$50E1 in the screen buffer).
+ $F321 LD B,$14      ; Set a counter in #REGb for the total length.
+@label=Draw_TimeBar_Loop
+*$F323 LD C,$04      ; Set a pixel counter in #REGc for the height of each
+                     ; segment.
+ $F325 PUSH HL       ; Stash the current screen position on the stack.
+@label=Draw_TimeBarColumn
+*$F326 SCF           ; Set the carry flag (prepare for the right rotation).
+ $F327 RR (HL)       ; Rotate *#REGhl right one position.
+ $F329 JP C,$F335    ; If the carry flag is set after the rotation, move to the next
+                     ; column - jump to #R$F335.
  $F32C INC H         ; Increment #REGh by one.
- $F32D DEC C         ; Decrease #REGc by one.
- $F32E JP NZ,$F326   ; Jump to #R$F326 if #REGc is not zero.
- $F331 POP HL        ; Restore #REGhl from the stack.
- $F332 JP $F323      ; Jump to #R$F323.
-*$F335 POP HL        ; Restore #REGhl from the stack.
- $F336 INC HL        ; Increment #REGhl by one.
+ $F32D DEC C         ; Decrease the pixel counter by one.
+ $F32E JP NZ,$F326   ; Jump back to #R$F326 until the full height of the bar
+                     ; has been drawn.
+ $F331 POP HL        ; Restore the screen position from the stack.
+ $F332 JP $F323      ; Keep jumping back to #R$F323.
+@label=TimeBarNextColumn
+*$F335 POP HL        ; Restore the screen position from the stack.
+ $F336 INC HL        ; Increment the screen position by one.
+; Wait for the next frame.
  $F337 HALT          ; Halt operation (suspend CPU until the next interrupt).
- $F338 DJNZ $F323    ; Decrease counter by one and loop back to #R$F323 until
-                     ; counter is zero.
- $F33A DEC HL        ; Decrease #REGhl by one.
- $F33B LD ($D85B),HL ; Write #REGhl to *#R$D85B.
- $F33E LD A,$01      ; {Write #N$01 to *#R$D85D.
+ $F338 DJNZ $F323    ; Decrease the length counter by one and loop back to #R$F323 until
+                     ; the entire time bar has been drawn.
+; Set up the time bar being active and counting down in the game.
+ $F33A DEC HL        ; {Decrease the screen position by one and write it to
+ $F33B LD ($D85B),HL ; *#R$D85B.}
+ $F33E LD A,$01      ; {Set *#R$D85D to #N$01 to make it active.
  $F340 LD ($D85D),A  ; }
- $F343 LD A,$14      ; {Write #N$14 to *#R$D85E.
- $F345 LD ($D85E),A  ; }
+ $F343 LD A,$14      ; {Set *#R$D85E to #N$14 for the length in character
+ $F345 LD ($D85E),A  ; blocks.}
  $F348 RET           ; Return.
 
-; Routine at F349
+; Handler: Time Bar
 ;
 ; Used by the routine at #R$D352.
+@label=Handler_TimeBar
 c$F349 LD B,$28      ; #REGb=#N$28.
  $F34B LD HL,$D83A   ; #REGhl=#R$D83A.
- $F34E RES 5,(HL)    ; Reset bit 5 of *#REGhl.
- $F350 RES 6,(HL)    ; Reset bit 6 of *#REGhl.
+ $F34E RES 5,(HL)    ; {Reset bits 5 and 6 of *#REGhl.
+ $F350 RES 6,(HL)    ; }
  $F352 LD HL,($D85B) ; #REGhl=*#R$D85B.
-*$F355 LD C,$04      ; #REGc=#N$04.
- $F357 PUSH HL       ; Stash #REGhl on the stack.
-*$F358 SCF           ; Set the carry flag.
- $F359 RR (HL)       ; Rotate *#REGhl right.
- $F35B JP C,$F37C    ; Jump to #R$F37C if  is lower.
+@label=UpdateTimeBar_Loop
+*$F355 LD C,$04      ; Set a pixel counter in #REGc for the height of each
+                     ; segment.
+ $F357 PUSH HL       ; Stash the current screen position on the stack.
+*$F358 SCF           ; Set the carry flag (prepare for the right rotation).
+ $F359 RR (HL)       ; Rotate *#REGhl right one position.
+ $F35B JP C,$F37C    ; If the carry flag is set after the rotation, move to the next
+                     ; column - jump to #R$F37C.
  $F35E INC H         ; Increment #REGh by one.
- $F35F DEC C         ; Decrease #REGc by one.
- $F360 JP NZ,$F358   ; Jump to #R$F358 if #REGc is not zero.
- $F363 LD A,B        ; #REGa=#REGb.
- $F364 ADD A,$1E     ; #REGa+=#N$1E.
- $F366 LD H,A        ; #REGh=#REGa.
+ $F35F DEC C         ; Decrease the pixel counter by one.
+ $F360 JP NZ,$F358   ; Jump to #R$F358 until the full height of the bar has
+                     ; been drawn.
+ $F363 LD A,B        ; {#REGh=#REGb+#N$1E.
+ $F364 ADD A,$1E     ;
+ $F366 LD H,A        ; }
  $F367 LD L,$14      ; #REGl=#N$14.
  $F369 LD A,$05      ; #REGa=#N$05.
-*$F36B XOR %00010000 ; Flip bits 4.
- $F36D OUT ($FE),A   ; Set border to the colour held by #REGa.
- $F36F LD D,H        ; #REGd=#REGh.
-*$F370 DEC D         ; Decrease #REGd by one.
- $F371 JP NZ,$F370   ; Jump to #R$F370 if #REGd is not zero.
+*$F36B XOR %00010000 ; Flip bit 4.
+ $F36D OUT ($FE),A   ; Send to the speaker.
+ $F36F LD D,H        ; Load the pitch delay counter into #REGd.
+@label=TimeBar_PitchDelay
+*$F370 DEC D         ; Decrease the pitch delay counter by one.
+ $F371 JP NZ,$F370   ; Jump back to #R$F370 until the pitch delay counter is
+                     ; zero.
  $F374 DEC L         ; Decrease #REGl by one.
- $F375 JP NZ,$F36B   ; Jump to #R$F36B if #REGl is not zero.
+ $F375 JP NZ,$F36B   ; Jump to #R$F36B until #REGl is zero.
  $F378 POP HL        ; Restore #REGhl from the stack.
  $F379 DJNZ $F355    ; Decrease counter by one and loop back to #R$F355 until
                      ; counter is zero.
  $F37B RET           ; Return.
 *$F37C POP HL        ; Restore #REGhl from the stack.
  $F37D LD A,($D85E)  ; #REGa=*#R$D85E.
- $F380 CP $14        ; Compare #REGa with #N$14.
- $F382 RET P         ; Return P.
+ $F380 CP $14        ; {Return if #REGa is greater than or equal to #N$14.
+ $F382 RET P         ; }
  $F383 INC A         ; Increment #REGa by one.
  $F384 LD ($D85E),A  ; Write #REGa to *#R$D85E.
  $F387 INC HL        ; Increment #REGhl by one.
@@ -9566,7 +9961,7 @@ c$F349 LD B,$28      ; #REGb=#N$28.
 
 ; Routine at F38F
 ;
-; Used by the routine at #R$F39E.
+; Used by the routine at #R$F3AC.
 c$F38F LD HL,$E261   ; #REGhl=#R$E261.
  $F392 LD B,$2A      ; #REGb=#N$2A.
 *$F394 CP (HL)       ; {Jump to #R$F39B if #REGa is equal to *#REGhl.
@@ -9578,17 +9973,30 @@ c$F38F LD HL,$E261   ; #REGhl=#R$E261.
 *$F39B LD (HL),$00   ; Write #N$00 to *#REGhl.
  $F39D RET           ; Return.
 
-; Routine at F39E
+; Handler: Check Time
 ;
-; Used by the routines at #R$D352 and #R$E320.
+; Used by the routines at #R$D352, #R$E320 and #R$F3AC.
+;
+; .
+;
+; See #POKE#infinitetime(Infinite Time).
+@label=Handler_CheckTime
 c$F39E LD HL,$D83A   ; {Jump to #R$F3AC if bit 4 of *#R$D83A is not set.
  $F3A1 BIT 4,(HL)    ;
  $F3A3 JR Z,$F3AC    ; }
  $F3A5 RES 4,(HL)    ; Reset bit 4 of *#REGhl.
  $F3A7 POP IY        ; Restore #REGiy from the stack.
  $F3A9 JP $D41E      ; Jump to #R$D41E.
+
+; Handler: Bombs
+;
+; Used by the routine at #R$F39E.
+;
+; .
+;
 ; See #POKE#bombs(Bombs Don't Explode).
-*$F3AC LD A,($D838)  ; {Jump to #R$F428 if *#R$D838 is equal to #N$00.
+@label=Handler_Bombs
+c$F3AC LD A,($D838)  ; {Jump to #R$F428 if *#R$D838 is equal to #N$00.
  $F3AF CP $00        ;
  $F3B1 JR Z,$F428    ; }
  $F3B3 BIT 1,A       ; {Jump to #R$F3CB if bit 1 of #REGa is not set.
@@ -9647,7 +10055,7 @@ c$F39E LD HL,$D83A   ; {Jump to #R$F3AC if bit 4 of *#R$D83A is not set.
 
 ; Routine at F43E
 ;
-; Used by the routine at #R$E396.
+; Used by the routine at #R$E512.
 c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F43F LD HL,$E260   ; #REGhl=#R$E260.
  $F442 LD B,$00      ; #REGb=#N$00.
@@ -9663,11 +10071,11 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F457 JR Z,$F45E    ; }
  $F459 LD A,$01      ; {Write #N$01 to *#R$D832.
  $F45B LD ($D832),A  ; }
-*$F45E LD A,($D834)  ; #REGa=*#R$D834.
- $F461 CP $09        ; Compare #REGa with #N$09.
+*$F45E LD A,($D834)  ; {Compare *#R$D834 with #N$09.
+ $F461 CP $09        ; }
  $F463 LD A,($E5B2)  ; #REGa=*#R$E5B2.
- $F466 JP Z,$F801    ; Jump to #R$F801 if #REGa is zero.
- $F469 CP $11        ; {Jump to #R$F528 if #REGa is not equal to #N$11.
+ $F466 JP Z,$F801    ; Jump to #R$F801 if *#R$D834 is equal to #N$09.
+ $F469 CP $11        ; {Jump to #R$F528 if *#R$D834 is not equal to #N$11.
  $F46B JP NZ,$F528   ; }
 ; This entry point is used by the routine at #R$F801.
 *$F46E INC HL        ; Increment #REGhl by one.
@@ -9696,8 +10104,8 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
 *$F49B LD A,$00      ; {Write #N$00 to *#R$D832.
  $F49D LD ($D832),A  ; }
 *$F4A0 LD A,($E75E)  ; #REGa=*#R$E75E.
- $F4A3 CP $0F        ; Compare #REGa with #N$0F.
- $F4A5 RET P         ; Return P.
+ $F4A3 CP $0F        ; {Return if *#R$E75E is greater than or equal to #N$0F.
+ $F4A5 RET P         ; }
  $F4A6 ADD A,$04     ; #REGa+=#N$04.
  $F4A8 LD ($D82D),A  ; Write #REGa to *#R$D82D.
  $F4AB INC HL        ; Increment #REGhl by one.
@@ -10028,8 +10436,8 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F739 CALL $E2DA    ; Call #R$E2DA.
  $F73C CALL $D99B    ; Call #R$D99B.
 *$F73F PUSH BC       ; Stash #REGbc on the stack.
- $F740 LD A,$02      ; #REGa=#N$02.
- $F742 LD ($E75D),A  ; Write #REGa to *#R$E75D.
+ $F740 LD A,$02      ; {Write #N$02 to *#R$E75D.
+ $F742 LD ($E75D),A  ; }
  $F745 CALL $DCDC    ; Call #R$DCDC.
  $F748 POP BC        ; Restore #REGbc from the stack.
  $F749 DJNZ $F73F    ; Decrease counter by one and loop back to #R$F73F until
@@ -10037,11 +10445,11 @@ c$F43E LD A,(HL)     ; #REGa=*#REGhl.
  $F74B POP AF        ; Restore #REGaf from the stack.
  $F74C ADD A,$03     ; #REGa+=#N$03.
  $F74E LD ($E761),A  ; Write #REGa to *#R$E761.
- $F751 LD A,($D832)  ; #REGa=*#R$D832.
- $F754 CP $01        ; Compare #REGa with #N$01.
- $F756 RET Z         ; Return if #REGa is zero.
- $F757 CP $03        ; Compare #REGa with #N$03.
- $F759 RET Z         ; Return if #REGa is zero.
+ $F751 LD A,($D832)  ; {Return if *#R$D832 is either #N$01 or #N$03.
+ $F754 CP $01        ;
+ $F756 RET Z         ;
+ $F757 CP $03        ;
+ $F759 RET Z         ; }
  $F75A JP $F6F3      ; Jump to #R$F6F3.
 *$F75D LD DE,$0007   ; {#REGhl+=#N($0007,$04,$04).
  $F760 ADD HL,DE     ; }

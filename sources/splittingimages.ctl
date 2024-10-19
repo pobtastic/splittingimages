@@ -214,6 +214,8 @@ b $C2A6 Data: Playarea Surround
 @ $C2A6 label=Data_PlayareaSurround
 D $C2A6 #PUSHS #UDGTABLE { #SIM(start=$D1F1,stop=$D1F7)#SCR$02(playarea-surround) } UDGTABLE# #POPS
 
+u $CBDE
+
 b $CBE1 Data: Main Menu
 @ $CBE1 label=Data_MainMenu
 D $CBE1 #PUSHS #UDGTABLE { #SIM(start=$D1D5,stop=$D1DB)#SCR$02(main-menu) } UDGTABLE# #POPS

@@ -1,8 +1,9 @@
-Splitting Images disassembly
-============================
+Splitting Images/ Split Personalities disassembly
+=================================================
 
 A disassembly of the [Spectrum](https://en.wikipedia.org/wiki/ZX_Spectrum) game
-[Splitting Images](https://en.wikipedia.org/wiki/Split_Personalities_(video_game)).
+[Splitting Images](https://en.wikipedia.org/wiki/Split_Personalities_(video_game))
+also known as Split Personalities (due to copyright reasons).
 
 Created using [SkoolKit](https://skoolkit.ca).
 

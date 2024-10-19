@@ -1,0 +1,13 @@
+; tap2sna.py file for Split Personalities. Run
+;
+;   $ tap2sna.py @splitpersonalities-side-b.t2s
+;
+; to create a Z80 snapshot.
+
+https://worldofspectrum.org/pub/sinclair/games/s/SplitPersonalities.tzx.zip
+SplitPersonalities-Side-B.z80
+
+--tape-name "Split Personalities - Side 2.tzx"
+--tape-sum e9320b26f52502366e226df9fda990c5
+--start 0xD1AA
+--sim-load-config accelerator=speedlock

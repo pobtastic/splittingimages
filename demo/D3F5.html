@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at D3F5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D2DE.html">D2DE</a>
+</td>
+<td class="up">Up: <a href="../demo.html#d3f5">Map</a></td>
+<td class="next">
+Next: <a href="D47D.html">D47D</a>
+</td>
+</tr>
+</table>
+<div class="description">D3F5: Start Game</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D1AA.html">DemoEntryPoint</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d3f5"></span>
+<div class="comments">
+<div class="paragraph">
+The game always starts with the cursor inside the home box.
+</div>
+<div class="paragraph">
+This is position 02/ 02:   <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="demo-cursor-02-02" src="../images/scr/demo-cursor-02-02.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame</td>
+<td class="address-2"><span id="d3f5"></span>D3F5</td>
+<td class="instruction">LD A,$02</td>
+<td class="comment-1" rowspan="5">Write 02 to: <ul class="">
+<li>*<a href="D548.html#d54c">D54C</a></li>
+<li>*<a href="D548.html#d54d">D54D</a></li>
+<li>*<a href="D548.html#d54a">D54A</a></li>
+<li>*<a href="D548.html#d54b">D54B</a></li>
+</ul></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d3f7"></span>D3F7</td>
+<td class="instruction">LD ($D54C),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d3fa"></span>D3FA</td>
+<td class="instruction">LD ($D54D),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d3fd"></span>D3FD</td>
+<td class="instruction">LD ($D54A),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d400"></span>D400</td>
+<td class="instruction">LD ($D54B),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d403"></span>D403</td>
+<td class="instruction">LD A,$09</td>
+<td class="comment-1" rowspan="2">Write 09 to *<a href="D550.html">D550</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d405"></span>D405</td>
+<td class="instruction">LD ($D550),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d408"></span>D408</td>
+<td class="instruction">LD HL,$D543</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D543.html">Lives</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d40b"></span>D40B</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d40c"></span>D40C</td>
+<td class="instruction">JP Z,<a href="D3F5.html#d462">StartGame_2</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D3F5.html#d462">StartGame_2</a> until *<span class="register">HL</span> is equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d40f"></span>D40F</td>
+<td class="instruction">LD HL,$D556</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D555.html#d556">D556</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d412"></span>D412</td>
+<td class="instruction">LD (HL),$00</td>
+<td class="comment-1" rowspan="1">Write 00 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d414"></span>D414</td>
+<td class="instruction">CALL <a href="E901.html#ef3b">$EF3B</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E901.html#ef3b">EF3B</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d417"></span>D417</td>
+<td class="instruction">LD HL,($D58E)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D58E.html">D58E</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d41a"></span>D41A</td>
+<td class="instruction">LD (HL),$2D</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d41c"></span>D41C</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d41d"></span>D41D</td>
+<td class="instruction">LD (HL),$2D</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d41f"></span>D41F</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d420"></span>D420</td>
+<td class="instruction">LD ($D58E),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D58E.html">D58E</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d423"></span>D423</td>
+<td class="instruction">LD DE,$001E</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=001E.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d426"></span>D426</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d427"></span>D427</td>
+<td class="instruction">LD (HL),$2D</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d429"></span>D429</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d42a"></span>D42A</td>
+<td class="instruction">LD (HL),$2D</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d42c"></span>D42C</td>
+<td class="instruction">LD HL,$D556</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D555.html#d556">D556</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d42f"></span>D42F</td>
+<td class="instruction">SET 0,(HL)</td>
+<td class="comment-1" rowspan="1">Set bit 0 of *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d431"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="D2DE.html">D2DE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_0</td>
+<td class="address-2"><span id="d431"></span>D431</td>
+<td class="instruction">LD A,($D556)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="D555.html#d556">D556</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d434"></span>D434</td>
+<td class="instruction">AND %11110001</td>
+<td class="comment-1" rowspan="1">Keep only bits 0, 4-7.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d436"></span>D436</td>
+<td class="instruction">LD ($D556),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="D555.html#d556">D556</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d439"></span>D439</td>
+<td class="instruction">LD A,($D54C)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D548.html#d54c">D54C</a> to *<a href="D548.html">D548</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d43c"></span>D43C</td>
+<td class="instruction">LD ($D548),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d43f"></span>D43F</td>
+<td class="instruction">LD A,($D54D)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D548.html#d54d">D54D</a>to *<a href="D548.html#d549">D549</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d442"></span>D442</td>
+<td class="instruction">LD ($D549),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d445"></span>D445</td>
+<td class="instruction">LD A,($D540)</td>
+<td class="comment-1" rowspan="2">Write *<a href="D531.html#d540">D540</a>to *<a href="D548.html#d54e">D54E</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d448"></span>D448</td>
+<td class="instruction">LD ($D54E),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d44b"></span>D44B</td>
+<td class="instruction">LD A,($D551)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D3F5.html#d45c">StartGame_1</a> if *<a href="D550.html#d551">D551</a> is not equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d44e"></span>D44E</td>
+<td class="instruction">CP $00</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d450"></span>D450</td>
+<td class="instruction">JR NZ,<a href="D3F5.html#d45c">StartGame_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d452"></span>D452</td>
+<td class="instruction">LD A,($D550)</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D3F5.html#d45c">StartGame_1</a> if *<a href="D550.html">D550</a> is equal to 09.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d455"></span>D455</td>
+<td class="instruction">CP $09</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d457"></span>D457</td>
+<td class="instruction">JR Z,<a href="D3F5.html#d45c">StartGame_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d459"></span>D459</td>
+<td class="instruction">CALL <a href="E46C.html">Display_PlayerCursor</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E46C.html">Display_PlayerCursor</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_1</td>
+<td class="address-2"><span id="d45c"></span>D45C</td>
+<td class="instruction">CALL <a href="D789.html">$D789</a></td>
+<td class="comment-1" rowspan="1">Call <a href="D789.html">D789</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d45f"></span>D45F</td>
+<td class="instruction">JP <a href="D2DE.html">$D2DE</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D2DE.html">D2DE</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_2</td>
+<td class="address-2"><span id="d462"></span>D462</td>
+<td class="instruction">LD HL,$D555</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="D555.html">D555</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d465"></span>D465</td>
+<td class="instruction">SET 7,(HL)</td>
+<td class="comment-1" rowspan="1">Set bit 7 of *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d467"></span>D467</td>
+<td class="instruction">LD B,$4B</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=4B.</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_3</td>
+<td class="address-2"><span id="d469"></span>D469</td>
+<td class="instruction">HALT</td>
+<td class="comment-1" rowspan="1">Halt operation (suspend CPU until the next interrupt).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d46a"></span>D46A</td>
+<td class="instruction">DJNZ <a href="D3F5.html#d469">StartGame_3</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="D3F5.html#d469">StartGame_3</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d46c"></span>D46C</td>
+<td class="instruction">DI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d46d"></span>D46D</td>
+<td class="instruction">CALL <a href="E901.html">$E901</a></td>
+<td class="comment-1" rowspan="1">Call <a href="E901.html">E901</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d470"></span>D470</td>
+<td class="instruction">LD BC,$0000</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=0000.</td>
+</tr>
+<tr>
+<td class="asm-label">StartGame_4</td>
+<td class="address-2"><span id="d473"></span>D473</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d474"></span>D474</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="D3F5.html#d473">StartGame_4</a> until <span class="register">BC</span> is equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d475"></span>D475</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d476"></span>D476</td>
+<td class="instruction">JR NZ,<a href="D3F5.html#d473">StartGame_4</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d478"></span>D478</td>
+<td class="instruction">POP IY</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">IY</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="d47a"></span>D47A</td>
+<td class="instruction">JP <a href="D1AA.html#d1c3">DemoEntryPoint_0</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D1AA.html#d1c3">DemoEntryPoint_0</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="D2DE.html">D2DE</a>
+</td>
+<td class="up">Up: <a href="../demo.html#d3f5">Map</a></td>
+<td class="next">
+Next: <a href="D47D.html">D47D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/demo/D3F5.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E87B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E859.html">E859</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e87b">Map</a></td>
+<td class="next">
+Next: <a href="E89C.html">E89C</a>
+</td>
+</tr>
+</table>
+<div class="description">E87B: Colourise Preview Grid</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="D1AA.html">DemoEntryPoint</a>, <a href="D234.html">Game_Initialisation</a> and <a href="D682.html">D682</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e87b"></span>
+<div class="comments">
+<div class="paragraph">
+This routine is identical to <a href="../asm/EC39.html">Colourise_PreviewGrid</a> in the main game code.
+</div>
+<div class="paragraph">
+Colours in the green checkerboard attribute pattern. Note, it doesn't alter the top row at all - only the rows which will have content in them.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Colourise_PreviewGrid</td>
+<td class="address-2"><span id="e87b"></span>E87B</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 04 rows.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e87d"></span>E87D</td>
+<td class="instruction">LD DE,$5896</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=5896 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e880"></span>E880</td>
+<td class="instruction">LD HL,$E8F1</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E8F1.html">AttributeData_PreviewGrid</a>.</td>
+</tr>
+<tr>
+<td class="asm-label">PreviewGrid_RowCounter_Loop</td>
+<td class="address-2"><span id="e883"></span>E883</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e884"></span>E884</td>
+<td class="instruction">LD B,$02</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 02 character blocks per square.</td>
+</tr>
+<tr>
+<td class="asm-label">PreviewGrid_BlockCounter_Loop</td>
+<td class="address-2"><span id="e886"></span>E886</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash the block counter and the attribute reference pointer on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e887"></span>E887</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e888"></span>E888</td>
+<td class="instruction">LD BC,$000A</td>
+<td class="comment-1" rowspan="2">Copy 000A bytes from <span class="register">HL</span> to <span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e88b"></span>E88B</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e88d"></span>E88D</td>
+<td class="instruction">LD HL,$0016</td>
+<td class="comment-1" rowspan="3"><span class="register">DE</span>+=0016.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e890"></span>E890</td>
+<td class="instruction">ADD HL,DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e891"></span>E891</td>
+<td class="instruction">EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e892"></span>E892</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore the attribute reference pointer and the block counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e893"></span>E893</td>
+<td class="instruction">POP BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e894"></span>E894</td>
+<td class="instruction">DJNZ <a href="E87B.html#e886">PreviewGrid_BlockCounter_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease block counter by one and loop back to <a href="E87B.html#e886">PreviewGrid_BlockCounter_Loop</a> until the block counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e896"></span>E896</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e897"></span>
+<div class="comments">
+<div class="paragraph">
+This is how it becomes checkered, we move the pointer forward by two (each block is two character blocks wide) and then it can alternate between the two attribute values. Although we copy 0A bytes - the data is actually 10 bytes long, to cope with this reference movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e897"></span>E897</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="2">Increment the attribute reference pointer by two.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e898"></span>E898</td>
+<td class="instruction">INC HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e899"></span>E899</td>
+<td class="instruction">DJNZ <a href="E87B.html#e883">PreviewGrid_RowCounter_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E87B.html#e883">PreviewGrid_RowCounter_Loop</a> until all the rows have been coloured in.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e89b"></span>E89B</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E859.html">E859</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e87b">Map</a></td>
+<td class="next">
+Next: <a href="E89C.html">E89C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/demo/E87B.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

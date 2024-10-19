@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E3EF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E3ED.html">E3ED</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e3ef">Map</a></td>
+<td class="next">
+Next: <a href="E44A.html">E44A</a>
+</td>
+</tr>
+</table>
+<div class="description">E3EF: Draw Cursor</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="DEED.html">DEED</a>, <a href="E46C.html">Display_PlayerCursor</a> and <a href="F47A.html">F47A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e3ef"></span>
+<div class="comments">
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="demo-game-cursor" src="../images/scr/demo-game-cursor.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_Cursor</td>
+<td class="address-2"><span id="e3ef"></span>E3EF</td>
+<td class="instruction">LD A,($D54A)</td>
+<td class="comment-1" rowspan="3"><span class="register">B</span>=*<a href="D548.html#d54a">D54A</a>-01.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f2"></span>E3F2</td>
+<td class="instruction">DEC A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f3"></span>E3F3</td>
+<td class="instruction">LD B,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f4"></span>E3F4</td>
+<td class="instruction">LD ($E3EB),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">B</span> to *<a href="E3EB.html">Cursor_AttributePosition_Y</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3f7"></span>E3F7</td>
+<td class="instruction">LD A,($D54B)</td>
+<td class="comment-1" rowspan="3"><span class="register">C</span>=*<a href="D548.html#d54b">D54B</a>-01.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3fa"></span>E3FA</td>
+<td class="instruction">DEC A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3fb"></span>E3FB</td>
+<td class="instruction">LD C,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3fc"></span>E3FC</td>
+<td class="instruction">LD ($E3EC),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<a href="E3EB.html#e3ec">Cursor_AttributePosition_X</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e3ff"></span>E3FF</td>
+<td class="instruction">CALL <a href="DACD.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DACD.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e402"></span>E402</td>
+<td class="instruction">CALL <a href="DADC.html">Calculate_AttributeAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DADC.html">Calculate_AttributeAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e405"></span>E405</td>
+<td class="instruction">LD ($E3ED),DE</td>
+<td class="comment-1" rowspan="1">Write the calculated attribute buffer address to *<a href="E3ED.html">Cursor_AttributePointer</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e409"></span>E409</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e40b"></span>E40B</td>
+<td class="instruction">LD HL,$E3DB</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E3DB.html">SavedAttributesBlock</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e40e"></span>E40E</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_Cursor_0</td>
+<td class="address-2"><span id="e40f"></span>E40F</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e410"></span>E410</td>
+<td class="instruction">LD BC,$0004</td>
+<td class="comment-1" rowspan="2">Copy 0004 bytes from *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e413"></span>E413</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e415"></span>E415</td>
+<td class="instruction">LD BC,$001C</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=001C.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e418"></span>E418</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e419"></span>E419</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e41a"></span>E41A</td>
+<td class="instruction">DJNZ <a href="E3EF.html#e40f">Draw_Cursor_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E3EF.html#e40f">Draw_Cursor_0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e41c"></span>
+<div class="comments">
+<div class="paragraph">
+Paint the top section of the cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e41c"></span>E41C</td>
+<td class="instruction">LD HL,$E4BA</td>
+<td class="comment-1" rowspan="4">Copy 0004 bytes from <a href="E4BA.html">CursorAttributes</a> to *<a href="E3ED.html">Cursor_AttributePointer</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e41f"></span>E41F</td>
+<td class="instruction">LD DE,($E3ED)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e423"></span>E423</td>
+<td class="instruction">LD BC,$0004</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e426"></span>E426</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e428"></span>
+<div class="comments">
+<div class="paragraph">
+Paint the middle section of the cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e428"></span>E428</td>
+<td class="instruction">LD B,$02</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=02.</td>
+</tr>
+<tr>
+<td class="asm-label">Draw_Cursor_Loop</td>
+<td class="address-2"><span id="e42a"></span>E42A</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e42b"></span>E42B</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e42c"></span>E42C</td>
+<td class="instruction">LD BC,$001C</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=001C.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e42f"></span>E42F</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e430"></span>E430</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e431"></span>E431</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e432"></span>E432</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e433"></span>E433</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e434"></span>E434</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="3">Increment <span class="register">DE</span> by three.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e435"></span>E435</td>
+<td class="instruction">INC DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e436"></span>E436</td>
+<td class="instruction">INC DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e437"></span>E437</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="2">Write *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e438"></span>E438</td>
+<td class="instruction">LD (DE),A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e439"></span>E439</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e43a"></span>E43A</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">DE</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e43b"></span>E43B</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e43c"></span>E43C</td>
+<td class="instruction">DJNZ <a href="E3EF.html#e42a">Draw_Cursor_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E3EF.html#e42a">Draw_Cursor_Loop</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e43e"></span>E43E</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e43f"></span>E43F</td>
+<td class="instruction">LD BC,$001C</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>+=001C.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e442"></span>E442</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e443"></span>E443</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e444"></span>
+<div class="comments">
+<div class="paragraph">
+Paint the bottom section of the cursor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e444"></span>E444</td>
+<td class="instruction">LD BC,$0004</td>
+<td class="comment-1" rowspan="2">Copy 0004 bytes from *<span class="register">HL</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e447"></span>E447</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e449"></span>E449</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E3ED.html">E3ED</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e3ef">Map</a></td>
+<td class="next">
+Next: <a href="E44A.html">E44A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/demo/E3EF.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

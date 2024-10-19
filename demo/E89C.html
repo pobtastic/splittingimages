@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E89C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E87B.html">E87B</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e89c">Map</a></td>
+<td class="next">
+Next: <a href="E8F1.html">E8F1</a>
+</td>
+</tr>
+</table>
+<div class="description">E89C: Static Animation</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="D234.html">Game_Initialisation</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="e89c"></span>
+<div class="comments">
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="demo-static" src="../images/scr/demo-static.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation</td>
+<td class="address-2"><span id="e89c"></span>E89C</td>
+<td class="instruction">LD B,$4B</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=4B.</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation_0</td>
+<td class="address-2"><span id="e89e"></span>E89E</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e89f"></span>E89F</td>
+<td class="instruction">LD B,$04</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8a1"></span>E8A1</td>
+<td class="instruction">LD C,$16</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=16.</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation_1</td>
+<td class="address-2"><span id="e8a3"></span>E8A3</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8a5"></span>E8A5</td>
+<td class="instruction">AND %00001111</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-3.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8a7"></span>E8A7</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-1" rowspan="1"><span class="register">D</span>=<span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8a8"></span>E8A8</td>
+<td class="instruction">LD A,R</td>
+<td class="comment-1" rowspan="2"><span class="register">E</span>=the contents of the Memory Refresh Register.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8aa"></span>E8AA</td>
+<td class="instruction">LD E,A</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8ab"></span>E8AB</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8ac"></span>E8AC</td>
+<td class="instruction">CALL <a href="DACD.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DACD.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8af"></span>E8AF</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8b0"></span>E8B0</td>
+<td class="instruction">LD B,$08</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=08.</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation_2</td>
+<td class="address-2"><span id="e8b2"></span>E8B2</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">BC</span> and <span class="register">DE</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8b3"></span>E8B3</td>
+<td class="instruction">PUSH DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8b4"></span>E8B4</td>
+<td class="instruction">LD BC,$000A</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=000A.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8b7"></span>E8B7</td>
+<td class="instruction">LDIR</td>
+<td class="comment-1" rowspan="1">LDIR.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8b9"></span>E8B9</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">DE</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8ba"></span>E8BA</td>
+<td class="instruction">INC D</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">D</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8bb"></span>E8BB</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8bc"></span>E8BC</td>
+<td class="instruction">DJNZ <a href="E89C.html#e8b2">StaticAnimation_2</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E89C.html#e8b2">StaticAnimation_2</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8be"></span>E8BE</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8bf"></span>E8BF</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8c0"></span>E8C0</td>
+<td class="instruction">LD A,$0C</td>
+<td class="comment-1" rowspan="3">Jump to <a href="E89C.html#e8a3">StaticAnimation_1</a> if <span class="register">B</span> is not equal to 0C.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8c2"></span>E8C2</td>
+<td class="instruction">CP B</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8c3"></span>E8C3</td>
+<td class="instruction">JR NZ,<a href="E89C.html#e8a3">StaticAnimation_1</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8c5"></span>E8C5</td>
+<td class="instruction">LD H,$05</td>
+<td class="comment-1" rowspan="1"><span class="register">H</span>=05.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8c7"></span>E8C7</td>
+<td class="instruction">LD BC,$012C</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=012C.</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation_3</td>
+<td class="address-2"><span id="e8ca"></span>E8CA</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8cb"></span>E8CB</td>
+<td class="instruction">AND %00011000</td>
+<td class="comment-1" rowspan="1">Keep only bits 3-4.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8cd"></span>E8CD</td>
+<td class="instruction">OR %00000101</td>
+<td class="comment-1" rowspan="1">Set bits 0, 2.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8cf"></span>E8CF</td>
+<td class="instruction">OUT ($FE),A</td>
+<td class="comment-1" rowspan="1">Set border to the colour held by <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d1"></span>E8D1</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d2"></span>E8D2</td>
+<td class="instruction">DEC BC</td>
+<td class="comment-1" rowspan="1">Decrease <span class="register">BC</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d3"></span>E8D3</td>
+<td class="instruction">LD A,B</td>
+<td class="comment-1" rowspan="3">Jump to <a href="E89C.html#e8ca">StaticAnimation_3</a> until <span class="register">BC</span> is equal to 00.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d4"></span>E8D4</td>
+<td class="instruction">OR C</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d5"></span>E8D5</td>
+<td class="instruction">JR NZ,<a href="E89C.html#e8ca">StaticAnimation_3</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d7"></span>E8D7</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8d8"></span>E8D8</td>
+<td class="instruction">DJNZ <a href="E89C.html#e89e">StaticAnimation_0</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E89C.html#e89e">StaticAnimation_0</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8da"></span>E8DA</td>
+<td class="instruction">LD HL,$5896</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=5896 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8dd"></span>E8DD</td>
+<td class="instruction">LD DE,$0020</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=0020.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8e0"></span>E8E0</td>
+<td class="instruction">LD B,$08</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=08.</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation_4</td>
+<td class="address-2"><span id="e8e2"></span>E8E2</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">HL</span> and <span class="register">BC</span> on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8e3"></span>E8E3</td>
+<td class="instruction">PUSH BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8e4"></span>E8E4</td>
+<td class="instruction">LD B,$0A</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=0A.</td>
+</tr>
+<tr>
+<td class="asm-label">StaticAnimation_5</td>
+<td class="address-2"><span id="e8e6"></span>E8E6</td>
+<td class="instruction">LD (HL),$00</td>
+<td class="comment-1" rowspan="1">Write 00 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8e8"></span>E8E8</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8e9"></span>E8E9</td>
+<td class="instruction">DJNZ <a href="E89C.html#e8e6">StaticAnimation_5</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E89C.html#e8e6">StaticAnimation_5</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8eb"></span>E8EB</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">BC</span> and <span class="register">HL</span> from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8ec"></span>E8EC</td>
+<td class="instruction">POP HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8ed"></span>E8ED</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>+=<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8ee"></span>E8EE</td>
+<td class="instruction">DJNZ <a href="E89C.html#e8e2">StaticAnimation_4</a></td>
+<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="E89C.html#e8e2">StaticAnimation_4</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="e8f0"></span>E8F0</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E87B.html">E87B</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e89c">Map</a></td>
+<td class="next">
+Next: <a href="E8F1.html">E8F1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/demo/E89C.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 56847</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="56826.html">56826</a>
+</td>
+<td class="up">Up: <a href="../demo.html#56847">Map</a></td>
+<td class="next">
+Next: <a href="57069.html">57069</a>
+</td>
+</tr>
+</table>
+<div class="description">56847: Generate Picture</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="53812.html">Game_Initialisation</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">IX</td>
+<td class="register-desc">Pointer to level graphics data</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="56847"></span>
+<div class="comments">
+<div class="paragraph">
+<span class="register">IX</span> will point to one of: <table class="default">
+<tr>
+<th colspan="1" rowspan="1">Address</th>
+<th colspan="1" rowspan="1">Level</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="38000.html">GraphicsData_Level_01</a></td>
+<td class="centre" colspan="1" rowspan="1">Level 01</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture</td>
+<td class="address-2"><span id="56847"></span>56847</td>
+<td class="instruction">LD HL,41187</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="41187.html">Buffer_Image</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="56850"></span>
+<div class="comments">
+<div class="paragraph">
+Clear down the buffer ready for the new image to be generated.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56850"></span>56850</td>
+<td class="instruction">LD BC,2880</td>
+<td class="comment-1" rowspan="1"><span class="register">BC</span>=2880.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56853"></span>56853</td>
+<td class="instruction">LD (HL),0</td>
+<td class="comment-1" rowspan="1">Write 0 to *<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56855"></span>56855</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="3"><span class="register">DE</span>=<a href="41187.html">Buffer_Image</a>+1 (using the stack).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56856"></span>56856</td>
+<td class="instruction">POP DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56857"></span>56857</td>
+<td class="instruction">INC DE</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56858"></span>56858</td>
+<td class="instruction">LDIR</td>
+<td class="comment-1" rowspan="1">Clear 2880 bytes of data in <a href="41187.html">Buffer_Image</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56860"></span>56860</td>
+<td class="instruction">LD A,128</td>
+<td class="comment-1" rowspan="2">Write 128 to *<a href="56847.html#57065">Line_Counter</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56862"></span>56862</td>
+<td class="instruction">LD (57065),A</td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_0</td>
+<td class="address-2"><span id="56865"></span>56865</td>
+<td class="instruction">LD A,128</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56867"></span>56867</td>
+<td class="instruction">LD HL,57065</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56870"></span>56870</td>
+<td class="instruction">SUB (HL)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56871"></span>56871</td>
+<td class="instruction">LD B,20</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56873"></span>56873</td>
+<td class="instruction">LD D,0</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56875"></span>56875</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56876"></span>56876</td>
+<td class="instruction">LD HL,41187</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_1</td>
+<td class="address-2"><span id="56879"></span>56879</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56880"></span>56880</td>
+<td class="instruction">DJNZ <a href="56847.html#56879">GeneratePicture_1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56882"></span>56882</td>
+<td class="instruction">LD (57067),HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56885"></span>56885</td>
+<td class="instruction">LD A,(IX+0)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56888"></span>56888</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56890"></span>56890</td>
+<td class="instruction">CP 201</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56892"></span>56892</td>
+<td class="instruction">JR Z,<a href="56847.html#56946">GeneratePicture_7</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56894"></span>56894</td>
+<td class="instruction">CP 202</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56896"></span>56896</td>
+<td class="instruction">JR Z,<a href="56847.html#56912">GeneratePicture_2</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56898"></span>56898</td>
+<td class="instruction">PUSH IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56900"></span>56900</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56901"></span>56901</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56902"></span>56902</td>
+<td class="instruction">LD BC,20</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56905"></span>56905</td>
+<td class="instruction">LDIR</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56907"></span>56907</td>
+<td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56908"></span>56908</td>
+<td class="instruction">POP IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56910"></span>56910</td>
+<td class="instruction">JR <a href="56847.html#57019">GeneratePicture_Next</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_2</td>
+<td class="address-2"><span id="56912"></span>56912</td>
+<td class="instruction">PUSH IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56914"></span>56914</td>
+<td class="instruction">POP DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_3</td>
+<td class="address-2"><span id="56915"></span>56915</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56916"></span>56916</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56918"></span>56918</td>
+<td class="instruction">JR Z,<a href="56847.html#56925">GeneratePicture_4</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56920"></span>56920</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56921"></span>56921</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56922"></span>56922</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56923"></span>56923</td>
+<td class="instruction">JR <a href="56847.html#56915">GeneratePicture_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_4</td>
+<td class="address-2"><span id="56925"></span>56925</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56926"></span>56926</td>
+<td class="instruction">LD A,(DE)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56927"></span>56927</td>
+<td class="instruction">CP 0</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56929"></span>56929</td>
+<td class="instruction">JR Z,<a href="56847.html#56940">GeneratePicture_6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56931"></span>56931</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56932"></span>56932</td>
+<td class="instruction">XOR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_5</td>
+<td class="address-2"><span id="56933"></span>56933</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56934"></span>56934</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56935"></span>56935</td>
+<td class="instruction">DJNZ <a href="56847.html#56933">GeneratePicture_5</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56937"></span>56937</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56938"></span>56938</td>
+<td class="instruction">JR <a href="56847.html#56915">GeneratePicture_3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_6</td>
+<td class="address-2"><span id="56940"></span>56940</td>
+<td class="instruction">INC DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56941"></span>56941</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56942"></span>56942</td>
+<td class="instruction">POP IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56944"></span>56944</td>
+<td class="instruction">JR <a href="56847.html#57019">GeneratePicture_Next</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_7</td>
+<td class="address-2"><span id="56946"></span>56946</td>
+<td class="instruction">LD B,(IX+1)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56949"></span>56949</td>
+<td class="instruction">LD A,(IX+0)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56952"></span>56952</td>
+<td class="instruction">LD (57066),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_8</td>
+<td class="address-2"><span id="56955"></span>56955</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56956"></span>56956</td>
+<td class="instruction">LD A,(57066)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56959"></span>56959</td>
+<td class="instruction">CP 201</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56961"></span>56961</td>
+<td class="instruction">JR Z,<a href="56847.html#56971">GeneratePicture_9</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56963"></span>56963</td>
+<td class="instruction">CP 202</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56965"></span>56965</td>
+<td class="instruction">JR Z,<a href="56847.html#56971">GeneratePicture_9</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56967"></span>56967</td>
+<td class="instruction">CP 203</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56969"></span>56969</td>
+<td class="instruction">JR NZ,<a href="56847.html#56974">GeneratePicture_10</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_9</td>
+<td class="address-2"><span id="56971"></span>56971</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56972"></span>56972</td>
+<td class="instruction">JR <a href="56847.html#57019">GeneratePicture_Next</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_10</td>
+<td class="address-2"><span id="56974"></span>56974</td>
+<td class="instruction">AND 248</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56976"></span>56976</td>
+<td class="instruction">LD D,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56977"></span>56977</td>
+<td class="instruction">RRCA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56978"></span>56978</td>
+<td class="instruction">RRCA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56979"></span>56979</td>
+<td class="instruction">RRCA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56980"></span>56980</td>
+<td class="instruction">LD E,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56981"></span>56981</td>
+<td class="instruction">LD A,(57066)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56984"></span>56984</td>
+<td class="instruction">SUB D</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56985"></span>56985</td>
+<td class="instruction">LD D,0</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56987"></span>56987</td>
+<td class="instruction">ADD HL,DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56988"></span>56988</td>
+<td class="instruction">LD B,A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56989"></span>56989</td>
+<td class="instruction">INC B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56990"></span>56990</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56991"></span>56991</td>
+<td class="instruction">AND A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56992"></span>56992</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_11</td>
+<td class="address-2"><span id="56993"></span>56993</td>
+<td class="instruction">RLA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56994"></span>56994</td>
+<td class="instruction">DJNZ <a href="56847.html#56993">GeneratePicture_11</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56996"></span>56996</td>
+<td class="instruction">SCF</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56997"></span>56997</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_12</td>
+<td class="address-2"><span id="56998"></span>56998</td>
+<td class="instruction">RRA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="56999"></span>56999</td>
+<td class="instruction">DJNZ <a href="56847.html#56998">GeneratePicture_12</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57001"></span>57001</td>
+<td class="instruction">LD (HL),A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57002"></span>57002</td>
+<td class="instruction">LD HL,57066</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57005"></span>57005</td>
+<td class="instruction">INC (HL)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57006"></span>57006</td>
+<td class="instruction">LD HL,(57067)</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57009"></span>57009</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57010"></span>57010</td>
+<td class="instruction">DJNZ <a href="56847.html#56955">GeneratePicture_8</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57012"></span>57012</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57014"></span>57014</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57016"></span>57016</td>
+<td class="instruction">JP <a href="56847.html#56946">GeneratePicture_7</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="57019"></span>
+<div class="comments">
+<div class="paragraph">
+Has all the image been decompressed now? If not, loop back again.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_Next</td>
+<td class="address-2"><span id="57019"></span>57019</td>
+<td class="instruction">LD HL,57065</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="56847.html#57065">Line_Counter</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57022"></span>57022</td>
+<td class="instruction">DEC (HL)</td>
+<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57023"></span>57023</td>
+<td class="instruction">JP NZ,<a href="56847.html#56865">GeneratePicture_0</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="56847.html#56865">GeneratePicture_0</a> until *<span class="register">HL</span> is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57026"></span>57026</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Move <span class="register">IX</span> to the start of the attribute data.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57028"></span>57028</td>
+<td class="instruction">LD B,16</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> to process 16 rows of attribute data.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57030"></span>57030</td>
+<td class="instruction">LD HL,43747</td>
+<td class="comment-1" rowspan="1">Store the start of <a href="41187.html#43747">Buffer_Image_Attributes</a> in <span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_Attributes_Loop</td>
+<td class="address-2"><span id="57033"></span>57033</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="2">Stash the attribute row counter and the image attributes buffer pointer on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57034"></span>57034</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57035"></span>57035</td>
+<td class="instruction">LD A,0</td>
+<td class="comment-1" rowspan="1">Initialise the column counter in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_Attribute_Row</td>
+<td class="address-2"><span id="57037"></span>57037</td>
+<td class="instruction">LD C,(IX+0)</td>
+<td class="comment-1" rowspan="1">Load the attribute value into <span class="register">C</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57040"></span>57040</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="2">Load the repeat length into <span class="register">B</span>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57042"></span>57042</td>
+<td class="instruction">LD B,(IX+0)</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57045"></span>57045</td>
+<td class="instruction">INC IX</td>
+<td class="comment-1" rowspan="1">Move <span class="register">IX</span> to the next attribute/ repeat length pair.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57047"></span>57047</td>
+<td class="instruction">ADD A,B</td>
+<td class="comment-1" rowspan="1">Add the repeat length to the column counter.</td>
+</tr>
+<tr>
+<td class="asm-label">GeneratePicture_Attribute_Run</td>
+<td class="address-2"><span id="57048"></span>57048</td>
+<td class="instruction">LD (HL),C</td>
+<td class="comment-1" rowspan="1">Write the attribute to the image attributes buffer.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57049"></span>57049</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment the image attributes buffer pointer by one.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57050"></span>57050</td>
+<td class="instruction">DJNZ <a href="56847.html#57048">GeneratePicture_Attribute_Run</a></td>
+<td class="comment-1" rowspan="1">Decrease the repeat counter by one and loop back to <a href="56847.html#57048">GeneratePicture_Attribute_Run</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57052"></span>57052</td>
+<td class="instruction">CP 20</td>
+<td class="comment-1" rowspan="2">Jump to <a href="56847.html#57037">GeneratePicture_Attribute_Row</a> if 20 columns have been processed.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57054"></span>57054</td>
+<td class="instruction">JR NZ,<a href="56847.html#57037">GeneratePicture_Attribute_Row</a></td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57056"></span>57056</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="1">Restore the start of the current attribute row from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57057"></span>57057</td>
+<td class="instruction">LD BC,20</td>
+<td class="comment-1" rowspan="2">Move <span class="register">HL</span> to the next row in the attribute buffer.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57060"></span>57060</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57061"></span>57061</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the attribute row counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57062"></span>57062</td>
+<td class="instruction">DJNZ <a href="56847.html#57033">GeneratePicture_Attributes_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the attribute row counter by one and loop back to <a href="57069.html#57534">57534</a> until counter is zero.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="57064"></span>57064</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="57065"></span>
+<div class="comments">
+<div class="paragraph">
+Variables specifically for this routine.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Line_Counter</td>
+<td class="address-1"><span id="57065"></span>57065</td>
+<td class="instruction">DEFB 0</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">Operation_Code</td>
+<td class="address-1"><span id="57066"></span>57066</td>
+<td class="instruction">DEFB 201</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="asm-label">Buffer_Position</td>
+<td class="address-1"><span id="57067"></span>57067</td>
+<td class="instruction">DEFW <a href="41187.html#43727">43727</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="56826.html">56826</a>
+</td>
+<td class="up">Up: <a href="../demo.html#56847">Map</a></td>
+<td class="next">
+Next: <a href="57069.html">57069</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../demo/56847.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

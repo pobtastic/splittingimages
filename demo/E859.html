@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E859</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E855.html">E855</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e859">Map</a></td>
+<td class="next">
+Next: <a href="E87B.html">E87B</a>
+</td>
+</tr>
+</table>
+<div class="description">E859: Routine at E859</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="D682.html">D682</a>, <a href="DEED.html">DEED</a> and <a href="E901.html">E901</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e859"></span>E859</td>
+<td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="2">Stash <span class="register">DE</span> and <span class="register">HL</span> on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e85a"></span>E85A</td>
+<td class="instruction">PUSH HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e85b"></span>E85B</td>
+<td class="instruction">LD HL,($D5B0)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D5B0.html">D5B0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e85e"></span>E85E</td>
+<td class="instruction">LD DE,$9470</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>-=<a href="9470.html">9470</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e861"></span>E861</td>
+<td class="instruction">SBC HL,DE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e863"></span>E863</td>
+<td class="instruction">JR Z,<a href="E859.html#e873">$E873</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="E859.html#e873">E873</a> if <span class="register">HL</span> is equal to 00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e865"></span>E865</td>
+<td class="instruction">LD HL,($D5B0)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D5B0.html">D5B0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e868"></span>E868</td>
+<td class="instruction">LD A,(HL)</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<span class="register">HL</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e869"></span>E869</td>
+<td class="instruction">INC HL</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e86a"></span>E86A</td>
+<td class="instruction">LD ($D5B0),HL</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D5B0.html">D5B0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e86d"></span>E86D</td>
+<td class="instruction">LD ($E3BD),A</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="DEED.html#e3bd">E3BD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e870"></span>E870</td>
+<td class="instruction">POP HL</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">HL</span> and <span class="register">DE</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e871"></span>E871</td>
+<td class="instruction">POP DE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e872"></span>E872</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e873"></span>E873</td>
+<td class="instruction">LD SP,($D22E)</td>
+<td class="comment-1" rowspan="1"><span class="register">SP</span>=*<a href="D22E.html">Storage_StackPointer</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e877"></span>E877</td>
+<td class="instruction">IM 1</td>
+<td class="comment-1" rowspan="1">Interrupt mode 01.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e879"></span>E879</td>
+<td class="instruction">EI</td>
+<td class="comment-1" rowspan="1">Enable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e87a"></span>E87A</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E855.html">E855</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e859">Map</a></td>
+<td class="next">
+Next: <a href="E87B.html">E87B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/demo/E859.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

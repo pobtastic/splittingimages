@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at E81F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E80B.html">E80B</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e81f">Map</a></td>
+<td class="next">
+Next: <a href="E83A.html">E83A</a>
+</td>
+</tr>
+</table>
+<div class="description">E81F: Routine at E81F</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="D234.html">Game_Initialisation</a> and <a href="D682.html">D682</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="e81f"></span>E81F</td>
+<td class="instruction">LD B,$13</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=13.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e821"></span>E821</td>
+<td class="instruction">LD C,$18</td>
+<td class="comment-1" rowspan="1"><span class="register">C</span>=18.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e823"></span>E823</td>
+<td class="instruction">CALL <a href="DACD.html">Calculate_ScreenBlockAddress</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DACD.html">Calculate_ScreenBlockAddress</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e826"></span>E826</td>
+<td class="instruction">INC H</td>
+<td class="comment-1" rowspan="4">Increment <span class="register">H</span> by four.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e827"></span>E827</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e828"></span>E828</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e829"></span>E829</td>
+<td class="instruction">INC H</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e82a"></span>E82A</td>
+<td class="instruction">LD DE,$D590</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=<a href="D590.html">D590</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e82d"></span>E82D</td>
+<td class="instruction">LD IX,$D556</td>
+<td class="comment-1" rowspan="1"><span class="register">IX</span>=<a href="D555.html#d556">D556</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e831"></span>E831</td>
+<td class="instruction">SET 1,(IX+$00)</td>
+<td class="comment-1" rowspan="1">Set bit 1 of *<span class="register">IX</span>+00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e835"></span>E835</td>
+<td class="instruction">LD B,$03</td>
+<td class="comment-1" rowspan="1"><span class="register">B</span>=03.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="e837"></span>E837</td>
+<td class="instruction">JP <a href="D8BC.html#d940">$D940</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="D8BC.html#d940">D940</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E80B.html">E80B</a>
+</td>
+<td class="up">Up: <a href="../demo.html#e81f">Map</a></td>
+<td class="next">
+Next: <a href="E83A.html">E83A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../dec/demo/E81F.html">Switch to decimal</a>.</div>
+</footer>
+</body>
+</html>

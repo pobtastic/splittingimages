@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Splitting Images: Routine at 58485</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-dark.css" />
+<link rel="stylesheet" type="text/css" href="../skoolkit-wide.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-75RERFCHBG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-75RERFCHBG');
+</script>
+</head>
+<body class="demo-Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58476.html">58476</a>
+</td>
+<td class="up">Up: <a href="../demo.html#58485">Map</a></td>
+<td class="next">
+Next: <a href="58509.html">58509</a>
+</td>
+</tr>
+</table>
+<div class="description">58485: Set Home To Default Attributes</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="57069.html">57069</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">Home_DefaultAttributes</td>
+<td class="address-2"><span id="58485"></span>58485</td>
+<td class="instruction">LD DE,22562</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=22562 (attribute buffer location).</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58488"></span>58488</td>
+<td class="instruction">LD HL,58542</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="58542.html">HomeAttributes</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58491"></span>
+<div class="comments">
+<div class="paragraph">
+The home block is 4x4 (4 rows of 4 bytes) but not all of it cycles attributes. Only 3x4 is used here.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58491"></span>58491</td>
+<td class="instruction">LD B,4</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 4 rows.</td>
+</tr>
+<tr>
+<td class="asm-label">Home_DefaultAttributes_Loop</td>
+<td class="address-2"><span id="58493"></span>58493</td>
+<td class="instruction">PUSH BC</td>
+<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58494"></span>58494</td>
+<td class="instruction">LD BC,3</td>
+<td class="comment-1" rowspan="2">Copy 0003 bytes from the attribute buffer to <a href="58542.html">HomeAttributes</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58497"></span>58497</td>
+<td class="instruction">LDIR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="58499"></span>
+<div class="comments">
+<div class="paragraph">
+One full row is 32 bytes, so this is 3 bytes less than one row. Hence this moves down one row, but back to the start of the line.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58499"></span>58499</td>
+<td class="instruction">EX DE,HL</td>
+<td class="comment-1" rowspan="4">Add 0029 to the attribute buffer position.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58500"></span>58500</td>
+<td class="instruction">LD BC,29</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58503"></span>58503</td>
+<td class="instruction">ADD HL,BC</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58504"></span>58504</td>
+<td class="instruction">EX DE,HL</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58505"></span>58505</td>
+<td class="instruction">POP BC</td>
+<td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58506"></span>58506</td>
+<td class="instruction">DJNZ <a href="58485.html#58493">Home_DefaultAttributes_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="58485.html#58493">Home_DefaultAttributes_Loop</a> until all the rows have been updated.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="58508"></span>58508</td>
+<td class="instruction">RET</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="58476.html">58476</a>
+</td>
+<td class="up">Up: <a href="../demo.html#58485">Map</a></td>
+<td class="next">
+Next: <a href="58509.html">58509</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 9.4.</div>
+<div class="repository">Link to <a rel="noopener nofollow" href="https://github.com/pobtastic/splittingimages/">Source code</a>.</div>
+<div><a href="../../demo/58485.html">Switch to hexadecimal</a>.</div>
+</footer>
+</body>
+</html>

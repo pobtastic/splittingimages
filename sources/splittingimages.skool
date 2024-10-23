@@ -5256,169 +5256,238 @@ c$DB2E PUSH AF        ; Stash #REGaf on the stack.
  $DB7C POP BC         ; }
  $DB7D RET            ; Return.
 
-; Move Tile ?
+; Move Tile Right
 ;
 ; Used by the routines at #R$EE61 and #R$F43E.
-@label=MoveTile_?
-c$DB7E LD A,($E75D)  ; #REGa=*#R$E75D.
- $DB81 DEC A         ; Decrease #REGa by one.
- $DB82 LD ($E75F),A  ; Write #REGa to *#R$E75F.
+;
+; .
+;
+; Get the current tile horizontal co-ordinate.
+@label=MoveTile_Right
+c$DB7E LD A,($E75D)  ; {Take *#R$E75D and decrease it by one, which adjusts the value for
+ $DB81 DEC A         ; the tile width. Write this value back to *#R$E75F.
+ $DB82 LD ($E75F),A  ; }
+; Set the total of how many spaces the tile will be moving.
  $DB85 LD A,($E761)  ; {#REGb=*#R$E761.
  $DB88 LD B,A        ; }
-*$DB89 PUSH BC       ; Stash #REGbc on the stack.
- $DB8A LD A,($E75E)  ; #REGa=*#R$E75E.
- $DB8D ADD A,$02     ; #REGa+=#N$02.
- $DB8F LD ($E760),A  ; Write #REGa to *#R$E760.
- $DB92 LD B,$04      ; #REGb=#N$04.
-*$DB94 PUSH BC       ; Stash #REGbc on the stack.
+; This is the tile loop, each space moved will decrease this counter by
+; one.
+@label=MoveTile_Right_Loop
+*$DB89 PUSH BC       ; Stash the number of spaces left to move on the stack.
+; Get the current tile vertical co-ordinate.
+ $DB8A LD A,($E75E)  ; {Take *#R$E75E and add #N$02, which adjusts the value for the tile
+ $DB8D ADD A,$02     ; height. Write this value back to *#R$E760.
+ $DB8F LD ($E760),A  ; }
+; Start moving the tile a single space.
+ $DB92 LD B,$04      ; Set a counter in #REGb for the height of the tile in bytes (#N$04
+                     ; rows).
+@label=MoveTile_Right_RowLoop
+*$DB94 PUSH BC       ; Stash the row counter (tile height) on the stack.
+; Get the screen buffer address from the co-ordinates.
  $DB95 LD A,($E75F)  ; {#REGb=*#R$E75F.
  $DB98 LD B,A        ; }
  $DB99 LD A,($E760)  ; {#REGc=*#R$E760.
  $DB9C LD C,A        ; }
  $DB9D CALL $DCC2    ; Call #R$DCC2.
- $DBA0 LD A,$08      ; #REGa=#N$08.
- $DBA2 LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DBA5 PUSH HL       ; Stash #REGhl on the stack.
- $DBA6 POP DE        ; Restore #REGde from the stack.
- $DBA7 INC DE        ; Increment #REGde by one.
- $DBA8 PUSH HL       ; {Stash #REGhl and #REGhl on the stack.
-*$DBA9 PUSH HL       ; }
- $DBAA LDDR          ; LDDR.
- $DBAC INC HL        ; Increment #REGhl by one.
- $DBAD LD (HL),C     ; Write #REGc to *#REGhl.
- $DBAE POP HL        ; Restore #REGhl from the stack.
- $DBAF INC H         ; Increment #REGh by one.
- $DBB0 PUSH HL       ; Stash #REGhl on the stack.
- $DBB1 POP DE        ; Restore #REGde from the stack.
- $DBB2 INC DE        ; Increment #REGde by one.
- $DBB3 LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DBB6 DEC A         ; Decrease #REGa by one.
- $DBB7 JP NZ,$DBA9   ; Jump to #R$DBA9 if #REGa is not zero.
- $DBBA POP HL        ; Restore #REGhl from the stack.
+ $DBA0 LD A,$08      ; Set the number of bytes in a character block to #REGa.
+ $DBA2 LD BC,$0004   ; Set a counter in #REGb for the number of bytes in a row (#N$04),
+                     ; and set #REGc to #N$00 which is used for erasing the left-over tile pixels.
+ $DBA5 PUSH HL       ; #REGhl=screen buffer address of the tile.
+ $DBA6 POP DE        ; {#REGde=screen buffer address of the tile (using the
+ $DBA7 INC DE        ; stack) + #N$01.}
+ $DBA8 PUSH HL       ; Stash the current screen buffer address of the tile on
+                     ; the stack.
+; Start moving the current row.
+@label=MoveTile_Right_ColumnLoop
+*$DBA9 PUSH HL       ; Stash the current screen buffer address of the tile on
+                     ; the stack.
+ $DBAA LDDR          ; Move #N($0004,$04,$04) screen data bytes from right to
+                     ; left.
+; This leaves the last byte unprocessed - which should be blank. So,
+; let's erase it.
+ $DBAC INC HL        ; {Erase the right-most byte (#REGc contains #N$00).
+ $DBAD LD (HL),C     ; }
+ $DBAE POP HL        ; Restore the current screen buffer address from the
+                     ; stack.
+ $DBAF INC H         ; Move down one row.
+; Update the screen buffer address for the next loop iteration.
+ $DBB0 PUSH HL       ; #REGhl=screen buffer address of the tile.
+ $DBB1 POP DE        ; {#REGde=screen buffer address of the tile (using the
+ $DBB2 INC DE        ; stack) + #N$01.}
+ $DBB3 LD BC,$0004   ; Restore #REGbc back to #N($0004,$04,$04).
+ $DBB6 DEC A         ; Decrease the column/ byte counter by one.
+ $DBB7 JP NZ,$DBA9   ; Jump to #R$DBA9 until all four bytes in this row have
+                     ; been moved.
+; Now onto the attribute buffer bytes.
+; .
+; Convert the screen buffer location into a corresponding attribute
+; buffer address.
+ $DBBA POP HL        ; Restore the current screen buffer address from the
+                     ; stack.
  $DBBB CALL $DCD1    ; Call #R$DCD1.
- $DBBE PUSH DE       ; Stash #REGde on the stack.
- $DBBF POP HL        ; Restore #REGhl from the stack.
- $DBC0 INC DE        ; Increment #REGde by one.
- $DBC1 LD BC,$0005   ; #REGbc=#N($0005,$04,$04).
- $DBC4 LDDR          ; LDDR.
- $DBC6 LD A,$47      ; #REGa=#N$47.
- $DBC8 INC DE        ; Increment #REGde by one.
- $DBC9 LD (DE),A     ; Write #REGa to *#REGde.
- $DBCA LD HL,$E75F   ; #REGhl=#R$E75F.
- $DBCD INC (HL)      ; Increment *#REGhl by one.
- $DBCE POP BC        ; Restore #REGbc from the stack.
- $DBCF DJNZ $DB94    ; Decrease counter by one and loop back to #R$DB94 until
-                     ; counter is zero.
- $DBD1 POP BC        ; Restore #REGbc from the stack.
- $DBD2 PUSH BC       ; Stash #REGbc on the stack.
- $DBD3 CALL $DD52    ; Call #R$DD52.
- $DBD6 LD A,($E75D)  ; #REGa=*#R$E75D.
- $DBD9 DEC A         ; Decrease #REGa by one.
- $DBDA LD ($E75F),A  ; Write #REGa to *#R$E75F.
- $DBDD LD HL,$E75E   ; #REGhl=#R$E75E.
- $DBE0 INC (HL)      ; Increment *#REGhl by one.
- $DBE1 POP BC        ; Restore #REGbc from the stack.
- $DBE2 DJNZ $DB89    ; Decrease counter by one and loop back to #R$DB89 until
-                     ; counter is zero.
+ $DBBE PUSH DE       ; {#REGhl=attribute buffer address of the tile (using the
+ $DBBF POP HL        ; stack).}
+ $DBC0 INC DE        ; #REGde=attribute buffer address of the tile + #N$01.
+ $DBC1 LD BC,$0005   ; {Move #N($0005,$04,$04) attribute bytes from right to
+ $DBC4 LDDR          ; left.}
+; This leaves the last attribute space unprocessed - which should be
+; blank. So, let's erase it.
+ $DBC6 LD A,$47      ; #REGa=#COLOUR$47.
+ $DBC8 INC DE        ; {Erase the right-most attribute block.
+ $DBC9 LD (DE),A     ; }
+; Move to the next attribute row.
+ $DBCA LD HL,$E75F   ; {Increment *#R$E75F by one.
+ $DBCD INC (HL)      ; }
+ $DBCE POP BC        ; Restore the attribute row counter from the stack.
+ $DBCF DJNZ $DB94    ; Decrease the attribute row counter by one and loop back to #R$DB94
+                     ; until the whole row has been processed.
+; The tile has successfully moved one space!
+ $DBD1 POP BC        ; {Using the number of spaces left to move (from the stack) call
+ $DBD2 PUSH BC       ; #R$DD52.
+ $DBD3 CALL $DD52    ; }
+ $DBD6 LD A,($E75D)  ; {Take *#R$E75D and decrease it by one, which adjusts the value for
+ $DBD9 DEC A         ; the tile width. Write it back to *#R$E75F.
+ $DBDA LD ($E75F),A  ; }
+ $DBDD LD HL,$E75E   ; {Increment *#R$E75E by one.
+ $DBE0 INC (HL)      ; }
+ $DBE1 POP BC        ; Restore the number of spaces left to move from the
+                     ; stack.
+ $DBE2 DJNZ $DB89    ; Decrease the number of spaces counter by one and loop back to
+                     ; #R$DB89 until the tile is in the destination space.
  $DBE4 RET           ; Return.
 
-; Move Tile ??
+; Move Tile Left
 ;
 ; Used by the routines at #R$EE61 and #R$F43E.
-@label=MoveTile_??
-c$DBE5 LD A,($E75D)  ; #REGa=*#R$E75D.
- $DBE8 DEC A         ; Decrease #REGa by one.
- $DBE9 LD ($E75F),A  ; Write #REGa to *#R$E75F.
+@label=MoveTile_Left
+c$DBE5 LD A,($E75D)  ; {Take *#R$E75D and decrease it by one, which adjusts the value for
+ $DBE8 DEC A         ; the tile width. Write this value back to *#R$E75F.
+ $DBE9 LD ($E75F),A  ; }
+; Set the total of how many spaces the tile will be moving.
  $DBEC LD A,($E761)  ; {#REGb=*#R$E761.
  $DBEF LD B,A        ; }
-*$DBF0 PUSH BC       ; Stash #REGbc on the stack.
- $DBF1 LD A,($E75E)  ; #REGa=*#R$E75E.
- $DBF4 DEC A         ; Decrease #REGa by one.
- $DBF5 LD ($E760),A  ; Write #REGa to *#R$E760.
- $DBF8 LD B,$04      ; #REGb=#N$04.
-*$DBFA PUSH BC       ; Stash #REGbc on the stack.
+; This is the tile loop, each space moved will decrease this counter by
+; one.
+@label=MoveTile_Left_Loop
+*$DBF0 PUSH BC       ; Stash the number of spaces left to move on the stack.
+ $DBF1 LD A,($E75E)  ; {Take *#R$E75E and subtract #N$01, which adjusts the value for the
+ $DBF4 DEC A         ; tile height. Write this value back to *#R$E760.
+ $DBF5 LD ($E760),A  ; }
+; Start moving the tile a single space.
+ $DBF8 LD B,$04      ; Set a counter in #REGb for the height of the tile in bytes (#N$04
+                     ; rows).
+@label=MoveTile_Left_RowLoop
+*$DBFA PUSH BC       ; Stash the row counter (tile height) on the stack.
+; Get the screen buffer address from the co-ordinates.
  $DBFB LD A,($E75F)  ; {#REGb=*#R$E75F.
  $DBFE LD B,A        ; }
  $DBFF LD A,($E760)  ; {#REGc=*#R$E760.
  $DC02 LD C,A        ; }
  $DC03 CALL $DCC2    ; Call #R$DCC2.
- $DC06 LD A,$08      ; #REGa=#N$08.
- $DC08 LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DC0B PUSH HL       ; Stash #REGhl on the stack.
- $DC0C POP DE        ; Restore #REGde from the stack.
- $DC0D DEC DE        ; Decrease #REGde by one.
- $DC0E PUSH HL       ; {Stash #REGhl and #REGhl on the stack.
-*$DC0F PUSH HL       ; }
- $DC10 LDIR          ; LDIR.
- $DC12 DEC HL        ; Decrease #REGhl by one.
- $DC13 LD (HL),C     ; Write #REGc to *#REGhl.
- $DC14 POP HL        ; Restore #REGhl from the stack.
- $DC15 INC H         ; Increment #REGh by one.
- $DC16 PUSH HL       ; Stash #REGhl on the stack.
- $DC17 POP DE        ; Restore #REGde from the stack.
- $DC18 DEC DE        ; Decrease #REGde by one.
- $DC19 LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DC1C DEC A         ; Decrease #REGa by one.
- $DC1D JP NZ,$DC0F   ; Jump to #R$DC0F if #REGa is not zero.
- $DC20 POP HL        ; Restore #REGhl from the stack.
+ $DC06 LD A,$08      ; Set the number of bytes in a character block to #REGa.
+ $DC08 LD BC,$0004   ; Set a counter in #REGb for the number of bytes in a row (#N$04),
+                     ; and set #REGc to #N$00 which is used for erasing the left-over tile pixels.
+ $DC0B PUSH HL       ; #REGhl=screen buffer address of the tile.
+ $DC0C POP DE        ; {#REGde=screen buffer address of the tile (using the
+ $DC0D DEC DE        ; stack) - #N$01.}
+ $DC0E PUSH HL       ; Stash the current screen buffer address of the tile on
+                     ; the stack.
+; Start moving the current row.
+@label=MoveTile_Left_ColumnLoop
+*$DC0F PUSH HL       ; Stash the current screen buffer address of the tile on
+                     ; the stack.
+ $DC10 LDIR          ; Move #N($0004,$04,$04) screen data bytes from left to
+                     ; right.
+; This leaves the last byte unprocessed - which should be blank. So,
+; let's erase it.
+ $DC12 DEC HL        ; {Erase the right-most byte (#REGc contains #N$00).
+ $DC13 LD (HL),C     ; }
+ $DC14 POP HL        ; Restore the current screen buffer address from the
+                     ; stack.
+ $DC15 INC H         ; Move down one row.
+; Update the screen buffer address for the next loop iteration.
+ $DC16 PUSH HL       ; #REGhl=screen buffer address of the tile.
+ $DC17 POP DE        ; {#REGde=screen buffer address of the tile (using the
+ $DC18 DEC DE        ; stack) - #N$01.}
+ $DC19 LD BC,$0004   ; Restore #REGbc back to #N($0004,$04,$04).
+ $DC1C DEC A         ; Decrease the column/ byte counter by one.
+ $DC1D JP NZ,$DC0F   ; Jump to #R$DC0F until all four bytes in this row have
+                     ; been moved.
+; Now onto the attribute buffer bytes.
+; .
+; Convert the screen buffer location into a corresponding attribute
+; buffer address.
+ $DC20 POP HL        ; Restore the current screen buffer address from the
+                     ; stack.
  $DC21 CALL $DCD1    ; Call #R$DCD1.
- $DC24 PUSH DE       ; Stash #REGde on the stack.
- $DC25 POP HL        ; Restore #REGhl from the stack.
- $DC26 DEC DE        ; Decrease #REGde by one.
- $DC27 LD BC,$0005   ; #REGbc=#N($0005,$04,$04).
- $DC2A LDIR          ; LDIR.
- $DC2C LD A,$47      ; #REGa=#N$47.
- $DC2E DEC DE        ; Decrease #REGde by one.
- $DC2F LD (DE),A     ; Write #REGa to *#REGde.
- $DC30 LD HL,$E75F   ; #REGhl=#R$E75F.
- $DC33 INC (HL)      ; Increment *#REGhl by one.
- $DC34 POP BC        ; Restore #REGbc from the stack.
- $DC35 DJNZ $DBFA    ; Decrease counter by one and loop back to #R$DBFA until
-                     ; counter is zero.
- $DC37 POP BC        ; Restore #REGbc from the stack.
- $DC38 PUSH BC       ; Stash #REGbc on the stack.
- $DC39 CALL $DD52    ; Call #R$DD52.
- $DC3C LD A,($E75D)  ; #REGa=*#R$E75D.
- $DC3F DEC A         ; Decrease #REGa by one.
- $DC40 LD ($E75F),A  ; Write #REGa to *#R$E75F.
- $DC43 LD HL,$E75E   ; #REGhl=#R$E75E.
- $DC46 DEC (HL)      ; Decrease *#REGhl by one.
- $DC47 POP BC        ; Restore #REGbc from the stack.
- $DC48 DJNZ $DBF0    ; Decrease counter by one and loop back to #R$DBF0 until
-                     ; counter is zero.
+ $DC24 PUSH DE       ; {#REGhl=attribute buffer address of the tile (using the
+ $DC25 POP HL        ; stack).}
+ $DC26 DEC DE        ; #REGde=attribute buffer address of the tile - #N$01.
+ $DC27 LD BC,$0005   ; {Move #N($0005,$04,$04) attribute bytes from left to
+ $DC2A LDIR          ; right.}
+; This leaves the last attribute space unprocessed - which should be
+; blank. So, let's erase it.
+ $DC2C LD A,$47      ; #REGa=#COLOUR$47.
+ $DC2E DEC DE        ; {Erase the right-most attribute block.
+ $DC2F LD (DE),A     ; }
+; Move to the next attribute row.
+ $DC30 LD HL,$E75F   ; {Increment *#R$E75F by one.
+ $DC33 INC (HL)      ; }
+ $DC34 POP BC        ; Restore the attribute row counter from the stack.
+ $DC35 DJNZ $DBFA    ; Decrease the attribute row counter by one and loop back to #R$DBFA
+                     ; until the whole row has been processed.
+; The tile has successfully moved one space!
+ $DC37 POP BC        ; {Using the number of spaces left to move (from the stack) call
+ $DC38 PUSH BC       ; #R$DD52.
+ $DC39 CALL $DD52    ; }
+ $DC3C LD A,($E75D)  ; {Take *#R$E75D and decrease it by one, which adjusts the value for
+ $DC3F DEC A         ; the tile width. Write it back to *#R$E75F.
+ $DC40 LD ($E75F),A  ; }
+ $DC43 LD HL,$E75E   ; {Decrease *#R$E75E by one.
+ $DC46 DEC (HL)      ; }
+ $DC47 POP BC        ; Restore the number of spaces left to move from the
+                     ; stack.
+ $DC48 DJNZ $DBF0    ; Decrease the number of spaces counter by one and loop back to
+                     ; #R$DBF0 until the tile is in the destination space.
  $DC4A RET           ; Return.
 
 ; Move Tile Down
 ;
 ; Used by the routines at #R$EE61 and #R$F43E.
 @label=MoveTile_Down
-c$DC4B LD A,($E75E)  ; #REGa=*#R$E75E.
- $DC4E DEC A         ; Decrease #REGa by one.
- $DC4F LD ($E760),A  ; Write #REGa to *#R$E760.
- $DC52 LD A,($E761)  ; {#REGb=*#R$E761.
+c$DC4B LD A,($E75E)  ; {Take *#R$E75E and store it in #REGa. Decrease it by one, which
+ $DC4E DEC A         ; adjusts the value for the tile height, and write this value to *#R$E760.
+ $DC4F LD ($E760),A  ; }
+ $DC52 LD A,($E761)  ; {Load #REGb with *#R$E761.
  $DC55 LD B,A        ; }
 @label=MoveTile_Down_Loop
-*$DC56 PUSH BC       ; Stash #REGbc on the stack.
- $DC57 LD A,($E75D)  ; #REGa=*#R$E75D.
- $DC5A ADD A,$02     ; #REGa+=#N$02.
- $DC5C LD ($E75F),A  ; Write #REGa to *#R$E75F.
- $DC5F LD B,$04      ; #REGb=#N$04.
-*$DC61 PUSH BC       ; Stash #REGbc on the stack.
+*$DC56 PUSH BC       ; Stash the row counter on the stack.
+ $DC57 LD A,($E75D)  ; {Take *#R$E75D and store it in #REGa. Add #N$02, which adjusts the
+ $DC5A ADD A,$02     ; value for the tile height, and write this value to *#R$E75F.
+ $DC5C LD ($E75F),A  ; }
+ $DC5F LD B,$04      ; Set a counter in #REGb for the height of the tile in
+                     ; bytes (#N$04).
+@label=MoveTile_Down_RowLoop
+*$DC61 PUSH BC       ; Stash the row (tile height) counter on the stack.
  $DC62 LD A,($E75F)  ; {#REGb=*#R$E75F.
  $DC65 LD B,A        ; }
  $DC66 LD A,($E760)  ; {#REGc=*#R$E760.
  $DC69 LD C,A        ; }
  $DC6A CALL $DCC2    ; Call #R$DCC2.
- $DC6D PUSH HL       ; Stash #REGhl on the stack.
+ $DC6D PUSH HL       ; Stash the destination screen buffer address on the
+                     ; stack.
  $DC6E INC B         ; Increment #REGb by one.
  $DC6F CALL $DCC2    ; Call #R$DCC2.
- $DC72 PUSH HL       ; Stash #REGhl on the stack.
- $DC73 POP DE        ; {Restore #REGde and #REGhl from the stack.
- $DC74 POP HL        ; }
- $DC75 LD A,$08      ; #REGa=#N$08.
- $DC77 LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DC7A PUSH HL       ; {Stash #REGhl, #REGhl and #REGde on the stack.
-*$DC7B PUSH HL       ;
+ $DC72 PUSH HL       ; {#REGde=screen buffer address of the tile (using the
+ $DC73 POP DE        ; stack).}
+ $DC74 POP HL        ; Restore the destination screen buffer address from the
+                     ; stack.
+ $DC75 LD A,$08      ; Load the number of pixels per row in #REGa.
+ $DC77 LD BC,$0004   ; Set the count for the size of the tile in #REGbc (#N($0004,$04,$04)
+                     ; character blocks).
+ $DC7A PUSH HL       ; Stash #REGhl on the stack.
+@label=MoveTile_Down_PixelShift
+*$DC7B PUSH HL       ; {Stash #REGhl and #REGde on the stack.
  $DC7C PUSH DE       ; }
  $DC7D LDIR          ; LDIR.
  $DC7F DEC HL        ; Decrease #REGhl by one.
@@ -5430,39 +5499,42 @@ c$DC4B LD A,($E75E)  ; #REGa=*#R$E75E.
  $DC87 LDDR          ; LDDR.
  $DC89 POP DE        ; {Restore #REGde and #REGhl from the stack.
  $DC8A POP HL        ; }
- $DC8B INC D         ; Increment #REGd by one.
- $DC8C INC H         ; Increment #REGh by one.
+ $DC8B INC D         ; Move to the next pixel row in the destination address.
+ $DC8C INC H         ; Move to the next pixel row in the source address.
  $DC8D LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DC90 DEC A         ; Decrease #REGa by one.
- $DC91 JP NZ,$DC7B   ; Jump to #R$DC7B if #REGa is not zero.
+ $DC90 DEC A         ; Decrease the pixel row counter by one.
+ $DC91 JP NZ,$DC7B   ; Jump back to #R$DC7B until all pixels in the row have
+                     ; been moved.
  $DC94 POP HL        ; Restore #REGhl from the stack.
  $DC95 CALL $DCD1    ; Call #R$DCD1.
- $DC98 LD HL,$0020   ; #REGhl=#N($0020,$04,$04).
- $DC9B ADD HL,DE     ; #REGhl+=#REGde.
- $DC9C EX DE,HL      ; Exchange the #REGde and #REGhl registers.
- $DC9D LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
- $DCA0 LDIR          ; LDIR.
+; Move #REGde down one attribute row.
+ $DC98 LD HL,$0020   ; {#REGde+=#N($0020,$04,$04).
+ $DC9B ADD HL,DE     ;
+ $DC9C EX DE,HL      ; }
+ $DC9D LD BC,$0004   ; {Copy #N($0004,$04,$04) attribute bytes from .
+ $DCA0 LDIR          ; }
  $DCA2 LD BC,$0003   ; #REGbc=#N($0003,$04,$04).
- $DCA5 LD A,$47      ; #REGa=#N$47.
+ $DCA5 LD A,$47      ; #REGa=#COLOUR$47.
  $DCA7 DEC HL        ; Decrease #REGhl by one.
  $DCA8 LD (HL),A     ; Write #REGa to *#REGhl.
  $DCA9 PUSH HL       ; Stash #REGhl on the stack.
  $DCAA POP DE        ; Restore #REGde from the stack.
  $DCAB DEC DE        ; Decrease #REGde by one.
  $DCAC LDDR          ; LDDR.
- $DCAE LD HL,$E75F   ; #REGhl=#R$E75F.
- $DCB1 DEC (HL)      ; Decrease *#REGhl by one.
- $DCB2 POP BC        ; Restore #REGbc from the stack.
- $DCB3 DJNZ $DC61    ; Decrease counter by one and loop back to #R$DC61 until
-                     ; counter is zero.
- $DCB5 POP BC        ; Restore #REGbc from the stack.
- $DCB6 PUSH BC       ; Stash #REGbc on the stack.
+ $DCAE LD HL,$E75F   ; {Decrease *#R$E75F by one.
+ $DCB1 DEC (HL)      ; }
+ $DCB2 POP BC        ; Restore the pixel row counter from the stack.
+ $DCB3 DJNZ $DC61    ; Decrease the pixel row counter by one and loop back to #R$DC61
+                     ; until counter is zero.
+ $DCB5 POP BC        ; {Restore the row counter from the stack for the sound generator, but
+ $DCB6 PUSH BC       ; keep a copy of it back on the stack.}
  $DCB7 CALL $DD52    ; Call #R$DD52.
- $DCBA LD HL,$E75D   ; #REGhl=#R$E75D.
- $DCBD INC (HL)      ; Increment *#REGhl by one.
- $DCBE POP BC        ; Restore #REGbc from the stack.
- $DCBF DJNZ $DC56    ; Decrease counter by one and loop back to #R$DC56 until
-                     ; counter is zero.
+ $DCBA LD HL,$E75D   ; {Increment *#R$E75D by one.
+ $DCBD INC (HL)      ; }
+ $DCBE POP BC        ; Restore the number of spaces left to move from the
+                     ; stack.
+ $DCBF DJNZ $DC56    ; Decrease the number of spaces counter by one and loop back to
+                     ; #R$DC56 until the tile is in the destination space.
  $DCC1 RET           ; Return.
 
 ; Calculate Screen Block Address
@@ -5514,29 +5586,31 @@ c$DCD1 LD A,H        ; #REGa=high byte of the screen address.
 ;
 ; Used by the routine at #R$F43E.
 @label=MoveTile_Up
-c$DCDC LD A,($E75E)  ; #REGa=*#R$E75E.
- $DCDF DEC A         ; Decrease #REGa by one.
- $DCE0 LD ($E760),A  ; Write #REGa to *#R$E760.
+c$DCDC LD A,($E75E)  ; {Take *#R$E75E and store it in #REGa. Decrease it by one, which
+ $DCDF DEC A         ; adjusts the value for the tile height, and write this value to *#R$E760.
+ $DCE0 LD ($E760),A  ; }
  $DCE3 LD A,($E761)  ; {#REGb=*#R$E761.
  $DCE6 LD B,A        ; }
 @label=MoveTile_Up_Loop
-*$DCE7 PUSH BC       ; Stash #REGbc on the stack.
+*$DCE7 PUSH BC       ; Stash the row counter on the stack.
  $DCE8 LD A,($E75D)  ; #REGa=*#R$E75D.
  $DCEB DEC A         ; Decrease #REGa by one.
  $DCEC LD ($E75F),A  ; Write #REGa to *#R$E75F.
  $DCEF LD B,$04      ; #REGb=#N$04.
-*$DCF1 PUSH BC       ; Stash #REGbc on the stack.
+*$DCF1 PUSH BC       ; Stash the row (tile height) counter on the stack.
  $DCF2 LD A,($E75F)  ; {#REGb=*#R$E75F.
  $DCF5 LD B,A        ; }
  $DCF6 LD A,($E760)  ; {#REGc=*#R$E760.
  $DCF9 LD C,A        ; }
  $DCFA CALL $DCC2    ; Call #R$DCC2.
- $DCFD PUSH HL       ; Stash #REGhl on the stack.
+ $DCFD PUSH HL       ; Stash the destination screen buffer address on the
+                     ; stack.
  $DCFE DEC B         ; Decrease #REGb by one.
  $DCFF CALL $DCC2    ; Call #R$DCC2.
- $DD02 PUSH HL       ; {#REGde=#REGhl (using the stack).
- $DD03 POP DE        ; }
- $DD04 POP HL        ; Restore #REGhl from the stack.
+ $DD02 PUSH HL       ; {#REGde=screen buffer address of the tile (using the
+ $DD03 POP DE        ; stack).}
+ $DD04 POP HL        ; Restore the destination screen buffer address from the
+                     ; stack.
  $DD05 LD A,$08      ; #REGa=#N$08.
  $DD07 LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
  $DD0A PUSH HL       ; {Stash #REGhl, #REGhl and #REGde on the stack.
@@ -5559,13 +5633,14 @@ c$DCDC LD A,($E75E)  ; #REGa=*#R$E75E.
  $DD21 JP NZ,$DD0B   ; Jump to #R$DD0B if #REGa is not zero.
  $DD24 POP HL        ; Restore #REGhl from the stack.
  $DD25 CALL $DCD1    ; Call #R$DCD1.
- $DD28 LD HL,$FFE0   ; {#REGhl=#N$FFE0+#REGde.
- $DD2B ADD HL,DE     ; }
- $DD2C EX DE,HL      ; Exchange the #REGde and #REGhl registers.
+; Move #REGde up one attribute row.
+ $DD28 LD HL,$FFE0   ; {#REGde+=#N$FFE0 (subtract #N($0020,$04,$04)).
+ $DD2B ADD HL,DE     ;
+ $DD2C EX DE,HL      ; }
  $DD2D LD BC,$0004   ; #REGbc=#N($0004,$04,$04).
  $DD30 LDIR          ; LDIR.
  $DD32 LD BC,$0003   ; #REGbc=#N($0003,$04,$04).
- $DD35 LD A,$47      ; #REGa=#N$47.
+ $DD35 LD A,$47      ; #REGa=#COLOUR$47.
  $DD37 DEC HL        ; Decrease #REGhl by one.
  $DD38 LD (HL),A     ; Write #REGa to *#REGhl.
  $DD39 PUSH HL       ; Stash #REGhl on the stack.
@@ -5582,29 +5657,34 @@ c$DCDC LD A,($E75E)  ; #REGa=*#R$E75E.
  $DD47 CALL $DD52    ; Call #R$DD52.
  $DD4A LD HL,$E75D   ; #REGhl=#R$E75D.
  $DD4D DEC (HL)      ; Decrease *#REGhl by one.
- $DD4E POP BC        ; Restore #REGbc from the stack.
- $DD4F DJNZ $DCE7    ; Decrease counter by one and loop back to #R$DCE7 until
-                     ; counter is zero.
+ $DD4E POP BC        ; Restore the number of spaces left to move from the
+                     ; stack.
+ $DD4F DJNZ $DCE7    ; Decrease the number of spaces counter by one and loop back to
+                     ; #R$DCE7 until the tile is in the destination space.
  $DD51 RET           ; Return.
 
-; Routine at DD52
+; Sound: Tile Movement
 ;
 ; Used by the routines at #R$DB7E, #R$DBE5, #R$DC4B and #R$DCDC.
+;
+; B Loop counter
+@label=Sound_TileMovement
 c$DD52 LD HL,$E761   ; #REGhl=#R$E761.
- $DD55 LD A,$14      ; #REGa=#N$14.
- $DD57 SUB (HL)      ; #REGa-=*#REGhl.
+ $DD55 LD A,$14      ; Load the base pitch value (#N$14) into #REGa.
+ $DD57 SUB (HL)      ; Subtract the number of tile slots moved from the base
+                     ; pitch.
  $DD58 LD C,B        ; #REGc=#REGb.
- $DD59 SLA C         ; {Shift #REGc left two positions (with carry).
+ $DD59 SLA C         ; {Multiply #REGc by #N$04.
  $DD5B SLA C         ; }
- $DD5D ADD A,C       ; #REGa+=#REGc.
- $DD5E LD C,A        ; #REGc=#REGa.
+ $DD5D ADD A,C       ; {#REGc+=#REGa.
+ $DD5E LD C,A        ; }
  $DD5F LD A,$05      ; #REGa=#N$05.
 *$DD61 LD B,C        ; #REGb=#REGc.
  $DD62 SLA B         ; Shift #REGb left (with carry).
 *$DD64 DJNZ $DD64    ; Decrease counter by one and loop back to #R$DD64 until
                      ; counter is zero.
- $DD66 XOR %00010000 ; Flip bits 4.
- $DD68 OUT ($FE),A   ; Set border to the colour held by #REGa.
+ $DD66 XOR %00010000 ; Flip bit 4.
+ $DD68 OUT ($FE),A   ; Send to the speaker.
  $DD6A DEC C         ; Decrease #REGc by one.
  $DD6B JP NZ,$DD61   ; Jump to #R$DD61 if #REGc is not zero.
  $DD6E RET           ; Return.
@@ -7774,11 +7854,16 @@ c$E741 LD A,($E2C7)  ; {Jump to #R$E74A if *#R$E2C7 is less than #N$15
  $E75B LD (HL),A     ; }
  $E75C RET           ; Return.
 
-; Data block at E75D
-b$E75D DEFB $00
+; Tile Helper Variables
+@label=Tile_Horizontal_Position
+g$E75D DEFB $00
+@label=Tile_Vertical_Position
  $E75E DEFB $00
+@label=Tile_Horizontal_Coordinate
  $E75F DEFB $00
+@label=Tile_Vertical_Coordinate
  $E760 DEFB $00
+@label=Tile_SpacesToMove
  $E761 DEFB $00
  $E762 DEFB $00
  $E763 DEFB $00

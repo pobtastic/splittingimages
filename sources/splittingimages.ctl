@@ -1377,146 +1377,174 @@ R $DB2E DE Pointer to address of digits to print
   $DB7A,$03 Restore #REGhl, #REGde and #REGbc from the stack.
   $DB7D,$01 Return.
 
-c $DB7E Move Tile ?
-@ $DB7E label=MoveTile_?
-  $DB7E,$03 #REGa=*#R$E75D.
-  $DB81,$01 Decrease #REGa by one.
-  $DB82,$03 Write #REGa to *#R$E75F.
+c $DB7E Move Tile Right
+@ $DB7E label=MoveTile_Right
+N $DB7E Get the current tile horizontal co-ordinate.
+  $DB7E,$07 Take *#R$E75D and decrease it by one, which adjusts the value for
+. the tile width. Write this value back to *#R$E75F.
+N $DB85 Set the total of how many spaces the tile will be moving.
   $DB85,$04 #REGb=*#R$E761.
-  $DB89,$01 Stash #REGbc on the stack.
-  $DB8A,$03 #REGa=*#R$E75E.
-  $DB8D,$02 #REGa+=#N$02.
-  $DB8F,$03 Write #REGa to *#R$E760.
-  $DB92,$02 #REGb=#N$04.
-  $DB94,$01 Stash #REGbc on the stack.
+N $DB89 This is the tile loop, each space moved will decrease this counter by
+. one.
+@ $DB89 label=MoveTile_Right_Loop
+  $DB89,$01 Stash the number of spaces left to move on the stack.
+N $DB8A Get the current tile vertical co-ordinate.
+  $DB8A,$08 Take *#R$E75E and add #N$02, which adjusts the value for the tile
+. height. Write this value back to *#R$E760.
+N $DB92 Start moving the tile a single space.
+  $DB92,$02 Set a counter in #REGb for the height of the tile in bytes (#N$04
+. rows).
+@ $DB94 label=MoveTile_Right_RowLoop
+  $DB94,$01 Stash the row counter (tile height) on the stack.
+N $DB95 Get the screen buffer address from the co-ordinates.
   $DB95,$04 #REGb=*#R$E75F.
   $DB99,$04 #REGc=*#R$E760.
   $DB9D,$03 Call #R$DCC2.
-  $DBA0,$02 #REGa=#N$08.
-  $DBA2,$03 #REGbc=#N($0004,$04,$04).
-  $DBA5,$01 Stash #REGhl on the stack.
-  $DBA6,$01 Restore #REGde from the stack.
-  $DBA7,$01 Increment #REGde by one.
-  $DBA8,$02 Stash #REGhl and #REGhl on the stack.
-  $DBAA,$02 LDDR.
-  $DBAC,$01 Increment #REGhl by one.
-  $DBAD,$01 Write #REGc to *#REGhl.
-  $DBAE,$01 Restore #REGhl from the stack.
-  $DBAF,$01 Increment #REGh by one.
-  $DBB0,$01 Stash #REGhl on the stack.
-  $DBB1,$01 Restore #REGde from the stack.
-  $DBB2,$01 Increment #REGde by one.
-  $DBB3,$03 #REGbc=#N($0004,$04,$04).
-  $DBB6,$01 Decrease #REGa by one.
-  $DBB7,$03 Jump to #R$DBA9 if #REGa is not zero.
-  $DBBA,$01 Restore #REGhl from the stack.
+  $DBA0,$02 Set the number of bytes in a character block to #REGa.
+  $DBA2,$03 Set a counter in #REGb for the number of bytes in a row (#N$04),
+. and set #REGc to #N$00 which is used for erasing the left-over tile pixels.
+  $DBA5,$01 #REGhl=screen buffer address of the tile.
+  $DBA6,$02 #REGde=screen buffer address of the tile (using the stack) + #N$01.
+  $DBA8,$01 Stash the current screen buffer address of the tile on the stack.
+N $DBA9 Start moving the current row.
+@ $DBA9 label=MoveTile_Right_ColumnLoop
+  $DBA9,$01 Stash the current screen buffer address of the tile on the stack.
+  $DBAA,$02 Move #N($0004,$04,$04) screen data bytes from right to left.
+N $DBAC This leaves the last byte unprocessed - which should be blank. So,
+. let's erase it.
+  $DBAC,$02 Erase the right-most byte (#REGc contains #N$00).
+  $DBAE,$01 Restore the current screen buffer address from the stack.
+  $DBAF,$01 Move down one row.
+N $DBB0 Update the screen buffer address for the next loop iteration.
+  $DBB0,$01 #REGhl=screen buffer address of the tile.
+  $DBB1,$02 #REGde=screen buffer address of the tile (using the stack) + #N$01.
+  $DBB3,$03 Restore #REGbc back to #N($0004,$04,$04).
+  $DBB6,$01 Decrease the column/ byte counter by one.
+  $DBB7,$03 Jump to #R$DBA9 until all four bytes in this row have been moved.
+N $DBBA Now onto the attribute buffer bytes.
+N $DBBA Convert the screen buffer location into a corresponding attribute
+. buffer address.
+  $DBBA,$01 Restore the current screen buffer address from the stack.
   $DBBB,$03 Call #R$DCD1.
-  $DBBE,$01 Stash #REGde on the stack.
-  $DBBF,$01 Restore #REGhl from the stack.
-  $DBC0,$01 Increment #REGde by one.
-  $DBC1,$03 #REGbc=#N($0005,$04,$04).
-  $DBC4,$02 LDDR.
-  $DBC6,$02 #REGa=#N$47.
-  $DBC8,$01 Increment #REGde by one.
-  $DBC9,$01 Write #REGa to *#REGde.
-  $DBCA,$03 #REGhl=#R$E75F.
-  $DBCD,$01 Increment *#REGhl by one.
-  $DBCE,$01 Restore #REGbc from the stack.
-  $DBCF,$02 Decrease counter by one and loop back to #R$DB94 until counter is zero.
-  $DBD1,$01 Restore #REGbc from the stack.
-  $DBD2,$01 Stash #REGbc on the stack.
-  $DBD3,$03 Call #R$DD52.
-  $DBD6,$03 #REGa=*#R$E75D.
-  $DBD9,$01 Decrease #REGa by one.
-  $DBDA,$03 Write #REGa to *#R$E75F.
-  $DBDD,$03 #REGhl=#R$E75E.
-  $DBE0,$01 Increment *#REGhl by one.
-  $DBE1,$01 Restore #REGbc from the stack.
-  $DBE2,$02 Decrease counter by one and loop back to #R$DB89 until counter is zero.
+  $DBBE,$02 #REGhl=attribute buffer address of the tile (using the stack).
+  $DBC0,$01 #REGde=attribute buffer address of the tile + #N$01.
+  $DBC1,$05 Move #N($0005,$04,$04) attribute bytes from right to left.
+N $DBC6 This leaves the last attribute space unprocessed - which should be
+. blank. So, let's erase it.
+  $DBC6,$02 #REGa=#COLOUR$47.
+  $DBC8,$02 Erase the right-most attribute block.
+N $DBCA Move to the next attribute row.
+  $DBCA,$04 Increment *#R$E75F by one.
+  $DBCE,$01 Restore the attribute row counter from the stack.
+  $DBCF,$02 Decrease the attribute row counter by one and loop back to #R$DB94
+. until the whole row has been processed.
+N $DBD1 The tile has successfully moved one space!
+  $DBD1,$05 Using the number of spaces left to move (from the stack) call
+. #R$DD52.
+  $DBD6,$07 Take *#R$E75D and decrease it by one, which adjusts the value for
+. the tile width. Write it back to *#R$E75F.
+  $DBDD,$04 Increment *#R$E75E by one.
+  $DBE1,$01 Restore the number of spaces left to move from the stack.
+  $DBE2,$02 Decrease the number of spaces counter by one and loop back to
+. #R$DB89 until the tile is in the destination space.
   $DBE4,$01 Return.
 
-c $DBE5 Move Tile ??
-@ $DBE5 label=MoveTile_??
-  $DBE5,$03 #REGa=*#R$E75D.
-  $DBE8,$01 Decrease #REGa by one.
-  $DBE9,$03 Write #REGa to *#R$E75F.
+c $DBE5 Move Tile Left
+@ $DBE5 label=MoveTile_Left
+  $DBE5,$07 Take *#R$E75D and decrease it by one, which adjusts the value for
+. the tile width. Write this value back to *#R$E75F.
+N $DBEC Set the total of how many spaces the tile will be moving.
   $DBEC,$04 #REGb=*#R$E761.
-  $DBF0,$01 Stash #REGbc on the stack.
-  $DBF1,$03 #REGa=*#R$E75E.
-  $DBF4,$01 Decrease #REGa by one.
-  $DBF5,$03 Write #REGa to *#R$E760.
-  $DBF8,$02 #REGb=#N$04.
-  $DBFA,$01 Stash #REGbc on the stack.
+N $DBF0 This is the tile loop, each space moved will decrease this counter by
+. one.
+@ $DBF0 label=MoveTile_Left_Loop
+  $DBF0,$01 Stash the number of spaces left to move on the stack.
+  $DBF1,$07 Take *#R$E75E and subtract #N$01, which adjusts the value for the
+. tile height. Write this value back to *#R$E760.
+N $DBF8 Start moving the tile a single space.
+  $DBF8,$02 Set a counter in #REGb for the height of the tile in bytes (#N$04
+. rows).
+@ $DBFA label=MoveTile_Left_RowLoop
+  $DBFA,$01 Stash the row counter (tile height) on the stack.
+N $DBFB Get the screen buffer address from the co-ordinates.
   $DBFB,$04 #REGb=*#R$E75F.
   $DBFF,$04 #REGc=*#R$E760.
   $DC03,$03 Call #R$DCC2.
-  $DC06,$02 #REGa=#N$08.
-  $DC08,$03 #REGbc=#N($0004,$04,$04).
-  $DC0B,$01 Stash #REGhl on the stack.
-  $DC0C,$01 Restore #REGde from the stack.
-  $DC0D,$01 Decrease #REGde by one.
-  $DC0E,$02 Stash #REGhl and #REGhl on the stack.
-  $DC10,$02 LDIR.
-  $DC12,$01 Decrease #REGhl by one.
-  $DC13,$01 Write #REGc to *#REGhl.
-  $DC14,$01 Restore #REGhl from the stack.
-  $DC15,$01 Increment #REGh by one.
-  $DC16,$01 Stash #REGhl on the stack.
-  $DC17,$01 Restore #REGde from the stack.
-  $DC18,$01 Decrease #REGde by one.
-  $DC19,$03 #REGbc=#N($0004,$04,$04).
-  $DC1C,$01 Decrease #REGa by one.
-  $DC1D,$03 Jump to #R$DC0F if #REGa is not zero.
-  $DC20,$01 Restore #REGhl from the stack.
+  $DC06,$02 Set the number of bytes in a character block to #REGa.
+  $DC08,$03 Set a counter in #REGb for the number of bytes in a row (#N$04),
+. and set #REGc to #N$00 which is used for erasing the left-over tile pixels.
+  $DC0B,$01 #REGhl=screen buffer address of the tile.
+  $DC0C,$02 #REGde=screen buffer address of the tile (using the stack) - #N$01.
+  $DC0E,$01 Stash the current screen buffer address of the tile on the stack.
+N $DC0F Start moving the current row.
+@ $DC0F label=MoveTile_Left_ColumnLoop
+  $DC0F,$01 Stash the current screen buffer address of the tile on the stack.
+  $DC10,$02 Move #N($0004,$04,$04) screen data bytes from left to right.
+N $DC12 This leaves the last byte unprocessed - which should be blank. So,
+. let's erase it.
+  $DC12,$02 Erase the right-most byte (#REGc contains #N$00).
+  $DC14,$01 Restore the current screen buffer address from the stack.
+  $DC15,$01 Move down one row.
+N $DC16 Update the screen buffer address for the next loop iteration.
+  $DC16,$01 #REGhl=screen buffer address of the tile.
+  $DC17,$02 #REGde=screen buffer address of the tile (using the stack) - #N$01.
+  $DC19,$03 Restore #REGbc back to #N($0004,$04,$04).
+  $DC1C,$01 Decrease the column/ byte counter by one.
+  $DC1D,$03 Jump to #R$DC0F until all four bytes in this row have been moved.
+N $DC20 Now onto the attribute buffer bytes.
+N $DC20 Convert the screen buffer location into a corresponding attribute
+. buffer address.
+  $DC20,$01 Restore the current screen buffer address from the stack.
   $DC21,$03 Call #R$DCD1.
-  $DC24,$01 Stash #REGde on the stack.
-  $DC25,$01 Restore #REGhl from the stack.
-  $DC26,$01 Decrease #REGde by one.
-  $DC27,$03 #REGbc=#N($0005,$04,$04).
-  $DC2A,$02 LDIR.
-  $DC2C,$02 #REGa=#N$47.
-  $DC2E,$01 Decrease #REGde by one.
-  $DC2F,$01 Write #REGa to *#REGde.
-  $DC30,$03 #REGhl=#R$E75F.
-  $DC33,$01 Increment *#REGhl by one.
-  $DC34,$01 Restore #REGbc from the stack.
-  $DC35,$02 Decrease counter by one and loop back to #R$DBFA until counter is zero.
-  $DC37,$01 Restore #REGbc from the stack.
-  $DC38,$01 Stash #REGbc on the stack.
-  $DC39,$03 Call #R$DD52.
-  $DC3C,$03 #REGa=*#R$E75D.
-  $DC3F,$01 Decrease #REGa by one.
-  $DC40,$03 Write #REGa to *#R$E75F.
-  $DC43,$03 #REGhl=#R$E75E.
-  $DC46,$01 Decrease *#REGhl by one.
-  $DC47,$01 Restore #REGbc from the stack.
-  $DC48,$02 Decrease counter by one and loop back to #R$DBF0 until counter is zero.
+  $DC24,$02 #REGhl=attribute buffer address of the tile (using the stack).
+  $DC26,$01 #REGde=attribute buffer address of the tile - #N$01.
+  $DC27,$05 Move #N($0005,$04,$04) attribute bytes from left to right.
+N $DC2C This leaves the last attribute space unprocessed - which should be
+. blank. So, let's erase it.
+  $DC2C,$02 #REGa=#COLOUR$47.
+  $DC2E,$02 Erase the right-most attribute block.
+N $DC30 Move to the next attribute row.
+  $DC30,$04 Increment *#R$E75F by one.
+  $DC34,$01 Restore the attribute row counter from the stack.
+  $DC35,$02 Decrease the attribute row counter by one and loop back to #R$DBFA
+. until the whole row has been processed.
+N $DC37 The tile has successfully moved one space!
+  $DC37,$05 Using the number of spaces left to move (from the stack) call
+. #R$DD52.
+  $DC3C,$07 Take *#R$E75D and decrease it by one, which adjusts the value for
+. the tile width. Write it back to *#R$E75F.
+  $DC43,$04 Decrease *#R$E75E by one.
+  $DC47,$01 Restore the number of spaces left to move from the stack.
+  $DC48,$02 Decrease the number of spaces counter by one and loop back to
+. #R$DBF0 until the tile is in the destination space.
   $DC4A,$01 Return.
 
 c $DC4B Move Tile Down
 @ $DC4B label=MoveTile_Down
-  $DC4B,$03 #REGa=*#R$E75E.
-  $DC4E,$01 Decrease #REGa by one.
-  $DC4F,$03 Write #REGa to *#R$E760.
-  $DC52,$04 #REGb=*#R$E761.
+  $DC4B,$07 Take *#R$E75E and store it in #REGa. Decrease it by one, which
+. adjusts the value for the tile height, and write this value to *#R$E760.
+  $DC52,$04 Load #REGb with *#R$E761.
 @ $DC56 label=MoveTile_Down_Loop
-  $DC56,$01 Stash #REGbc on the stack.
-  $DC57,$03 #REGa=*#R$E75D.
-  $DC5A,$02 #REGa+=#N$02.
-  $DC5C,$03 Write #REGa to *#R$E75F.
-  $DC5F,$02 #REGb=#N$04.
-  $DC61,$01 Stash #REGbc on the stack.
+  $DC56,$01 Stash the row counter on the stack.
+  $DC57,$08 Take *#R$E75D and store it in #REGa. Add #N$02, which adjusts the
+. value for the tile height, and write this value to *#R$E75F.
+  $DC5F,$02 Set a counter in #REGb for the height of the tile in bytes (#N$04).
+@ $DC61 label=MoveTile_Down_RowLoop
+  $DC61,$01 Stash the row (tile height) counter on the stack.
   $DC62,$04 #REGb=*#R$E75F.
   $DC66,$04 #REGc=*#R$E760.
   $DC6A,$03 Call #R$DCC2.
-  $DC6D,$01 Stash #REGhl on the stack.
+  $DC6D,$01 Stash the destination screen buffer address on the stack.
   $DC6E,$01 Increment #REGb by one.
   $DC6F,$03 Call #R$DCC2.
-  $DC72,$01 Stash #REGhl on the stack.
-  $DC73,$02 Restore #REGde and #REGhl from the stack.
-  $DC75,$02 #REGa=#N$08.
-  $DC77,$03 #REGbc=#N($0004,$04,$04).
-  $DC7A,$03 Stash #REGhl, #REGhl and #REGde on the stack.
+  $DC72,$02 #REGde=screen buffer address of the tile (using the stack).
+  $DC74,$01 Restore the destination screen buffer address from the stack.
+  $DC75,$02 Load the number of pixels per row in #REGa.
+  $DC77,$03 Set the count for the size of the tile in #REGbc (#N($0004,$04,$04)
+. character blocks).
+  $DC7A,$01 Stash #REGhl on the stack.
+@ $DC7B label=MoveTile_Down_PixelShift
+  $DC7B,$02 Stash #REGhl and #REGde on the stack.
   $DC7D,$02 LDIR.
   $DC7F,$01 Decrease #REGhl by one.
   $DC80,$01 Stash #REGhl on the stack.
@@ -1526,37 +1554,35 @@ c $DC4B Move Tile Down
   $DC84,$03 #REGbc=#N($0003,$04,$04).
   $DC87,$02 LDDR.
   $DC89,$02 Restore #REGde and #REGhl from the stack.
-  $DC8B,$01 Increment #REGd by one.
-  $DC8C,$01 Increment #REGh by one.
+  $DC8B,$01 Move to the next pixel row in the destination address.
+  $DC8C,$01 Move to the next pixel row in the source address.
   $DC8D,$03 #REGbc=#N($0004,$04,$04).
-  $DC90,$01 Decrease #REGa by one.
-  $DC91,$03 Jump to #R$DC7B if #REGa is not zero.
+  $DC90,$01 Decrease the pixel row counter by one.
+  $DC91,$03 Jump back to #R$DC7B until all pixels in the row have been moved.
   $DC94,$01 Restore #REGhl from the stack.
   $DC95,$03 Call #R$DCD1.
-  $DC98,$03 #REGhl=#N($0020,$04,$04).
-  $DC9B,$01 #REGhl+=#REGde.
-  $DC9C,$01 Exchange the #REGde and #REGhl registers.
-  $DC9D,$03 #REGbc=#N($0004,$04,$04).
-  $DCA0,$02 LDIR.
+N $DC98 Move #REGde down one attribute row.
+  $DC98,$05 #REGde+=#N($0020,$04,$04).
+  $DC9D,$05 Copy #N($0004,$04,$04) attribute bytes from .
   $DCA2,$03 #REGbc=#N($0003,$04,$04).
-  $DCA5,$02 #REGa=#N$47.
+  $DCA5,$02 #REGa=#COLOUR$47.
   $DCA7,$01 Decrease #REGhl by one.
   $DCA8,$01 Write #REGa to *#REGhl.
   $DCA9,$01 Stash #REGhl on the stack.
   $DCAA,$01 Restore #REGde from the stack.
   $DCAB,$01 Decrease #REGde by one.
   $DCAC,$02 LDDR.
-  $DCAE,$03 #REGhl=#R$E75F.
-  $DCB1,$01 Decrease *#REGhl by one.
-  $DCB2,$01 Restore #REGbc from the stack.
-  $DCB3,$02 Decrease counter by one and loop back to #R$DC61 until counter is zero.
-  $DCB5,$01 Restore #REGbc from the stack.
-  $DCB6,$01 Stash #REGbc on the stack.
+  $DCAE,$04 Decrease *#R$E75F by one.
+  $DCB2,$01 Restore the pixel row counter from the stack.
+  $DCB3,$02 Decrease the pixel row counter by one and loop back to #R$DC61
+. until counter is zero.
+  $DCB5,$02 Restore the row counter from the stack for the sound generator, but
+. keep a copy of it back on the stack.
   $DCB7,$03 Call #R$DD52.
-  $DCBA,$03 #REGhl=#R$E75D.
-  $DCBD,$01 Increment *#REGhl by one.
-  $DCBE,$01 Restore #REGbc from the stack.
-  $DCBF,$02 Decrease counter by one and loop back to #R$DC56 until counter is zero.
+  $DCBA,$04 Increment *#R$E75D by one.
+  $DCBE,$01 Restore the number of spaces left to move from the stack.
+  $DCBF,$02 Decrease the number of spaces counter by one and loop back to
+. #R$DC56 until the tile is in the destination space.
   $DCC1,$01 Return.
 
 c $DCC2 Calculate Screen Block Address
@@ -1591,25 +1617,24 @@ N $DCD7 This sets #N$58 on top of the result, which is the base address for the
 
 c $DCDC Move Tile Up
 @ $DCDC label=MoveTile_Up
-  $DCDC,$03 #REGa=*#R$E75E.
-  $DCDF,$01 Decrease #REGa by one.
-  $DCE0,$03 Write #REGa to *#R$E760.
+  $DCDC,$07 Take *#R$E75E and store it in #REGa. Decrease it by one, which
+. adjusts the value for the tile height, and write this value to *#R$E760.
   $DCE3,$04 #REGb=*#R$E761.
 @ $DCE7 label=MoveTile_Up_Loop
-  $DCE7,$01 Stash #REGbc on the stack.
+  $DCE7,$01 Stash the row counter on the stack.
   $DCE8,$03 #REGa=*#R$E75D.
   $DCEB,$01 Decrease #REGa by one.
   $DCEC,$03 Write #REGa to *#R$E75F.
   $DCEF,$02 #REGb=#N$04.
-  $DCF1,$01 Stash #REGbc on the stack.
+  $DCF1,$01 Stash the row (tile height) counter on the stack.
   $DCF2,$04 #REGb=*#R$E75F.
   $DCF6,$04 #REGc=*#R$E760.
   $DCFA,$03 Call #R$DCC2.
-  $DCFD,$01 Stash #REGhl on the stack.
+  $DCFD,$01 Stash the destination screen buffer address on the stack.
   $DCFE,$01 Decrease #REGb by one.
   $DCFF,$03 Call #R$DCC2.
-  $DD02,$02 #REGde=#REGhl (using the stack).
-  $DD04,$01 Restore #REGhl from the stack.
+  $DD02,$02 #REGde=screen buffer address of the tile (using the stack).
+  $DD04,$01 Restore the destination screen buffer address from the stack.
   $DD05,$02 #REGa=#N$08.
   $DD07,$03 #REGbc=#N($0004,$04,$04).
   $DD0A,$03 Stash #REGhl, #REGhl and #REGde on the stack.
@@ -1629,12 +1654,12 @@ c $DCDC Move Tile Up
   $DD21,$03 Jump to #R$DD0B if #REGa is not zero.
   $DD24,$01 Restore #REGhl from the stack.
   $DD25,$03 Call #R$DCD1.
-  $DD28,$04 #REGhl=#N$FFE0+#REGde.
-  $DD2C,$01 Exchange the #REGde and #REGhl registers.
+N $DD28 Move #REGde up one attribute row.
+  $DD28,$05 #REGde+=#N$FFE0 (subtract #N($0020,$04,$04)).
   $DD2D,$03 #REGbc=#N($0004,$04,$04).
   $DD30,$02 LDIR.
   $DD32,$03 #REGbc=#N($0003,$04,$04).
-  $DD35,$02 #REGa=#N$47.
+  $DD35,$02 #REGa=#COLOUR$47.
   $DD37,$01 Decrease #REGhl by one.
   $DD38,$01 Write #REGa to *#REGhl.
   $DD39,$01 Stash #REGhl on the stack.
@@ -1650,24 +1675,26 @@ c $DCDC Move Tile Up
   $DD47,$03 Call #R$DD52.
   $DD4A,$03 #REGhl=#R$E75D.
   $DD4D,$01 Decrease *#REGhl by one.
-  $DD4E,$01 Restore #REGbc from the stack.
-  $DD4F,$02 Decrease counter by one and loop back to #R$DCE7 until counter is zero.
+  $DD4E,$01 Restore the number of spaces left to move from the stack.
+  $DD4F,$02 Decrease the number of spaces counter by one and loop back to
+. #R$DCE7 until the tile is in the destination space.
   $DD51,$01 Return.
 
-c $DD52
+c $DD52 Sound: Tile Movement
+@ $DD52 label=Sound_TileMovement
+R $DD52 B Loop counter
   $DD52,$03 #REGhl=#R$E761.
-  $DD55,$02 #REGa=#N$14.
-  $DD57,$01 #REGa-=*#REGhl.
+  $DD55,$02 Load the base pitch value (#N$14) into #REGa.
+  $DD57,$01 Subtract the number of tile slots moved from the base pitch.
   $DD58,$01 #REGc=#REGb.
-  $DD59,$04 Shift #REGc left two positions (with carry).
-  $DD5D,$01 #REGa+=#REGc.
-  $DD5E,$01 #REGc=#REGa.
+  $DD59,$04 Multiply #REGc by #N$04.
+  $DD5D,$02 #REGc+=#REGa.
   $DD5F,$02 #REGa=#N$05.
   $DD61,$01 #REGb=#REGc.
   $DD62,$02 Shift #REGb left (with carry).
   $DD64,$02 Decrease counter by one and loop back to #R$DD64 until counter is zero.
-  $DD66,$02,b$01 Flip bits 4.
-  $DD68,$02 Set border to the colour held by #REGa.
+  $DD66,$02,b$01 Flip bit 4.
+  $DD68,$02 Send to the speaker.
   $DD6A,$01 Decrease #REGc by one.
   $DD6B,$03 Jump to #R$DD61 if #REGc is not zero.
   $DD6E,$01 Return.
@@ -3325,7 +3352,12 @@ c $E741
   $E758,$04 Write *#R$E2C7 to *#REGhl.
   $E75C,$01 Return.
 
-b $E75D
+g $E75D Tile Helper Variables
+@ $E75D label=Tile_Horizontal_Position
+@ $E75E label=Tile_Vertical_Position
+@ $E75F label=Tile_Horizontal_Coordinate
+@ $E760 label=Tile_Vertical_Coordinate
+@ $E761 label=Tile_SpacesToMove
   $E75D,$13,$01
 
 b $E771

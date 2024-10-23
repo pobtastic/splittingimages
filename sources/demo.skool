@@ -4561,8 +4561,11 @@ c$D682 PUSH HL       ;
  $D69C LD C,A        ;
  $D69D POP HL        ;
  $D69E RET           ;
-; This entry point is used by the routine at #R$D789.
-*$D69F LD HL,$D556   ;
+
+; Routine at D69F
+;
+; Used by the routine at #R$D789.
+c$D69F LD HL,$D556   ;
  $D6A2 RES 0,(HL)    ;
  $D6A4 LD HL,$D555   ;
  $D6A7 SET 7,(HL)    ;
@@ -4869,78 +4872,85 @@ c$D89A RLCA          ;
 ; Routine at D8BC
 ;
 ; Used by the routine at #R$F47A.
-c$D8BC LD IX,$3D00    ;
- $D8C0 LD BC,($D828)  ;
- $D8C4 PUSH HL        ;
- $D8C5 CALL $D847     ;
- $D8C8 POP HL         ;
- $D8C9 RET            ;
-; This entry point is used by the routines at #R$D2DE and #R$E901.
-*$D8CA LD A,($E568)   ;
- $D8CD DEC A          ;
- $D8CE LD ($E56A),A   ;
- $D8D1 LD A,($E569)   ;
- $D8D4 DEC A          ;
- $D8D5 LD ($E56B),A   ;
- $D8D8 LD B,$04       ;
- $D8DA HALT           ;
-*$D8DB PUSH BC        ;
- $D8DC LD A,($E56A)   ;
- $D8DF LD B,A         ;
- $D8E0 LD A,($E56B)   ;
- $D8E3 LD C,A         ;
- $D8E4 CALL $DACD     ;
- $D8E7 PUSH HL        ;
- $D8E8 LD A,$00       ;
- $D8EA LD B,$08       ;
-*$D8EC PUSH BC        ;
- $D8ED PUSH HL        ;
- $D8EE LD B,$04       ;
-*$D8F0 LD (HL),A      ;
- $D8F1 INC HL         ;
- $D8F2 DJNZ $D8F0     ;
- $D8F4 POP HL         ;
- $D8F5 POP BC         ;
- $D8F6 INC H          ;
- $D8F7 DJNZ $D8EC     ;
- $D8F9 POP HL         ;
- $D8FA CALL $DADC     ;
- $D8FD LD A,$47       ;
- $D8FF LD B,$04       ;
-*$D901 LD (DE),A      ;
- $D902 INC DE         ;
- $D903 DJNZ $D901     ;
- $D905 POP BC         ;
- $D906 LD HL,$E56A    ;
- $D909 INC (HL)       ;
- $D90A DJNZ $D8DB     ;
- $D90C LD A,($D54F)   ;
- $D90F CP $00         ;
- $D911 RET Z          ;
- $D912 LD B,$03       ;
-*$D914 PUSH BC        ;
- $D915 LD A,$05       ;
- $D917 LD C,$1E       ;
-*$D919 LD B,$28       ;
- $D91B SLA B          ;
-*$D91D DJNZ $D91D     ;
- $D91F XOR $10        ;
- $D921 OUT ($FE),A    ;
- $D923 DEC C          ;
- $D924 JR NZ,$D919    ;
- $D926 LD C,$14       ;
-*$D928 LD B,$3C       ;
- $D92A SLA B          ;
-*$D92C DJNZ $D92C     ;
- $D92E XOR $10        ;
- $D930 OUT ($FE),A    ;
- $D932 DEC C          ;
- $D933 JR NZ,$D928    ;
- $D935 POP BC         ;
- $D936 DJNZ $D914     ;
- $D938 RET            ;
-; This entry point is used by the routines at #R$D2DE and #R$E80B.
-*$D939 PUSH AF        ;
+c$D8BC LD IX,$3D00   ; #HTML(#REGix=<a rel="noopener nofollow"
+                     ; href="https://skoolkit.ca/disassemblies/rom/hex/asm/3D00.html">CHARSET</a>.)
+ $D8C0 LD BC,($D828) ; #REGbc=*#R$D828.
+ $D8C4 PUSH HL       ; Stash #REGhl on the stack.
+ $D8C5 CALL $D847    ; Call #R$D847.
+ $D8C8 POP HL        ; Restore #REGhl from the stack.
+ $D8C9 RET           ; Return.
+
+; Routine at D8CA
+;
+; Used by the routines at #R$D2DE and #R$E901.
+c$D8CA LD A,($E568)  ;
+ $D8CD DEC A         ;
+ $D8CE LD ($E56A),A  ;
+ $D8D1 LD A,($E569)  ;
+ $D8D4 DEC A         ;
+ $D8D5 LD ($E56B),A  ;
+ $D8D8 LD B,$04      ;
+ $D8DA HALT          ;
+*$D8DB PUSH BC       ;
+ $D8DC LD A,($E56A)  ;
+ $D8DF LD B,A        ;
+ $D8E0 LD A,($E56B)  ;
+ $D8E3 LD C,A        ;
+ $D8E4 CALL $DACD    ;
+ $D8E7 PUSH HL       ;
+ $D8E8 LD A,$00      ;
+ $D8EA LD B,$08      ;
+*$D8EC PUSH BC       ;
+ $D8ED PUSH HL       ;
+ $D8EE LD B,$04      ;
+*$D8F0 LD (HL),A     ;
+ $D8F1 INC HL        ;
+ $D8F2 DJNZ $D8F0    ;
+ $D8F4 POP HL        ;
+ $D8F5 POP BC        ;
+ $D8F6 INC H         ;
+ $D8F7 DJNZ $D8EC    ;
+ $D8F9 POP HL        ;
+ $D8FA CALL $DADC    ;
+ $D8FD LD A,$47      ;
+ $D8FF LD B,$04      ;
+*$D901 LD (DE),A     ;
+ $D902 INC DE        ;
+ $D903 DJNZ $D901    ;
+ $D905 POP BC        ;
+ $D906 LD HL,$E56A   ;
+ $D909 INC (HL)      ;
+ $D90A DJNZ $D8DB    ;
+ $D90C LD A,($D54F)  ;
+ $D90F CP $00        ;
+ $D911 RET Z         ;
+ $D912 LD B,$03      ;
+*$D914 PUSH BC       ;
+ $D915 LD A,$05      ;
+ $D917 LD C,$1E      ;
+*$D919 LD B,$28      ;
+ $D91B SLA B         ;
+*$D91D DJNZ $D91D    ;
+ $D91F XOR $10       ;
+ $D921 OUT ($FE),A   ;
+ $D923 DEC C         ;
+ $D924 JR NZ,$D919   ;
+ $D926 LD C,$14      ;
+*$D928 LD B,$3C      ;
+ $D92A SLA B         ;
+*$D92C DJNZ $D92C    ;
+ $D92E XOR $10       ;
+ $D930 OUT ($FE),A   ;
+ $D932 DEC C         ;
+ $D933 JR NZ,$D928   ;
+ $D935 POP BC        ;
+ $D936 DJNZ $D914    ;
+ $D938 RET           ;
+
+; Routine at D939
+;
+; Used by the routines at #R$D2DE and #R$E80B.
+c$D939 PUSH AF        ;
  $D93A CALL $DACD     ;
  $D93D POP AF         ;
  $D93E RRCA           ;
@@ -4994,201 +5004,210 @@ c$D8BC LD IX,$3D00    ;
  $D986 POP DE         ;
  $D987 POP BC         ;
  $D988 RET            ;
-; This entry point is used by the routine at #R$E901.
-*$D989 LD A,($E568)   ;
- $D98C DEC A          ;
- $D98D LD ($E56A),A   ;
- $D990 LD A,($E56C)   ;
- $D993 LD B,A         ;
-*$D994 PUSH BC        ;
- $D995 LD A,($E569)   ;
- $D998 ADD A,$02      ;
- $D99A LD ($E56B),A   ;
- $D99D LD B,$04       ;
-*$D99F PUSH BC        ;
- $D9A0 LD A,($E56A)   ;
- $D9A3 LD B,A         ;
- $D9A4 LD A,($E56B)   ;
- $D9A7 LD C,A         ;
- $D9A8 CALL $DACD     ;
- $D9AB LD A,$08       ;
- $D9AD LD BC,$0004    ;
- $D9B0 PUSH HL        ;
- $D9B1 POP DE         ;
- $D9B2 INC DE         ;
- $D9B3 PUSH HL        ;
-*$D9B4 PUSH HL        ;
- $D9B5 LDDR           ;
- $D9B7 INC HL         ;
- $D9B8 LD (HL),C      ;
- $D9B9 POP HL         ;
- $D9BA INC H          ;
- $D9BB PUSH HL        ;
- $D9BC POP DE         ;
- $D9BD INC DE         ;
- $D9BE LD BC,$0004    ;
- $D9C1 DEC A          ;
- $D9C2 JP NZ,$D9B4    ;
- $D9C5 POP HL         ;
- $D9C6 CALL $DADC     ;
- $D9C9 PUSH DE        ;
- $D9CA POP HL         ;
- $D9CB INC DE         ;
- $D9CC LD BC,$0005    ;
- $D9CF LDDR           ;
- $D9D1 LD A,$47       ;
- $D9D3 INC DE         ;
- $D9D4 LD (DE),A      ;
- $D9D5 LD HL,$E56A    ;
- $D9D8 INC (HL)       ;
- $D9D9 POP BC         ;
- $D9DA DJNZ $D99F     ;
- $D9DC POP BC         ;
- $D9DD PUSH BC        ;
- $D9DE CALL $DB5D     ;
- $D9E1 LD A,($E568)   ;
- $D9E4 DEC A          ;
- $D9E5 LD ($E56A),A   ;
- $D9E8 LD HL,$E569    ;
- $D9EB INC (HL)       ;
- $D9EC POP BC         ;
- $D9ED DJNZ $D994     ;
- $D9EF RET            ;
-; This entry point is used by the routine at #R$E901.
-*$D9F0 LD A,($E568)   ;
- $D9F3 DEC A          ;
- $D9F4 LD ($E56A),A   ;
- $D9F7 LD A,($E56C)   ;
- $D9FA LD B,A         ;
-*$D9FB PUSH BC        ;
- $D9FC LD A,($E569)   ;
- $D9FF DEC A          ;
- $DA00 LD ($E56B),A   ;
- $DA03 LD B,$04       ;
-*$DA05 PUSH BC        ;
- $DA06 LD A,($E56A)   ;
- $DA09 LD B,A         ;
- $DA0A LD A,($E56B)   ;
- $DA0D LD C,A         ;
- $DA0E CALL $DACD     ;
- $DA11 LD A,$08       ;
- $DA13 LD BC,$0004    ;
- $DA16 PUSH HL        ;
- $DA17 POP DE         ;
- $DA18 DEC DE         ;
- $DA19 PUSH HL        ;
-*$DA1A PUSH HL        ;
- $DA1B LDIR           ;
- $DA1D DEC HL         ;
- $DA1E LD (HL),C      ;
- $DA1F POP HL         ;
- $DA20 INC H          ;
- $DA21 PUSH HL        ;
- $DA22 POP DE         ;
- $DA23 DEC DE         ;
- $DA24 LD BC,$0004    ;
- $DA27 DEC A          ;
- $DA28 JP NZ,$DA1A    ;
- $DA2B POP HL         ;
- $DA2C CALL $DADC     ;
- $DA2F PUSH DE        ;
- $DA30 POP HL         ;
- $DA31 DEC DE         ;
- $DA32 LD BC,$0005    ;
- $DA35 LDIR           ;
- $DA37 LD A,$47       ;
- $DA39 DEC DE         ;
- $DA3A LD (DE),A      ;
- $DA3B LD HL,$E56A    ;
- $DA3E INC (HL)       ;
- $DA3F POP BC         ;
- $DA40 DJNZ $DA05     ;
- $DA42 POP BC         ;
- $DA43 PUSH BC        ;
- $DA44 CALL $DB5D     ;
- $DA47 LD A,($E568)   ;
- $DA4A DEC A          ;
- $DA4B LD ($E56A),A   ;
- $DA4E LD HL,$E569    ;
- $DA51 DEC (HL)       ;
- $DA52 POP BC         ;
- $DA53 DJNZ $D9FB     ;
- $DA55 RET            ;
-; This entry point is used by the routine at #R$E901.
-*$DA56 LD A,($E569)   ;
- $DA59 DEC A          ;
- $DA5A LD ($E56B),A   ;
- $DA5D LD A,($E56C)   ;
- $DA60 LD B,A         ;
-*$DA61 PUSH BC        ;
- $DA62 LD A,($E568)   ;
- $DA65 ADD A,$02      ;
- $DA67 LD ($E56A),A   ;
- $DA6A LD B,$04       ;
-*$DA6C PUSH BC        ;
- $DA6D LD A,($E56A)   ;
- $DA70 LD B,A         ;
- $DA71 LD A,($E56B)   ;
- $DA74 LD C,A         ;
- $DA75 CALL $DACD     ;
- $DA78 PUSH HL        ;
- $DA79 INC B          ;
- $DA7A CALL $DACD     ;
- $DA7D PUSH HL        ;
- $DA7E POP DE         ;
- $DA7F POP HL         ;
- $DA80 LD A,$08       ;
- $DA82 LD BC,$0004    ;
- $DA85 PUSH HL        ;
-*$DA86 PUSH HL        ;
- $DA87 PUSH DE        ;
- $DA88 LDIR           ;
- $DA8A DEC HL         ;
- $DA8B PUSH HL        ;
- $DA8C LD (HL),C      ;
- $DA8D POP DE         ;
- $DA8E DEC DE         ;
- $DA8F LD BC,$0003    ;
- $DA92 LDDR           ;
- $DA94 POP DE         ;
- $DA95 POP HL         ;
- $DA96 INC D          ;
- $DA97 INC H          ;
- $DA98 LD BC,$0004    ;
- $DA9B DEC A          ;
- $DA9C JP NZ,$DA86    ;
- $DA9F POP HL         ;
- $DAA0 CALL $DADC     ;
- $DAA3 LD HL,$0020    ;
- $DAA6 ADD HL,DE      ;
- $DAA7 EX DE,HL       ;
- $DAA8 LD BC,$0004    ;
- $DAAB LDIR           ;
- $DAAD LD BC,$0003    ;
- $DAB0 LD A,$47       ;
- $DAB2 DEC HL         ;
- $DAB3 LD (HL),A      ;
- $DAB4 PUSH HL        ;
- $DAB5 POP DE         ;
- $DAB6 DEC DE         ;
- $DAB7 LDDR           ;
- $DAB9 LD HL,$E56A    ;
- $DABC DEC (HL)       ;
- $DABD POP BC         ;
- $DABE DJNZ $DA6C     ;
- $DAC0 POP BC         ;
- $DAC1 PUSH BC        ;
- $DAC2 CALL $DB5D     ;
- $DAC5 LD HL,$E568    ;
- $DAC8 INC (HL)       ;
- $DAC9 POP BC         ;
- $DACA DJNZ $DA61     ;
- $DACC RET            ;
+
+; Routine at D989
+;
+; Used by the routine at #R$E901.
+c$D989 LD A,($E568)  ;
+ $D98C DEC A         ;
+ $D98D LD ($E56A),A  ;
+ $D990 LD A,($E56C)  ;
+ $D993 LD B,A        ;
+*$D994 PUSH BC       ;
+ $D995 LD A,($E569)  ;
+ $D998 ADD A,$02     ;
+ $D99A LD ($E56B),A  ;
+ $D99D LD B,$04      ;
+*$D99F PUSH BC       ;
+ $D9A0 LD A,($E56A)  ;
+ $D9A3 LD B,A        ;
+ $D9A4 LD A,($E56B)  ;
+ $D9A7 LD C,A        ;
+ $D9A8 CALL $DACD    ;
+ $D9AB LD A,$08      ;
+ $D9AD LD BC,$0004   ;
+ $D9B0 PUSH HL       ;
+ $D9B1 POP DE        ;
+ $D9B2 INC DE        ;
+ $D9B3 PUSH HL       ;
+*$D9B4 PUSH HL       ;
+ $D9B5 LDDR          ;
+ $D9B7 INC HL        ;
+ $D9B8 LD (HL),C     ;
+ $D9B9 POP HL        ;
+ $D9BA INC H         ;
+ $D9BB PUSH HL       ;
+ $D9BC POP DE        ;
+ $D9BD INC DE        ;
+ $D9BE LD BC,$0004   ;
+ $D9C1 DEC A         ;
+ $D9C2 JP NZ,$D9B4   ;
+ $D9C5 POP HL        ;
+ $D9C6 CALL $DADC    ;
+ $D9C9 PUSH DE       ;
+ $D9CA POP HL        ;
+ $D9CB INC DE        ;
+ $D9CC LD BC,$0005   ;
+ $D9CF LDDR          ;
+ $D9D1 LD A,$47      ;
+ $D9D3 INC DE        ;
+ $D9D4 LD (DE),A     ;
+ $D9D5 LD HL,$E56A   ;
+ $D9D8 INC (HL)      ;
+ $D9D9 POP BC        ;
+ $D9DA DJNZ $D99F    ;
+ $D9DC POP BC        ;
+ $D9DD PUSH BC       ;
+ $D9DE CALL $DB5D    ;
+ $D9E1 LD A,($E568)  ;
+ $D9E4 DEC A         ;
+ $D9E5 LD ($E56A),A  ;
+ $D9E8 LD HL,$E569   ;
+ $D9EB INC (HL)      ;
+ $D9EC POP BC        ;
+ $D9ED DJNZ $D994    ;
+ $D9EF RET           ;
+
+; Routine at D9F0
+;
+; Used by the routine at #R$E901.
+c$D9F0 LD A,($E568)  ;
+ $D9F3 DEC A         ;
+ $D9F4 LD ($E56A),A  ;
+ $D9F7 LD A,($E56C)  ;
+ $D9FA LD B,A        ;
+*$D9FB PUSH BC       ;
+ $D9FC LD A,($E569)  ;
+ $D9FF DEC A         ;
+ $DA00 LD ($E56B),A  ;
+ $DA03 LD B,$04      ;
+*$DA05 PUSH BC       ;
+ $DA06 LD A,($E56A)  ;
+ $DA09 LD B,A        ;
+ $DA0A LD A,($E56B)  ;
+ $DA0D LD C,A        ;
+ $DA0E CALL $DACD    ;
+ $DA11 LD A,$08      ;
+ $DA13 LD BC,$0004   ;
+ $DA16 PUSH HL       ;
+ $DA17 POP DE        ;
+ $DA18 DEC DE        ;
+ $DA19 PUSH HL       ;
+*$DA1A PUSH HL       ;
+ $DA1B LDIR          ;
+ $DA1D DEC HL        ;
+ $DA1E LD (HL),C     ;
+ $DA1F POP HL        ;
+ $DA20 INC H         ;
+ $DA21 PUSH HL       ;
+ $DA22 POP DE        ;
+ $DA23 DEC DE        ;
+ $DA24 LD BC,$0004   ;
+ $DA27 DEC A         ;
+ $DA28 JP NZ,$DA1A   ;
+ $DA2B POP HL        ;
+ $DA2C CALL $DADC    ;
+ $DA2F PUSH DE       ;
+ $DA30 POP HL        ;
+ $DA31 DEC DE        ;
+ $DA32 LD BC,$0005   ;
+ $DA35 LDIR          ;
+ $DA37 LD A,$47      ;
+ $DA39 DEC DE        ;
+ $DA3A LD (DE),A     ;
+ $DA3B LD HL,$E56A   ;
+ $DA3E INC (HL)      ;
+ $DA3F POP BC        ;
+ $DA40 DJNZ $DA05    ;
+ $DA42 POP BC        ;
+ $DA43 PUSH BC       ;
+ $DA44 CALL $DB5D    ;
+ $DA47 LD A,($E568)  ;
+ $DA4A DEC A         ;
+ $DA4B LD ($E56A),A  ;
+ $DA4E LD HL,$E569   ;
+ $DA51 DEC (HL)      ;
+ $DA52 POP BC        ;
+ $DA53 DJNZ $D9FB    ;
+ $DA55 RET           ;
+
+; Routine at DA56
+;
+; Used by the routine at #R$E901.
+c$DA56 LD A,($E569)  ;
+ $DA59 DEC A         ;
+ $DA5A LD ($E56B),A  ;
+ $DA5D LD A,($E56C)  ;
+ $DA60 LD B,A        ;
+*$DA61 PUSH BC       ;
+ $DA62 LD A,($E568)  ;
+ $DA65 ADD A,$02     ;
+ $DA67 LD ($E56A),A  ;
+ $DA6A LD B,$04      ;
+*$DA6C PUSH BC       ;
+ $DA6D LD A,($E56A)  ;
+ $DA70 LD B,A        ;
+ $DA71 LD A,($E56B)  ;
+ $DA74 LD C,A        ;
+ $DA75 CALL $DACD    ;
+ $DA78 PUSH HL       ;
+ $DA79 INC B         ;
+ $DA7A CALL $DACD    ;
+ $DA7D PUSH HL       ;
+ $DA7E POP DE        ;
+ $DA7F POP HL        ;
+ $DA80 LD A,$08      ;
+ $DA82 LD BC,$0004   ;
+ $DA85 PUSH HL       ;
+*$DA86 PUSH HL       ;
+ $DA87 PUSH DE       ;
+ $DA88 LDIR          ;
+ $DA8A DEC HL        ;
+ $DA8B PUSH HL       ;
+ $DA8C LD (HL),C     ;
+ $DA8D POP DE        ;
+ $DA8E DEC DE        ;
+ $DA8F LD BC,$0003   ;
+ $DA92 LDDR          ;
+ $DA94 POP DE        ;
+ $DA95 POP HL        ;
+ $DA96 INC D         ;
+ $DA97 INC H         ;
+ $DA98 LD BC,$0004   ;
+ $DA9B DEC A         ;
+ $DA9C JP NZ,$DA86   ;
+ $DA9F POP HL        ;
+ $DAA0 CALL $DADC    ;
+ $DAA3 LD HL,$0020   ;
+ $DAA6 ADD HL,DE     ;
+ $DAA7 EX DE,HL      ;
+ $DAA8 LD BC,$0004   ;
+ $DAAB LDIR          ;
+ $DAAD LD BC,$0003   ;
+ $DAB0 LD A,$47      ;
+ $DAB2 DEC HL        ;
+ $DAB3 LD (HL),A     ;
+ $DAB4 PUSH HL       ;
+ $DAB5 POP DE        ;
+ $DAB6 DEC DE        ;
+ $DAB7 LDDR          ;
+ $DAB9 LD HL,$E56A   ;
+ $DABC DEC (HL)      ;
+ $DABD POP BC        ;
+ $DABE DJNZ $DA6C    ;
+ $DAC0 POP BC        ;
+ $DAC1 PUSH BC       ;
+ $DAC2 CALL $DB5D    ;
+ $DAC5 LD HL,$E568   ;
+ $DAC8 INC (HL)      ;
+ $DAC9 POP BC        ;
+ $DACA DJNZ $DA61    ;
+ $DACC RET           ;
 
 ; Calculate Screen Block Address
 ;
-; Used by the routines at #R$D609, #R$D8BC, #R$DAE7, #R$DB7E, #R$DC74, #R$E3EF,
-; #R$E81F, #R$E83A and #R$E89C.
+; Used by the routines at #R$D609, #R$D8CA, #R$D939, #R$D989, #R$D9F0, #R$DA56,
+; #R$DAE7, #R$DB7E, #R$DC74, #R$E3EF, #R$E81F, #R$E83A and #R$E89C.
 ;
 ;   B X co-ordinate
 ;   C Y co-ordinate
@@ -5210,7 +5229,8 @@ c$DACD LD A,B        ; Load the X position into #REGa.
 
 ; Calculate Attribute Address
 ;
-; Used by the routines at #R$D609, #R$D8BC, #R$DAE7, #R$DC74 and #R$E3EF.
+; Used by the routines at #R$D609, #R$D8CA, #R$D989, #R$D9F0, #R$DA56, #R$DAE7,
+; #R$DC74 and #R$E3EF.
 ;
 ;   HL Screen buffer address
 ; O:DE Attribute buffer address
@@ -5301,7 +5321,7 @@ c$DAE7 LD A,($E569)  ;
  $DB59 POP BC        ;
  $DB5A DJNZ $DAF2    ;
  $DB5C RET           ;
-; This entry point is used by the routine at #R$D8BC.
+; This entry point is used by the routines at #R$D989, #R$D9F0 and #R$DA56.
 *$DB5D LD HL,$E56C   ;
  $DB60 LD A,$14      ;
  $DB62 SUB (HL)      ;
@@ -6740,26 +6760,29 @@ c$E475 LD DE,$5822   ; #REGde=#N$5822 (attribute buffer location).
 ; Colourise Home
 ;
 ; Used by the routines at #R$D2DE and #R$DEED.
+;
+; A The attribute value to write
 @label=ColouriseHome
-c$E48D LD HL,$5821   ;
- $E490 LD B,$02      ;
-*$E492 PUSH BC       ;
- $E493 LD B,$03      ;
-*$E495 LD (HL),A     ;
- $E496 INC HL        ;
- $E497 DJNZ $E495    ;
- $E499 LD HL,$5841   ;
- $E49C POP BC        ;
- $E49D DJNZ $E492    ;
- $E49F RET           ;
- $E4A0 JR Z,$E4CB    ;
- $E4A2 LD HL,($2C2B) ;
- $E4A5 DEC L         ;
- $E4A6 LD L,$2F      ;
- $E4A8 LD L,$2D      ;
- $E4AA INC L         ;
- $E4AB DEC HL        ;
- $E4AC LD HL,($2F29) ;
+c$E48D LD HL,$5821   ; #REGhl=#N$5821 (attribute buffer location).
+ $E490 LD B,$02      ; Set a counter in #REGb for #N$02 rows.
+@label=ColouriseHome_Loop
+*$E492 PUSH BC       ; Stash the row counter on the stack.
+ $E493 LD B,$03      ; Set a counter in #REGb for #N$03 character blocks.
+@label=Home_WriteAttribute
+*$E495 LD (HL),A     ; Write the value stored in #REGa to the address held by the
+                     ; attribute buffer pointer.
+ $E496 INC HL        ; Increment the attribute buffer pointer by one.
+ $E497 DJNZ $E495    ; Decrease the character block counter by one and loop back to
+                     ; #R$E495 until all three byte values have been written.
+ $E499 LD HL,$5841   ; #REGhl=#N$5841 (attribute buffer location).
+ $E49C POP BC        ; Restore the row counter from the stack.
+ $E49D DJNZ $E492    ; Decrease the row counter by one and loop back to #R$E492 until all
+                     ; the rows have been updated.
+ $E49F RET           ; Return.
+
+; Data block at E4A0
+b$E4A0 DEFB $28,$29,$2A,$2B,$2C,$2D,$2E,$2F
+ $E4A8 DEFB $2E,$2D,$2C,$2B,$2A,$29
 
 ; Home Attributes
 ;
@@ -6774,12 +6797,23 @@ g$E4AE DEFB $2F,$2F,$69 ; Top line.
 ;
 ; Used by the routine at #R$E5E4.
 @label=CursorAttributes
-g$E4BA DEFB $2D,$6D,$36,$76                 ; Top line.
- $E4BE DEFB $64,$09                         ; {Left/ right middle.
- $E4C0 DEFB $24,$49                         ; }
- $E4C2 DEFB $5B,$1B,$52,$12                 ; Bottom line.
- $E4C6 DEFB $04,$06,$08,$09,$0A,$0B,$07,$05
- $E4CE DEFB $03,$02,$01,$BB,$E4
+g$E4BA DEFB $2D,$6D,$36,$76 ; Top line.
+ $E4BE DEFB $64,$09         ; {Left/ right middle.
+ $E4C0 DEFB $24,$49         ; }
+ $E4C2 DEFB $5B,$1B,$52,$12 ; Bottom line.
+
+; Table: Cursor Attribute Positions
+;
+; Used by the routine at ???.
+@label=Table_CursorAttributePositions
+g$E4C6 DEFB $04,$06,$08,$09,$0A,$0B,$07,$05
+ $E4CE DEFB $03,$02,$01
+
+; Temporary Cursor Attribute Byte Pointer
+;
+; Used by the routine at ???.
+@label=TempAttributeStore
+g$E4D1 DEFW $E4BB
 
 ; Routine at E4D3
 ;
@@ -7219,7 +7253,7 @@ c$E7B0 LD A,R        ; {#REGl=the contents of the Memory Refresh Register.
 
 ; Routine at E7CA
 ;
-; Used by the routine at #R$D682.
+; Used by the routine at #R$D69F.
 c$E7CA LD HL,$D543   ; #REGhl=#R$D543.
  $E7CD INC (HL)      ; Increment *#REGhl by one.
  $E7CE LD HL,($D58E) ; #REGhl=*#R$D58E.
@@ -7238,7 +7272,7 @@ c$E7CA LD HL,$D543   ; #REGhl=#R$D543.
 
 ; Routine at E7E5
 ;
-; Used by the routines at #R$D2DE, #R$D682 and #R$E901.
+; Used by the routines at #R$D2DE, #R$D69F and #R$E901.
 c$E7E5 LD A,R        ; #REGa=the contents of the Memory Refresh Register.
  $E7E7 PUSH AF       ; Stash #REGaf on the stack.
  $E7E8 DI            ; Disable interrupts.
@@ -7269,7 +7303,7 @@ c$E7E5 LD A,R        ; #REGa=the contents of the Memory Refresh Register.
 
 ; Routine at E80B
 ;
-; Used by the routines at #R$D234, #R$D2DE and #R$D682.
+; Used by the routines at #R$D234, #R$D2DE and #R$D69F.
 c$E80B LD B,$11       ; #REGb=#N$11.
  $E80D LD C,$18       ; #REGc=#N$18.
  $E80F LD DE,$D55B    ; #REGde=#R$D55B.
@@ -7280,7 +7314,7 @@ c$E80B LD B,$11       ; #REGb=#N$11.
 
 ; Routine at E81F
 ;
-; Used by the routines at #R$D234 and #R$D682.
+; Used by the routines at #R$D234 and #R$D69F.
 c$E81F LD B,$13       ; #REGb=#N$13.
  $E821 LD C,$18       ; #REGc=#N$18.
  $E823 CALL $DACD     ; Call #R$DACD.
@@ -7318,7 +7352,7 @@ g$E855 DEFB $00
 
 ; Routine at E859
 ;
-; Used by the routines at #R$D682, #R$DEED and #R$E901.
+; Used by the routines at #R$D69F, #R$DEED and #R$E901.
 c$E859 PUSH DE       ; {Stash #REGde and #REGhl on the stack.
  $E85A PUSH HL       ; }
  $E85B LD HL,($D5B0) ; #REGhl=*#R$D5B0.
@@ -7340,7 +7374,7 @@ c$E859 PUSH DE       ; {Stash #REGde and #REGhl on the stack.
 
 ; Colourise Preview Grid
 ;
-; Used by the routines at #R$D1AA, #R$D234 and #R$D682.
+; Used by the routines at #R$D1AA, #R$D234 and #R$D69F.
 ;
 ; .
 ;
@@ -7730,7 +7764,7 @@ c$E901 LD C,$36       ;
  $EA9E LD E,D         ;
  $EA9F LD BC,$0004    ;
  $EAA2 NOP            ;
-; This entry point is used by the routine at #R$D682.
+; This entry point is used by the routine at #R$D69F.
 *$EAA3 LD A,$80       ;
  $EAA5 LD ($D556),A   ;
  $EAA8 LD A,$08       ;
@@ -7843,7 +7877,7 @@ c$E901 LD C,$36       ;
  $EB87 LD A,(BC)      ;
  $EB88 LD C,$12       ;
  $EB8A LD B,$02       ;
-; This entry point is used by the routines at #R$D2DE and #R$D682.
+; This entry point is used by the routines at #R$D2DE and #R$D69F.
 *$EB8C LD DE,$07D0    ;
 *$EB8F DEC DE         ;
  $EB90 LD A,$32       ;
@@ -9479,7 +9513,7 @@ c$F47A DI            ;
 *$F884 DJNZ $F884    ;
  $F886 DEC E         ;
  $F887 JP NZ,$F87F   ;
-; This entry point is used by the routine at #R$D682.
+; This entry point is used by the routine at #R$D69F.
 *$F88A LD HL,($D577) ;
  $F88D LD B,$04      ;
 *$F88F SLA (HL)      ;

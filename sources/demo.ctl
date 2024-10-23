@@ -518,6 +518,8 @@ c $D609
 
 c $D682
 
+c $D69F
+
 c $D789
 
 c $D7A6
@@ -536,6 +538,22 @@ c $D890
 c $D89A
 
 c $D8BC
+  $D8BC,$04 #HTML(#REGix=<a rel="noopener nofollow" href="https://skoolkit.ca/disassemblies/rom/hex/asm/3D00.html">CHARSET</a>.)
+  $D8C0,$04 #REGbc=*#R$D828.
+  $D8C4,$01 Stash #REGhl on the stack.
+  $D8C5,$03 Call #R$D847.
+  $D8C8,$01 Restore #REGhl from the stack.
+  $D8C9,$01 Return.
+
+c $D8CA
+
+c $D939
+
+c $D989
+
+c $D9F0
+
+c $DA56
 
 c $DACD Calculate Screen Block Address
 @ $DACD label=Calculate_ScreenBlockAddress
@@ -880,6 +898,25 @@ N $E483 One full row is #N$20 bytes, so this is #N$03 bytes less than one row.
 
 c $E48D Colourise Home
 @ $E48D label=ColouriseHome
+R $E48D A The attribute value to write
+  $E48D,$03 #REGhl=#N$5821 (attribute buffer location).
+  $E490,$02 Set a counter in #REGb for #N$02 rows.
+@ $E492 label=ColouriseHome_Loop
+  $E492,$01 Stash the row counter on the stack.
+  $E493,$02 Set a counter in #REGb for #N$03 character blocks.
+@ $E495 label=Home_WriteAttribute
+  $E495,$01 Write the value stored in #REGa to the address held by the
+. attribute buffer pointer.
+  $E496,$01 Increment the attribute buffer pointer by one.
+  $E497,$02 Decrease the character block counter by one and loop back to
+. #R$E495 until all three byte values have been written.
+  $E499,$03 #REGhl=#N$5841 (attribute buffer location).
+  $E49C,$01 Restore the row counter from the stack.
+  $E49D,$02 Decrease the row counter by one and loop back to #R$E492 until all
+. the rows have been updated.
+  $E49F,$01 Return.
+
+b $E4A0
 
 g $E4AE Home Attributes
 @ $E4AE label=HomeAttributes
@@ -895,6 +932,16 @@ D $E4BA Used by the routine at #R$E5E4.
 B $E4BA,$04 Top line.
 B $E4BE,$04,$02 Left/ right middle.
 B $E4C2,$04 Bottom line.
+
+g $E4C6 Table: Cursor Attribute Positions
+@ $E4C6 label=Table_CursorAttributePositions
+D $E4C6 Used by the routine at ???.
+B $E4C6,$0B
+
+g $E4D1 Temporary Cursor Attribute Byte Pointer
+@ $E4D1 label=TempAttributeStore
+D $E4D1 Used by the routine at ???.
+W $E4D1,$02
 
 c $E4D3
 

@@ -166,7 +166,7 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="ee94"></span>EE94</td>
 <td class="instruction">LD A,($D82C)</td>
-<td class="comment-1" rowspan="2">Write *<a href="D82C.html">DestinationCursor_Y_Position</a> to *<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="D82C.html">DestinationCursor_Y_Position</a> to *<a href="E75D.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="ee97"></span>EE97</td>
@@ -180,7 +180,7 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="ee9b"></span>EE9B</td>
 <td class="instruction">LD ($E75E),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75e">E75E</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75e">Tile_Vertical_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="ee9e"></span>EE9E</td>
@@ -205,12 +205,12 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="eea7"></span>EEA7</td>
 <td class="instruction">LD ($E761),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">E761</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eeaa"></span>EEAA</td>
-<td class="instruction">CALL <a href="DB7E.html">MoveTile_?</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DB7E.html">MoveTile_?</a>.</td>
+<td class="instruction">CALL <a href="DB7E.html">MoveTile_Right</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DB7E.html">MoveTile_Right</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eead"></span>EEAD</td>
@@ -220,12 +220,12 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-2"><span id="eeb0"></span>EEB0</td>
 <td class="instruction">LD ($E761),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">E761</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eeb3"></span>EEB3</td>
-<td class="instruction">CALL <a href="DBE5.html">MoveTile_??</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DBE5.html">MoveTile_??</a>.</td>
+<td class="instruction">CALL <a href="DBE5.html">MoveTile_Left</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DBE5.html">MoveTile_Left</a>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="eeb6"></span>EEB6</td>
@@ -250,7 +250,7 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="eebe"></span>EEBE</td>
 <td class="instruction">LD ($E761),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">E761</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e761">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eec1"></span>EEC1</td>
@@ -265,7 +265,7 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="eec6"></span>EEC6</td>
 <td class="instruction">LD A,$01</td>
-<td class="comment-1" rowspan="2">Write 01 to *<a href="E75D.html#e761">E761</a>.</td>
+<td class="comment-1" rowspan="2">Write 01 to *<a href="E75D.html#e761">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eec8"></span>EEC8</td>
@@ -279,7 +279,7 @@ Used by the routine at <a href="D894.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="eecc"></span>EECC</td>
 <td class="instruction">LD A,$12</td>
-<td class="comment-1" rowspan="2">Write 12 to *<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="2">Write 12 to *<a href="E75D.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="eece"></span>EECE</td>

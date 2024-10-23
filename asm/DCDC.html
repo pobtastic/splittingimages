@@ -48,25 +48,23 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label">MoveTile_Up</td>
 <td class="address-2"><span id="dcdc"></span>DCDC</td>
 <td class="instruction">LD A,($E75E)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html#e75e">E75E</a>.</td>
+<td class="comment-1" rowspan="3">Take *<a href="E75D.html#e75e">Tile_Vertical_Position</a> and store it in <span class="register">A</span>. Decrease it by one, which adjusts the value for the tile height, and write this value to *<a href="E75D.html#e760">Tile_Vertical_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dcdf"></span>DCDF</td>
 <td class="instruction">DEC A</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dce0"></span>DCE0</td>
 <td class="instruction">LD ($E760),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e760">E760</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dce3"></span>DCE3</td>
 <td class="instruction">LD A,($E761)</td>
-<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e761">E761</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e761">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -77,13 +75,13 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label">MoveTile_Up_Loop</td>
 <td class="address-2"><span id="dce7"></span>DCE7</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dce8"></span>DCE8</td>
 <td class="instruction">LD A,($E75D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -95,7 +93,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dcec"></span>DCEC</td>
 <td class="instruction">LD ($E75F),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75f">E75F</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -107,13 +105,13 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label">MoveTile_Up_0</td>
 <td class="address-2"><span id="dcf1"></span>DCF1</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the row (tile height) counter on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dcf2"></span>DCF2</td>
 <td class="instruction">LD A,($E75F)</td>
-<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e75f">E75F</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -124,7 +122,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dcf6"></span>DCF6</td>
 <td class="instruction">LD A,($E760)</td>
-<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="E75D.html#e760">E760</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="E75D.html#e760">Tile_Vertical_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -141,7 +139,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dcfd"></span>DCFD</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the destination screen buffer address on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -159,7 +157,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd02"></span>DD02</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="2"><span class="register">DE</span>=<span class="register">HL</span> (using the stack).</td>
+<td class="comment-1" rowspan="2"><span class="register">DE</span>=screen buffer address of the tile (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -170,7 +168,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd04"></span>DD04</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the destination screen buffer address from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -302,10 +300,20 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="comment-1" rowspan="1">Call <a href="DCD1.html">Calculate_AttributeAddress</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="dd28"></span>
+<div class="comments">
+<div class="paragraph">
+Move <span class="register">DE</span> up one attribute row.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd28"></span>DD28</td>
 <td class="instruction">LD HL,$FFE0</td>
-<td class="comment-1" rowspan="2"><span class="register">HL</span>=FFE0+<span class="register">DE</span>.</td>
+<td class="comment-1" rowspan="3"><span class="register">DE</span>+=FFE0 (subtract 0020).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -316,7 +324,6 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd2c"></span>DD2C</td>
 <td class="instruction">EX DE,HL</td>
-<td class="comment-1" rowspan="1">Exchange the <span class="register">DE</span> and <span class="register">HL</span> registers.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -340,7 +347,12 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd35"></span>DD35</td>
 <td class="instruction">LD A,$47</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=47.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=INK:
+WHITE,
+PAPER:
+BLACK
+(BRIGHT)
+.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -382,7 +394,7 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd3e"></span>DD3E</td>
 <td class="instruction">LD HL,$E75F</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html#e75f">E75F</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -417,14 +429,14 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd47"></span>DD47</td>
-<td class="instruction">CALL <a href="DD52.html">$DD52</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DD52.html">DD52</a>.</td>
+<td class="instruction">CALL <a href="DD52.html">Sound_TileMovement</a></td>
+<td class="comment-1" rowspan="1">Call <a href="DD52.html">Sound_TileMovement</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd4a"></span>DD4A</td>
 <td class="instruction">LD HL,$E75D</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -436,13 +448,13 @@ Used by the routine at <a href="F43E.html">F43E</a>.
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd4e"></span>DD4E</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the number of spaces left to move from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dd4f"></span>DD4F</td>
 <td class="instruction">DJNZ <a href="DCDC.html#dce7">MoveTile_Up_Loop</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DCDC.html#dce7">MoveTile_Up_Loop</a> until counter is zero.</td>
+<td class="comment-1" rowspan="1">Decrease the number of spaces counter by one and loop back to <a href="DCDC.html#dce7">MoveTile_Up_Loop</a> until the tile is in the destination space.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

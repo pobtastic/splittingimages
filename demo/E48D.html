@@ -29,7 +29,7 @@ Prev: <a href="E475.html">E475</a>
 </td>
 <td class="up">Up: <a href="../demo.html#e48d">Map</a></td>
 <td class="next">
-Next: <a href="E4AE.html">E4AE</a>
+Next: <a href="E4A0.html">E4A0</a>
 </td>
 </tr>
 </table>
@@ -42,121 +42,82 @@ Next: <a href="E4AE.html">E4AE</a>
 Used by the routines at <a href="D2DE.html">D2DE</a> and <a href="DEED.html">DEED</a>.
 </div>
 </div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">The attribute value to write</td>
+</tr>
+</table>
 </td>
 </tr>
 <tr>
 <td class="asm-label">ColouriseHome</td>
 <td class="address-2"><span id="e48d"></span>E48D</td>
 <td class="instruction">LD HL,$5821</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=5821 (attribute buffer location).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e490"></span>E490</td>
 <td class="instruction">LD B,$02</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 02 rows.</td>
 </tr>
 <tr>
-<td class="asm-label">ColouriseHome_0</td>
+<td class="asm-label">ColouriseHome_Loop</td>
 <td class="address-2"><span id="e492"></span>E492</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e493"></span>E493</td>
 <td class="instruction">LD B,$03</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for 03 character blocks.</td>
 </tr>
 <tr>
-<td class="asm-label">ColouriseHome_1</td>
+<td class="asm-label">Home_WriteAttribute</td>
 <td class="address-2"><span id="e495"></span>E495</td>
 <td class="instruction">LD (HL),A</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Write the value stored in <span class="register">A</span> to the address held by the attribute buffer pointer.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e496"></span>E496</td>
 <td class="instruction">INC HL</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Increment the attribute buffer pointer by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e497"></span>E497</td>
-<td class="instruction">DJNZ <a href="E48D.html#e495">ColouriseHome_1</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DJNZ <a href="E48D.html#e495">Home_WriteAttribute</a></td>
+<td class="comment-1" rowspan="1">Decrease the character block counter by one and loop back to <a href="E48D.html#e495">Home_WriteAttribute</a> until all three byte values have been written.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e499"></span>E499</td>
 <td class="instruction">LD HL,$5841</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=5841 (attribute buffer location).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e49c"></span>E49C</td>
 <td class="instruction">POP BC</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Restore the row counter from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e49d"></span>E49D</td>
-<td class="instruction">DJNZ <a href="E48D.html#e492">ColouriseHome_0</a></td>
-<td class="comment-0" rowspan="1"></td>
+<td class="instruction">DJNZ <a href="E48D.html#e492">ColouriseHome_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the row counter by one and loop back to <a href="E48D.html#e492">ColouriseHome_Loop</a> until all the rows have been updated.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="e49f"></span>E49F</td>
 <td class="instruction">RET</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4a0"></span>E4A0</td>
-<td class="instruction">JR Z,$E4CB</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4a2"></span>E4A2</td>
-<td class="instruction">LD HL,($2C2B)</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4a5"></span>E4A5</td>
-<td class="instruction">DEC L</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4a6"></span>E4A6</td>
-<td class="instruction">LD L,$2F</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4a8"></span>E4A8</td>
-<td class="instruction">LD L,$2D</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4aa"></span>E4AA</td>
-<td class="instruction">INC L</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4ab"></span>E4AB</td>
-<td class="instruction">DEC HL</td>
-<td class="comment-0" rowspan="1"></td>
-</tr>
-<tr>
-<td class="asm-label"></td>
-<td class="address-1"><span id="e4ac"></span>E4AC</td>
-<td class="instruction">LD HL,($2F29)</td>
-<td class="comment-0" rowspan="1"></td>
+<td class="comment-1" rowspan="1">Return.</td>
 </tr>
 </table>
 <table class="asm-navigation">
@@ -166,7 +127,7 @@ Prev: <a href="E475.html">E475</a>
 </td>
 <td class="up">Up: <a href="../demo.html#e48d">Map</a></td>
 <td class="next">
-Next: <a href="E4AE.html">E4AE</a>
+Next: <a href="E4A0.html">E4A0</a>
 </td>
 </tr>
 </table>

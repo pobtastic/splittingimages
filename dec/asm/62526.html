@@ -212,8 +212,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="62597"></span>62597</td>
-<td class="instruction">CALL <a href="56190.html">MoveTile_?</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56190.html">MoveTile_?</a>.</td>
+<td class="instruction">CALL <a href="56190.html">MoveTile_Right</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56190.html">MoveTile_Right</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62600"></span>62600</td>
@@ -274,12 +274,12 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="62624"></span>62624</td>
 <td class="instruction">LD A,(59230)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59230">59230</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59230">Tile_Vertical_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62627"></span>62627</td>
 <td class="instruction">CP 15</td>
-<td class="comment-1" rowspan="2">Return if *<a href="59229.html#59230">59230</a> is greater than or equal to 15.</td>
+<td class="comment-1" rowspan="2">Return if *<a href="59229.html#59230">Tile_Vertical_Position</a> is greater than or equal to 15.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62629"></span>62629</td>
@@ -423,7 +423,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="62688"></span>62688</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62691"></span>62691</td>
@@ -656,8 +656,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="62788"></span>62788</td>
-<td class="instruction">CALL <a href="56293.html">MoveTile_??</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_??</a>.</td>
+<td class="instruction">CALL <a href="56293.html">MoveTile_Left</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_Left</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62791"></span>62791</td>
@@ -686,7 +686,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62800"></span>62800</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62803"></span>62803</td>
@@ -711,7 +711,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62811"></span>62811</td>
 <td class="instruction">LD A,2</td>
-<td class="comment-1" rowspan="2">Write 2 to *<a href="59229.html#59230">59230</a>.</td>
+<td class="comment-1" rowspan="2">Write 2 to *<a href="59229.html#59230">Tile_Vertical_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62813"></span>62813</td>
@@ -719,8 +719,8 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 </tr>
 <tr>
 <td class="address-1"><span id="62816"></span>62816</td>
-<td class="instruction">CALL <a href="56293.html">MoveTile_??</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_??</a>.</td>
+<td class="instruction">CALL <a href="56293.html">MoveTile_Left</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_Left</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62819"></span>62819</td>
@@ -745,7 +745,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="62825"></span>62825</td>
 <td class="instruction">LD (59233),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62828"></span>62828</td>
@@ -820,7 +820,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="62859"></span>62859</td>
 <td class="instruction">LD A,(59230)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59230">59230</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59230">Tile_Vertical_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62862"></span>62862</td>
@@ -969,7 +969,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="62923"></span>62923</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="62926"></span>62926</td>
@@ -1232,7 +1232,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63036"></span>63036</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63039"></span>63039</td>
@@ -1257,7 +1257,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63047"></span>63047</td>
 <td class="instruction">LD A,18</td>
-<td class="comment-1" rowspan="2">Write 18 to *<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="2">Write 18 to *<a href="59229.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63049"></span>63049</td>
@@ -1291,7 +1291,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63061"></span>63061</td>
 <td class="instruction">LD (59233),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63064"></span>63064</td>
@@ -1374,7 +1374,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="63100"></span>63100</td>
 <td class="instruction">LD A,(59229)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63103"></span>63103</td>
@@ -1528,7 +1528,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="63167"></span>63167</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63170"></span>63170</td>
@@ -1809,7 +1809,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63285"></span>63285</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63288"></span>63288</td>
@@ -1834,7 +1834,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63296"></span>63296</td>
 <td class="instruction">LD A,2</td>
-<td class="comment-1" rowspan="2">Write 2 to *<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="2">Write 2 to *<a href="59229.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63298"></span>63298</td>
@@ -1868,7 +1868,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-1"><span id="63310"></span>63310</td>
 <td class="instruction">LD (59233),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63313"></span>63313</td>
@@ -1945,7 +1945,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="63347"></span>63347</td>
 <td class="instruction">LD A,(59229)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="59229.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63350"></span>63350</td>
@@ -2101,7 +2101,7 @@ This entry point is used by the routine at <a href="63489.html">63489</a>.
 <tr>
 <td class="address-2"><span id="63416"></span>63416</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="63419"></span>63419</td>

@@ -33,7 +33,7 @@ Next: <a href="DC4B.html">DC4B</a>
 </td>
 </tr>
 </table>
-<div class="description">DBE5: Move Tile ??</div>
+<div class="description">DBE5: Move Tile Left</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
@@ -45,28 +45,36 @@ Used by the routines at <a href="EE61.html">EE61</a> and <a href="F43E.html">F43
 </td>
 </tr>
 <tr>
-<td class="asm-label">MoveTile_??</td>
+<td class="asm-label">MoveTile_Left</td>
 <td class="address-2"><span id="dbe5"></span>DBE5</td>
 <td class="instruction">LD A,($E75D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="3">Take *<a href="E75D.html">Tile_Horizontal_Position</a> and decrease it by one, which adjusts the value for the tile width. Write this value back to *<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbe8"></span>DBE8</td>
 <td class="instruction">DEC A</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbe9"></span>DBE9</td>
 <td class="instruction">LD ($E75F),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75f">E75F</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dbec"></span>
+<div class="comments">
+<div class="paragraph">
+Set the total of how many spaces the tile will be moving.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbec"></span>DBEC</td>
 <td class="instruction">LD A,($E761)</td>
-<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e761">E761</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e761">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -74,46 +82,74 @@ Used by the routines at <a href="EE61.html">EE61</a> and <a href="F43E.html">F43
 <td class="instruction">LD B,A</td>
 </tr>
 <tr>
-<td class="asm-label">MoveTile_??_0</td>
+<td class="routine-comment" colspan="5">
+<span id="dbf0"></span>
+<div class="comments">
+<div class="paragraph">
+This is the tile loop, each space moved will decrease this counter by one.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveTile_Left_Loop</td>
 <td class="address-2"><span id="dbf0"></span>DBF0</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the number of spaces left to move on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbf1"></span>DBF1</td>
 <td class="instruction">LD A,($E75E)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html#e75e">E75E</a>.</td>
+<td class="comment-1" rowspan="3">Take *<a href="E75D.html#e75e">Tile_Vertical_Position</a> and subtract 01 which adjusts the value for the tile height. Write this value back to *<a href="E75D.html#e760">Tile_Vertical_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbf4"></span>DBF4</td>
 <td class="instruction">DEC A</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbf5"></span>DBF5</td>
 <td class="instruction">LD ($E760),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e760">E760</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dbf8"></span>
+<div class="comments">
+<div class="paragraph">
+Start moving the tile a single space.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbf8"></span>DBF8</td>
 <td class="instruction">LD B,$04</td>
-<td class="comment-1" rowspan="1"><span class="register">B</span>=04.</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the height of the tile in bytes (04 rows).</td>
 </tr>
 <tr>
-<td class="asm-label">MoveTile_??_1</td>
+<td class="asm-label">MoveTile_Left_RowLoop</td>
 <td class="address-2"><span id="dbfa"></span>DBFA</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the row counter (tile height) on the stack.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dbfb"></span>
+<div class="comments">
+<div class="paragraph">
+Get the screen buffer address from the co-ordinates.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbfb"></span>DBFB</td>
 <td class="instruction">LD A,($E75F)</td>
-<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e75f">E75F</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -124,7 +160,7 @@ Used by the routines at <a href="EE61.html">EE61</a> and <a href="F43E.html">F43
 <td class="asm-label"></td>
 <td class="address-1"><span id="dbff"></span>DBFF</td>
 <td class="instruction">LD A,($E760)</td>
-<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="E75D.html#e760">E760</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">C</span>=*<a href="E75D.html#e760">Tile_Vertical_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -141,114 +177,155 @@ Used by the routines at <a href="EE61.html">EE61</a> and <a href="F43E.html">F43
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc06"></span>DC06</td>
 <td class="instruction">LD A,$08</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=08.</td>
+<td class="comment-1" rowspan="1">Set the number of bytes in a character block to <span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc08"></span>DC08</td>
 <td class="instruction">LD BC,$0004</td>
-<td class="comment-1" rowspan="1"><span class="register">BC</span>=0004.</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the number of bytes in a row (04), and set <span class="register">C</span> to 00 which is used for erasing the left-over tile pixels.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc0b"></span>DC0B</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=screen buffer address of the tile.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc0c"></span>DC0C</td>
 <td class="instruction">POP DE</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">DE</span> from the stack.</td>
+<td class="comment-1" rowspan="2"><span class="register">DE</span>=screen buffer address of the tile (using the stack) - 01.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc0d"></span>DC0D</td>
 <td class="instruction">DEC DE</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc0e"></span>DC0E</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="2">Stash <span class="register">HL</span> and <span class="register">HL</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the current screen buffer address of the tile on the stack.</td>
 </tr>
 <tr>
-<td class="asm-label">MoveTile_??_2</td>
+<td class="routine-comment" colspan="5">
+<span id="dc0f"></span>
+<div class="comments">
+<div class="paragraph">
+Start moving the current row.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveTile_Left_ColumnLoop</td>
 <td class="address-2"><span id="dc0f"></span>DC0F</td>
 <td class="instruction">PUSH HL</td>
+<td class="comment-1" rowspan="1">Stash the current screen buffer address of the tile on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc10"></span>DC10</td>
 <td class="instruction">LDIR</td>
-<td class="comment-1" rowspan="1">LDIR.</td>
+<td class="comment-1" rowspan="1">Move 0004 screen data bytes from left to right.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dc12"></span>
+<div class="comments">
+<div class="paragraph">
+This leaves the last byte unprocessed - which should be blank. So, let's erase it.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc12"></span>DC12</td>
 <td class="instruction">DEC HL</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">HL</span> by one.</td>
+<td class="comment-1" rowspan="2">Erase the right-most byte (<span class="register">C</span> contains 00).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc13"></span>DC13</td>
 <td class="instruction">LD (HL),C</td>
-<td class="comment-1" rowspan="1">Write <span class="register">C</span> to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc14"></span>DC14</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the current screen buffer address from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc15"></span>DC15</td>
 <td class="instruction">INC H</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">H</span> by one.</td>
+<td class="comment-1" rowspan="1">Move down one row.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dc16"></span>
+<div class="comments">
+<div class="paragraph">
+Update the screen buffer address for the next loop iteration.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc16"></span>DC16</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=screen buffer address of the tile.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc17"></span>DC17</td>
 <td class="instruction">POP DE</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">DE</span> from the stack.</td>
+<td class="comment-1" rowspan="2"><span class="register">DE</span>=screen buffer address of the tile (using the stack) - 01.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc18"></span>DC18</td>
 <td class="instruction">DEC DE</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc19"></span>DC19</td>
 <td class="instruction">LD BC,$0004</td>
-<td class="comment-1" rowspan="1"><span class="register">BC</span>=0004.</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> back to 0004.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc1c"></span>DC1C</td>
 <td class="instruction">DEC A</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
+<td class="comment-1" rowspan="1">Decrease the column/ byte counter by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc1d"></span>DC1D</td>
-<td class="instruction">JP NZ,<a href="DBE5.html#dc0f">MoveTile_??_2</a></td>
-<td class="comment-1" rowspan="1">Jump to <a href="DBE5.html#dc0f">MoveTile_??_2</a> if <span class="register">A</span> is not zero.</td>
+<td class="instruction">JP NZ,<a href="DBE5.html#dc0f">MoveTile_Left_ColumnLoop</a></td>
+<td class="comment-1" rowspan="1">Jump to <a href="DBE5.html#dc0f">MoveTile_Left_ColumnLoop</a> until all four bytes in this row have been moved.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dc20"></span>
+<div class="comments">
+<div class="paragraph">
+Now onto the attribute buffer bytes.
+</div>
+<div class="paragraph">
+Convert the screen buffer location into a corresponding attribute buffer address.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc20"></span>DC20</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the current screen buffer address from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -260,133 +337,159 @@ Used by the routines at <a href="EE61.html">EE61</a> and <a href="F43E.html">F43
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc24"></span>DC24</td>
 <td class="instruction">PUSH DE</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">DE</span> on the stack.</td>
+<td class="comment-1" rowspan="2"><span class="register">HL</span>=attribute buffer address of the tile (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc25"></span>DC25</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">HL</span> from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc26"></span>DC26</td>
 <td class="instruction">DEC DE</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+<td class="comment-1" rowspan="1"><span class="register">DE</span>=attribute buffer address of the tile - 01.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc27"></span>DC27</td>
 <td class="instruction">LD BC,$0005</td>
-<td class="comment-1" rowspan="1"><span class="register">BC</span>=0005.</td>
+<td class="comment-1" rowspan="2">Move 0005 attribute bytes from left to right.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc2a"></span>DC2A</td>
 <td class="instruction">LDIR</td>
-<td class="comment-1" rowspan="1">LDIR.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dc2c"></span>
+<div class="comments">
+<div class="paragraph">
+This leaves the last attribute space unprocessed - which should be blank. So, let's erase it.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc2c"></span>DC2C</td>
 <td class="instruction">LD A,$47</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=47.</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=INK:
+WHITE,
+PAPER:
+BLACK
+(BRIGHT)
+.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc2e"></span>DC2E</td>
 <td class="instruction">DEC DE</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">DE</span> by one.</td>
+<td class="comment-1" rowspan="2">Erase the right-most attribute block.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc2f"></span>DC2F</td>
 <td class="instruction">LD (DE),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<span class="register">DE</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dc30"></span>
+<div class="comments">
+<div class="paragraph">
+Move to the next attribute row.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc30"></span>DC30</td>
 <td class="instruction">LD HL,$E75F</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html#e75f">E75F</a>.</td>
+<td class="comment-1" rowspan="2">Increment *<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc33"></span>DC33</td>
 <td class="instruction">INC (HL)</td>
-<td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc34"></span>DC34</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the attribute row counter from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc35"></span>DC35</td>
-<td class="instruction">DJNZ <a href="DBE5.html#dbfa">MoveTile_??_1</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DBE5.html#dbfa">MoveTile_??_1</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="DBE5.html#dbfa">MoveTile_Left_RowLoop</a></td>
+<td class="comment-1" rowspan="1">Decrease the attribute row counter by one and loop back to <a href="DBE5.html#dbfa">MoveTile_Left_RowLoop</a> until the whole row has been processed.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="dc37"></span>
+<div class="comments">
+<div class="paragraph">
+The tile has successfully moved one space!
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc37"></span>DC37</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="3">Using the number of spaces left to move (from the stack) call <a href="DD52.html">Sound_TileMovement</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc38"></span>DC38</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc39"></span>DC39</td>
-<td class="instruction">CALL <a href="DD52.html">$DD52</a></td>
-<td class="comment-1" rowspan="1">Call <a href="DD52.html">DD52</a>.</td>
+<td class="instruction">CALL <a href="DD52.html">Sound_TileMovement</a></td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc3c"></span>DC3C</td>
 <td class="instruction">LD A,($E75D)</td>
-<td class="comment-1" rowspan="1"><span class="register">A</span>=*<a href="E75D.html">E75D</a>.</td>
+<td class="comment-1" rowspan="3">Take *<a href="E75D.html">Tile_Horizontal_Position</a> and decrease it by one, which adjusts the value for the tile width. Write it back to *<a href="E75D.html#e75f">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc3f"></span>DC3F</td>
 <td class="instruction">DEC A</td>
-<td class="comment-1" rowspan="1">Decrease <span class="register">A</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc40"></span>DC40</td>
 <td class="instruction">LD ($E75F),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="E75D.html#e75f">E75F</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc43"></span>DC43</td>
 <td class="instruction">LD HL,$E75E</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="E75D.html#e75e">E75E</a>.</td>
+<td class="comment-1" rowspan="2">Decrease *<a href="E75D.html#e75e">Tile_Vertical_Position</a> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc46"></span>DC46</td>
 <td class="instruction">DEC (HL)</td>
-<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc47"></span>DC47</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="1">Restore the number of spaces left to move from the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="dc48"></span>DC48</td>
-<td class="instruction">DJNZ <a href="DBE5.html#dbf0">MoveTile_??_0</a></td>
-<td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="DBE5.html#dbf0">MoveTile_??_0</a> until counter is zero.</td>
+<td class="instruction">DJNZ <a href="DBE5.html#dbf0">MoveTile_Left_Loop</a></td>
+<td class="comment-1" rowspan="1">Decrease the number of spaces counter by one and loop back to <a href="DBE5.html#dbf0">MoveTile_Left_Loop</a> until the tile is in the destination space.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

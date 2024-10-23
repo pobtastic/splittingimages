@@ -166,7 +166,7 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="61076"></span>61076</td>
 <td class="instruction">LD A,(55340)</td>
-<td class="comment-1" rowspan="2">Write *<a href="55340.html">DestinationCursor_Y_Position</a> to *<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="2">Write *<a href="55340.html">DestinationCursor_Y_Position</a> to *<a href="59229.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61079"></span>61079</td>
@@ -180,7 +180,7 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="61083"></span>61083</td>
 <td class="instruction">LD (59230),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59230">59230</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59230">Tile_Vertical_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61086"></span>61086</td>
@@ -205,12 +205,12 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="61095"></span>61095</td>
 <td class="instruction">LD (59233),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61098"></span>61098</td>
-<td class="instruction">CALL <a href="56190.html">MoveTile_?</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56190.html">MoveTile_?</a>.</td>
+<td class="instruction">CALL <a href="56190.html">MoveTile_Right</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56190.html">MoveTile_Right</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61101"></span>61101</td>
@@ -220,12 +220,12 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-2"><span id="61104"></span>61104</td>
 <td class="instruction">LD (59233),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61107"></span>61107</td>
-<td class="instruction">CALL <a href="56293.html">MoveTile_??</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_??</a>.</td>
+<td class="instruction">CALL <a href="56293.html">MoveTile_Left</a></td>
+<td class="comment-1" rowspan="1">Call <a href="56293.html">MoveTile_Left</a>.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="61110"></span>61110</td>
@@ -250,7 +250,7 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="61118"></span>61118</td>
 <td class="instruction">LD (59233),A</td>
-<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">A</span> to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61121"></span>61121</td>
@@ -265,7 +265,7 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="61126"></span>61126</td>
 <td class="instruction">LD A,1</td>
-<td class="comment-1" rowspan="2">Write 1 to *<a href="59229.html#59233">59233</a>.</td>
+<td class="comment-1" rowspan="2">Write 1 to *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61128"></span>61128</td>
@@ -279,7 +279,7 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 <tr>
 <td class="address-1"><span id="61132"></span>61132</td>
 <td class="instruction">LD A,18</td>
-<td class="comment-1" rowspan="2">Write 18 to *<a href="59229.html">59229</a>.</td>
+<td class="comment-1" rowspan="2">Write 18 to *<a href="59229.html">Tile_Horizontal_Position</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="61134"></span>61134</td>

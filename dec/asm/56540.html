@@ -415,34 +415,41 @@ BLACK
 <td class="comment-1" rowspan="1">Decrease counter by one and loop back to <a href="56540.html#56561">MoveTile_Up_0</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="56645"></span>
+<div class="comments">
+<div class="paragraph">
+The tile has successfully moved one space!
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56645"></span>56645</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="1">Restore <span class="register">BC</span> from the stack.</td>
+<td class="comment-1" rowspan="3">Using the number of spaces left to move (from the stack) call <a href="56658.html">Sound_TileMovement</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56646"></span>56646</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">BC</span> on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56647"></span>56647</td>
 <td class="instruction">CALL <a href="56658.html">Sound_TileMovement</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56658.html">Sound_TileMovement</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56650"></span>56650</td>
 <td class="instruction">LD HL,59229</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="59229.html">Tile_Horizontal_Position</a>.</td>
+<td class="comment-1" rowspan="2">Decrease *<a href="59229.html">Tile_Horizontal_Position</a> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56653"></span>56653</td>
 <td class="instruction">DEC (HL)</td>
-<td class="comment-1" rowspan="1">Decrease *<span class="register">HL</span> by one.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

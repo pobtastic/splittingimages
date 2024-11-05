@@ -33,7 +33,7 @@ Next: <a href="59866.html">59866</a>
 </td>
 </tr>
 </table>
-<div class="description">59839: Routine at E9BF</div>
+<div class="description">59839: Extra Life</div>
 <table class="disassembly">
 <tr>
 <td class="routine-comment" colspan="5">
@@ -45,35 +45,75 @@ Used by the routine at <a href="55444.html">LevelComplete</a>.
 </td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="59839"></span>
+<div class="comments">
+<div class="paragraph">
+Give the player an extra life.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">ExtraLife</td>
 <td class="address-2"><span id="59839"></span>59839</td>
 <td class="instruction">LD HL,55335</td>
 <td class="comment-1" rowspan="1"><span class="register">HL</span>=<a href="55335.html">Lives</a>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59842"></span>59842</td>
 <td class="instruction">INC (HL)</td>
 <td class="comment-1" rowspan="1">Increment *<span class="register">HL</span> by one.</td>
 </tr>
 <tr>
-<td class="address-1"><span id="59843"></span>59843</td>
-<td class="instruction">LD HL,(55410)</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="55410.html">55410</a>.</td>
+<td class="routine-comment" colspan="5">
+<span id="59843"></span>
+<div class="comments">
+<div class="paragraph">
+Handle "uncovering" the life icon.
+</div>
+<div class="paragraph">
+First; move the icon pointer two character blocks to the left.
+</div>
+</div>
+</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
+<td class="address-1"><span id="59843"></span>59843</td>
+<td class="instruction">LD HL,(55410)</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="55410.html">LifeIcons_ScreenPosition</a>.</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59846"></span>59846</td>
 <td class="instruction">DEC HL</td>
 <td class="comment-1" rowspan="2">Decrease <span class="register">HL</span> by two.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59847"></span>59847</td>
 <td class="instruction">DEC HL</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59848"></span>59848</td>
 <td class="instruction">LD (55410),HL</td>
-<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="55410.html">55410</a>.</td>
+<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="55410.html">LifeIcons_ScreenPosition</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="59851"></span>
+<div class="comments">
+<div class="paragraph">
+Next; give the icon some colour to make it appear.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59851"></span>59851</td>
 <td class="instruction">LD (HL),40</td>
 <td class="comment-1" rowspan="1">Write INK:
@@ -84,11 +124,13 @@ CYAN
  to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59853"></span>59853</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59854"></span>59854</td>
 <td class="instruction">LD (HL),40</td>
 <td class="comment-1" rowspan="1">Write INK:
@@ -99,15 +141,38 @@ CYAN
  to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="59856"></span>
+<div class="comments">
+<div class="paragraph">
+Move down one line, and left one character block.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59856"></span>59856</td>
 <td class="instruction">LD DE,31</td>
 <td class="comment-1" rowspan="2"><span class="register">HL</span>+=0031.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59859"></span>59859</td>
 <td class="instruction">ADD HL,DE</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="59860"></span>
+<div class="comments">
+<div class="paragraph">
+Lastly; colour the bottom part of the icon.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59860"></span>59860</td>
 <td class="instruction">LD (HL),40</td>
 <td class="comment-1" rowspan="1">Write INK:
@@ -118,11 +183,13 @@ CYAN
  to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59862"></span>59862</td>
 <td class="instruction">INC HL</td>
 <td class="comment-1" rowspan="1">Increment <span class="register">HL</span> by one.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59863"></span>59863</td>
 <td class="instruction">LD (HL),40</td>
 <td class="comment-1" rowspan="1">Write INK:
@@ -133,6 +200,7 @@ CYAN
  to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
+<td class="asm-label"></td>
 <td class="address-1"><span id="59865"></span>59865</td>
 <td class="instruction">RET</td>
 <td class="comment-1" rowspan="1">Return.</td>

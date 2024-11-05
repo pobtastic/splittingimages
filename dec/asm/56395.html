@@ -48,7 +48,7 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <td class="asm-label">MoveTile_Down</td>
 <td class="address-2"><span id="56395"></span>56395</td>
 <td class="instruction">LD A,(59230)</td>
-<td class="comment-1" rowspan="3">Take *<a href="59229.html#59230">Tile_Vertical_Position</a> and store it in <span class="register">A</span>. Decrease it by one, which adjusts the value for the tile height, and write this value to *<a href="59229.html#59232">Tile_Vertical_Coordinate</a>.</td>
+<td class="comment-1" rowspan="3">Take *<a href="59229.html#59230">Tile_Vertical_Position</a> and decrease it by one, which adjusts the value for the tile height. Write this value back to *<a href="59229.html#59232">Tile_Vertical_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -61,10 +61,20 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <td class="instruction">LD (59232),A</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="56402"></span>
+<div class="comments">
+<div class="paragraph">
+Set the total of how many spaces the tile will be moving.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56402"></span>56402</td>
 <td class="instruction">LD A,(59233)</td>
-<td class="comment-1" rowspan="2">Load <span class="register">B</span> with *<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
+<td class="comment-1" rowspan="2"><span class="register">B</span>=*<a href="59229.html#59233">Tile_SpacesToMove</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -72,16 +82,26 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <td class="instruction">LD B,A</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="56406"></span>
+<div class="comments">
+<div class="paragraph">
+This is the tile loop, each space moved will decrease this counter by one.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label">MoveTile_Down_Loop</td>
 <td class="address-2"><span id="56406"></span>56406</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash the row counter on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the number of spaces left to move on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56407"></span>56407</td>
 <td class="instruction">LD A,(59229)</td>
-<td class="comment-1" rowspan="3">Take *<a href="59229.html">Tile_Horizontal_Position</a> and store it in <span class="register">A</span>. Add 2 which adjusts the value for the tile height, and write this value to *<a href="59229.html#59231">Tile_Horizontal_Coordinate</a>.</td>
+<td class="comment-1" rowspan="3">Take *<a href="59229.html">Tile_Horizontal_Position</a> and add 2 which adjusts the value for the tile height. Write this value back to *<a href="59229.html#59231">Tile_Horizontal_Coordinate</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -94,16 +114,36 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <td class="instruction">LD (59231),A</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="56415"></span>
+<div class="comments">
+<div class="paragraph">
+Start moving the tile a single space.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56415"></span>56415</td>
 <td class="instruction">LD B,4</td>
-<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the height of the tile in bytes (4).</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the height of the tile in bytes (4 rows).</td>
 </tr>
 <tr>
 <td class="asm-label">MoveTile_Down_RowLoop</td>
 <td class="address-2"><span id="56417"></span>56417</td>
 <td class="instruction">PUSH BC</td>
-<td class="comment-1" rowspan="1">Stash the row (tile height) counter on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the row counter (tile height) on the stack.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="56418"></span>
+<div class="comments">
+<div class="paragraph">
+Get the screen buffer address from the co-ordinates.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -143,19 +183,17 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="56430"></span>56430</td>
 <td class="instruction">INC B</td>
-<td class="comment-1" rowspan="1">Increment <span class="register">B</span> by one.</td>
+<td class="comment-1" rowspan="4">Call <a href="56514.html">Calculate_ScreenBlockAddress</a> but increment the position by one. This allows us to fetch the screen buffer address of the next position. <span class="register">DE</span>=screen buffer address of the tile + 1.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56431"></span>56431</td>
 <td class="instruction">CALL <a href="56514.html">Calculate_ScreenBlockAddress</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56514.html">Calculate_ScreenBlockAddress</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56434"></span>56434</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="2"><span class="register">DE</span>=screen buffer address of the tile (using the stack).</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -166,36 +204,47 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <td class="asm-label"></td>
 <td class="address-1"><span id="56436"></span>56436</td>
 <td class="instruction">POP HL</td>
-<td class="comment-1" rowspan="1">Restore the destination screen buffer address from the stack.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=screen buffer address of the tile.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56437"></span>56437</td>
 <td class="instruction">LD A,8</td>
-<td class="comment-1" rowspan="1">Load the number of pixels per row in <span class="register">A</span>.</td>
+<td class="comment-1" rowspan="1">Set the number of bytes in a character block to <span class="register">A</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56439"></span>56439</td>
 <td class="instruction">LD BC,4</td>
-<td class="comment-1" rowspan="1">Set the count for the size of the tile in <span class="register">BC</span> (0004 character blocks).</td>
+<td class="comment-1" rowspan="1">Set a counter in <span class="register">B</span> for the number of bytes in a row (4), and set <span class="register">C</span> to 0 which is used for erasing the left-over tile pixels.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56442"></span>56442</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="1">Stash <span class="register">HL</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the current screen buffer address of the tile on the stack.</td>
 </tr>
 <tr>
-<td class="asm-label">MoveTile_Down_PixelShift</td>
+<td class="routine-comment" colspan="5">
+<span id="56443"></span>
+<div class="comments">
+<div class="paragraph">
+Start moving the current row.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="asm-label">MoveTile_Down_ColumnLoop</td>
 <td class="address-2"><span id="56443"></span>56443</td>
 <td class="instruction">PUSH HL</td>
-<td class="comment-1" rowspan="2">Stash <span class="register">HL</span> and <span class="register">DE</span> on the stack.</td>
+<td class="comment-1" rowspan="1">Stash the current screen buffer address of the tile on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56444"></span>56444</td>
 <td class="instruction">PUSH DE</td>
+<td class="comment-1" rowspan="1">Stash the current screen buffer address of the tile on the stack.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -283,8 +332,8 @@ Used by the routines at <a href="61025.html">61025</a> and <a href="62526.html">
 <tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56465"></span>56465</td>
-<td class="instruction">JP NZ,<a href="56395.html#56443">MoveTile_Down_PixelShift</a></td>
-<td class="comment-1" rowspan="1">Jump back to <a href="56395.html#56443">MoveTile_Down_PixelShift</a> until all pixels in the row have been moved.</td>
+<td class="instruction">JP NZ,<a href="56395.html#56443">MoveTile_Down_ColumnLoop</a></td>
+<td class="comment-1" rowspan="1">Jump back to <a href="56395.html#56443">MoveTile_Down_ColumnLoop</a> until all pixels in the row have been moved.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -412,10 +461,20 @@ BLACK
 <td class="comment-1" rowspan="1">Decrease the pixel row counter by one and loop back to <a href="56395.html#56417">MoveTile_Down_RowLoop</a> until counter is zero.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="56501"></span>
+<div class="comments">
+<div class="paragraph">
+The tile has successfully moved one space!
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="56501"></span>56501</td>
 <td class="instruction">POP BC</td>
-<td class="comment-1" rowspan="2">Restore the row counter from the stack for the sound generator, but keep a copy of it back on the stack.</td>
+<td class="comment-1" rowspan="3">Using the number of spaces left to move (from the stack) call <a href="56658.html">Sound_TileMovement</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -426,7 +485,6 @@ BLACK
 <td class="asm-label"></td>
 <td class="address-1"><span id="56503"></span>56503</td>
 <td class="instruction">CALL <a href="56658.html">Sound_TileMovement</a></td>
-<td class="comment-1" rowspan="1">Call <a href="56658.html">Sound_TileMovement</a>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

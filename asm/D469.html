@@ -93,6 +93,23 @@ This is position 02/ 02:   <table class="">
 <td class="instruction">LD ($D82F),A</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d477"></span>
+<div class="comments">
+<div class="paragraph">
+Tile 09 is the home box:    <table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="tile-ids" src="../images/udgs/tile-ids.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Set the players starting tile.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d477"></span>D477</td>
 <td class="instruction">LD A,$09</td>
@@ -152,10 +169,30 @@ Spend a life to play the game.
 <td class="comment-1" rowspan="1">Call <a href="F31E.html">Draw_TimeBar</a>.</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d48b"></span>
+<div class="comments">
+<div class="paragraph">
+The life icons are static, drawn from <a href="C2A6.html">Data_PlayareaSurround</a>, in order to display the correct number of lives - we paint them to be the same PAPER/ INK colour as their background.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d48b"></span>D48B</td>
 <td class="instruction">LD HL,($D872)</td>
-<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D872.html">D872</a>.</td>
+<td class="comment-1" rowspan="1"><span class="register">HL</span>=*<a href="D872.html">LifeIcons_ScreenPosition</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d48e"></span>
+<div class="comments">
+<div class="paragraph">
+First; hide the top part of the icon.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -178,7 +215,12 @@ CYAN
 <td class="asm-label"></td>
 <td class="address-1"><span id="d491"></span>D491</td>
 <td class="instruction">LD (HL),$2D</td>
-<td class="comment-1" rowspan="1">Write 2D to *<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -190,7 +232,17 @@ CYAN
 <td class="asm-label"></td>
 <td class="address-1"><span id="d494"></span>D494</td>
 <td class="instruction">LD ($D872),HL</td>
-<td class="comment-1" rowspan="1">Write <span class="register">HL</span> to *<a href="D872.html">D872</a>.</td>
+<td class="comment-1" rowspan="1">Update the icon position marker at *<a href="D872.html">LifeIcons_ScreenPosition</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="d497"></span>
+<div class="comments">
+<div class="paragraph">
+Move down one line, and left two character blocks.
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -204,10 +256,25 @@ CYAN
 <td class="instruction">ADD HL,DE</td>
 </tr>
 <tr>
+<td class="routine-comment" colspan="5">
+<span id="d49b"></span>
+<div class="comments">
+<div class="paragraph">
+Lastly; colour the bottom part of the icon.
+</div>
+</div>
+</td>
+</tr>
+<tr>
 <td class="asm-label"></td>
 <td class="address-1"><span id="d49b"></span>D49B</td>
 <td class="instruction">LD (HL),$2D</td>
-<td class="comment-1" rowspan="1">Write 2D to *<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>
@@ -219,7 +286,12 @@ CYAN
 <td class="asm-label"></td>
 <td class="address-1"><span id="d49e"></span>D49E</td>
 <td class="instruction">LD (HL),$2D</td>
-<td class="comment-1" rowspan="1">Write 2D to *<span class="register">HL</span>.</td>
+<td class="comment-1" rowspan="1">Write INK:
+CYAN,
+PAPER:
+CYAN
+
+ to *<span class="register">HL</span>.</td>
 </tr>
 <tr>
 <td class="asm-label"></td>

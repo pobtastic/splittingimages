@@ -522,6 +522,21 @@ N $D469 This is position #N$02/ #N$02:
 . #UDGTABLE { #SIM(start=$E5E4,stop=$E63E)#SCR$01(cursor-02-02) }
 . UDGTABLE# #POPS
   $D469,$0E Write #N$02 to: #LIST { *#R$D830 } { *#R$D831 } { *#R$D82E } { *#R$D82F } LIST#
+N $D477 Tile #N$09 is the home box:
+. #FOR$00,$09||x|#LET(fname=#CHR($30+x))#UDG($F2CE+x*$08,attr=$46)(*#FORMAT(font-{fname}))||
+. #PUSHS #SIM(start=$D1F1,stop=$D1F7)
+. #UDGTABLE { #SCR$01(*cursor-background)
+.   #OVER($02,$02,rmode=$01)($28)(cursor-background,font-0)#OVER($03,$02,rmode=$01)($28)(cursor-background,font-9)
+.   #FOR$00,$03||x|#OVER($06+x*$04,$02)(cursor-background,font-1)#OVER($07+x*$04,$02)(cursor-background,font-x)||
+.   #FOR$06,$09||x|#OVER(-$16+x*$04,$06)(cursor-background,font-1)#OVER(-$15+x*$04,$06)(cursor-background,font-x)||
+.   #OVER($12,$06)(cursor-background,font-2)#OVER($13,$06)(cursor-background,font-0)
+.   #FOR$03,$07||x|#OVER(-$0A+x*$04,$0A)(cursor-background,font-2)#OVER(-$09+x*$04,$0A)(cursor-background,font-x)||
+.   #FOR$00,$04||x|#OVER($02+x*$04,$0E)(cursor-background,font-3)#OVER($03+x*$04,$0E)(cursor-background,font-x)||
+.   #FOR$07,$09||x|#OVER(-$1A+x*$04,$12)(cursor-background,font-3)#OVER(-$19+x*$04,$12)(cursor-background,font-x)||
+.   #FOR$00,$01||x|#OVER($0E+x*$04,$12)(cursor-background,font-4)#OVER($0F+x*$04,$12)(cursor-background,font-x)||
+. #UDGARRAY*cursor-background(tile-ids) }
+. UDGTABLE# #POPS
+N $D477 Set the players starting tile.
   $D477,$05 Write #N$09 to *#R$D834.
 N $D47C See #POKE#infinitelives(Infinite Lives) and #POKE#infinitelivesalt(Infinite Lives (alternative)).
 N $D47C Spend a life to play the game.
@@ -530,16 +545,22 @@ N $D47C Spend a life to play the game.
   $D480,$03 Jump to #R$D4D6 if the player is out of lives.
   $D483,$05 Write #N$00 to *#R$D83A.
   $D488,$03 Call #R$F31E.
+N $D48B The life icons are static, drawn from #R$C2A6, in order to display the
+. correct number of lives - we paint them to be the same PAPER/ INK colour as
+. their background.
   $D48B,$03 #REGhl=*#R$D872.
+N $D48E First; hide the top part of the icon.
   $D48E,$02 Write #COLOUR$2D to *#REGhl.
   $D490,$01 Increment #REGhl by one.
-  $D491,$02 Write #N$2D to *#REGhl.
+  $D491,$02 Write #COLOUR$2D to *#REGhl.
   $D493,$01 Increment #REGhl by one.
-  $D494,$03 Write #REGhl to *#R$D872.
+  $D494,$03 Update the icon position marker at *#R$D872.
+N $D497 Move down one line, and left two character blocks.
   $D497,$04 #REGhl+=#N($001E,$04,$04).
-  $D49B,$02 Write #N$2D to *#REGhl.
+N $D49B Lastly; colour the bottom part of the icon.
+  $D49B,$02 Write #COLOUR$2D to *#REGhl.
   $D49D,$01 Increment #REGhl by one.
-  $D49E,$02 Write #N$2D to *#REGhl.
+  $D49E,$02 Write #COLOUR$2D to *#REGhl.
   $D4A0,$03 #REGhl=#R$D83A.
   $D4A3,$02 Set bit 0 of *#REGhl.
   $D4A5,$03 #REGa=*#R$D83A.
@@ -935,7 +956,12 @@ g $D86F High Score
 @ $D86F label=HighScore
 B $D86F,$03,$01
 
-g $D872
+g $D872 Screen Position: Life Icons
+@ $D872 label=LifeIcons_ScreenPosition
+D $D872 Used by #R$E9BF and #R$D469 to hold the attribute buffer address of the
+. where the lives icons are displayed.
+.
+. Initialised to #N$5ADA at #R$D1FC.
 W $D872,$02
 
 g $D874 Score
@@ -946,6 +972,10 @@ B $D874,$03,$01
 
 g $D877 Screen Position Selected Menu Item
 @ $D877 label=SelectedMenuItem_ScreenPosition
+D $D877 Used by #R$EA4A and #R$EAE7 to hold the attribute buffer address of the
+. currently selected menu item.
+.
+. Initialised to #N$5843 at #R$D1BF.
 W $D877,$02
 
 g $D879 Defaults Of Some Kind?
@@ -1521,30 +1551,38 @@ N $DC37 The tile has successfully moved one space!
 
 c $DC4B Move Tile Down
 @ $DC4B label=MoveTile_Down
-  $DC4B,$07 Take *#R$E75E and store it in #REGa. Decrease it by one, which
-. adjusts the value for the tile height, and write this value to *#R$E760.
-  $DC52,$04 Load #REGb with *#R$E761.
+  $DC4B,$07 Take *#R$E75E and decrease it by one, which adjusts the value for
+. the tile height. Write this value back to *#R$E760.
+N $DC52 Set the total of how many spaces the tile will be moving.
+  $DC52,$04 #REGb=*#R$E761.
+N $DC56 This is the tile loop, each space moved will decrease this counter by
+. one.
 @ $DC56 label=MoveTile_Down_Loop
-  $DC56,$01 Stash the row counter on the stack.
-  $DC57,$08 Take *#R$E75D and store it in #REGa. Add #N$02, which adjusts the
-. value for the tile height, and write this value to *#R$E75F.
-  $DC5F,$02 Set a counter in #REGb for the height of the tile in bytes (#N$04).
+  $DC56,$01 Stash the number of spaces left to move on the stack.
+  $DC57,$08 Take *#R$E75D and add #N$02, which adjusts the value for the tile
+. height. Write this value back to *#R$E75F.
+N $DC5F Start moving the tile a single space.
+  $DC5F,$02 Set a counter in #REGb for the height of the tile in bytes (#N$04
+. rows).
 @ $DC61 label=MoveTile_Down_RowLoop
-  $DC61,$01 Stash the row (tile height) counter on the stack.
+  $DC61,$01 Stash the row counter (tile height) on the stack.
+N $DC62 Get the screen buffer address from the co-ordinates.
   $DC62,$04 #REGb=*#R$E75F.
   $DC66,$04 #REGc=*#R$E760.
   $DC6A,$03 Call #R$DCC2.
   $DC6D,$01 Stash the destination screen buffer address on the stack.
-  $DC6E,$01 Increment #REGb by one.
-  $DC6F,$03 Call #R$DCC2.
-  $DC72,$02 #REGde=screen buffer address of the tile (using the stack).
-  $DC74,$01 Restore the destination screen buffer address from the stack.
-  $DC75,$02 Load the number of pixels per row in #REGa.
-  $DC77,$03 Set the count for the size of the tile in #REGbc (#N($0004,$04,$04)
-. character blocks).
-  $DC7A,$01 Stash #REGhl on the stack.
-@ $DC7B label=MoveTile_Down_PixelShift
-  $DC7B,$02 Stash #REGhl and #REGde on the stack.
+  $DC6E,$06 Call #R$DCC2 but increment the position by one.
+. This allows us to fetch the screen buffer address of the next position.
+. #REGde=screen buffer address of the tile + #N$01.
+  $DC74,$01 #REGhl=screen buffer address of the tile.
+  $DC75,$02 Set the number of bytes in a character block to #REGa.
+  $DC77,$03 Set a counter in #REGb for the number of bytes in a row (#N$04),
+. and set #REGc to #N$00 which is used for erasing the left-over tile pixels.
+  $DC7A,$01 Stash the current screen buffer address of the tile on the stack.
+N $DC7B Start moving the current row.
+@ $DC7B label=MoveTile_Down_ColumnLoop
+  $DC7B,$01 Stash the current screen buffer address of the tile on the stack.
+  $DC7C,$01 Stash the current screen buffer address of the tile on the stack.
   $DC7D,$02 LDIR.
   $DC7F,$01 Decrease #REGhl by one.
   $DC80,$01 Stash #REGhl on the stack.
@@ -1576,9 +1614,9 @@ N $DC98 Move #REGde down one attribute row.
   $DCB2,$01 Restore the pixel row counter from the stack.
   $DCB3,$02 Decrease the pixel row counter by one and loop back to #R$DC61
 . until counter is zero.
-  $DCB5,$02 Restore the row counter from the stack for the sound generator, but
-. keep a copy of it back on the stack.
-  $DCB7,$03 Call #R$DD52.
+N $DCB5 The tile has successfully moved one space!
+  $DCB5,$05 Using the number of spaces left to move (from the stack) call
+. #R$DD52.
   $DCBA,$04 Increment *#R$E75D by one.
   $DCBE,$01 Restore the number of spaces left to move from the stack.
   $DCBF,$02 Decrease the number of spaces counter by one and loop back to
@@ -1670,11 +1708,10 @@ N $DD28 Move #REGde up one attribute row.
   $DD41,$01 Increment *#REGhl by one.
   $DD42,$01 Restore #REGbc from the stack.
   $DD43,$02 Decrease counter by one and loop back to #R$DCF1 until counter is zero.
-  $DD45,$01 Restore #REGbc from the stack.
-  $DD46,$01 Stash #REGbc on the stack.
-  $DD47,$03 Call #R$DD52.
-  $DD4A,$03 #REGhl=#R$E75D.
-  $DD4D,$01 Decrease *#REGhl by one.
+N $DD45 The tile has successfully moved one space!
+  $DD45,$05 Using the number of spaces left to move (from the stack) call
+. #R$DD52.
+  $DD4A,$04 Decrease *#R$E75D by one.
   $DD4E,$01 Restore the number of spaces left to move from the stack.
   $DD4F,$02 Decrease the number of spaces counter by one and loop back to
 . #R$DCE7 until the tile is in the destination space.
@@ -3583,15 +3620,22 @@ c $E775
   $E98B,$01 Decrease #REGb by one.
   $E98C,$03 Jump to #R$E80A if #REGb is not zero.
   $E98F,$03 Jump to #R$E7CC.
-  $E992,$01 #REGa=#REGb.
-  $E993,$06 Shift #REGa right three positions (with carry).
-  $E999,$02 #REGa+=#N$58.
-  $E99B,$01 #REGh=#REGa.
-  $E99C,$01 #REGa=#REGb.
-  $E99D,$02,b$01 Keep only bits 0-2.
-  $E99F,$03 RRCA.
-  $E9A2,$01 #REGa+=#REGc.
-  $E9A3,$01 #REGl=#REGa.
+
+c $E992 Calculate Position To Attribute Address
+@ $E992 label=Calculate_PositionToAttributeAddress
+R $E992 B Horizontal position
+R $E992 C Vertical position
+R $E992 O:HL Attribute buffer location
+N $E992 Start with the horizontal position.
+  $E992,$01 #REGa=X position.
+  $E993,$06 Divide the X position by #N$08 to find the character column.
+  $E999,$03 Add #N$58 for the high byte of the attribute buffer and store the
+. result in #REGh.
+N $E99C Now the vertical position.
+  $E99C,$01 #REGa=X position (again).
+  $E99D,$02,b$01 Get the pixel position within the character block.
+  $E99F,$03 Multiply by #N$20.
+  $E9A2,$02 Add the Y co-ordinate and store the result in #REGl.
   $E9A4,$01 Return.
 
 c $E9A5
@@ -3612,16 +3656,23 @@ c $E9A5
   $E9BC,$02 Decrease counter by one and loop back to #R$E9AC until counter is zero.
   $E9BE,$01 Return.
 
-c $E9BF
+c $E9BF Extra Life
+@ $E9BF label=ExtraLife
+N $E9BF Give the player an extra life.
   $E9BF,$03 #REGhl=#R$D827.
   $E9C2,$01 Increment *#REGhl by one.
+N $E9C3 Handle "uncovering" the life icon.
+N $E9C3 First; move the icon pointer two character blocks to the left.
   $E9C3,$03 #REGhl=*#R$D872.
   $E9C6,$02 Decrease #REGhl by two.
   $E9C8,$03 Write #REGhl to *#R$D872.
+N $E9CB Next; give the icon some colour to make it appear.
   $E9CB,$02 Write #COLOUR$28 to *#REGhl.
   $E9CD,$01 Increment #REGhl by one.
   $E9CE,$02 Write #COLOUR$28 to *#REGhl.
+N $E9D0 Move down one line, and left one character block.
   $E9D0,$04 #REGhl+=#N($001F,$04,$04).
+N $E9D4 Lastly; colour the bottom part of the icon.
   $E9D4,$02 Write #COLOUR$28 to *#REGhl.
   $E9D6,$01 Increment #REGhl by one.
   $E9D7,$02 Write #COLOUR$28 to *#REGhl.
@@ -4804,18 +4855,11 @@ L $F2AE,$08,$04
 
 b $F2CE Custom Font
 @ $F2CE label=CustomFont
-  $F2CE,$08 #LET(fname=#CHR($30+(#PC-$F2CE)/$08)) #UDG(#PC,attr=$46)(#FORMAT(font-{fname})*)
+  $F2CE,$08 #LET(fname=#CHR($30+(#PC-$F2CE)/$08)) #UDG(#PC,attr=$46)(#FORMAT(font-{fname}))
 L $F2CE,$08,$0A
 
 c $F31E Draw Time Bar
 @ $F31E label=Draw_TimeBar
-N $F31E Test
-. #PUSHS #SIM(start=$D1F1,stop=$D1F7)
-. #UDGTABLE { #SCR$01(*cursor-background)
-.   #FOR$00,$04||x|#OVER($02+x*$04,$02)(cursor-background,font-x)||
-.   #FOR$00,$04||x|#OVER($02+x*$04,$06)(cursor-background,font-x)||
-. #UDGARRAY*cursor-background(image) }
-. UDGTABLE# #POPS
 N $F31E #PUSHS #UDGTABLE {
 .   #SIM(start=$D1F1,stop=$D1F7)#SIM(start=$F31E,stop=$F323)
 .   #FOR$00,$13||x|#SIM(start=$F323,stop=$F337)

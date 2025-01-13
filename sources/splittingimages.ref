@@ -14,7 +14,7 @@ GameDir=splittingimages
 [Game]
 Game=Splitting Images
 Logo=#SCR$02,$05,$00,$10,$08,$4000,$5800{$0B,$09,$F8,$70}(/images/logo)
-Copyright=&copy; 1986 Domark Ltd &copy; 2024 ArcadeGeek LTD.
+Copyright=&copy; 1986 Domark Ltd &copy; 2025 ArcadeGeek LTD.
 Repository=https://github.com/pobtastic/splittingimages/
 LinkInternalOperands=1
 AddressAnchor={address#IF({base}==16)(:04x)}

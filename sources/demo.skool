@@ -2078,7 +2078,7 @@ g$61A8 DEFB $01,$01,$01,$01,$01,$00,$04,$04
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D2DA,stop=$D2DD,ix=$9470,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(demo-level-01) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](demo-level-01) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -2086,7 +2086,7 @@ g$61A8 DEFB $01,$01,$01,$01,$01,$00,$04,$04
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(demo-level-01-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(demo-level-01-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_01
 b$9470 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$4C,$06

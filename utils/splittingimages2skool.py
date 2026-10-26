@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright 2026 Paul Maddern (paul@arcadegeek.co.uk)
 import sys
 import os
 import argparse
@@ -54,14 +55,14 @@ class SplittingImages:
             lines.append(f'N ${image_data[i]["addr"]:04X} This is decompressed using the routine at #R$E004 which writes the')
             lines.append('. image to #R$A0E3.')
             lines.append(f'N ${image_data[i]["addr"]:04X} #PUSHS #SIM(start=$D34E,stop=$D351,ix=${image_data[i]["addr"]:04X},sp=$FFFA)')
-            lines.append(f'. #UDGTABLE {{ #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-{i:02}) }} UDGTABLE#')
+            lines.append(f'. #UDGTABLE {{ #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-{i:02}) }} UDGTABLE#')
             lines.append(f'N ${image_data[i]["addr"]:04X} And split up into separate tiles for the game:')
             lines.append('. #UDGTABLE(default,centre)')
             lines.append(". #FOR$00,$03''y'")
             lines.append('. { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }')
             lines.append('. { #FOR$00,$04!!x!')
             lines.append('.   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)')
-            lines.append(f'.   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{{multiplier}})-($A34F+{{multiplier}})-$01-$A0)@($AAE3+({{id}}+y*$0F)*$04)-($AB22+({{id}}+y*$0F)*$04)-$01-$14(#FORMAT(level-{i:02}-{{id:02}}))! |')
+            lines.append(f'.   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{{multiplier}})-($A34F+{{multiplier}})-$01-$A0)[($AAE3+({{id}}+y*$0F)*$04)-($AB22+({{id}}+y*$0F)*$04)-$01-$14](#FORMAT(level-{i:02}-{{id:02}}))! |')
             lines.append(". !! } '' UDGTABLE# #POPS")
             lines.append('')
 

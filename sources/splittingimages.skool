@@ -1,9 +1,9 @@
 @rom
 @start
-@expand=#DEF(#ANIMATE(delay,count=$50)(name=$a)*$name-1,$delay;#FOR$02,$count||x|$name-x|;||($name-animation))
+@expand=#DEF(#ANIMATE(delay,count=$50)(name=$a)#FRAMES#(($name-1,$delay;#FOR$02,$count||x|$name-x|;||))($name-animation))
 @expand=#DEF(#PLURAL(count)(s=$s,p=$p) #LET(count=$count)#FORMAT(#IF($count==$01)($s,$p)))
-@expand=#DEF(#POKE #LINK:Pokes)
-@expand=#DEF(#FACT #LINK:Facts)
+@expand=#DEF(#POKE()(anchor,text) #LINK(Pokes#$anchor)($text))
+@expand=#DEF(#FACT()(anchor,text) #LINK(Facts#$anchor)($text))
 
 ; Loading Screen
 ;
@@ -239,7 +239,7 @@ b$4000 DEFB $FF,$F8,$00,$7F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$5B00,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-01) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-01) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -247,7 +247,7 @@ b$4000 DEFB $FF,$F8,$00,$7F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-01-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-01-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_01
 b$5B00 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$4C,$06
@@ -470,7 +470,7 @@ b$5B00 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$4C,$06
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$6182,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-02) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-02) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -478,7 +478,7 @@ b$5B00 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$4C,$06
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-02-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-02-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_02
 b$6182 DEFB $C9,$11,$09,$38,$21,$C9,$12,$09
@@ -796,7 +796,7 @@ b$6182 DEFB $C9,$11,$09,$38,$21,$C9,$12,$09
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$6AFF,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-03) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-03) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -804,7 +804,7 @@ b$6182 DEFB $C9,$11,$09,$38,$21,$C9,$12,$09
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-03-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-03-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_03
 b$6AFF DEFB $C9,$C9,$C9,$C9,$C9,$C9,$38,$0F
@@ -1076,7 +1076,7 @@ b$6AFF DEFB $C9,$C9,$C9,$C9,$C9,$C9,$38,$0F
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$730A,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-04) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-04) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -1084,7 +1084,7 @@ b$6AFF DEFB $C9,$C9,$C9,$C9,$C9,$C9,$38,$0F
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-04-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-04-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_04
 b$730A DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$C9
@@ -1265,7 +1265,7 @@ b$730A DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$C9
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$783C,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-05) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-05) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -1273,7 +1273,7 @@ b$730A DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$C9
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-05-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-05-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_05
 b$783C DEFB $C9,$C9,$38,$02,$3D,$05,$45,$09
@@ -1440,7 +1440,7 @@ b$783C DEFB $C9,$C9,$38,$02,$3D,$05,$45,$09
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$7CFD,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-06) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-06) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -1448,7 +1448,7 @@ b$783C DEFB $C9,$C9,$38,$02,$3D,$05,$45,$09
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-06-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-06-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_06
 b$7CFD DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$33
@@ -1592,7 +1592,7 @@ b$7CFD DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$33
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$8106,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-07) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-07) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -1600,7 +1600,7 @@ b$7CFD DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$33
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-07-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-07-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_07
 b$8106 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$1C
@@ -1896,7 +1896,7 @@ b$8106 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$1C
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$89D2,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-08) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-08) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -1904,7 +1904,7 @@ b$8106 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$1C
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-08-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-08-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_08
 b$89D2 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$C9
@@ -2150,7 +2150,7 @@ b$89D2 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$C9
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$9110,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-09) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-09) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -2158,7 +2158,7 @@ b$89D2 DEFB $C9,$C9,$C9,$C9,$C9,$C9,$C9,$C9
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-09-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-09-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_09
 b$9110 DEFB $C9,$C9,$C9,$C9,$4B,$03,$C9,$3D
@@ -2377,7 +2377,7 @@ b$9110 DEFB $C9,$C9,$C9,$C9,$4B,$03,$C9,$3D
 ; image to #R$A0E3.
 ; .
 ; #PUSHS #SIM(start=$D34E,stop=$D351,ix=$9772,sp=$FFFA)
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(level-10) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](level-10) } UDGTABLE#
 ; .
 ; And split up into separate tiles for the game:
 ; #UDGTABLE(default,centre)
@@ -2385,7 +2385,7 @@ b$9110 DEFB $C9,$C9,$C9,$C9,$4B,$03,$C9,$3D
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(level-10-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(level-10-{id:02}))! |
 ; !! } '' UDGTABLE# #POPS
 @label=GraphicsData_Level_10
 b$9772 DEFB $C9,$38,$01,$53,$03,$C9,$37,$01
@@ -2850,7 +2850,7 @@ g$A0E3 DEFB $00,$00,$00,$F3,$31,$F4,$AB,$37,$AF,$DD,$21,$00,$00,$11,$11,$00,$CD,
 ; .
 ;
 ; The whole spritesheet:
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)@$B624-$B763(items-01) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($AC24-$B610-$01-$A0)[$B624-$B763](items-01) } UDGTABLE#
 ; .
 ; Each individual sprite:
 ; #UDGTABLE
@@ -2858,7 +2858,7 @@ g$A0E3 DEFB $00,$00,$00,$F3,$31,$F4,$AB,$37,$AF,$DD,$21,$00,$00,$11,$11,$00,$CD,
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($AC24+{multiplier})-($AE90+{multiplier})-$01-$A0)@($B624+({id}+y*$0F)*$04)-($B663+({id}+y*$0F)*$04)-$01-$14(#FORMAT(items-01-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($AC24+{multiplier})-($AE90+{multiplier})-$01-$A0)[($B624+({id}+y*$0F)*$04)-($B663+({id}+y*$0F)*$04)-$01-$14](#FORMAT(items-01-{id:02}))! |
 ; !! } '' UDGTABLE#
 @label=GraphicsData_Items_01
 b$AC24 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -3015,7 +3015,7 @@ b$AC24 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
 ; .
 ;
 ; The whole spritesheet:
-; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)@$C165-$C2A4(items-02) } UDGTABLE#
+; #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($B765-$C151-$01-$A0)[$C165-$C2A4](items-02) } UDGTABLE#
 ; .
 ; Each individual sprite:
 ; #UDGTABLE
@@ -3023,7 +3023,7 @@ b$AC24 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,
 ; { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 ; { #FOR$00,$04!!x!
 ;   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-;   #UDGARRAY$04,scale=$02,step=$14(($B765+{multiplier})-($B9D1+{multiplier})-$01-$A0)@($C165+({id}+y*$0F)*$04)-($C2A4+({id}+y*$0F)*$04)-$01-$14(#FORMAT(items-02-{id:02}))! |
+;   #UDGARRAY$04,scale=$02,step=$14(($B765+{multiplier})-($B9D1+{multiplier})-$01-$A0)[($C165+({id}+y*$0F)*$04)-($C2A4+({id}+y*$0F)*$04)-$01-$14](#FORMAT(items-02-{id:02}))! |
 ; !! } '' UDGTABLE#
 @label=GraphicsData_Items_02
 b$B765 DEFB $00,$00,$00,$00,$00,$00,$00,$00,$7F,$FF,$FF,$FE,$7F,$FF,$FF,$FE,$00,$00,$00,$00
@@ -4114,13 +4114,13 @@ c$D469 LD A,$02      ; {Write #N$02 to: #LIST { *#R$D830 } { *#R$D831 } {
 ;   #FOR$00,$04||x|#OVER($02+x*$04,$0E)(cursor-background,font-3)#OVER($03+x*$04,$0E)(cursor-background,font-x)||
 ;   #FOR$07,$09||x|#OVER(-$1A+x*$04,$12)(cursor-background,font-3)#OVER(-$19+x*$04,$12)(cursor-background,font-x)||
 ;   #FOR$00,$01||x|#OVER($0E+x*$04,$12)(cursor-background,font-4)#OVER($0F+x*$04,$12)(cursor-background,font-x)||
-; #UDGARRAY*cursor-background(tile-ids) }
+; #FRAMES(cursor-background)(tile-ids) }
 ; UDGTABLE# #POPS
 ; .
 ; Set the players starting tile.
  $D477 LD A,$09      ; {Write #N$09 to *#R$D834.
  $D479 LD ($D834),A  ; }
-; See #POKE#infinitelives(Infinite Lives) and #POKE#infinitelivesalt(Infinite
+; See #POKE(infinitelives,Infinite Lives) and #POKE(infinitelivesalt,Infinite
 ; Lives (alternative)).
 ; .
 ; Spend a life to play the game.
@@ -6782,7 +6782,7 @@ c$E2FD LD A,($E5B2)  ; {Return if the player has pressed fire (#N$10).
 ;   #FOR$00,$0E||x|#SIM(start=$E320,stop=$E33C)
 ;     #SCR$02{$00,$00,$50,$50}(*home-arrow-x)#PLOT(0,0,0)(home-arrow-x)
 ;   ||
-;   #UDGARRAY#(#ANIMATE$02,$0E(home-arrow))
+;   #ANIMATE$02,$0E(home-arrow)
 ; } UDGTABLE# #POPS
 @label=Handler_HomeArrow
 c$E320 LD HL,$E695   ; Point #REGhl at #R$E695 where the attributes are stored.
@@ -7783,7 +7783,7 @@ g$E6C6 DEFW $0000
 ;   #FOR$01,$0C||x|#SIM(start=$F874,stop=$F87D)
 ;     #SCR$02{$50,$50,$40,$40}(*moving-game-cursor-x)#PLOT(0,0,0)(moving-game-cursor-x)
 ;   ||
-;   #UDGARRAY#(#ANIMATE$02,$0C(moving-game-cursor))
+;   #ANIMATE$02,$0C(moving-game-cursor)
 ; } UDGTABLE# #POPS
 @label=PlayerCursor_AttributesRotator
 c$E6C8 LD HL,$E6AF   ; Set #REGhl to point to #R$E6AF.
@@ -9088,7 +9088,7 @@ c$ECBF LD C,$36      ; #REGc=#COLOUR$36.
 ;   #FOR$07,$0D||x|#SIM(start=$ECF0,stop=$ECFE)
 ;     #SCR$01(*game-over-03-x)#PLOT(0,0,0)(game-over-03-x)
 ;   ||
-;   #UDGARRAY#(#ANIMATE$04,$0D(game-over-03))
+;   #ANIMATE$04,$0D(game-over-03)
 ; } UDGTABLE# #POPS
  $ECD6 LD B,$0A      ; Set a counter in #REGb of #N$0A to count the number of down/ up
                      ; cycles here.
@@ -10017,7 +10017,7 @@ b$F2CE DEFB $7C,$FE,$E6,$E6,$E6,$E6,$FE,$7C ; #LET(fname=#CHR($30+(#PC-$F2CE)/$0
 ;   #FOR$00,$13||x|#SIM(start=$F323,stop=$F337)
 ;     #SCR$02(*time-bar-x)#PLOT(0,0,0)(time-bar-x)
 ;   ||
-;   #UDGARRAY#(#ANIMATE$05,$13(time-bar))
+;   #ANIMATE$05,$13(time-bar)
 ; } UDGTABLE# #POPS
 @label=Draw_TimeBar
 c$F31E LD HL,$50E1   ; Set the location of where to start drawing the time bar in #REGhl
@@ -10124,7 +10124,7 @@ c$F38F LD HL,$E261   ; #REGhl=#R$E261.
 ;
 ; .
 ;
-; See #POKE#infinitetime(Infinite Time).
+; See #POKE(infinitetime,Infinite Time).
 @label=Handler_CheckTime
 c$F39E LD HL,$D83A   ; {Jump to #R$F3AC if bit 4 of *#R$D83A is not set.
  $F3A1 BIT 4,(HL)    ;
@@ -10139,7 +10139,7 @@ c$F39E LD HL,$D83A   ; {Jump to #R$F3AC if bit 4 of *#R$D83A is not set.
 ;
 ; .
 ;
-; See #POKE#bombs(Bombs Don't Explode).
+; See #POKE(bombs,Bombs Don't Explode).
 @label=Handler_Bombs
 c$F3AC LD A,($D838)  ; {Jump to #R$F428 if *#R$D838 is equal to #N$00.
  $F3AF CP $00        ;

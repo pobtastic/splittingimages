@@ -1,3 +1,4 @@
+# Copyright 2026 Paul Maddern (paul@arcadegeek.co.uk)
 GAME=splittingimages
 SRCFILES=$(echo {demo,splittingimages,splitpersonalities}.skool {splittingimages,splitpersonalities,analytics,bases,changelog,data,facts,images,items,pokes,previewimages,sound}.ref {dark,wide}.css)
 SKOOL2BINOPTS="-i 53674"

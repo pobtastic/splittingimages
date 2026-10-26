@@ -1,4 +1,4 @@
-; Copyright Domark Ltd 1986, 2025 ArcadeGeek LTD.
+; Copyright Domark Ltd 1986, 2026 ArcadeGeek LTD.
 ; NOTE: Disassembly is Work-In-Progress.
 ; Label naming is loosely based on Action_ActionName_SubAction e.g. Print_HighScore_Loop.
 
@@ -21,14 +21,14 @@ D $9470 Compressed graphics data for level 1.
 N $9470 This is decompressed using the routine at #R$DE0F which writes the
 . image to #R$A0E3.
 N $9470 #PUSHS #SIM(start=$D2DA,stop=$D2DD,ix=$9470,sp=$FFFA)
-. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)@$AAE3-$AC22(demo-level-01) } UDGTABLE#
+. #UDGTABLE { #UDGARRAY$14,scale=$02,step=$14($A0E3-$AACF-$01-$A0)[$AAE3-$AC22](demo-level-01) } UDGTABLE#
 N $9470 And split up into separate tiles for the game:
 . #UDGTABLE(default,centre)
 . #FOR$00,$03''y'
 . { #FOR$00,$04(x, =h #N(x+($05*y)), | ) }
 . { #FOR$00,$04!!x!
 .   #LET(id=(x+($05*y)))#LET(multiplier=({id}+y*$9B)*$04)
-.   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)@($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14(#FORMAT(demo-level-01-{id:02}))! |
+.   #UDGARRAY$04,scale=$02,step=$14(($A0E3+{multiplier})-($A34F+{multiplier})-$01-$A0)[($AAE3+({id}+y*$0F)*$04)-($AB22+({id}+y*$0F)*$04)-$01-$14](#FORMAT(demo-level-01-{id:02}))! |
 . !! } '' UDGTABLE# #POPS
 
 g $A0E3 Image Buffer

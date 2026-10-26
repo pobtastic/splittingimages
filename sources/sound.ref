@@ -1,13 +1,13 @@
-; Copyright 2025 Paul Maddern (paul@arcadegeek.co.uk)
+; Copyright 2026 Paul Maddern (paul@arcadegeek.co.uk)
 
 [Audio:Static:Static]
 
-#AUDIO(static.wav)(#INCLUDE(Static))
+#AUDIO0(static.wav)(#INCLUDE(Static))
 
 [Audio:TileMoving:Tile Moving]
 
-#AUDIO(tile-moving.wav)(#INCLUDE(TileMoving))
+#AUDIO0(tile-moving.wav)(#INCLUDE(TileMoving))
 
 [Audio:Bomb:Bomb]
 
-#AUDIO(bomb.wav)(#INCLUDE(Bomb))
+#AUDIO0(bomb.wav)(#INCLUDE(Bomb))

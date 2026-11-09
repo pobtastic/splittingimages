@@ -18,6 +18,9 @@ Game=Splitting Images
 Logo=#SCR$02,$05,$00,$10,$08,$4000,$5800{$0B,$09,$F8,$70}(/images/logo)
 Copyright=&copy; 1986 Domark Ltd<br />&copy; 2026 ArcadeGeek LTD.
 Repository=https://github.com/pobtastic/splittingimages/
+Canonical=https://skoolkit.arcadegeek.co.uk/splittingimages/
+GameIndexUrl=https://skoolkit.arcadegeek.co.uk/splittingimages/
+OgImage=https://skoolkit.arcadegeek.co.uk/splittingimages/images/logo.png
 LinkInternalOperands=1
 AddressAnchor={address#IF({base}==16)(:04x)}
 
